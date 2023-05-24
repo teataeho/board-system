@@ -9,7 +9,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class partyVO {
+public class PartyVO {
 	
 	private int partyNo;
 	private String restId;

@@ -22,7 +22,7 @@
     </settings>
     
     <typeAliases>
-        <typeAlias type="com.spring.yeoreobap.command.partyVO" alias="party"/>
+        <typeAlias type="com.spring.yeoreobap.command.PartyVO" alias="party"/>
     </typeAliases>
      
 </configuration>

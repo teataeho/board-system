@@ -7,7 +7,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class participantsVO {
+public class ParticipantsVO {
 	
 	private int pNo, partyBoardNo;
 	private String user_id;

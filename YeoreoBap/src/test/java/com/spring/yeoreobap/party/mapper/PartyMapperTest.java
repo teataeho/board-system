@@ -9,13 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import com.spring.yeoreobap.command.partyVO;
+import com.spring.yeoreobap.command.PartyVO;
+
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(locations = {
 		"file:src/main/webapp/WEB-INF/config/db-config.xml"
 })
-public class partyMapperTest {
+public class PartyMapperTest {
 
 	@Autowired
 	private IPartyMapper mapper;
@@ -24,7 +25,7 @@ public class partyMapperTest {
 	@DisplayName("글등록")
 	void registTest() {
 		for(int i=0; i< 100; i++) {
-		partyVO vo = new partyVO();
+		PartyVO vo = new PartyVO();
 		vo.setRestId("3007-10-12312312");
 		vo.setWriter("누구");
 		vo.setTitle("파티모집" + i);
@@ -36,11 +37,34 @@ public class partyMapperTest {
 	@Test
 	@DisplayName("글리스트")
 	void getListTest() {
-		List<partyVO> list = mapper.getList();
+		List<PartyVO> list = mapper.getList();
 		
-		for(partyVO vo : list) {
+		for(PartyVO vo : list) {
 			System.out.println(vo);
 		}
+	}
+	
+	@Test
+	@DisplayName("상세보기")
+	void getArticleTest() {
+		mapper.getArticle(100);
+	}
+	
+	@Test
+	@DisplayName("수정")
+	void updateTest() {
+		PartyVO vo = new PartyVO();
+		vo.setPartyNo(100);
+		vo.setTitle("이런");
+		vo.setContent("수박.....");
+		
+		mapper.update(vo);
+	}
+	
+	@Test
+	@DisplayName("삭제")
+	void deleteTest() {
+		mapper.delete(102);
 	}
 	
 }
