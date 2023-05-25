@@ -1,4 +1,50 @@
-.main .slide > img {
-	display : bolck;
-    width: 100%;
+.mainArea .findPartyMenu {
+    border: solid 2px salmon;
+}
+
+.mainArea .findPartyMenu {
+    border: solid 2px yellow;
+    display: flex;
+}
+
+.mainArea .findPartyMenu .party {
+	background-color: hotpink;
+}
+
+.mainArea .findPartyMenu .party > div{
+	display: flex;
+}
+
+
+
+.mainArea .findPartyMenu .party:first-child {
+    border: dashed 2px green;
+    flex-grow: 2;
+
+}
+
+.mainArea .findPartyMenu .party:nth-child(2) {
+    border: dashed 2px orange;
+    flex-grow: 1;
+}
+
+.mainArea .findPartyMenu .party:last-child {
+    border: solid 2px red;
+    flex-grow: 1;
+}
+
+.mainArea .findPartyMenu .party .partyBox {
+	width: 160px;
+	height: 240px;
+	padding: 10px;
+}
+
+
+.mainArea .findPartyMenu .getParty .partyBox {
+    display: flex;
+}
+
+.mainArea .findPartyMenu .getParty .partyBox span {
+    display: flex;
+    flex-direction: row;
 }
