@@ -2,17 +2,17 @@
 
 	<%@ include file="../include/header.jsp" %>
 
-		<div class="login join">
-			<h2 class="header">회원가입</h2>
-			<p class="necessary">*표시가 있는 곳은 필수입력값입니다!</p>
+		<div class="join">
+			<h2 class="title">회원가입</h2>
 			<form action="" method="POST">
+				<p class="necessary">*표시가 있는 곳은 필수입력값입니다!</p>
 				<!-- 아이디 -->
 				<div class="block">
 					<p><span class="necessary">*</span>아이디</p>
 					<div class="border"><input type="text" class="form-id" name="userId" id="userId"
 							placeholder="아이디를 입력해주세요. (영문 4~12자)" autocomplete="off">
 					</div>
-					<button type="button" id="idCheckBtn">아이디 중복 체크</button>
+					<button type="button" class="form-idCheckBtn" id="idCheckBtn">아이디 중복 체크</button>
 					<span class="msgId"></span>
 				</div>
 
@@ -54,9 +54,10 @@
 					<div class="border"><input type="text" class="form-userEmail1" name="userEmail1" id="userEmail1">
 					</div>
 					<p>@</p>
-					<div class="border"><input type="text" name="userEmail2" id="userEmail2" value="naver.com" readonly></div>
+					<div class="border"><input type="text" class="form-userEmail2" name="userEmail2" id="userEmail2"
+							value="naver.com" readonly></div>
 					<div class="border">
-						<select name="emailSelection" id="emailSelection">
+						<select class="form-emailSelection" name="emailSelection" id="emailSelection">
 							<option value="type">직접 입력</option>
 							<option>naver.com</option>
 							<option>daum.net</option>
@@ -65,8 +66,8 @@
 							<option>yahoo.co.kr</option>
 						</select>
 					</div>
-					<input type="text" name="emailCheck" id="emailCheck" value="인증번호를 입력해주세요." readonly>
-					<button type="button" id="emailCheckBtn">이메일 인증</button>
+					<input type="text" class="form-emailCheck" name="emailCheck" id="emailCheck" value="인증번호를 입력해주세요." readonly>
+					<button type="button" class="form-emailCheckBtn" id="emailCheckBtn">이메일 인증</button>
 				</div>
 
 				<!-- 전화번호 -->
@@ -95,8 +96,8 @@
 				</div>
 
 				<!-- 버튼 -->
-				<button type="button" id="joinBtn">회원가입</button>
-				<button type="button" id="loginBtn">로그인</button>
+				<button type="button" class="form-joinBtn" id="joinBtn">회원가입</button>
+				<button type="button" class="form-loginBtn" id="loginBtn">로그인</button>
 
 			</form>
 		</div>

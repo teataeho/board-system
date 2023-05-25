@@ -3,7 +3,7 @@
 	<%@ include file="../include/header.jsp" %>
 
 		<div class="login">
-			<h2 class="header">로그인</h2>
+			<h2 class="title">로그인</h2>
 			<form action="" method="POST">
 				<div class="border"><input type="text" class="form-id" name="userId" id="userId" placeholder="아이디"
 						autocomplete="off">
