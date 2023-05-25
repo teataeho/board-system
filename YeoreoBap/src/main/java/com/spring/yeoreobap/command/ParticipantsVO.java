@@ -9,7 +9,7 @@ import lombok.ToString;
 @ToString
 public class ParticipantsVO {
 	
-	private int pNo, partyBoardNo;
+	private int pNo, partyNo;
 	private String user_id;
 
 }

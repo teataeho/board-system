@@ -10,6 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.spring.yeoreobap.command.PartyVO;
+import com.spring.yeoreobap.util.PageVO;
 
 
 @ExtendWith(SpringExtension.class)
@@ -37,7 +38,7 @@ public class PartyMapperTest {
 	@Test
 	@DisplayName("글리스트")
 	void getListTest() {
-		List<PartyVO> list = mapper.getList();
+		List<PartyVO> list = mapper.getList(new PageVO());
 		
 		for(PartyVO vo : list) {
 			System.out.println(vo);

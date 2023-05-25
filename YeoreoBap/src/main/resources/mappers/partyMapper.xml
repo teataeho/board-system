@@ -14,6 +14,12 @@
 		SELECT * 
 		FROM party
 		ORDER BY party_no DESC
+		LIMIT #{pageStart}, #{cpp}
+	</select>
+	
+	<select id="getTotal" resultType="int">
+		SELECT COUNT(*)
+		FROM party
 	</select>
 	
 	<select id="getArticle" resultType="party">
@@ -32,5 +38,11 @@
 		DELETE FROM party
 		WHERE party_no = #{partyNo}
 	</delete>
+	
+	<insert id="attend">
+		INSERT INTO participants
+		(party_no, user_id)
+		VALUES (#{partyNo}, #{userId})
+	</insert>
 
 </mapper>
