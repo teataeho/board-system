@@ -1,27 +1,66 @@
 /* 폰트 */
 @font-face {
-  font-family: 'SEBANG_Gothic_Bold';
+  font-family: 'SEBANG_Gothic';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2104@1.0/SEBANG_Gothic_Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SEBANG_Gothic';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2104@1.0/SEBANG_Gothic_Regular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
 /* 전체 기본 세팅 */
 * {
-  font-family: 'SEBANG_Gothic_Bold', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: 'SEBANG_Gothic';
+  font-weight: normal;
+  font-size: 20px;
+}
+
+input {
+  border: none;
+  outline: none;
+}
+
+.border {
+  border-radius: 5px;
+  border: 1px solid #BCBEC0;
+  overflow: hidden;
+}
+
+.necessary {
+  color: red;
+}
+
+.information {
+  color: #BCBEC0;
+  font-size: 12px;
+}
+
+h2.title {
+  font-size: 30px;
+  font-weight: bold;
+  line-height: 60px;
+  text-align: center;
+  border-bottom: 1.5px solid #F0975A;
+  margin-bottom: 10px;
+}
+
+button {
+  background-color: #F0975A;
+  color: white;
+  border: none;
+  text-align: center;
+  border-radius: 5px;
 }
 
 /* 로그인 페이지 */
 .login {
   width: 500px;
   margin: 150px auto;
-}
-
-.login h2 {
-  line-height: 60px;
-  text-align: center;
-  border-bottom: 1.5px solid #F0975A;
-  margin-bottom: 10px;
 }
 
 .login form {
@@ -34,8 +73,6 @@
   display: block;
   height: 40px;
   width: 250px;
-  border: none;
-  outline: none;
 
   font-size: 14px;
   padding: 0 15px;
@@ -44,9 +81,6 @@
 .login .border {
   height: 40px;
   width: 250px;
-  border-radius: 5px;
-  border: 1px solid #BCBEC0;
-  overflow: hidden;
 }
 
 .login .border:first-child {
@@ -56,14 +90,46 @@
 .login button {
   width: 85px;
   height: 85px;
-  border-radius: 5px;
-  background-color: #F0975A;
-  color: white;
-  border: none;
-
-  font-size: 20px;
 
   position: absolute;
   top: 0;
   right: 0;
+}
+
+/* 회원가입 페이지 */
+.join {
+  width: 1000px;
+  margin: 150px auto;
+}
+
+.join p.necessary {
+  font-size: 15px;
+  margin: 20px 0;
+}
+
+.join form {
+  width: 650px;
+  margin: 0 auto;
+}
+
+.join p {
+  display: block;
+  margin: 0 2px;
+}
+
+.join .block {
+  margin-bottom: 20px;
+  display: flex;
+}
+
+.join [class^=form-] {
+  display: block;
+  width: 100%;
+  height: 40px;
+  padding: 0 10px;
+}
+
+#idCheckBtn {
+  width: 160px;
+  margin-left: 5px;
 }
