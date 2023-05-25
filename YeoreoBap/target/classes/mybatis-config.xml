@@ -23,6 +23,7 @@
     
     <typeAliases>
         <typeAlias type="com.spring.yeoreobap.command.PartyVO" alias="party"/>
+        <typeAlias type="com.spring.yeoreobap.command.StoreVO" alias="store"/>
     </typeAliases>
      
 </configuration>

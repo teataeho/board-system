@@ -42,6 +42,15 @@ public class UserController {
 	@GetMapping("/userJoin")
 	public void userJoin() {}
 
+	//회원 가입 처리
+	@PostMapping("/join")
+	public String join(UserVO vo, RedirectAttributes ra) {
+		log.info("param: {}" + vo.toString());
+		service.join(vo);
+		ra.addFlashAttribute("msg", "joinSuccess");
+		return "redirect:/user/userLogin";
+	}
+	
 	//아이디 중복 확인(비동기)
 	@ResponseBody
 	@PostMapping("/idCheck")
@@ -59,15 +68,6 @@ public class UserController {
 //		log.info("이메일 인증 요청: " + email);
 //		return mailService.joinEmail(email);
 //	}
-
-	//회원 가입 처리
-	@PostMapping("/join")
-	public String join(UserVO vo, RedirectAttributes ra) {
-		log.info("param: {}" + vo.toString());
-		service.join(vo);
-		ra.addFlashAttribute("msg", "joinSuccess");
-		return "redirect:/user/userLogin";
-		}
 	
 	//로그인 페이지로 이동 요청
 	@GetMapping("/userLogin")
