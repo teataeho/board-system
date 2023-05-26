@@ -20,18 +20,18 @@ public class StoreController {
 
 	private IStoreService service;
 	
-	//∏Ò∑œ
+	
 	@GetMapping("/storeList")
 	public void storeList(PageVO vo, Model model) {
 		PageCreator pc = new PageCreator(vo, service.getTotal(vo));
-		System.out.println("∆‰¿Ã¡ˆ: " + pc.toString());
+		System.out.println("√Ü√§√Ä√å√Å√∂: " + pc.toString());
 		log.info(pc.toString());
 		
 		model.addAttribute("storeList",service.getList(vo));
 		model.addAttribute("pc", pc);
 	}
 	
-	//ªÛºº
+	
 	@GetMapping("/content/{sno}")
 	public String getContent(@PathVariable int sno, @ModelAttribute("p") PageVO vo,
 			Model model) {

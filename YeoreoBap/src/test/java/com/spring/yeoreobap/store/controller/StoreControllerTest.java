@@ -11,7 +11,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MockMvcBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
@@ -37,14 +36,14 @@ public class StoreControllerTest {
 	}
 	
 	@Test
-	@DisplayName("/store/storeList ¿äÃ»")
+	@DisplayName("/store/storeList ìš”ì²­")
 	void testList() throws Exception {
 		ModelAndView mv = 
 				mockMvc.perform(MockMvcRequestBuilders.get("/store/storeList"))
 				.andReturn()
 				.getModelAndView();
-		System.out.println("Model ³»¿¡ ÀúÀåÇÑ µ¥ÀÌÅÍ: " + mv.getModelMap());
-		System.out.println("ÀÀ´ä Ã³¸®¸¦ À§ÇØ »ç¿ëÇÒ ÆäÀÌÁö: " + mv.getViewName());
+		System.out.println("Model ë‚´ì— ì €ì¥í•œ ë°ì´í„°: " + mv.getModelMap());
+		System.out.println("ì‘ë‹µ ì²˜ë¦¬ë¥¼ ìœ„í•´ ì‚¬ìš©í•  í˜ì´ì§€: " + mv.getViewName());
 	}
 	
 	@Test

@@ -17,14 +17,14 @@ import lombok.ToString;
 @Getter @Setter @ToString
 public class StoreVO {
 	
-	//°ø°øµ¥ÀÌÅÍ ÇÁ·ÎÆÛÆ¼¸í°ú °°Àº ÀÌ¸§À¸·Î ¼±¾ğÇß½À´Ï´Ù.
+	//ê³µê³µë°ì´í„° í”„ë¡œí¼í‹°ëª…ê³¼ ê°™ì€ ì´ë¦„ìœ¼ë¡œ ì„ ì–¸í–ˆìŠµë‹ˆë‹¤.
 	
-	private int sno; //»ç¾÷Àå ¹øÈ£(ÀüÈ­¹øÈ£X)
-	private String siteTel;	//¼ÒÀçÁöÀüÈ­
-	private String rdnWhlAddr;	//µµ·Î¸íÀüÃ¼ÁÖ¼Ò
-	private String bplcNm;	//»ç¾÷Àå¸í
-	private String uptaeNm;	//¾÷ÅÂ±¸ºĞ¸í
-	private long x;	//xÁÂÇ¥
-	private long y;	//yÁÂÇ¥
+	private int sno; //ì‚¬ì—…ì¥ ë²ˆí˜¸(ì „í™”ë²ˆí˜¸X)
+	private String siteTel;	//ì†Œì¬ì§€ì „í™”
+	private String rdnWhlAddr;	//ë„ë¡œëª…ì „ì²´ì£¼ì†Œ
+	private String bplcNm;	//ì‚¬ì—…ì¥ëª…
+	private String uptaeNm;	//ì—…íƒœêµ¬ë¶„ëª…
+	private long x;	//xì¢Œí‘œ
+	private long y;	//yì¢Œí‘œ
 	
 }

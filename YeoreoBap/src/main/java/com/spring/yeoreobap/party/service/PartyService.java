@@ -46,8 +46,8 @@ public class PartyService implements IPartyService {
 	}
 
 	@Override
-	public void attend(String userId) {
-				
+	public void attend(String userId, int partyNo) {
+			
 	}
 
 }

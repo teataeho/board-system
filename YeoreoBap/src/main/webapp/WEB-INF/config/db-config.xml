@@ -28,7 +28,6 @@
 		<property name="mapperLocations" value="classpath:/mappers/*Mapper.xml" />
 	</bean>
 	
-	<mybatis-spring:scan base-package="com.spring.yeoreobap.user.mapper"/>
 	<mybatis-spring:scan base-package="com.spring.yeoreobap.party.mapper"/>
 	<mybatis-spring:scan base-package="com.spring.yeoreobap.store.mapper"/>
 	
