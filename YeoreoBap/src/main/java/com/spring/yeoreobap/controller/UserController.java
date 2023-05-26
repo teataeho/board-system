@@ -38,11 +38,11 @@ public class UserController {
 //	@Autowired
 //	private MailSenderService mailService;
 
-	//È¸¿ø°¡ÀÔ ÆäÀÌÁö·Î ÀÌµ¿
+	//È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
 	@GetMapping("/userJoin")
 	public void userJoin() {}
 
-	//È¸¿ø °¡ÀÔ Ã³¸®
+	//È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
 	@PostMapping("/join")
 	public String join(UserVO vo, RedirectAttributes ra) {
 		log.info("param: {}" + vo.toString());
@@ -51,36 +51,36 @@ public class UserController {
 		return "redirect:/user/userLogin";
 	}
 	
-	//¾ÆÀÌµð Áßº¹ È®ÀÎ(ºñµ¿±â)
+	//ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ßºï¿½ È®ï¿½ï¿½(ï¿½ñµ¿±ï¿½)
 	@ResponseBody
 	@PostMapping("/idCheck")
 	public String idCheck(@RequestBody String userId) {
-		log.info("È­¸é¿¡¼­ Àü´ÞµÈ °ª: " + userId);
+		log.info("È­ï¿½é¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½Þµï¿½ ï¿½ï¿½: " + userId);
 		int result = service.idCheck(userId);
 		if(result == 1) return "duplicated";
 		else return "available";
 	}
 
-	//ÀÌ¸ÞÀÏ ÀÎÁõ
+	//ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 //	@GetMapping("/mailCheck")
 //	@ResponseBody
 //	public String mailCheck(String email) {
-//		log.info("ÀÌ¸ÞÀÏ ÀÎÁõ ¿äÃ»: " + email);
+//		log.info("ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»: " + email);
 //		return mailService.joinEmail(email);
 //	}
 	
-	//·Î±×ÀÎ ÆäÀÌÁö·Î ÀÌµ¿ ¿äÃ»
+	//ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½Ã»
 	@GetMapping("/userLogin")
 	public void login() {}
 	
-	//·Î±×ÀÎ ¿äÃ»
+	//ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»
 	@PostMapping("/userLogin")
 	public void login(String userId, String userPw, Model model) {
-		log.info("³ª´Â userControllerÀÇ login");
+		log.info("ï¿½ï¿½ï¿½ï¿½ userControllerï¿½ï¿½ login");
 		model.addAttribute("user", service.login(userId, userPw));
 	}
 	
-	//¸¶ÀÌÆäÀÌÁö ÀÌµ¿ ¿äÃ»
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½Ã»
 //	@GetMapping("/userMypage")
 //	public void userMypage(HttpSession session, Model model, PageVO vo) {
 //		String id = (String) session.getAttribute("login");
