@@ -10,6 +10,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.spring.yeoreobap.command.PartyVO;
+import com.spring.yeoreobap.util.PageVO;
+
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(locations = {
@@ -21,26 +23,49 @@ public class PartyMapperTest {
 	private IPartyMapper mapper;
 	
 	@Test
-	@DisplayName("±€µÓ∑œ")
+	@DisplayName("Í∏ÄÎì±Î°ù")
 	void registTest() {
 		for(int i=0; i< 100; i++) {
 		PartyVO vo = new PartyVO();
 		vo.setRestId("3007-10-12312312");
-		vo.setWriter("¥©±∏");
-		vo.setTitle("∆ƒ∆º∏¡˝" + i);
-		vo.setContent("∆ƒ∆º∏¡˝¡ﬂ~~~" + i);
+		vo.setWriter("ÎàÑÍµ¨");
+		vo.setTitle("ÌååÌã∞Î™®Ïßë" + i);
+		vo.setContent("ÌååÌã∞Î™®ÏßëÏ§ë~~~" + i);
 		mapper.regist(vo);
 		}
 	}
 	
 	@Test
-	@DisplayName("±€∏ÆΩ∫∆Æ")
+	@DisplayName("Í∏ÄÎ¶¨Ïä§Ìä∏")
 	void getListTest() {
-		List<PartyVO> list = mapper.getList();
+		List<PartyVO> list = mapper.getList(new PageVO());
 		
 		for(PartyVO vo : list) {
 			System.out.println(vo);
 		}
+	}
+	
+	@Test
+	@DisplayName("ÏÉÅÏÑ∏Î≥¥Í∏∞")
+	void getArticleTest() {
+		mapper.getArticle(100);
+	}
+	
+	@Test
+	@DisplayName("ÏàòÏ†ï")
+	void updateTest() {
+		PartyVO vo = new PartyVO();
+		vo.setPartyNo(100);
+		vo.setTitle("Ïù¥Îü∞");
+		vo.setContent("ÏàòÎ∞ï.....");
+		
+		mapper.update(vo);
+	}
+	
+	@Test
+	@DisplayName("ÏÇ≠Ï†ú")
+	void deleteTest() {
+		mapper.delete(102);
 	}
 	
 }

@@ -14,6 +14,35 @@
 		SELECT * 
 		FROM party
 		ORDER BY party_no DESC
+		LIMIT #{pageStart}, #{cpp}
 	</select>
+	
+	<select id="getTotal" resultType="int">
+		SELECT COUNT(*)
+		FROM party
+	</select>
+	
+	<select id="getArticle" resultType="party">
+		SELECT * FROM party
+		WHERE party_no = #{partyNo}
+	</select>
+	
+	<update id="update">
+		update party
+		SET title = #{title}, content = #{content},
+		update_date = current_timestamp
+		WHERE party_no = #{partyNo}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM party
+		WHERE party_no = #{partyNo}
+	</delete>
+	
+	<insert id="attend">
+		INSERT INTO participants
+		(party_no, user_id)
+		VALUES (#{partyNo}, #{userId})
+	</insert>
 
 </mapper>

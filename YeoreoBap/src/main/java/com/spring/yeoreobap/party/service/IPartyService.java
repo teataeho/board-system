@@ -1,17 +1,17 @@
-package com.spring.yeoreobap.party.mapper;
+package com.spring.yeoreobap.party.service;
 
 import java.util.List;
 
 import com.spring.yeoreobap.command.PartyVO;
 import com.spring.yeoreobap.util.PageVO;
 
-public interface IPartyMapper {
+public interface IPartyService {
 	
 	//글 등록
 	void regist(PartyVO vo);
 	//글 목록
-	List<PartyVO> getList(PageVO vo);
-	//게시글 총 수
+	List<PartyVO> getList(PageVO paging);
+	//전체 글
 	int getTotal();
 	//상세보기
 	PartyVO getArticle(int partyNo);
@@ -20,5 +20,5 @@ public interface IPartyMapper {
 	//삭제
 	void delete(int partyNo);
 	//참여
-
+	void attend(String userId, int partyNo);
 }
