@@ -47,7 +47,7 @@ public class PartyService implements IPartyService {
 
 	@Override
 	public void attend(String userId, int partyNo) {
-			
+			mapper.attend(userId, partyNo);
 	}
 
 }

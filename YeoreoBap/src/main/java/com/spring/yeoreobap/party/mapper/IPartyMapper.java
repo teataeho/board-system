@@ -20,5 +20,6 @@ public interface IPartyMapper {
 	//삭제
 	void delete(int partyNo);
 	//참여
+	void attend(String userId, int partyNo);
 
 }

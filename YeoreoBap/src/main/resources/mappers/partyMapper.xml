@@ -6,8 +6,8 @@
 
 	<insert id="regist">
 		INSERT INTO party
-		(rest_id, writer, title, content)
-		VALUES (#{restId}, #{writer}, #{title}, #{content})
+		(rest_id, writer, title, content, max)
+		VALUES (#{restId}, #{writer}, #{title}, #{content}, #{max})
 	</insert>
 	
 	<select id="getList" resultType="party">

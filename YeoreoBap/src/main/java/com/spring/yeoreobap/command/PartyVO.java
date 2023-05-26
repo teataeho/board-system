@@ -11,7 +11,7 @@ import lombok.ToString;
 @ToString
 public class PartyVO {
 	
-	private int partyNo;
+	private int partyNo, max;
 	private String restId;
 	private String writer, title, content;
 	private LocalDateTime regDate, updateDate;	
