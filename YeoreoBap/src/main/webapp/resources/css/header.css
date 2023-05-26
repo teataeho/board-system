@@ -3,41 +3,43 @@
         rgba(0, 0, 0, 0) 100%)
 }
 header {
-    position: fixed;
-    background: #fff;
-    left: 0;
-    top: 0;
-    width: 100%;
-    z-index: 50; /*positionÀ» ÀÌ¿ëÇÏ¸é ¿ä¼Ò°¡ °ãÃÄÁú ¼ö ÀÖ´Ù. ¼ýÀÚ°¡ Á¦ÀÏ ³ôÀº°ªÀÌ À§·Î ¶°¿À¸¥´Ù*/
+	position: fixed;
+	background: #fff;
+	left: 0;
+	top: 0;
+	width: 100%;
+	z-index: 50; /*positionì„ ì´ìš©í•˜ë©´ ìš”ì†Œê°€ ê²¹ì³ì§ˆ ìˆ˜ ìžˆë‹¤. ìˆ«ìžê°€ ì œì¼ ë†’ì€ê°’ì´ ìœ„ë¡œ ë– ì˜¤ë¥¸ë‹¤*/
 }
 
 
 
-/* header ÀÇ ¸ðµç ÄÁÅ×ÀÌ³Ê Å¬·¡½º¿¡ Àû¿ëÇÔ */
-header .container {
-    padding: 0;
+/* header ì˜ ëª¨ë“  ì»¨í…Œì´ë„ˆ í´ëž˜ìŠ¤ì— ì ìš©í•¨ */
+.container {
+	padding: 0;
     height: 80px;
-    margin-bottom: 0px;    
+	margin-bottom: 0px;    
     border-bottom: 2px solid #F4B183;
+
 }
 
-/* ·Î±×ÀÎ ¹öÆ° ¸Þ´º °¡·ÎÁ¤·Ä */
-.navbar-collapse {
-    position: relative;
+/* ë¡œê·¸ì¸ ë²„íŠ¼ ë©”ë‰´ ê°€ë¡œì •ë ¬ */
+.container .inner-container {
+	display: flex;
+	position: relative;
 }
-.navbar-collapse .login-menu {
-    display: flex;
-    position: absolute;
-    top: 70px;
-    right: 0;
+.container .inner-container .login-menu {
+	display: flex;
+	position: absolute;
+	top: 50px;
+	right: 0;
 }
 
-/* ·Î±×ÀÎ ¹öÆ° ¸Þ´º À§Ä¡ ¹× µðÀÚÀÎ */
-.container .login-menu > li > a{
-    margin-left: 20px;
-    color: #F0975A;
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: 500;
+/* ë¡œê·¸ì¸ ë²„íŠ¼ ë©”ë‰´ ìœ„ì¹˜ ë° ë””ìžì¸ */
+.container .inner-container .login-menu > li > a{
+	margin-left: 20px;
+	color: #F0975A;
+	text-decoration: none;
+	font-size: 18px;
+	font-weight: 500;
 
 }
