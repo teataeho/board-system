@@ -80,7 +80,7 @@
 				<!-- 거주구 -->
 				<div class="block">
 					<p><span class="necessary">*</span>현재 거주하고 계신 구가 어디인가요?</p>
-					<span class="information">입력해주신 구의 동행을 우선적으로 보여드리기 위해 얻는 정보로, 이외의 용도로 사용되지 않습니다.</span>
+					<small class="information">입력해주신 구의 동행을 우선적으로 보여드리기 위해 얻는 정보로, 이외의 용도로 사용되지 않습니다.</small>
 					<div class="border"><input type="text" class="form-addrMine" name="addrMine" id="addrMine"
 							placeholder="ex) 강동구, 성동구, 강남구, ...">
 					</div>
@@ -89,7 +89,7 @@
 				<!-- 근처구 -->
 				<div class="block">
 					<p>거주구 외에 왕래가 편한 구가 어디인가요?</p>
-					<span class="information">입력해주신 구의 동행을 우선적으로 보여드리기 위해 얻는 정보로, 이외의 용도로 사용되지 않습니다.</span>
+					<small class="information">입력해주신 구의 동행을 우선적으로 보여드리기 위해 얻는 정보로, 이외의 용도로 사용되지 않습니다.</small>
 					<div class="border"><input type="text" class="form-addrClose" name="addrClose" id="addrClose"
 							placeholder="ex) 강동구, 성동구, 강남구, ...">
 					</div>
