@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.yeoreobap.command.PartyVO;
 import com.spring.yeoreobap.party.service.IPartyService;
@@ -74,6 +75,14 @@ public class PartyController {
 	@PostMapping("/attend")
 	public void attend(String userId, int partyNo) {
 		service.attend(userId, partyNo);
+	}
+	
+	//파일업로드
+	@PostMapping("/upload")
+	public String upload(int partyNo, MultipartFile file) {
+		service.upload(partyNo, file);
+		
+		return "success";
 	}
 	
 }
