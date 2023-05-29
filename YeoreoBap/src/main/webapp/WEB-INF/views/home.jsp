@@ -15,11 +15,8 @@
 <link href="${pageContext.request.contextPath }/css/style.css"
 	rel="stylesheet">
 <!-- bootstrap CSS -->
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
-	crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 
 </head>
 
@@ -66,91 +63,171 @@
 
 			</section>
 			<!--end section main-->
-
-			<!--section about-->
-			<div class="mainArea">
-				<div class="findPartyMenu">
-
-					<div class="getParty party">
-						<p>
-							파티 모집<a href="#">더보기 ></a>
-						</p>
-						<div>
-
-							<div class="partyBox box1"
-								style="background-image:url(${pageContext.request.contextPath }/img/party.png); background-size: cover">
-								<div class="profile">프로필</div>
-								<span>
-									<p class="partyLoc">서울 성동구</p>
-									<p class="partyTitle">코너키친 갈 사람</p>
-								</span>
-
+			<!--section partyList-->
+			<div class="partyMenu">
+				<h2>파티 모집<a href="${pageContext.request.contextPath}/party/partyList">더 많은 파티 보기</a></h2>
+				<div class="hotParty partyList">
+					<h3>현재 핫!한 동행!</h3>
+					<div class="boxes">
+						<div class="hotBox box"
+							style="background-image:url(${pageContext.request.contextPath}/img/party.png); background-size: cover">
+							<div class="innerBox">
+								<div class="profile">사진</div>
+								<div class="detail">
+									<span class="location">서울 성동구</span>
+									<span class="restaurant">코너키친 갈 사람</span>
+								</div>
 							</div>
-							<div class="partyBox box2"
-								style="background-image:url(${pageContext.request.contextPath }/img/party.png); background-size: cover">
-								<div class="profile">프로필</div>
-								<span>
-									<p class="partyLoc">서울 성동구</p>
-									<p class="partyTitle">코너키친 갈 사람</p>
-								</span>
+						</div>
+						<div class="hotBox box"
+							style="background-image:url(${pageContext.request.contextPath}/img/party.png); background-size: cover">
+							<div class="innerBox">
+								<div class="profile">사진</div>
+								<div class="detail">
+									<span class="location">서울 성동구</span>
+									<span class="restaurant">코너키친 갈 사람</span>
+								</div>
 							</div>
-							</a>
 						</div>
-
-					</div>
-
-					<div class="hotParty party">
-						<p>Hot</p>
-						<div class="partyBox box3"
-							style="background-image:url(${pageContext.request.contextPath }/img/party.png); background-size: cover">
-							<div class="profile">프로필</div>
-							<span>
-								<p class="partyLoc">서울 성동구</p>
-								<p class="partyTitle">코너키친 갈 사람</p>
-							</span>
+						<div class="hotBox box"
+							style="background-image:url(${pageContext.request.contextPath}/img/party.png); background-size: cover">
+							<div class="innerBox">
+								<div class="profile">사진</div>
+								<div class="detail">
+									<span class="location">서울 성동구</span>
+									<span class="restaurant">코너키친 갈 사람</span>
+								</div>
+							</div>
+						</div>
+						<div class="hotBox box"
+							style="background-image:url(${pageContext.request.contextPath}/img/party.png); background-size: cover">
+							<div class="innerBox">
+								<div class="profile">사진</div>
+								<div class="detail">
+									<span class="location">서울 성동구</span>
+									<span class="restaurant">코너키친 갈 사람</span>
+								</div>
+							</div>
 						</div>
 					</div>
+				</div>
 
-					<div class="soonParty party">
-						<p>
-							<span>마감 임박!</span> <span>시간</span>
-						</p>
-						<div class="partyBox box4"
-							style="background-image:url(${pageContext.request.contextPath }/img/party.png); background-size: cover">
-							<div class="profile">프로필</div>
-							<span>
-								<p class="partyLoc">서울 성동구</p>
-								<p class="partyTitle">코너키친 갈 사람</p>
-							</span>
+				<div class="hurryParty partyList">
+					<h3>마감이 임박한 동행!</h3>
+					<div class="boxes">
+						<div class="timeBox">
+							<div class="hurryBox box"
+								style="background-image:url(${pageContext.request.contextPath}/img/party.png); background-size: cover">
+								<div class="innerBox">
+									<div class="profile">사진</div>
+									<div class="detail">
+										<span class="location">서울 성동구</span>
+										<span class="restaurant">코너키친 갈 사람</span>
+									</div>
+								</div>
+							</div>
+							<span class="time">남은시간</span>
+						</div>
+						<div class="timeBox">
+							<div class="hurryBox box"
+								style="background-image:url(${pageContext.request.contextPath}/img/party.png); background-size: cover">
+								<div class="innerBox">
+									<div class="profile">사진</div>
+									<div class="detail">
+										<span class="location">서울 성동구</span>
+										<span class="restaurant">코너키친 갈 사람</span>
+									</div>
+								</div>
+							</div>
+							<span class="time">남은시간</span>
+						</div>
+						<div class="timeBox">
+							<div class="hurryBox box"
+								style="background-image:url(${pageContext.request.contextPath}/img/party.png); background-size: cover">
+								<div class="innerBox">
+									<div class="profile">사진</div>
+									<div class="detail">
+										<span class="location">서울 성동구</span>
+										<span class="restaurant">코너키친 갈 사람</span>
+									</div>
+								</div>
+							</div>
+							<span class="time">남은시간</span>
+						</div>
+						<div class="timeBox">
+							<div class="hurryBox box"
+								style="background-image:url(${pageContext.request.contextPath}/img/party.png); background-size: cover">
+								<div class="innerBox">
+									<div class="profile">사진</div>
+									<div class="detail">
+										<span class="location">서울 성동구</span>
+										<span class="restaurant">코너키친 갈 사람</span>
+									</div>
+								</div>
+							</div>
+							<span class="time">남은시간</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="localParty partyList">
+					<h3>우리 동네 동행!</h3>
+					<div class="boxes">
+						<div class="locBox box"
+							style="background-image:url(${pageContext.request.contextPath}/img/party.png); background-size: cover">
+							<div class="innerBox">
+								<div class="profile">사진</div>
+								<div class="detail">
+									<span class="location">서울 성동구</span>
+									<span class="restaurant">코너키친 갈 사람</span>
+								</div>
+							</div>
+						</div>
+						<div class="locBox box"
+							style="background-image:url(${pageContext.request.contextPath}/img/party.png); background-size: cover">
+							<div class="innerBox">
+								<div class="profile">사진</div>
+								<div class="detail">
+									<span class="location">서울 성동구</span>
+									<span class="restaurant">코너키친 갈 사람</span>
+								</div>
+							</div>
+						</div>
+						<div class="locBox box"
+							style="background-image:url(${pageContext.request.contextPath}/img/party.png); background-size: cover">
+							<div class="innerBox">
+								<div class="profile">사진</div>
+								<div class="detail">
+									<span class="location">서울 성동구</span>
+									<span class="restaurant">코너키친 갈 사람</span>
+								</div>
+							</div>
+						</div>
+						<div class="locBox box"
+							style="background-image:url(${pageContext.request.contextPath}/img/party.png); background-size: cover">
+							<div class="innerBox">
+								<div class="profile">사진</div>
+								<div class="detail">
+									<span class="location">서울 성동구</span>
+									<span class="restaurant">코너키친 갈 사람</span>
+								</div>
+							</div>
 						</div>
 					</div>
 
 				</div>
-
-				<div class="boardMenu">
-					<p>
-						파티 모집<a href="#">더보기 ></a>
-					</p>
-				</div>
-
 			</div>
-			<!--end section about-->
+
+			<!--end section partyLlist-->
 		</div>
 	</div>
 
 
 
 	<!-- Bootstrap’s JS. -->
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-		integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
-		integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
-		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 </body>
+
+
+

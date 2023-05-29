@@ -1,50 +1,81 @@
-.mainArea .findPartyMenu {
-    border: solid 2px salmon;
+/*전체적인 아웃라인 구역 나누기*/
+.partyMenu {
+   
 }
 
-.mainArea .findPartyMenu {
-    border: solid 2px yellow;
+.partyMenu > h2 {
+    text-align: center;
+    font-weight: bold;
+    border-bottom: solid 3px #F4B183;
+    padding: 10px;
+    position: relative;
+}
+
+.partyMenu >h2 > a {
+	text-decoration: none;
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+    color: gray;
+    font-weight: 100;
+    font-size: 16px;
+    border-bottom: solid 1px gray;
+}
+
+.partyMenu .partyList {
+    width: 100%;
+    padding: 20px 10px 50px;
+    background-color: yellow;
+    border-bottom: solid 3px #F4B183;
+}
+
+.partyMenu .partyList .boxes {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.partyMenu .partyList .boxes .box {
+    min-width: 150px;
+    height: 225px;
+    border: solid 2px blue;
+    margin: 0 auto;
+    position: relative;
+}
+
+.partyMenu .partyList .boxes .timeBox {
+	min-width: 150px;
+    height: 225px;
+    border: solid 2px orange;
+    margin: 0 auto;
+    position: relative;
+}
+
+/*각 게시물들 디자인*/
+.box .innerBox {
+    position: absolute;
+    bottom: 0;
+    margin: 0 auto;
     display: flex;
 }
 
-.mainArea .findPartyMenu .party {
-	background-color: hotpink;
+.boxes .box .innerBox .profile {
+    min-width: 40px;
+    height: 40px;
+    border: solid 1px black;
+    border-radius: 50%;
 }
 
-.mainArea .findPartyMenu .party > div{
-	display: flex;
+.boxes .box .innerBox .detail > span{
+    display: inline-block;
+    width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-
-
-.mainArea .findPartyMenu .party:first-child {
-    border: dashed 2px green;
-    flex-grow: 2;
-
-}
-
-.mainArea .findPartyMenu .party:nth-child(2) {
-    border: dashed 2px orange;
-    flex-grow: 1;
-}
-
-.mainArea .findPartyMenu .party:last-child {
-    border: solid 2px red;
-    flex-grow: 1;
-}
-
-.mainArea .findPartyMenu .party .partyBox {
-	width: 160px;
-	height: 240px;
-	padding: 10px;
-}
-
-
-.mainArea .findPartyMenu .getParty .partyBox {
-    display: flex;
-}
-
-.mainArea .findPartyMenu .getParty .partyBox span {
-    display: flex;
-    flex-direction: row;
+.hurryParty .boxes .timeBox .time {
+	display: block;
+	text-align: center;
+	
 }
