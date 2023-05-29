@@ -1,9 +1,11 @@
 .carousel-control.right, .carousel-control.left {
-	background-image: linear-gradient(to right, rgba(0, 0, 0, .0001) 0%,
-		rgba(0, 0, 0, 0) 100%)
+    background-image: linear-gradient(to right, rgba(0, 0, 0, .0001) 0%,
+        rgba(0, 0, 0, 0) 100%)
 }
+
 header {
 	position: fixed;
+	background: #fff;
 	background: #fff;
 	left: 0;
 	top: 0;

@@ -21,19 +21,9 @@
         
     </settings>
     
-    <!-- <typeAliases>
-        <typeAlias type="com.spring.myweb.command.FreeBoardVO" alias="board"/>
-        <typeAlias type="com.spring.myweb.command.UserVO" alias="user"/>
-        <typeAlias type="com.spring.myweb.command.ReplyVO" alias="reply"/>
-    </typeAliases> -->
-    
-    <!-- 
-        인터페이스 mapper 구현체 xml 파일의 경로로 표시하는 태그.
-        우리는 SqlSessionFactoryBean을 등록할 때 이미 지정했기 때문에
-        추가로 작성 할 필요는 없습니다.
-    <mappers>
-        <mapper resource="classpath:/mappers/*Mapper.xml"/>
-    </mappers>
-     -->
+    <typeAliases>
+        <typeAlias type="com.spring.yeoreobap.command.PartyVO" alias="party"/>
+        <typeAlias type="com.spring.yeoreobap.command.StoreVO" alias="store"/>
+    </typeAliases>
      
 </configuration>
