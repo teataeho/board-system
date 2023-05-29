@@ -8,11 +8,7 @@ import com.spring.yeoreobap.util.PageVO;
 public interface IStoreService {
 
 	
-	List<StoreVO> getList(PageVO vo);
-	
-	
-	StoreVO getContent(int sno);
-	
+	List<StoreVO> getList(PageVO vo);	
 	
 	int getTotal(PageVO vo);
 }

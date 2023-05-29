@@ -18,26 +18,15 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class StoreController {
 
-	private IStoreService service;
-	
+	private IStoreService service;	
 	
 	@GetMapping("/storeList")
 	public void storeList(PageVO vo, Model model) {
 		PageCreator pc = new PageCreator(vo, service.getTotal(vo));
-		System.out.println("ÆäÀÌÁö: " + pc.toString());
 		log.info(pc.toString());
 		
 		model.addAttribute("storeList",service.getList(vo));
 		model.addAttribute("pc", pc);
-	}
-	
-	
-	@GetMapping("/content/{sno}")
-	public String getContent(@PathVariable int sno, @ModelAttribute("p") PageVO vo,
-			Model model) {
-		model.addAttribute("article", service.getContent(sno));
-		return "store/storeDetail";
-	}
-	
+	}	
 	
 }

@@ -37,8 +37,7 @@
                         <li><a href="${pageContext.request.contextPath}/user/userMypage">MyPage</a></li>
                         <li><a href="${pageContext.request.contextPath}/user/userLogout">Logout</a></li>
                     </c:if>
-                </ul>
-                       
+                </ul>                       
              </div>       
                       
         </div>

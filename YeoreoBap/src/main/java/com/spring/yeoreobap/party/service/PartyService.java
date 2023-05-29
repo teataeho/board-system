@@ -61,11 +61,8 @@ public class PartyService implements IPartyService {
 
 	@Override
 	public void upload(int partyNo, MultipartFile file) {
-
-		//날짜별로 폴더를 생성해서 관리할 예정입니다.
-		LocalDateTime now = LocalDateTime.now();
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMdd");
-		String fileLoca = now.format(dtf);
+		
+		String fileLoca = "party";
 
 		//기본 경로는 C:/test/upload로 사용하겠습니다.
 		String uploadPath = "C:/yeoreobap/upload/";
@@ -105,8 +102,6 @@ public class PartyService implements IPartyService {
 		img.setUploadPath(uploadPath);
 		img.setFileLoca(fileLoca);
 		img.setFileName(fileName);
-
-		mapper.upload(partyNo, file);
 	}
 
 }

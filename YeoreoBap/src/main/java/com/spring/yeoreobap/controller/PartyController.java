@@ -38,7 +38,9 @@ public class PartyController {
 	public void regist() {}
 	
 	@PostMapping("/partyRegist")
-	public String regist(PartyVO vo) {
+	public String regist(PartyVO vo, MultipartFile file) {
+		//파일이 안들어왔을 때 어떻게 나오는지 확인
+		service.upload(vo.getPartyNo(), file);
 		service.regist(vo);
 		return "redirect:/party/partyList";
 	}
@@ -77,12 +79,7 @@ public class PartyController {
 		service.attend(userId, partyNo);
 	}
 	
-	//파일업로드
-	@PostMapping("/upload")
-	public String upload(int partyNo, MultipartFile file) {
-		service.upload(partyNo, file);
-		
-		return "success";
-	}
+	@GetMapping("/partyModalTest")
+	public void partyModalTest() {}
 	
 }

@@ -48,7 +48,7 @@
 	<insert id="upload">
 		INSERT INTO img
 		(file_name, board_no)
-		VALUES (#{fileName}, #{})
+		VALUES (#{fileName}, #{partyNo})
 	</insert>
 
 </mapper>

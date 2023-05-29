@@ -4,7 +4,7 @@
 
 		<div class="join">
 			<h2 class="title">회원가입</h2>
-			<form action="" method="POST">
+			<form action="${pageContext.request.contextPath}/user/userJoin" method="POST">
 				<p class="necessary">*표시가 있는 곳은 필수입력값입니다!</p>
 				<!-- 아이디 -->
 				<div class="block">

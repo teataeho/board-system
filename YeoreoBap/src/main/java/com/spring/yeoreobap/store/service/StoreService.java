@@ -13,18 +13,11 @@ import com.spring.yeoreobap.util.PageVO;
 public class StoreService implements IStoreService {
 
 	@Autowired
-	private IStoreMapper mapper;
-	
+	private IStoreMapper mapper;	
 	
 	@Override
 	public List<StoreVO> getList(PageVO vo) {
 		return mapper.getList(vo);
-	}
-
-	
-	@Override
-	public StoreVO getContent(int sno) {
-		return mapper.getContent(sno);
 	}
 	
 	@Override
