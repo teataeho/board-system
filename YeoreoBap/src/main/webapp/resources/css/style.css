@@ -1,81 +1,87 @@
-/*전체적인 아웃라인 구역 나누기*/
-.partyMenu {
-   
+.partyBoard {
+	border: solid 2px red;
+	width: 100%;
+	padding: 20px;
 }
 
-.partyMenu > h2 {
-    text-align: center;
-    font-weight: bold;
-    border-bottom: solid 3px #F4B183;
-    padding: 10px;
-    position: relative;
+
+
+.partyBoard .partyTitle > h2 {
+	border-bottom: solid 3px #F0975A;
+	padding-bottom: 10px;
+	position: relative;
+	text-align: center;
+	font-weight: 700;
 }
 
-.partyMenu >h2 > a {
-	text-decoration: none;
-    position: absolute;
-    right: 20px;
-    bottom: 10px;
-    color: gray;
-    font-weight: 100;
-    font-size: 16px;
-    border-bottom: solid 1px gray;
+.partyBoard .partyTitle > h2 > a {
+	font-size: 15px;
+	font-weight: 100;
+	color: gray;
+	position: absolute;
+	right: 0;
+	bottom: 10px;
 }
 
-.partyMenu .partyList {
-    width: 100%;
-    padding: 20px 10px 50px;
-    background-color: yellow;
-    border-bottom: solid 3px #F4B183;
+.partyBoard h3 {
+	padding: 10px 0;
 }
 
-.partyMenu .partyList .boxes {
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
+.partyBoard .partyList {
+	border-bottom: solid 3px #F0975A;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	margin: 10px 0;
+	padding-bottom: 30px;
+	position: relative;
 }
 
-.partyMenu .partyList .boxes .box {
-    min-width: 150px;
-    height: 225px;
-    border: solid 2px blue;
-    margin: 0 auto;
-    position: relative;
+.partyBoard .locParty {
+	border: none;
 }
 
-.partyMenu .partyList .boxes .timeBox {
-	min-width: 150px;
-    height: 225px;
-    border: solid 2px orange;
-    margin: 0 auto;
-    position: relative;
+.partyBoard .hurryParty {
+	border-bottom: solid 3px #F0975A;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	margin: 10px 0;
+	padding-bottom: 30px;
 }
 
-/*각 게시물들 디자인*/
-.box .innerBox {
-    position: absolute;
-    bottom: 0;
-    margin: 0 auto;
-    display: flex;
+.partyBoard .partyList .box {
+	width: 22%;
+	height: 220px;
+	position: relative;
 }
 
-.boxes .box .innerBox .profile {
-    min-width: 40px;
-    height: 40px;
-    border: solid 1px black;
-    border-radius: 50%;
+.partyBoard .hurryParty .hurryBigBox {
+	width: 22%;
+	height: 220px;
 }
 
-.boxes .box .innerBox .detail > span{
-    display: inline-block;
-    width: 100px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.hurryParty .boxes .timeBox .time {
+.partyBoard .hurryParty .hurryBigBox>span {
 	display: block;
 	text-align: center;
-	
+}
+
+.partyBoard .hurryParty .hurryBox {
+	width: 100%;
+	height: 200px;
+	position: relative;
+}
+
+.partyBoard .partyList .partyText {
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	bottom: 0;
+}
+
+.partyBoard .hurryParty .partyText {
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	bottom: 0;
 }
