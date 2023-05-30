@@ -28,7 +28,7 @@
 	</select>
 	
 	<update id="update">
-		update party
+		UPDATE party
 		SET title = #{title}, content = #{content},
 		update_date = current_timestamp
 		WHERE party_no = #{partyNo}

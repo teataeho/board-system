@@ -6,10 +6,10 @@
 
 	<insert id="regist">
 		INSERT INTO review
-		(writer, rest_id, title, content, reg_date, update_date)
-		VALUES (#{writer}, #{restId}, #{title}, #{content}, #{regDate}, #{updateDate})
+		(rest_id, writer, title, content)
+		VALUES (#{restId}, #{writer}, #{title}, #{content})
 	</insert>
-	
+	<!-- regDate, updateDate 삭제 -->
 	<select id="getList" resultType="review">
 		SELECT * 
 		FROM review
@@ -22,7 +22,7 @@
 		FROM review
 	</select>
 	
-	<select id="getContent" resultType="review">
+	<select id="getArticle" resultType="review">
 		SELECT * FROM review
 		WHERE review_no = #{reviewNo}
 	</select>
@@ -38,5 +38,7 @@
 		DELETE FROM review
 		WHERE review_no = #{reviewNo}
 	</delete>
+	
+	
 
 </mapper>
