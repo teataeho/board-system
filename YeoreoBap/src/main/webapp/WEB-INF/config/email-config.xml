@@ -7,9 +7,9 @@
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 	
 		<property name="host" value="smtp.gmail.com" /> <!-- smtp.naver.com -->
-		<property name="port" value="465" /> <!-- 587 -->
-		<property name="username" value="${email.account}" />
-		<property name="password" value="${email.password}" />
+		<property name="port" value="587" /> <!-- 465 -->
+		<property name="username" value="yeoreobab@gmail.com" />
+		<property name="password" value="mrcaeewbgzirjvnc" />
 		
 		<property name="javaMailProperties">
 			<props>

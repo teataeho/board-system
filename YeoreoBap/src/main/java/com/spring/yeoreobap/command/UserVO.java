@@ -15,9 +15,8 @@ CREATE TABLE users(
    user_phone VARCHAR(50),
    user_email1 VARCHAR(50),
    user_email2 VARCHAR(50),
-   addr_zip_num VARCHAR(50),
-   addr_basic VARCHAR(300),
-   addr_detail VARCHAR(300),
+   addr_mine VARCHAR(300),
+   addr_close VARCHAR(300),
    reg_date DATETIME DEFAULT CURRENT_TIMESTAMP,
    temperature INT NOT NULL DEFAULT '0'
 );

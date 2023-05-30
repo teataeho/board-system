@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.yeoreobap.command.UserVO;
 import com.spring.yeoreobap.user.service.IUserService;
+import com.spring.yeoreobap.util.MailSenderService;
 import com.spring.yeoreobap.util.PageVO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -29,8 +30,8 @@ public class UserController {
 	//	@Autowired
 	//	private IBoardService boardService;
 
-	//@Autowired
-	//	private MailSenderService mailService;
+	@Autowired
+	private MailSenderService mailService;
 
 	//	@Autowired
 	//	public UserController(IUserService service, IBoardService boardService,
@@ -53,13 +54,13 @@ public class UserController {
 		else return "available";
 	}
 
-	//	//이메일 인증
-	//	@GetMapping("/mailCheck")
-	//	@ResponseBody
-	//	public String mailCheck(String email) {
-	//		log.info("이메일 인증 요청: " + email);
-	////		return mailService.joinEmail(email);
-	//	}
+	//이메일 인증
+	@GetMapping("/mailCheck")
+	@ResponseBody
+	public String mailCheck(String email) {
+		log.info("이메일 인증 요청: " + email);
+		return mailService.joinEmail(email);
+	}
 
 	//회원 가입 처리
 	@PostMapping("/join")
@@ -74,7 +75,7 @@ public class UserController {
 	//로그인 페이지로 이동 요청 	get
 	@GetMapping("/userLogin")
 	public void login() {}
-	
+
 	//로그인 요청	post
 	@PostMapping("/userLogin")
 	public void login(String userId, String userPw, Model model) {
