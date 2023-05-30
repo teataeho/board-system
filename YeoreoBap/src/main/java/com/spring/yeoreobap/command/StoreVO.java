@@ -4,15 +4,15 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 /*
- CREATE TABLE store(
-	sno INT PRIMARY KEY AUTO_INCREMENT,
-    siteTel VARCHAR(100) NOT NULL,
-    rdnWhlAddr VARCHAR(300) NOT NULL,
-    bplcNm VARCHAR(50) NOT NULL,
-    uptaeNm VARCHAR(20) NOT NULL,
-    x long NOT NULL, 
-    y long NOT NULL
-); 
+	CREATE TABLE store (
+	    sno INT PRIMARY KEY AUTO_INCREMENT,
+	    site_tel VARCHAR(100) NOT NULL,
+	    rdn_whl_addr VARCHAR(300) NOT NULL,
+	    bplc_nm VARCHAR(50) NOT NULL,
+	    uptae_nm VARCHAR(20) NOT NULL,
+	    x VARCHAR(50) NOT NULL,
+	    y VARCHAR(50) NOT NULL
+	);
 */
 @Getter @Setter @ToString
 public class StoreVO {
@@ -24,7 +24,7 @@ public class StoreVO {
 	private String rdnWhlAddr;	//도로명전체주소
 	private String bplcNm;	//사업장명
 	private String uptaeNm;	//업태구분명
-	private long x;	//x좌표
-	private long y;	//y좌표
+	private String x;	//x좌표
+	private String y;	//y좌표
 	
 }
