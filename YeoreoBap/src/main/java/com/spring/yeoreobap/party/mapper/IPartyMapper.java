@@ -2,7 +2,6 @@ package com.spring.yeoreobap.party.mapper;
 
 import java.util.List;
 
-import com.spring.yeoreobap.command.ImgVO;
 import com.spring.yeoreobap.command.PartyVO;
 import com.spring.yeoreobap.util.PageVO;
 
@@ -21,7 +20,5 @@ public interface IPartyMapper {
 	//삭제
 	void delete(int partyNo);
 	//참여
-	void attend(String userId, int partyNo);
-	//업로드
-	void upload(int partyNo, ImgVO img);
+
 }

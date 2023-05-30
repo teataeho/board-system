@@ -48,7 +48,6 @@
 		하위 패키지까지 몽땅 검색해 줍니다.
 	 -->
 	<context:component-scan base-package="com.spring.yeoreobap" />
-	<context:component-scan base-package="com.spring.yeoreobap.review.mapper" />
 	
 	<!-- 파일 업로드 -->
 	<!-- id를 multipartResolver로 선언
