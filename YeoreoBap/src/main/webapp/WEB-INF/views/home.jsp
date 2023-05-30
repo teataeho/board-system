@@ -68,72 +68,124 @@
 			<!--end section main-->
 
 			<!--section about-->
-			<div class="mainArea">
-				<div class="findPartyMenu">
-
-					<div class="getParty party">
-						<p>
-							파티 모집<a href="#">더보기 ></a>
-						</p>
-						<div>
-
-							<div class="partyBox box1"
-								style="background-image:url(${pageContext.request.contextPath }/img/party.png); background-size: cover">
-								<div class="profile">프로필</div>
-								<span>
-									<p class="partyLoc">서울 성동구</p>
-									<p class="partyTitle">코너키친 갈 사람</p>
-								</span>
-
-							</div>
-							<div class="partyBox box2"
-								style="background-image:url(${pageContext.request.contextPath }/img/party.png); background-size: cover">
-								<div class="profile">프로필</div>
-								<span>
-									<p class="partyLoc">서울 성동구</p>
-									<p class="partyTitle">코너키친 갈 사람</p>
-								</span>
-							</div>
-							</a>
-						</div>
-
-					</div>
-
-					<div class="hotParty party">
-						<p>Hot</p>
-						<div class="partyBox box3"
-							style="background-image:url(${pageContext.request.contextPath }/img/party.png); background-size: cover">
-							<div class="profile">프로필</div>
-							<span>
-								<p class="partyLoc">서울 성동구</p>
-								<p class="partyTitle">코너키친 갈 사람</p>
-							</span>
+			<div class="partyBoard">
+				<div class="partyTitle">
+					<h2>파티 모집
+						<a href="${pageContext.request.contextPath}/party/partyList">모든 파티 보기</a>
+					</h2>
+				</div>
+				<h3>현재 핫!한 동행!</h3>
+				<div class="hotParty partyList">
+					<div class="hotBox box"
+						style="background-image: url(${pageContext.request.contextPath}/img/party.png); background-size: cover;">
+						<div class="partyText">
+							<span class="location">서울 성동구</span> <span class="restaurant">코너키친
+								갈 사람</span>
 						</div>
 					</div>
-
-					<div class="soonParty party">
-						<p>
-							<span>마감 임박!</span> <span>시간</span>
-						</p>
-						<div class="partyBox box4"
-							style="background-image:url(${pageContext.request.contextPath }/img/party.png); background-size: cover">
-							<div class="profile">프로필</div>
-							<span>
-								<p class="partyLoc">서울 성동구</p>
-								<p class="partyTitle">코너키친 갈 사람</p>
-							</span>
+					<div class="hotBox box"
+						style="background-image: url(${pageContext.request.contextPath}/img/party.png); background-size: cover;">
+						<div class="partyText">
+							<span class="location">서울 성동구</span> <span class="restaurant">코너키친
+								갈 사람</span>
 						</div>
 					</div>
-
+					<div class="hotBox box"
+						style="background-image: url(${pageContext.request.contextPath}/img/party.png); background-size: cover;">
+						<div class="partyText">
+							<span class="location">서울 성동구</span> <span class="restaurant">코너키친
+								갈 사람</span>
+						</div>
+					</div>
+					<div class="hotBox box"
+						style="background-image: url(${pageContext.request.contextPath}/img/party.png); background-size: cover;">
+						<div class="partyText">
+							<span class="location">서울 성동구</span> <span class="restaurant">코너키친
+								갈 사람</span>
+						</div>
+					</div>
 				</div>
 
-				<div class="boardMenu">
-					<p>
-						파티 모집<a href="#">더보기 ></a>
-					</p>
+				<h3>마감이 임박한 동행!</h3>
+				<div class="hurryParty">
+					<div class="hurryBigBox">
+						<div class="hurryBox"
+							style="background-image: url(${pageContext.request.contextPath}/img/party.png); background-size: cover;">
+							<div class="partyText">
+								<span class="location">서울 성동구</span> <span class="restaurant">코너키친
+									갈 사람</span>
+							</div>
+						</div>
+						<span>남은시간</span>
+					</div>
+					<div class="hurryBigBox">
+						<div class="hurryBox"
+							style="background-image: url(${pageContext.request.contextPath}/img/party.png); background-size: cover;">
+							<div class="partyText">
+								<span class="location">서울 성동구</span> <span class="restaurant">코너키친
+									갈 사람</span>
+							</div>
+						</div>
+						<span>남은시간</span>
+					</div>
+					<div class="hurryBigBox">
+						<div class="hurryBox"
+							style="background-image: url(${pageContext.request.contextPath}/img/party.png); background-size: cover;">
+							<div class="partyText">
+								<span class="location">서울 성동구</span> <span class="restaurant">코너키친
+									갈 사람</span>
+							</div>
+						</div>
+						<span>남은시간</span>
+					</div>
+					<div class="hurryBigBox">
+						<div class="hurryBox"
+							style="background-image: url(${pageContext.request.contextPath}/img/party.png); background-size: cover;">
+							<div class="partyText">
+								<span class="location">서울 성동구</span> <span class="restaurant">코너키친
+									갈 사람</span>
+							</div>
+						</div>
+						<span>남은시간</span>
+					</div>
+				</div>
+
+				<h3>우리 동네 동행!!</h3>
+				<div class="locParty partyList">
+					<div class="locBox box"
+						style="background-image: url(${pageContext.request.contextPath}/img/party.png); background-size: cover;">
+						<div class="partyText">
+							<span class="location">서울 성동구</span> <span class="restaurant">코너키친
+								갈 사람</span>
+						</div>
+					</div>
+					<div class="locBox box"
+						style="background-image: url(${pageContext.request.contextPath}/img/party.png); background-size: cover;">
+						<div class="partyText">
+							<span class="location">서울 성동구</span> <span class="restaurant">코너키친
+								갈 사람</span>
+						</div>
+					</div>
+					<div class="locBox box"
+						style="background-image: url(${pageContext.request.contextPath}/img/party.png); background-size: cover;">
+						<div class="partyText">
+							<span class="location">서울 성동구</span> <span class="restaurant">코너키친
+								갈 사람</span>
+						</div>
+					</div>
+					<div class="locBox box"
+						style="background-image: url(${pageContext.request.contextPath}/img/party.png); background-size: cover;">
+						<div class="partyText">
+							<span class="location">서울 성동구</span> <span class="restaurant">코너키친
+								갈 사람</span>
+						</div>
+					</div>
 				</div>
 
 			</div>
+
+
+
 			<!--end section about-->
 		</div>
 	</div>
