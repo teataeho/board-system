@@ -1,87 +1,50 @@
-.partyBoard {
-	border: solid 2px red;
-	width: 100%;
-	padding: 20px;
+.mainArea .findPartyMenu {
+    border: solid 2px salmon;
 }
 
-
-
-.partyBoard .partyTitle > h2 {
-	border-bottom: solid 3px #F0975A;
-	padding-bottom: 10px;
-	position: relative;
-	text-align: center;
-	font-weight: 700;
+.mainArea .findPartyMenu {
+    border: solid 2px yellow;
+    display: flex;
 }
 
-.partyBoard .partyTitle > h2 > a {
-	font-size: 15px;
-	font-weight: 100;
-	color: gray;
-	position: absolute;
-	right: 0;
-	bottom: 10px;
+.mainArea .findPartyMenu .party {
+	background-color: hotpink;
 }
 
-.partyBoard h3 {
-	padding: 10px 0;
-}
-
-.partyBoard .partyList {
-	border-bottom: solid 3px #F0975A;
+.mainArea .findPartyMenu .party > div{
 	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	margin: 10px 0;
-	padding-bottom: 30px;
-	position: relative;
 }
 
-.partyBoard .locParty {
-	border: none;
+
+
+.mainArea .findPartyMenu .party:first-child {
+    border: dashed 2px green;
+    flex-grow: 2;
+
 }
 
-.partyBoard .hurryParty {
-	border-bottom: solid 3px #F0975A;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	margin: 10px 0;
-	padding-bottom: 30px;
+.mainArea .findPartyMenu .party:nth-child(2) {
+    border: dashed 2px orange;
+    flex-grow: 1;
 }
 
-.partyBoard .partyList .box {
-	width: 22%;
-	height: 220px;
-	position: relative;
+.mainArea .findPartyMenu .party:last-child {
+    border: solid 2px red;
+    flex-grow: 1;
 }
 
-.partyBoard .hurryParty .hurryBigBox {
-	width: 22%;
-	height: 220px;
+.mainArea .findPartyMenu .party .partyBox {
+	width: 160px;
+	height: 240px;
+	padding: 10px;
 }
 
-.partyBoard .hurryParty .hurryBigBox>span {
-	display: block;
-	text-align: center;
+
+.mainArea .findPartyMenu .getParty .partyBox {
+    display: flex;
 }
 
-.partyBoard .hurryParty .hurryBox {
-	width: 100%;
-	height: 200px;
-	position: relative;
-}
-
-.partyBoard .partyList .partyText {
-	display: flex;
-	flex-direction: column;
-	position: absolute;
-	bottom: 0;
-}
-
-.partyBoard .hurryParty .partyText {
-	display: flex;
-	flex-direction: column;
-	position: absolute;
-	bottom: 0;
+.mainArea .findPartyMenu .getParty .partyBox span {
+    display: flex;
+    flex-direction: row;
 }
