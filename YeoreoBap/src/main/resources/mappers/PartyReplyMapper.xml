@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.spring.yeoreobap.partyReply.mapper.IPartyReplyMapper">
+
+	<insert id="replyRegist">
+		INSERT INTO partyReply
+		(reply_no, review_no, writer, content, reg_date)
+		VALUES (#{replyNo}, #{reviewNo}, #{writer}, #{content}, #{regDate}, #{updateDate})
+	</insert>
+	
+	<select id="getList" resultType="pReply">
+		SELECT * 
+		FROM partyReply
+		WHERE party_no = #{partyNo}
+		ORDER BY reply_no DESC
+		LIMIT #{pageStart}, #{cpp}
+	</select>
+	
+	<select id="getTotal" resultType="int">
+		SELECT COUNT(*)
+		FROM partyReply
+		WHERE party_no = #{partyNo}
+	</select>
+	
+	<select id="getContent" resultType="pReply">
+		SELECT * FROM partyReply
+		WHERE party_no = #{partyNo}
+	</select>
+	
+	<update id="update">
+		update partyReply
+		SET content = #{content},
+		<!-- 수정됨?
+		update_date = current_timestamp-->
+		WHERE reply_no = #{replyNo}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM partyReply
+		WHERE reply_no = #{replyNo}
+	</delete>
+
+</mapper>

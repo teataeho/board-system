@@ -48,7 +48,6 @@
 		하위 패키지까지 몽땅 검색해 줍니다.
 	 -->
 	<context:component-scan base-package="com.spring.yeoreobap" />
-	
 	<!-- 파일 업로드 -->
 	<!-- id를 multipartResolver로 선언
 		 Multipart 형식으로 전달되는 데이터를 스프링 mvc에서 사용할 수 있도록 변환해주는 객체
