@@ -2,8 +2,6 @@ package com.spring.yeoreobap.party.mapper;
 
 import java.util.List;
 
-import org.springframework.web.multipart.MultipartFile;
-
 import com.spring.yeoreobap.command.ImgVO;
 import com.spring.yeoreobap.command.PartyVO;
 import com.spring.yeoreobap.util.PageVO;

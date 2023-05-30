@@ -1,45 +1,49 @@
 package com.spring.yeoreobap.user.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.spring.yeoreobap.command.UserVO;
 import com.spring.yeoreobap.user.mapper.IUserMapper;
+import com.spring.yeoreobap.util.PageVO;
 
 @Service
 public class UserService implements IUserService {
-	
+
 	@Autowired
 	private IUserMapper mapper;
-
+	@Autowired
+	private BCryptPasswordEncoder encoder;
+	
 	@Override
 	public int idCheck(String userId) {
-		// TODO Auto-generated method stub
-		return 0;
+		return mapper.idCheck(userId);
 	}
 
 	@Override
 	public void join(UserVO vo) {
-		// TODO Auto-generated method stub
-
+		mapper.join(vo);
 	}
 
 	@Override
-	public String login(String userId) {
-		// TODO Auto-generated method stub
+	public String login(String userId, String userPw) {
+		String dbPw = mapper.login(userId);	
+		if(dbPw != null) {
+			if(encoder.matches(userPw, dbPw)) {
+				return userId;
+			}
+		}
 		return null;
 	}
 
 	@Override
-	public void updateUser(UserVO vo) {
-		// TODO Auto-generated method stub
-
+	public UserVO getInfo(String userId, PageVO vo) {
+		return mapper.getInfo(userId, vo);
 	}
 
 	@Override
-	public void deleteUser(String userId) {
-		// TODO Auto-generated method stub
-
+	public void updateUser(UserVO vo) {
+		mapper.updateUser(vo);
 	}
-
 }
