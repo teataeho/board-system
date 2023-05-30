@@ -22,9 +22,10 @@ public class PartyController {
 	
 	@Autowired
 	private IPartyService service;
-
+	
+	//카카오맵으로 이동 
 	@GetMapping("/map")
-	public void map() {}
+	public void map(Model model) {}
 	
 	@GetMapping("/partyList")
 	public void partyList(PageVO vo, Model model) {
