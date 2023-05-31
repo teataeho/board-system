@@ -1,0 +1,51 @@
+.login {
+	padding-top: 100px;
+}
+
+.login .title {
+	text-align: center;
+	margin-bottom: 80px;
+}
+
+.login .border {
+	border: none !important;
+	width: 40%;
+	margin: 0 auto !important;	
+	display: flex;
+	justify-content: center;
+}
+
+/* 아이디, 비밀번호 칸 정렬 및 디자인*/
+.login .border .idPw {
+	display: flex;
+	flex-direction: column;
+	margin-right: 10px;
+	margin-bottom: 15px;
+}
+
+.border .idPw .form-id, .border .idPw .form-pw{
+	border-radius: 5px;
+	margin: 3px 0;
+}
+
+/* 로그인 버튼 */
+.login-div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+#loginBtn {
+	border: #F4B183;
+	border-radius: 5px;
+	color: white;
+	background-color: #F4B183;
+	width: 80px;
+	height: 80px;
+}
+
+#joinBtn {
+	text-decoration: none;
+	color: #F4B183;
+	font-size: 0.8em;
+	margin-top: 10px;
+}

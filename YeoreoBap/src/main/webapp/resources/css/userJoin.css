@@ -1,0 +1,117 @@
+.join{
+	padding-top: 100px;
+}
+
+.join .title {
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+/* 필수입력사항 글꼴 */
+.notice {
+	color: red;
+	font-weight: bold;
+	padding-left: 10%;
+	font-size: 0.8em;
+}
+.necessary {
+	color: red;
+	font-weight: bold;
+}
+
+
+/* 전체 영역 가로넓이 축소 및 가운데 정렬 */
+.section {
+	width: 80%;
+	margin: 0 auto;
+}
+.block {
+	width: 80%;
+	margin: 0 auto;
+}
+.border {
+	border: none !important;
+	width: 100%;
+	margin: 0 auto !important;	
+}
+
+/* input항목 제목 */
+.block > p {
+	margin: 10px 0 0;
+	font-weight: bold;
+	font-size: 1em;
+}
+
+/* input 영역 */
+.border > input {
+	border: solid 1px gray;
+	border-radius: 5px;
+	width: 100%;
+	height: 30px;
+	margin-bottom: 5px;
+}
+
+/* 아이디 입력창, 중복체크 버튼 가로배치 */
+.idBorder {
+	display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
+.border:first-child {
+	width: 69%;
+}
+
+/* 이메일 입력칸 가로정렬 */
+.emailBorder {
+	display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+}
+.emailBorder > .border:first-child {
+	width: 145%;
+}
+
+
+/* information */
+.block small.information {
+	font-size: .5em;
+	color: gray;
+}
+
+
+/* 아이디중복체크, 이메일인증, 회원가입/로그인 버튼 디자인 */
+.form-idCheckBtn, .form-emailCheckBtn, .btns button {
+	border: none;
+	border-radius: 5px;
+	width: 30%;
+	height: 30px;
+	background: #F4B183;
+	color: white;
+	font-size: 1em;
+}
+.emailBorder > p {
+	margin: 3px;
+}
+.form-emailSelection {
+	width: 92%;
+	margin-left: 5px;
+}
+.block > .form-emailCheck {
+	width: 68%;
+	border: solid 1px gray;
+	border-radius: 5px;
+	height: 25px;
+}
+
+/* 회원가입, 로그인 버튼 가운데 정렬 */
+.btns {
+	display: flex;
+	justify-content: center;
+}
+.btns button {
+	margin: 30px 10px;
+}
+

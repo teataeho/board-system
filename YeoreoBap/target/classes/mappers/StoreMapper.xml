@@ -6,13 +6,16 @@
 
     <select id="getList" resultType="store">
 		SELECT * FROM store
-		ORDER BY sno DESC
-		LIMIT #{pageStart}, #{cpp}
+		WHERE rdn_whl_addr LIKE #{addr} AND uptae_nm = #{uptaeNm}
 	</select>
 	
-	<select id="getContent" resultType="store">
-		SELECT * FROM store
-		WHERE sno = #{sno}
-	</select>
+	<insert id="inputData">
+		INSERT INTO store
+		VALUES(#{sno}, #{siteTel}, #{rdnWhlAddr}, #{bplcNm}, #{uptaeNm}, #{dtlstatenm}, #{x}, #{y})
+	</insert>
+	<insert id="inputData">
+		INSERT INTO store
+		VALUES(#{sno}, #{siteTel}, #{rdnWhlAddr}, #{bplcNm}, #{uptaeNm}, #{dtlstatenm}, #{x}, #{y})
+	</insert>
 	
 </mapper>

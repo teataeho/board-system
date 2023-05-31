@@ -3,17 +3,12 @@ package com.spring.yeoreobap.store.mapper;
 import java.util.List;
 
 import com.spring.yeoreobap.command.StoreVO;
-import com.spring.yeoreobap.util.PageVO;
 
 public interface IStoreMapper {
-
 	
-	List<StoreVO> getList(PageVO vo);
-
+	List<StoreVO> getList(String uptaeNm, String addr);
 	
-	StoreVO getContent(int sno);
-
+	void inputData(StoreVO vo);
 	
-	int getTotal(PageVO vo);
 
 }
