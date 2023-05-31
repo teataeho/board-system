@@ -1,0 +1,157 @@
+/* 전체 기본 세팅 */
+.size {
+  height: 500px;
+  overflow: hidden;
+
+  margin-top: 90px;
+}
+
+.bo-ra {
+  border-radius: 5px;
+}
+
+/* 메인 페이지 */
+.page-header h1 {
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+.page-header small {
+  margin-left: 10px;
+  font-size: 15px;
+  font-weight: normal;
+}
+
+.getParty .page-header {
+  border-bottom: 1px solid #F4B183;
+}
+
+.getParty .thumbnail-size {
+  width: 220px;
+  height: 300px;
+
+  background-image: url(../img/thumbnail_1.jpg);
+  background-position: center;
+  background-size: cover;
+
+  margin: 20px auto;
+}
+
+/* li {
+  list-style: none;
+}
+
+input {
+  border: none;
+  outline: none;
+  width: 100%;
+}
+
+.border {
+  border-radius: 5px;
+  border: 1px solid #BCBEC0;
+  overflow: hidden;
+}
+
+.necessary {
+  color: red;
+}
+
+.information {
+  color: #BCBEC0;
+  font-size: 12px;
+}
+
+h2.title {
+  font-size: 30px;
+  font-weight: bold;
+  line-height: 60px;
+  text-align: center;
+  border-bottom: 1.5px solid #F0975A;
+  margin-bottom: 10px;
+}
+
+button {
+  background-color: #F0975A;
+  color: white;
+  border: none;
+  text-align: center;
+  border-radius: 5px;
+} */
+
+/* 로그인 페이지
+.login {
+  width: 500px;
+  margin: 150px auto;
+}
+
+.login form {
+  width: 340px;
+  margin: 10px auto;
+  position: relative;
+}
+
+.login [class^=form-] {
+  display: block;
+  height: 40px;
+  width: 250px;
+
+  font-size: 14px;
+  padding: 0 15px;
+}
+
+.login .border {
+  height: 40px;
+  width: 250px;
+}
+
+.login .border:first-child {
+  margin-bottom: 5px;
+}
+
+.login button {
+  width: 85px;
+  height: 85px;
+
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+회원가입 페이지
+.join {
+  width: 1000px;
+  margin: 150px auto;
+}
+
+.join p.necessary {
+  font-size: 15px;
+  margin: 20px 0;
+}
+
+.join form {
+  width: 650px;
+  margin: 0 auto;
+}
+
+.join p {
+  display: block;
+  margin: 0 2px;
+}
+
+.join .block {
+  margin-bottom: 20px;
+  display: flex;
+}
+
+.join [class^=form-] {
+  display: block;
+  width: 100%;
+  height: 40px;
+  padding: 0 10px;
+}
+
+#idCheckBtn {
+  width: 160px;
+  margin-left: 5px;
+} */

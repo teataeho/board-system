@@ -3,23 +3,19 @@
 
 <%@ include file="../include/header.jsp"%>
 
-<div class="join">
-	<h2 class="title">회원가입</h2>
-	<form action="${pageContext.request.contextPath}/user/join" method="post" name="joinForm">
-		<p class="necessary">*표시가 있는 곳은 필수입력값입니다!</p>
-		<!-- 아이디 -->
-		<div class="block">
-			<p>
-				<span class="necessary">*</span>아이디
-			</p>
-			<div class="border">
-				<input type="text" class="form-id" name="userId" id="userId" placeholder="아이디를 입력해주세요. (영문 4~12자)"
-					autocomplete="off">
-			</div>
-			<button type="button" class="form-idCheckBtn" id="idCheckBtn">아이디
-				중복 체크</button>
-			<span id="msgId"></span>
-		</div>
+		<div class="join">
+			<h2 class="title">회원가입</h2>
+			<form action="" method="POST">
+				<p class="necessary">*모든 값이 필수입력값입니다!</p>
+				<!-- 아이디 -->
+				<div class="block">
+					<p><span class="necessary">*</span>아이디</p>
+					<div class="border"><input type="text" class="form-id" name="userId" id="userId"
+							placeholder="아이디를 입력해주세요. (영문 4~12자)" autocomplete="off">
+					</div>
+					<button type="button" class="form-idCheckBtn" id="idCheckBtn">아이디 중복 체크</button>
+					<span class="msgId"></span>
+				</div>
 
 		<!-- 비밀번호 -->
 		<div class="block">
@@ -148,48 +144,9 @@
 			</div>
 		</div>
 
-		<!-- 근처구 -->
-		<div class="block">
-			<p>거주구 외에 왕래가 편한 구가 어디인가요?</p>
-			<small class="information">입력해주신 구의 동행을 우선적으로 보여드리기 위해 얻는
-				정보로, 이외의 용도로 사용되지 않습니다.</small>
-			<div class="border">
-				<!-- <input type="text" class="form-addrClose" name="addrClose" id="addrClose"
-					placeholder="ex) 강동구, 성동구, 강남구, ..."> -->
-					<select class="form-addrClose" name="addrClose" id="addrClose">
-						<option value="" disabled selected>근처구</option>
-						<option>강남구</option>
-						<option>강동구</option>
-						<option>강북구</option>
-						<option>강서구</option>
-						<option>관악구</option>
-						<option>광진구</option>
-						<option>구로구</option>
-						<option>금천구</option>
-						<option>노원구</option>
-						<option>도봉구</option>
-						<option>동대문구</option>
-						<option>동작구</option>
-						<option>마포구</option>
-						<option>서대문구</option>
-						<option>서초구</option>
-						<option>성동구</option>
-						<option>성북구</option>
-						<option>송파구</option>
-						<option>양천구</option>
-						<option>영등포구</option>
-						<option>용산구</option>
-						<option>은평구</option>
-						<option>종로구</option>
-						<option>중구</option>
-						<option>중랑구</option>
-					</select>
-			</div>
-		</div>
-
-		<!-- 버튼 -->
-		<button type="button" class="form-joinBtn" id="joinBtn">회원가입</button>
-		<button type="button" class="form-loginBtn" id="loginBtn">로그인</button>
+				<!-- 버튼 -->
+				<button type="button" class="form-joinBtn" id="joinBtn">회원가입</button>
+				<button type="button" class="form-loginBtn" id="loginBtn">로그인</button>
 
 	</form>
 </div>
