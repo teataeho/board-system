@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.yeoreobap.command.PartyVO;
 import com.spring.yeoreobap.party.service.IPartyService;
@@ -22,6 +23,7 @@ public class PartyController {
 	@Autowired
 	private IPartyService service;
 
+	// 카카오맵으로 이동
 	@GetMapping("/map")
 	public void map() {
 	}
@@ -35,12 +37,14 @@ public class PartyController {
 	}
 
 	@GetMapping("/partyRegister")
-	public void regist() {
+	public void register() {
 	}
 
 	@PostMapping("/partyRegister")
-	public String regist(PartyVO vo) {
-		service.regist(vo);
+	public String register(PartyVO vo, MultipartFile file) {
+		// 파일이 안들어왔을 때 어떻게 나오는지 확인
+		service.upload(vo.getPartyNo(), file);
+		service.register(vo);
 		return "redirect:/party/partyList";
 	}
 
