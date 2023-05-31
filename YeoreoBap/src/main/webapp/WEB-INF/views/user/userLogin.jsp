@@ -1,25 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%-- <%@ include file="../include/header.jsp" %> --%>
+<%@ include file="../include/header.jsp"%>
+<!-- css 디자인 -->
+<link href="${pageContext.request.contextPath }/css/userLogin.css"
+	rel="stylesheet">
 
 <div class="login">
 	<h2 class="title">로그인</h2>
 	<form action="" method="post" name="loginForm">
 		<div class="border">
-			<input type="text" class="form-id" name="userId" id="userId"
-				placeholder="아이디" autocomplete="off">
+			<div class="idPw">
+				<input type="text" class="form-id" name="userId" id="userId"
+					placeholder="아이디" autocomplete="off"> <input
+					type="password" class="form-pw" name="userPw" id="userPw"
+					placeholder="비밀번호">
+			</div>
+			<div class="login-div">
+			<button type="button" id="loginBtn">Login</button>
+			<a id="joinBtn" href='${pageContext.request.contextPath}/user/join'>회원가입하기</a>
 		</div>
-		<div class="border">
-			<input type="password" class="form-pw" name="userPw" id="userPw"
-				placeholder="비밀번호">
-		</div>
-		<button type="button" id="loginBtn">Login</button>
-		<br>
-		<br>
-		<br>
-		<button type="button" id="joinBtn">회원가입</button>
-	</form>
+		
+</div>
+
+
+</form>
 </div>
 
 <%@ include file="../../include/footer.jsp"%>
@@ -47,11 +52,7 @@
 
             document.loginForm.submit();
         }
-    	
-    	 document.getElementById('joinBtn').onclick = () => {
-             location.href='${pageContext.request.contextPath}/user/join';
-         }
-		
+
     	
     
     </script>
