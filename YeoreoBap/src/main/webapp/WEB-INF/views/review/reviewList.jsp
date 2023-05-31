@@ -46,7 +46,7 @@
 					</thead>
 					<tbody>
 						<c:forEach var="vo" items="${reviewList}">
-							<tr>
+							<%-- <tr>
 								<td>${vo.review_no}</td>
 								<td><a
 									href="${pageContext.request.contextPath}/reviewList/content/${vo.review_no}?pageNum=${pc.paging.pageNum}&cpp=${pc.paging.cpp}&keyword=${pc.paging.keyword}&condition=${pc.paging.condition}">${vo.title}</a>
@@ -60,7 +60,7 @@
 										pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedUpdateTime"
 										type="both" /> <fmt:formatDate value="${parsedUpdateTime}"
 										pattern="yyyy년 MM월 dd일 HH시 mm분" /></td>
-							</tr>
+							</tr> --%>
 						</c:forEach>
 					</tbody>
 
@@ -87,7 +87,7 @@
 							</c:if>
 						</ul>
 						<button type="button" class="btn btn-info"
-							onclick="location.href='${pageContext.request.contextPath}/freeboard/regist'">글쓰기</button>
+							onclick="location.href='${pageContext.request.contextPath}/review/reviewRegist'">글쓰기</button>
 					</div>
 
 					<input type="hidden" name="pageNum" value="${pc.paging.pageNum}">

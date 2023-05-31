@@ -11,7 +11,7 @@
 					<p>후기게시판</p>
 				</div>
 
-				<form action="${pageContext.request.contextPath}/review/regist"
+				<form action="${pageContext.request.contextPath}/review/reviewRegist"
 					method="post">
 					<table class="table">
 						<tbody class="t-control">

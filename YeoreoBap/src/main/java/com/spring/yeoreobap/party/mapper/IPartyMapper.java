@@ -24,4 +24,5 @@ public interface IPartyMapper {
 	void attend(String userId, int partyNo);
 	//업로드
 	void upload(int partyNo, ImgVO img);
+
 }

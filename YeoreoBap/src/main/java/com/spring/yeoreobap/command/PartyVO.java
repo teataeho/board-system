@@ -22,9 +22,9 @@ CREATE TABLE party (
 @ToString
 public class PartyVO {
 	
-	private int partyNo;
+	private int partyNo, max;
 	private String restId;
 	private String writer, title, content;
 	private LocalDateTime regDate, updateDate;	
-	private int max;
+	
 }
