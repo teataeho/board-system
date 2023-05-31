@@ -2,8 +2,7 @@
 .size {
     height: 500px;
     overflow: hidden;
-
-    margin-top: 90px;
+    margin: 100px 0 20px;
 }
 
 body a {
@@ -66,17 +65,16 @@ header .container {
     font-weight: normal;
 }
 
-.getParty .page-header {
-    border-bottom: 1px solid #F4B183;
-}
-
-.getParty .thumbnail-size {
+.p-0 .thumbnail-size {
     width: 220px;
     height: 300px;
+    overflow: hidden;
+    position: relative;
+}
 
-    background-image: url(../img/thumbnail_1.jpg);
-    background-position: center;
-    background-size: cover;
-
-    margin: 20px auto;
+.p-0 .thumbnail-size img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
