@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -39,6 +41,13 @@ public class ReviewController {
 	public String regist(ReviewVO vo) {
 		service.regist(vo);
 		return "redirect:/review/reviewList";
+	}
+	
+	@GetMapping("/review/getArticle/{review_no}")
+	public String getArticle(@PathVariable int reviewNo, @ModelAttribute("p") PageVO vo,
+			Model model) {
+		model.addAttribute("article", service.getArticle(reviewNo));
+		return "review/reviewDetail";
 	}
 	
 }

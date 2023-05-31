@@ -46,6 +46,7 @@
 				<input type="password" class="form-pwCheck" name="pwCheck"
 					id="pwCheck" placeholder="비밀번호를 다시 한 번 입력해주세요.">
 			</div>
+			<span class="msgPw2" id="msgPw2"></span>
 
 		<!-- 이름 -->
 		<div class="block">
@@ -307,7 +308,7 @@
 		} else {
 			document.getElementById("userPw").style.borderColor = "orange";
 			document.getElementById("msgPw").innerHTML = "비밀번호를 제대로 입력하세요.";
-			pwFlag = false;
+			pwFlag = false;	
 
 		}
 	}
@@ -319,11 +320,11 @@
 		if (document.getElementById("pwCheck").value == document
 			.getElementById("userPw").value) {
 			document.getElementById("pwCheck").style.borderColor = "green";
-			document.getElementById("msgPwCheck").innerHTML = "비밀번호가 일치합니다.";
+			document.getElementById("msgPw2").innerHTML = "비밀번호가 일치합니다.";
 
 		} else {
 			document.getElementById("pwCheck").style.borderColor = "red";
-			document.getElementById("msgPwCheck").innerHTML = "비밀번호 확인란을 확인하세요.";
+			document.getElementById("msgPw2").innerHTML = "비밀번호 확인란을 확인하세요.";
 		}
 	}
 	

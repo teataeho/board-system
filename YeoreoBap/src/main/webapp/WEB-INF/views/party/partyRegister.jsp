@@ -4,7 +4,7 @@
 
 		<div class="join">
 			<h2 class="title">파티 모집글 작성하기</h2>
-			<form action="" method="POST">
+			<form action="${pageContext.request.contextPath}/party/partyRegister" method="POST">
 				<p>썸네일 사진을 선택해주세요.</p>
 				<div class="pictures">
 					<input type="checkbox" name="ex-pic1" id="pic1" src="${pageContext.request.contextPath}/img/">
@@ -42,5 +42,5 @@
 				</div>
 
 				<button type="button" id="writeBtn">등록하기</button>
+				<!-- type ="submit"..? -->
 			</form>
-		</div>
