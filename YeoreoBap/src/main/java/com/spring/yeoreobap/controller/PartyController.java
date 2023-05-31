@@ -35,16 +35,14 @@ public class PartyController {
 		model.addAttribute("list", service.getList(vo));
 		model.addAttribute(pc);
 	}
-
+	
 	@GetMapping("/partyRegister")
-	public void register() {
-	}
-
+	public void regist() {}
+	
 	@PostMapping("/partyRegister")
 	public String register(PartyVO vo, MultipartFile file) {
-		// 파일이 안들어왔을 때 어떻게 나오는지 확인
-		service.upload(vo.getPartyNo(), file);
-		service.register(vo);
+		//파일이 안들어왔을 때 어떻게 나오는지 확인
+		service.regist(vo, file);
 		return "redirect:/party/partyList";
 	}
 

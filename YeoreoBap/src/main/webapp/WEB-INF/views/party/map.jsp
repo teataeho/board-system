@@ -16,10 +16,9 @@
 	<div class="wrap">
 		<div id="map" style="width: 100%; height: 700px;"></div>
 		<form action='#' id="uptae">
-			<input type="radio" name="uptaeNm" value="한식" checked> 한식
+			<input type="radio" name="uptaeNm" value="한식"> 한식
 			<input type="radio" name="uptaeNm" value="경양식"> 경양식
 			<input type="radio" name="uptaeNm" value="일식"> 일식
-			<input type="radio" name="uptaeNm" value="호프/통닭"> 호프/통닭
 			<input type="radio" name="uptaeNm" value="분식"> 분식
 			<input type="radio" name="uptaeNm" value="중국식"> 중국식
 			<input type="radio" name="uptaeNm" value="기타"> 기타
@@ -49,9 +48,16 @@
 		//모델객체를 가져와서 반복문 처리합니다
 		var restaurants = [];
 
+		// 지도에 표시된 마커 객체를 가지고 있을 배열입니다
+		var markers = [];
+
+		//업태명이 클릭되면 실행되는 이벤트
 		document.getElementById('uptae').addEventListener('click', e => {
 			if(!e.target.matches('input')) return;
-			console.log(e.target.value);
+
+			//기존에 있는 마커를 제거
+			deleteMarkers(map);
+
 			fetch("${pageContext.request.contextPath}/store/getList/" + e.target.value, {
 					method: 'get',
 					headers: {
@@ -81,6 +87,9 @@
 										.x), // 마커를 표시할 위치입니다
 										map: map // 마커를 표시할 지도객체입니다
 									});
+
+									// 생성된 마커를 배열에 추가합니다
+    								markers.push(marker);
 	
 									// 마커에 마우스 오버 이벤트를 등록합니다
 									kakao.maps.event.addListener(marker, 'mouseover', function () {
@@ -111,6 +120,12 @@
 
 		});
 
+		//기존에 있는 마커를 제거하는 함수
+		function deleteMarkers(map) {
+			for (var i = 0; i < markers.length; i++) {
+				markers[i].setMap(null);
+			}
+		}
 	</script>
 </body>
 
