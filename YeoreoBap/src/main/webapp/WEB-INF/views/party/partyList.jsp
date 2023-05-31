@@ -2,17 +2,22 @@
 
 	<%@ include file="../include/header.jsp" %>
 
-		<div class="partyList container">
-			<img src="${pageContext.request.contextPath}/img/ex_carousel1.png" class="d-block w-100" alt="메인 이미지1">
-			<h2 class="title">파티 모집</h2>
-			<div class="btn-group">
-				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+		<div class="container">
+			<div class="size"><img src="${pageContext.request.contextPath}/img/ex_carousel1.png" class="d-block w-100"
+					alt="메인 이미지1"></div>
+			<div class="page-header border-bottom border-orange mb-4">
+				<h2 class="text-center ms-2">
+					여러밥 모집
+				</h2>
+			</div>
+			<div class="dropdown">
+				<button class="btn btn-white border-orange dropdown-toggle" type="button" data-bs-toggle="dropdown"
 					aria-expanded="false">
 					최신순
 				</button>
 				<ul class="dropdown-menu">
-					<li><a href="#">최신순</a></li>
-					<li><a href="#"><span>핫!</span>한 순</a></li>
+					<li><a class="dropdown-item" href="#">최신순</a></li>
+					<li><a class="dropdown-item" href="#"><span class="necessary">핫!</span>한 순</a></li>
 				</ul>
 			</div>
 

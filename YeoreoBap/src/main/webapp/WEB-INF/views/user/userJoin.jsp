@@ -4,7 +4,7 @@
 
 		<div class="join">
 			<h2 class="title">회원가입</h2>
-			<form action="" method="POST">
+			<form action="${pageContext.request.contextPath}/user/join" method="POST">
 				<p class="necessary">*모든 값이 필수입력값입니다!</p>
 				<!-- 아이디 -->
 				<div class="block">
@@ -103,8 +103,8 @@
 					<div class="border">
 						<select class="form-addrMine" name="addrMine" id="addrMine">
 							<option disabled selected>거주구</option>
-							<option value="mapo">마포구</option>
-							<option value="seodaemun">서대문구</option>
+							<option value="마포구">마포구</option>
+							<option value="서대문구">서대문구</option>
 						</select>
 					</div>
 				</div>
