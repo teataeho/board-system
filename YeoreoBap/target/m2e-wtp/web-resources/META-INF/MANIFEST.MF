@@ -1,5 +1,9 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: ￬ﾠﾜ￬ﾝﾸ
+=======
+Built-By: hanarae
+>>>>>>> e52ade209ed6ab5c0034b0d2fe8aab69d35a7642
 Build-Jdk: 11.0.19
 Created-By: Maven Integration for Eclipse
 

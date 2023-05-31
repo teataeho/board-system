@@ -21,8 +21,8 @@ public class StoreService implements IStoreService {
 	private IStoreMapper mapper;	
 	
 	@Override
-	public List<StoreVO> getList(String addr) {
-		return mapper.getList(addr);
+	public List<StoreVO> getList(String uptaeNm, String addr) {
+		return mapper.getList(uptaeNm ,addr);
 	}
 	
 	@Override

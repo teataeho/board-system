@@ -25,10 +25,4 @@ public class StoreMapperTest {
 	@Autowired
 	private IStoreMapper mapper;
 	
-	@Test
-	@DisplayName("글리스트")
-	void getListTest() {
-		List<StoreVO> list = mapper.getList("%(동교동)");
-	}
-	
 }
