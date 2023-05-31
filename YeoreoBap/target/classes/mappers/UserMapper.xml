@@ -10,8 +10,8 @@
         <result property="userPhone" column="user_phone" />
         <result property="userEmail1" column="user_email1" />
         <result property="userEmail2" column="user_email2" />
-        <result property="addrMine" column="addr_mine" />
-        <result property="addrClose" column="addr_close" />
+        <result property="addrGu" column="addr_gu" />
+        <result property="addrDong" column="addr_dong" />
 		<collection property="userBoardList" resultMap="list"/>
 	</resultMap>
 
@@ -24,9 +24,9 @@
 		INSERT INTO users
 		(user_id, user_pw, user_name, user_nick,
 		user_phone, user_email1, user_email2,
-		addr_mine, addr_close)
+		addr_gu, addr_dong)
 		VALUES(#{userId},#{userPw},#{userName}, #{userNick}, #{userPhone},#{userEmail1},
-		#{userEmail2},#{addrMine},#{addrClose})
+		#{userEmail2},#{addrGu},#{addrDong})
 	</insert>
 
 	<select id="login" resultType="string">
@@ -38,8 +38,8 @@
 	<select id="getInfo" resultMap="userMap">
 		SELECT
 			user_name, user_phone,
-			user_email1, user_email2, addr_mine,
-			addr_close, user_point,
+			user_email1, user_email2, addr_gu,
+			addr_dong, user_point,
 			p.party_board_no, p.title, p.reg_date
 		FROM users u
 		LEFT JOIN party p
@@ -62,8 +62,8 @@
 		user_email1 = #{userEmail1},
 		user_email2 = #{userEmail2},
 		user_phone = #{userPhone},
-		addr_mine = #{addrMine},
-		addr_close = #{addrClose},
+		addr_gu = #{addrGu},
+		addr_dong = #{addrDong},
 		WHERE
 		user_id=#{userId}
 	</update>
