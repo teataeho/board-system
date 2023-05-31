@@ -57,13 +57,16 @@
 									</h2>
 								</div>
 
-								<div class="container d-md-flex flex-md-wrap flex-md-row">
-									<c:forEach begin="1" step="+1" end="9">
-										<div class="thumbnail-size rounded">
-											<div id="rdnWhlAddr" class="invisible">서울 성동구</div>
-											<div id="title" class="invisible">코너키친 갈 사람 여기여기 모여라~!</div>
-										</div>
-									</c:forEach>
+								<div class="container p-2 mx-auto">
+									<div class="d-inline-flex flex-wrap p-0">
+										<c:forEach begin="1" step="+1" end="9">
+											<div class="thumbnail-size rounded m-2">
+												<img class="h-100" src="${pageContext.request.contextPath}/img/thumbnail_1.jpg" alt="썸네일">
+												<div id="rdnWhlAddr" class="invisible">서울 성동구</div>
+												<div id="title" class="invisible">코너키친 갈 사람 여기여기 모여라~!</div>
+											</div>
+										</c:forEach>
+									</div>
 								</div>
 							</div>
 
