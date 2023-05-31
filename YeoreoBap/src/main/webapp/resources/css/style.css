@@ -2,7 +2,6 @@
 .size {
     height: 500px;
     overflow: hidden;
-
     margin: 100px 0 20px;
 }
 
@@ -66,18 +65,14 @@ header .container {
     font-weight: normal;
 }
 
-.getParty .page-header {
-    border-bottom: 1px solid #F4B183;
-}
-
-.getParty .thumbnail-size {
+.p-0 .thumbnail-size {
     width: 220px;
     height: 300px;
     overflow: hidden;
     position: relative;
 }
 
-.getParty .thumbnail-size img {
+.p-0 .thumbnail-size img {
     position: absolute;
     top: 50%;
     left: 50%;
