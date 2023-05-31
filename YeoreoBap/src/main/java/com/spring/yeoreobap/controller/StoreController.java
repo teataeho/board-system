@@ -18,17 +18,12 @@ import com.spring.yeoreobap.store.service.IStoreService;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
-@RestController
 @RequestMapping("/store")
 public class StoreController {
 
 	@Autowired
-	@Autowired
 	private IStoreService service;
 	
-	@GetMapping("/input")
-	public void inputData() {
-		service.readOpenStoresFromJson();
 	@GetMapping("/input")
 	public void inputData() {
 		service.readOpenStoresFromJson();
