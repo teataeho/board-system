@@ -24,6 +24,10 @@
     <typeAliases>
         <typeAlias type="com.spring.yeoreobap.command.PartyVO" alias="party"/>
         <typeAlias type="com.spring.yeoreobap.command.StoreVO" alias="store"/>
+        <typeAlias type="com.spring.yeoreobap.command.UserVO" alias="user"/>
+        <typeAlias type="com.spring.yeoreobap.command.ReviewVO" alias="review"/>
+        <typeAlias type="com.spring.yeoreobap.command.PartyReplyVO" alias="pReply"/>
+        <typeAlias type="com.spring.yeoreobap.command.ReviewReplyVO" alias="rReply"/>
     </typeAliases>
      
 </configuration>

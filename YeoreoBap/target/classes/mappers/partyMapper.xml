@@ -6,8 +6,8 @@
 
 	<insert id="regist">
 		INSERT INTO party
-		(rest_id, writer, title, content)
-		VALUES (#{restId}, #{writer}, #{title}, #{content})
+		(rest_id, writer, title, content, max)
+		VALUES (#{restId}, #{writer}, #{title}, #{content}, #{max})
 	</insert>
 	
 	<select id="getList" resultType="party">
@@ -28,7 +28,7 @@
 	</select>
 	
 	<update id="update">
-		update party
+		UPDATE party
 		SET title = #{title}, content = #{content},
 		update_date = current_timestamp
 		WHERE party_no = #{partyNo}
@@ -43,6 +43,12 @@
 		INSERT INTO participants
 		(party_no, user_id)
 		VALUES (#{partyNo}, #{userId})
+	</insert>
+	
+	<insert id="upload">
+		INSERT INTO img
+		(file_name, board_no)
+		VALUES (#{fileName}, #{partyNo})
 	</insert>
 
 </mapper>

@@ -11,7 +11,7 @@
 	<h2 class="title">회원가입</h2>
 	<div class="section">
 		<form class="form" action="" method="POST">
-			<p class="necessary">*표시가 있는 곳은 필수입력값입니다!</p>
+			<p class="necessary notice">*표시가 있는 곳은 필수입력값입니다!</p>
 			<!-- 아이디 -->
 			<div class="block">
 				<p>

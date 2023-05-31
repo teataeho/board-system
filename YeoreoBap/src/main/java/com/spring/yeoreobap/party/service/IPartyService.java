@@ -2,11 +2,13 @@ package com.spring.yeoreobap.party.service;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.spring.yeoreobap.command.PartyVO;
 import com.spring.yeoreobap.util.PageVO;
 
 public interface IPartyService {
-	
+
 	//글 등록
 	void regist(PartyVO vo);
 	//글 목록
@@ -21,4 +23,6 @@ public interface IPartyService {
 	void delete(int partyNo);
 	//참여
 	void attend(String userId, int partyNo);
+	//파일업로드
+	void upload(int partyNo, MultipartFile file);
 }
