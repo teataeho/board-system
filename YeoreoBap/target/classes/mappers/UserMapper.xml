@@ -7,7 +7,6 @@
 	<resultMap type="user" id="userMap">
 		<result property="userName" column="user_name" />
 		<result property="userNick" column="user_nick" />
-        <result property="userPhone" column="user_phone" />
         <result property="userEmail1" column="user_email1" />
         <result property="userEmail2" column="user_email2" />
         <result property="addrGu" column="addr_gu" />
@@ -23,9 +22,9 @@
 	<insert id="join">
 		INSERT INTO users
 		(user_id, user_pw, user_name, user_nick,
-		user_phone, user_email1, user_email2,
+		user_email1, user_email2,
 		addr_gu, addr_dong)
-		VALUES(#{userId},#{userPw},#{userName}, #{userNick}, #{userPhone},#{userEmail1},
+		VALUES(#{userId},#{userPw},#{userName}, #{userNick}, #{userEmail1},
 		#{userEmail2},#{addrGu},#{addrDong})
 	</insert>
 

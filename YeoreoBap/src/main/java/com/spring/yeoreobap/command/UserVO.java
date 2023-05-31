@@ -12,7 +12,6 @@ CREATE TABLE users(
    user_pw VARCHAR(50) NOT NULL,
    user_name VARCHAR(50) NOT NULL,
    user_nick VARCHAR(50) NOT NULL,
-   user_phone VARCHAR(50),
    user_email1 VARCHAR(50),
    user_email2 VARCHAR(50),
    addr_gu VARCHAR(300),
@@ -29,7 +28,6 @@ public class UserVO {
 	private String userPw;
 	private String userName;
 	private String userNick;
-	private String userPhone;
 	private String userEmail1;
 	private String userEmail2;
 	private String addrGu;

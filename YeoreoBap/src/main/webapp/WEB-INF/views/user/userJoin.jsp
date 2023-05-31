@@ -98,14 +98,6 @@
 					이메일 인증</button>
 			</div>
 
-		<!-- 전화번호 -->
-		<div class="block">
-			<p>전화번호</p>
-			<div class="border">
-				<input type="text" class="form-userPhone" name="userPhone"
-					id="userPhone">
-			</div>
-
 		<!-- 거주구 -->
 		<div class="block">
 			<p>
@@ -126,9 +118,9 @@
 
 				<select onchange="categoryChange(this)" name="addrGu">
 					<option>거주구</option>
-					<option value="a">마포구</option>
-					<option value="b">서대문구</option>
-				</select> <select id="good" name="addrDong">
+					<option value="마포구">마포구</option>
+					<option value="서대문구">서대문구</option>
+				</select> <select id="addrDong" name="addrDong">
 					<option>동을 선택해주세요</option>
 				</select>
 			</div>
@@ -195,11 +187,11 @@
 					//더 이상 버튼을 누를 수 없도록 버튼 비활성화.
 					document.getElementById('idCheckBtn').setAttribute('disabled', true);
 					//메세지 남기기
-					document.getElementsByClassName('msgId').textContent = '사용 가능한 아이디 입니다.';
+					document.getElementById('msgId').textContent = '사용 가능한 아이디 입니다.';
 				} else if (data == 'duplicated') {
 					console.log('duplicated');
 					alert('중복 아이디!');
-					document.getElementsByClassName('msgId').textContent = '중복된 아이디 입니다.';
+					document.getElementById('msgId').textContent = '중복된 아이디 입니다.';
 				} else {
 					console.log('???');
 				}
@@ -281,6 +273,11 @@
 		}
 	}
 
+	/* var idCheckBtn = document.getElementById("idCheckBtn");
+	idCheckBtn.onclick = function () {
+		var isSuccess = checkIdDuplicate();
+		
+	} */
 
 	/*아이디 형식 검사 스크립트*/
 	var id = document.getElementById("userId");
@@ -332,15 +329,14 @@
 	
 
 	function categoryChange(e) {
-		var good_a = ["상암동", "성산동", "망원동", "연남동", "동교동", "서교동", "합정동", "상수동", "창전동", "신수동", "노고산동", "대흥동", "염리동",
+		var addrDong_mapo = ["상암동", "성산동", "망원동", "연남동", "동교동", "서교동", "합정동", "상수동", "창전동", "신수동", "노고산동", "대흥동", "염리동",
 				"용강동", "도화동", "공덕동", "아현동", "신공덕동"];
-		var good_b = ["북가좌동", "남가좌동", "홍은동", "홍제동", "연희동", "신촌동", "봉원동", "북아현동", "현저동", "천연동"];
+		var addrDong_seodaemun = ["북가좌동", "남가좌동", "홍은동", "홍제동", "연희동", "신촌동", "봉원동", "북아현동", "현저동", "천연동"];
 
-		var target = document.getElementById("good");
+		var target = document.getElementById("addrDong");
 
-		if(e.value == "a") var d = good_a;
-		else if(e.value == "b") var d = good_b;
-		else if(e.value == "c") var d = good_c;
+		if(e.value == "마포구") var d = addrDong_mapo;
+		else if(e.value == "서대문구") var d = addrDong_seodaemun;
 
 		target.options.length = 0;
 
