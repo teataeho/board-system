@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%-- <%@ include file="../include/header.jsp" %> --%>
+<%@ include file="../include/header.jsp" %>
 
 <div class="login">
 	<h2 class="title">로그인</h2>
@@ -22,7 +22,7 @@
 	</form>
 </div>
 
-<%@ include file="../../include/footer.jsp"%>
+<%@ include file="../include/footer.jsp"%>
 <script>
     	
     	//회원 가입 완료 후 addFlashAttribute로 msg 데이터가 전달 되는 지 확인

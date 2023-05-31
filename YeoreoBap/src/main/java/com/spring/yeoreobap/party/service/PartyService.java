@@ -23,12 +23,12 @@ public class PartyService implements IPartyService {
 	private IPartyMapper mapper;
 
 	@Override
-	public void regist(PartyVO vo) {
+	public void register(PartyVO vo) {
 		mapper.regist(vo);
 	}
 
 	@Override
-	public List<PartyVO> getList(PageVO paging) {		
+	public List<PartyVO> getList(PageVO paging) {
 		return mapper.getList(paging);
 	}
 
@@ -59,24 +59,25 @@ public class PartyService implements IPartyService {
 
 	@Override
 	public void upload(int partyNo, MultipartFile file) {
-		
+
 		String fileLoca = "party";
 
-		//기본 경로는 C:/test/upload로 사용하겠습니다.
+		// 기본 경로는 C:/test/upload로 사용하겠습니다.
 		String uploadPath = "C:/yeoreobap/upload/";
 
-		//폴더 없으면 새롭게 생성해 주시라
+		// 폴더 없으면 새롭게 생성해 주시라
 		File folder = new File(uploadPath + fileLoca);
-		if(!folder.exists()) folder.mkdirs();
+		if (!folder.exists())
+			folder.mkdirs();
 
-		//저장될 파일명은 UUID를 이용한 파일명으로 저장합니다.
-		//UUID가 제공하는 랜덤 문자열에 -을 제거해서 전부 사용하겠습니다.
+		// 저장될 파일명은 UUID를 이용한 파일명으로 저장합니다.
+		// UUID가 제공하는 랜덤 문자열에 -을 제거해서 전부 사용하겠습니다.
 		String fileRealName = file.getOriginalFilename();
 
 		UUID uuid = UUID.randomUUID();
 		String uuids = uuid.toString().replaceAll("-", "");
 
-		//확장자 추출.
+		// 확장자 추출.
 		String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."));
 
 		log.info("저장할 폴더 경로: " + uploadPath);
@@ -87,14 +88,14 @@ public class PartyService implements IPartyService {
 		String fileName = uuids + fileExtension;
 		log.info("변경해서 저장할 파일명: " + fileName);
 
-		//업로드한 파일을 지정한 로컬 경로로 전송
+		// 업로드한 파일을 지정한 로컬 경로로 전송
 		File saveFile = new File(uploadPath + fileLoca + "/" + fileName);
 		try {
 			file.transferTo(saveFile);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		ImgVO img = new ImgVO();
 
 		img.setUploadPath(uploadPath);

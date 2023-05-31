@@ -22,8 +22,8 @@ public class PartyController {
 
 	@Autowired
 	private IPartyService service;
-	
-	//카카오맵으로 이동 
+
+	// 카카오맵으로 이동
 	@GetMapping("/map")
 	public void map() {
 	}
@@ -35,15 +35,16 @@ public class PartyController {
 		model.addAttribute("list", service.getList(vo));
 		model.addAttribute(pc);
 	}
-	
-	@GetMapping("/partyRegist")
-	public void regist() {}
-	
-	@PostMapping("/partyRegist")
-	public String regist(PartyVO vo, MultipartFile file) {
-		//파일이 안들어왔을 때 어떻게 나오는지 확인
+
+	@GetMapping("/partyRegister")
+	public void register() {
+	}
+
+	@PostMapping("/partyRegister")
+	public String register(PartyVO vo, MultipartFile file) {
+		// 파일이 안들어왔을 때 어떻게 나오는지 확인
 		service.upload(vo.getPartyNo(), file);
-		service.regist(vo);
+		service.register(vo);
 		return "redirect:/party/partyList";
 	}
 
