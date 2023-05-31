@@ -13,5 +13,9 @@
 		INSERT INTO store
 		VALUES(#{sno}, #{siteTel}, #{rdnWhlAddr}, #{bplcNm}, #{uptaeNm}, #{dtlstatenm}, #{x}, #{y})
 	</insert>
+	<insert id="inputData">
+		INSERT INTO store
+		VALUES(#{sno}, #{siteTel}, #{rdnWhlAddr}, #{bplcNm}, #{uptaeNm}, #{dtlstatenm}, #{x}, #{y})
+	</insert>
 	
 </mapper>

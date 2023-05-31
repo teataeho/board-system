@@ -47,8 +47,8 @@
 					</thead>
 					<tbody>
 						<c:forEach var="vo" items="${reviewList}">
-							<tr>
-								<td>${vo.reviewNo}</td>
+							<%-- <tr>
+								<td>${vo.review_no}</td>
 								<td><a
 									href="${pageContext.request.contextPath}/review/getArticle/${vo.reviewNo}?pageNum=${pc.paging.pageNum}&cpp=${pc.paging.cpp}&keyword=${pc.paging.keyword}&condition=${pc.paging.condition}">${vo.title}</a>
 								</td>
@@ -61,7 +61,7 @@
 										pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedUpdateDateTime" />
 									<fmt:formatDate value="${parsedUpdateDateTime}"
 										pattern="yyyy년 MM월 dd일 HH시 mm분" /></td>
-							</tr>
+							</tr> --%>
 						</c:forEach>
 					</tbody>
 

@@ -9,5 +9,6 @@ public interface IStoreMapper {
 	List<StoreVO> getList(String uptaeNm, String addr);
 	
 	void inputData(StoreVO vo);
+	
 
 }

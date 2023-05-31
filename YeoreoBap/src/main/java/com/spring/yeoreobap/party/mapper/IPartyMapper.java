@@ -25,4 +25,5 @@ public interface IPartyMapper {
 	//업로드
 	void upload(int partyNo, ImgVO img);
 
+
 }
