@@ -10,7 +10,7 @@ import com.spring.yeoreobap.util.PageVO;
 public interface IPartyService {
 
 	//글 등록
-	void regist(PartyVO vo);
+	void regist(PartyVO vo,  MultipartFile file);
 	//글 목록
 	List<PartyVO> getList(PageVO paging);
 	//전체 글
@@ -23,6 +23,4 @@ public interface IPartyService {
 	void delete(int partyNo);
 	//참여
 	void attend(String userId, int partyNo);
-	//파일업로드
-	void upload(int partyNo, MultipartFile file);
 }

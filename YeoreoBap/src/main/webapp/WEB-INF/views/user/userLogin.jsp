@@ -18,7 +18,7 @@
 			</div>
 			<div class="login-div">
 			<button type="button" id="loginBtn">Login</button>
-			<a id="joinBtn" href='${pageContext.request.contextPath}/user/join'>회원가입하기</a>
+			<a id="joinBtn" href='${pageContext.request.contextPath}/user/userJoin'>회원가입하기</a>
 		</div>
 		
 </div>
@@ -27,7 +27,7 @@
 </form>
 </div>
 
-<%@ include file="../../include/footer.jsp"%>
+<%@ include file="../include/footer.jsp"%>
 <script>
     	
     	//회원 가입 완료 후 addFlashAttribute로 msg 데이터가 전달 되는 지 확인

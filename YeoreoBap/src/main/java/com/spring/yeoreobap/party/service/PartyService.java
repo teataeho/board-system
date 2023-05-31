@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.spring.yeoreobap.command.ImgVO;
 import com.spring.yeoreobap.command.PartyVO;
 import com.spring.yeoreobap.party.mapper.IPartyMapper;
 import com.spring.yeoreobap.util.PageVO;
@@ -23,43 +22,7 @@ public class PartyService implements IPartyService {
 	private IPartyMapper mapper;
 
 	@Override
-	public void regist(PartyVO vo) {
-		mapper.regist(vo);
-	}
-
-	@Override
-	public List<PartyVO> getList(PageVO paging) {		
-		return mapper.getList(paging);
-	}
-
-	@Override
-	public PartyVO getArticle(int partyNo) {
-		return mapper.getArticle(partyNo);
-	}
-
-	@Override
-	public void update(PartyVO vo) {
-		mapper.update(vo);
-	}
-
-	@Override
-	public void delete(int partyNo) {
-		mapper.delete(partyNo);
-	}
-
-	@Override
-	public int getTotal() {
-		return mapper.getTotal();
-	}
-
-	@Override
-	public void attend(String userId, int partyNo) {
-		mapper.attend(userId, partyNo);
-	}
-
-	@Override
-	public void upload(int partyNo, MultipartFile file) {
-		
+	public void regist(PartyVO vo, MultipartFile file) {
 		String fileLoca = "party";
 
 		//기본 경로는 C:/test/upload로 사용하겠습니다.
@@ -94,12 +57,41 @@ public class PartyService implements IPartyService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		ImgVO img = new ImgVO();
 
-		img.setUploadPath(uploadPath);
-		img.setFileLoca(fileLoca);
-		img.setFileName(fileName);
+		vo.setUploadPath(uploadPath);
+		vo.setFileLoca(fileLoca);
+		vo.setFileName(fileName);
+		mapper.regist(vo);
+	}
+
+	@Override
+	public List<PartyVO> getList(PageVO paging) {		
+		return mapper.getList(paging);
+	}
+
+	@Override
+	public PartyVO getArticle(int partyNo) {
+		return mapper.getArticle(partyNo);
+	}
+
+	@Override
+	public void update(PartyVO vo) {
+		mapper.update(vo);
+	}
+
+	@Override
+	public void delete(int partyNo) {
+		mapper.delete(partyNo);
+	}
+
+	@Override
+	public int getTotal() {
+		return mapper.getTotal();
+	}
+
+	@Override
+	public void attend(String userId, int partyNo) {
+		mapper.attend(userId, partyNo);
 	}
 
 }
