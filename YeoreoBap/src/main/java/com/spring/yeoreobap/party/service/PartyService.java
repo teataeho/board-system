@@ -1,8 +1,6 @@
 package com.spring.yeoreobap.party.service;
 
 import java.io.File;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.UUID;
 
@@ -18,6 +16,7 @@ import com.spring.yeoreobap.util.PageVO;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
+@Slf4j
 public class PartyService implements IPartyService {
 
 	@Autowired
