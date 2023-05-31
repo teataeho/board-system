@@ -32,5 +32,11 @@
 			<button type="button"><img src="${pageContext.request.contextPath}/img/up-arrow.png" alt="위 화살표"></button>
 
 			<!-- 글 작성 버튼 -->
-			<button type="button"><img src="${pageContext.request.contextPath}/img/register.png" alt="작성"></button>
+			<button type="button" id="register"><img src="${pageContext.request.contextPath}/img/register.png" alt="작성"></button>
 		</div>
+
+	<script>
+		document.getElementById('register').addEventListener('click', () => {
+			location.href = '${pageContext.request.contextPath}/party/map';
+		})
+	</script>
