@@ -22,4 +22,5 @@ public interface IPartyMapper {
 	//참여
 	void attend(String userId, int partyNo);
 
+
 }

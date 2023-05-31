@@ -11,5 +11,6 @@ public interface IStoreMapper {
 	List<StoreVO> getList(@Param("uptaeNm") String uptaeNm,@Param("addr") String addr);
 	
 	void inputData(StoreVO vo);
+	
 
 }
