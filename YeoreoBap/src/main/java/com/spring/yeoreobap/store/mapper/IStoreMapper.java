@@ -6,7 +6,7 @@ import com.spring.yeoreobap.command.StoreVO;
 
 public interface IStoreMapper {
 	
-	List<StoreVO> getList(String addr);
+	List<StoreVO> getList(String uptaeNm, String addr);
 	
 	void inputData(StoreVO vo);
 

@@ -2,6 +2,10 @@
 	pageEncoding="UTF-8"%>
 
 <%@ include file="../include/header.jsp"%>
+<!-- css 디자인 -->
+<link href="${pageContext.request.contextPath }/css/userJoin.css"
+	rel="stylesheet">
+	
 
 <div class="join">
 	<h2 class="title">회원가입</h2>
@@ -42,8 +46,6 @@
 				<input type="password" class="form-pwCheck" name="pwCheck"
 					id="pwCheck" placeholder="비밀번호를 다시 한 번 입력해주세요.">
 			</div>
-			<span id="msgPwCheck"></span>
-		</div>
 
 		<!-- 이름 -->
 		<div class="block">
@@ -54,7 +56,6 @@
 				<input type="text" class="form-userName" name="userName"
 					id="userName">
 			</div>
-		</div>
 
 		<!-- 닉네임 -->
 		<div class="block">
@@ -65,7 +66,6 @@
 				<input type="text" class="form-userNick" name="userNick"
 					id="userNick">
 			</div>
-		</div>
 
 		<!-- 이메일 -->
 		<div class="block">
@@ -97,7 +97,6 @@
 				<button type="button" class="form-emailCheckBtn" id="emailCheckBtn">
 					이메일 인증</button>
 			</div>
-		</div>
 
 		<!-- 전화번호 -->
 		<div class="block">
@@ -106,7 +105,6 @@
 				<input type="text" class="form-userPhone" name="userPhone"
 					id="userPhone">
 			</div>
-		</div>
 
 		<!-- 거주구 -->
 		<div class="block">

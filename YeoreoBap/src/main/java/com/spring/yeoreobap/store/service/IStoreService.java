@@ -6,7 +6,7 @@ import com.spring.yeoreobap.command.StoreVO;
 
 public interface IStoreService {
 	
-	List<StoreVO> getList(String Addr);
+	List<StoreVO> getList(String uptaeNm, String Addr);
 
 	void readOpenStoresFromJson();
 }
