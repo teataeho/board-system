@@ -22,8 +22,8 @@ public class PartyController {
 
 	@Autowired
 	private IPartyService service;
-	
-	//카카오맵으로 이동 
+
+	// 카카오맵으로 이동
 	@GetMapping("/map")
 	public void map() {
 	}

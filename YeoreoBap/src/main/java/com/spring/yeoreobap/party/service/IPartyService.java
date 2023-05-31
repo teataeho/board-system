@@ -13,14 +13,19 @@ public interface IPartyService {
 	void regist(PartyVO vo,  MultipartFile file);
 	//글 목록
 	List<PartyVO> getList(PageVO paging);
-	//전체 글
+
+	// 전체 글
 	int getTotal();
-	//상세보기
+
+	// 상세보기
 	PartyVO getArticle(int partyNo);
-	//수정
+
+	// 수정
 	void update(PartyVO vo);
-	//삭제
+
+	// 삭제
 	void delete(int partyNo);
-	//참여
+
+	// 참여
 	void attend(String userId, int partyNo);
 }
