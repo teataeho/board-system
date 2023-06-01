@@ -37,7 +37,7 @@ public class PartyVO {
 	
 	private int partyNo, max;
 	private int sno;
-	private String writer, writerNick, title, content;
+	private String bplcNm, writer, writerNick, title, content;
 	private LocalDateTime regDate, updateDate;
-	private String uploadPath, fileLoca, fileName;
+	private String uploadPath, fileName;
 }
