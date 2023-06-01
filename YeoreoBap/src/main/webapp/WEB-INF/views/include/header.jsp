@@ -13,6 +13,7 @@
 			<!-- style.css -->
 			<link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
 			<link href="${pageContext.request.contextPath}/css/userJoin.css" rel="stylesheet">
+			<link href="${pageContext.request.contextPath}/css/userLogin.css" rel="stylesheet">
 
 			<!-- bootstrap.css -->
 			<link href="${pageContext.request.contextPath}/css/bootstrap/bootstrap.css" rel="stylesheet">
@@ -29,24 +30,23 @@
 
 		<body>
 			<header>
-				<div class="container">
-					<div class="inner-container">
+				<div class="container border-bottom border-2 border-orange">
+					<div class="inner-container d-flex justify-content-between">
 						<!-- 로고 -->
 						<a class="logo" href="${pageContext.request.contextPath}/"><img width="85"
 								src="${pageContext.request.contextPath}/img/logo.png" alt="Yeoreobap"></a>
 
 						<!-- 우측 상단 메뉴 -->
-						<ul class="login-menu">
+						<ul class="login-menu d-flex flex-nowrap align-items-end">
 							<c:if test="${login == null}">
-								<li><a href="${pageContext.request.contextPath}/user/userJoin">Join</a></li>
-								<li><a href="${pageContext.request.contextPath}/user/userLogin">Login</a></li>
+								<li><a class="text-orange" href="${pageContext.request.contextPath}/user/userJoin">Join</a></li>
+								<li><a class="text-orange" href="${pageContext.request.contextPath}/user/userLogin">Login</a></li>
 							</c:if>
 							<c:if test="${login != null}">
-								<li><a href="${pageContext.request.contextPath}/user/userMypage">MyPage</a></li>
-								<li><a href="${pageContext.request.contextPath}/user/userLogout">Logout</a></li>
+								<li><a class="text-orange" href="${pageContext.request.contextPath}/user/userMypage">MyPage</a></li>
+								<li><a class="text-orange" href="${pageContext.request.contextPath}/user/userLogout">Logout</a></li>
 							</c:if>
 						</ul>
 					</div>
 				</div>
 			</header>
-		</body>

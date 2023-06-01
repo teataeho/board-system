@@ -12,4 +12,6 @@ public interface IStoreMapper {
 	
 	void inputData(StoreVO vo);
 
+	StoreVO getStoreInfo(int sno);	
+
 }

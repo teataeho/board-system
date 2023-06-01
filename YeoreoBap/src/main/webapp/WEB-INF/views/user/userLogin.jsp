@@ -22,6 +22,7 @@
 		</div>
 
 		<%@ include file="../include/footer.jsp" %>
+
 			<script>
 
 				//회원 가입 완료 후 addFlashAttribute로 msg 데이터가 전달 되는 지 확인
