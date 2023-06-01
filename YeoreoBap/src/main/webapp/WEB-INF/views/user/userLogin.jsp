@@ -4,14 +4,14 @@
 <br><br><br><br><br><br>
 		<div class="login">
 			<h2 class="title">로그인</h2>
-			<form action="" method="post" name="loginForm">
+			<form action="${pageContext.request.contextPath}/user/userLogin" method="post" name="loginForm">
 				<div class="border">
 					<div class="idPw">
 						<input type="text" class="form-id" name="userId" id="userId" placeholder="아이디" autocomplete="off">
 						<input type="password" class="form-pw" name="userPw" id="userPw" placeholder="비밀번호">
 					</div>
 					<div class="login-div">
-						<button type="button" id="loginBtn">Login</button>
+						<button type="submit" id="loginBtn">Login</button>
 						<button type="button" id="joinBtn" onclick="${pageContext.request.contextPath}/user/userJoin">회원가입</button>
 					</div>
 
@@ -46,5 +46,9 @@
 
 					document.loginForm.submit();
 				}
+				
+				 document.getElementById('joinBtn').onclick = () => {
+			            location.href='${pageContext.request.contextPath}/user/join';
+			        }
 
 			</script>

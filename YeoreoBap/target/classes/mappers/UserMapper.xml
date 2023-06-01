@@ -48,6 +48,10 @@
 		LIMIT #{paging.pageStart}, #{paging.cpp}
 	</select>
 
+	<select id="getUser" resultType="com.spring.yeoreobap.command.UserVO">
+		SELECT * FROM users WHERE user_id = #{userId}
+	</select>
+
 	<select id="idCheck" resultType="int">
 		SELECT COUNT(*) FROM users
 		WHERE

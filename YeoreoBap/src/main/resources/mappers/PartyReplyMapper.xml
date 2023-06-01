@@ -32,8 +32,7 @@
 	<update id="update">
 		update partyReply
 		SET content = #{content},
-		<!-- 수정됨?
-		update_date = current_timestamp-->
+		update_date = current_timestamp
 		WHERE reply_no = #{replyNo}
 	</update>
 	

@@ -15,7 +15,7 @@ public interface IUserService {
 	void join(UserVO vo);
 
 	//로그인
-	String login(String userId, String userPw);
+	UserVO login(String userId, String userPw);
 
 	//MyPage
 	//회원 정보 얻기
