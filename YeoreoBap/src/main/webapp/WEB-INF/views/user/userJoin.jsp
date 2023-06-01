@@ -21,58 +21,58 @@
 		</div>
 		<span id="msgId"></span>
 
-		<!-- 비밀번호 -->
-		<div class="block">
-			<p>비밀번호 (※ 추후 변경 불가합니다.)</p>
-			<div class="border">
-				<input type="password" class="form-pw" name="userPw" id="userPw"
-					placeholder="비밀번호를 입력해주세요. (영문, 숫자 포함 8~16자)">
-			</div>
-			<span id="msgPw" class="msgPw"></span>
-		</div>
+				<!-- 비밀번호 -->
+				<div id="block">
+					<p>
+						비밀번호 (※ 추후 변경 불가합니다.)
+					</p>
+					
+						<input class="form-control form-control-lg" name="userPw" id="userPw" type="password" placeholder="비밀번호를 입력해주세요. (영문, 숫자 포함8~16자)" aria-label=".form-control-lg example" autocomplete="off">
+					
+					<span id="msgPw"></span>
+				</div>
 
-		<!-- 비번 체크 -->
-		<div class="block">
-			<p>
-				<span class="necessary">*</span>비밀번호 확인
-			</p>
-			<div class="border">
-				<input type="password" class="form-pwCheck" name="pwCheck" id="pwCheck"
-					placeholder="비밀번호를 다시 한 번 입력해주세요.">
-			</div>
-			<span class="msgPw2" id="msgPw2"></span>
-		</div>
+				<!-- 비번 체크 -->
+				<div id="block">
+					<p>
+						비밀번호 확인
+					</p>
+					
+						<input class="form-control form-control-lg" name="pwCheck" id="pwCheck" type="password" placeholder="비밀번호를 다시 한 번 입력해주세요." aria-label=".form-control-lg example" autocomplete="off">
+					
+					<span id="msgPwCheck"></span>
+				</div>
 
-		<!-- 이름 -->
-		<div class="block">
-			<p>
-				<span class="necessary">*</span>이름
-			</p>
-			<div class="border">
-				<input type="text" class="form-userName" name="userName" id="userName">
-			</div>
-		</div>
+				<!-- 이름 -->
+				<div id="block">
+					<p>
+						이름
+					</p>
+					
+						<input class="form-control form-control-lg" name="userName" id="userName" type="text">
+					
+				</div>
 
-		<!-- 닉네임 -->
-		<div class="block">
-			<p>
-				<span class="necessary">*</span>닉네임
-			</p>
-			<div class="border">
-				<input type="text" class="form-userNick" name="userNick" id="userNick">
-			</div>
-		</div>
+				<!-- 닉네임 -->
+				<div id="block">
+					<p>
+						닉네임
+					</p>
+					
+						
+						<input class="form-control form-control-lg" name="userNick" id="userNick" type="text">
+				</div>
 
 		<!-- 이메일 -->
 		<div class="block">
 			<p>이메일</p>
 			<div class="emailBorder">
 				<div class="border">
-					<input type="text" class="form-userEmail1" name="userEmail1" id="userEmail1">
+					<input type="text" class="form-control form-control-lg" name="userEmail1" id="userEmail1">
 				</div>
 				<p>@</p>
 				<div class="border">
-					<input type="text" class="form-userEmail2" name="userEmail2" id="userEmail2" value="">
+					<input type="text" class="form-control form-control-lg" name="userEmail2" id="userEmail2" value="">
 
 					<div class="border">
 						<select class="form-emailSelection" name="emailSelection" id="emailSelection">
@@ -87,11 +87,11 @@
 				</div>
 			</div>
 
-			<input type="text" class="form-emailCheck" name="emailCheck" id="emailCheck" placeholder="인증번호를 입력해주세요."
-				disabled="disabled">
-			<button type="button" class="form-emailCheckBtn" id="emailCheckBtn">
-				이메일 인증</button>
-		</div>
+					<div class="emailCheck">
+					<input class="form-control-lg" type="text" placeholder="인증번호를 입력해주세요." aria-label="Disabled input example" id="emailCheck" name="emailCheck" disabled>
+					<button class="btn btn-outline-secondary" type="button" id="emailCheckBtn">이메일 인증</button>
+				</div>
+				</div>
 
 		<!-- 거주구 -->
 		<div class="block">
@@ -115,15 +115,12 @@
 			<button type="button" class="form-loginBtn" id="loginBtn">로그인</button>
 		</div>
 
-	</form>
-</div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<%@ include file="../include/footer.jsp"%>
+			</form>
+			</section>
+		</div>
+		
+
+		<%@ include file="../include/footer.jsp" %>
 
 
 <script>
