@@ -14,4 +14,9 @@
 		VALUES(#{sno}, #{siteTel}, #{rdnWhlAddr}, #{bplcNm}, #{uptaeNm}, #{dtlstatenm}, #{x}, #{y})
 	</insert>
 	
+	<select id="getStoreInfo" resultType="store">
+		SELECT * FROM store
+		WHERE sno = #{sno}
+	</select>
+	
 </mapper>

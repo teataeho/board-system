@@ -32,7 +32,7 @@ public class StoreService implements IStoreService {
 
         try {
             ObjectMapper objectMapper = new ObjectMapper();
-            JsonNode rootNode = objectMapper.readTree(new File("C:/workspace/seoul_rest.json"));
+            JsonNode rootNode = objectMapper.readTree(new File("C:/Users/제인/OneDrive/문서/yeoreobap_src/seoul_rest.json"));
             JsonNode dataNode = rootNode.get("DATA");
 
             if(dataNode.isArray()) {
@@ -56,5 +56,10 @@ public class StoreService implements IStoreService {
         }
 
     }
+
+	@Override
+	public StoreVO getStoreInfo(int sno) {
+		return mapper.getStoreInfo(sno);
+	}
 
 }

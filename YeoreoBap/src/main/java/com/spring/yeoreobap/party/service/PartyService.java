@@ -83,11 +83,6 @@ public class PartyService implements IPartyService {
 	}
 
 	@Override
-	public int getTotal() {
-		return mapper.getTotal();
-	}
-
-	@Override
 	public void attend(String userId, int partyNo) {
 		mapper.attend(userId, partyNo);
 	}

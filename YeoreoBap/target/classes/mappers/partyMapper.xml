@@ -11,8 +11,8 @@
 	</insert>
 	
 	<select id="getList" resultType="party">
-		SELECT * 
-		FROM party
+		SELECT p.*, s.rdn_whl_addr
+		FROM party p JOIN store s ON p.sno = s.sno
 		ORDER BY party_no DESC
 		LIMIT #{pageStart}, #{cpp}
 	</select>
