@@ -20,7 +20,7 @@
 
 			<!-- JS -->
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-			<script src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
+			<script src="${pageContext.request.contextPath}/js/bootstrap.bundle.js"></script>
 
 			<!-- favicon -->
 			<link href="${pageContext.request.contextPath}/img/favicon.ico" rel="icon">
