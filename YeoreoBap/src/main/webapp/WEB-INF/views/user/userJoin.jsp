@@ -2,81 +2,79 @@
 
 	<%@ include file="../include/header.jsp" %>
 
-		<div class="join">
+		
 			<h2 class="title">회원가입</h2>
+			<div class="container">
+			<section id="section">
 			<form action="${pageContext.request.contextPath}/user/join" method="POST">
 				<p class="necessary">*모든 값이 필수입력값입니다!</p>
 				<!-- 아이디 -->
-				<div class="block">
+				<div id="block">
 					<p>아이디 (※ 추후 변경 불가합니다.)</p>
 					<div class="idBorder">
-						<div class="border"><input type="text" class="form-id" name="userId" id="userId"
-								placeholder="아이디를 입력해주세요. (영문 4~12자)" autocomplete="off">
-						</div>
-						<button type="button" class="form-idCheckBtn" id="idCheckBtn">아이디
-							중복 체크</button>
-					</div>
+						<input class="form_id form-control form-control-lg" name="userId" id="userId" type="text" placeholder="아이디를 입력해주세요. (영문 4~12자)" aria-label=".form-control-lg example" autocomplete="off">
+						<button class="btn btn-outline-secondary form-idCheckBtn" type="button" id="idCheckBtn">아이디 중복 체크</button>
+
+					</div> 
 				</div>
 				<span id="msgId"></span>
 
 				<!-- 비밀번호 -->
-				<div class="block">
+				<div id="block">
 					<p>
 						비밀번호 (※ 추후 변경 불가합니다.)
 					</p>
-					<div class="border">
-						<input type="password" class="form-pw" name="userPw" id="userPw"
-							placeholder="비밀번호를 입력해주세요. (영문, 숫자 포함 8~16자)">
-					</div>
+					
+						<input class="form-control form-control-lg" name="userPw" id="userPw" type="password" placeholder="비밀번호를 입력해주세요. (영문, 숫자 포함8~16자)" aria-label=".form-control-lg example" autocomplete="off">
+					
 					<span id="msgPw"></span>
 				</div>
 
 				<!-- 비번 체크 -->
-				<div class="block">
+				<div id="block">
 					<p>
 						비밀번호 확인
 					</p>
-					<div class="border">
-						<input type="password" class="form-pwCheck" name="pwCheck" id="pwCheck" placeholder="비밀번호를 다시 한 번 입력해주세요.">
-					</div>
+					
+						<input class="form-control form-control-lg" name="pwCheck" id="pwCheck" type="password" placeholder="비밀번호를 다시 한 번 입력해주세요." aria-label=".form-control-lg example" autocomplete="off">
+					
 					<span id="msgPwCheck"></span>
 				</div>
 
 				<!-- 이름 -->
-				<div class="block">
+				<div id="block">
 					<p>
 						이름
 					</p>
-					<div class="border">
-						<input type="text" class="form-userName" name="userName" id="userName">
-					</div>
+					
+						<input class="form-control form-control-lg" name="userName" id="userName" type="text">
+					
 				</div>
 
 				<!-- 닉네임 -->
-				<div class="block">
+				<div id="block">
 					<p>
 						닉네임
 					</p>
-					<div class="border">
-						<input type="text" class="form-userNick" name="userNick" id="userNick">
-					</div>
+					
+						
+						<input class="form-control form-control-lg" name="userNick" id="userNick" type="text">
 				</div>
 
 				<!-- 이메일 -->
-				<div class="block">
+				<div id="block">
 					<p>
 						이메일
 					</p>
-					<div class="emailBorder">
-						<div class="border">
-							<input type="text" class="form-userEmail1" name="userEmail1" id="userEmail1">
-						</div>
+					<div id="emailBorder">
+						
+							
+							<input class="form-control form-control-lg" name="userEmail1" id="userEmail1" type="text">
 						<p>@</p>
-						<div class="border">
-							<input type="text" class="form-userEmail2" name="userEmail2" id="userEmail2" value="naver.com" readonly>
-						</div>
-						<div class="border">
-							<select class="form-emailSelection" name="emailSelection" id="userEmail2">
+						
+							<input class="form-control form-control-lg" name="userEmail2" id="userEmail2" value="naver.com" type="text" readonly>
+						
+							<select class="form-emailSelection" name="emailSelection" id="userEmail3">
 								<option value="type">직접 입력</option>
 								<option>naver.com</option>
 								<option>daum.net</option>
@@ -84,24 +82,24 @@
 								<option>hanmail.com</option>
 								<option>yahoo.co.kr</option>
 							</select>
-						</div>
+							
 					</div>
 
-					<input type="text" class="form-emailCheck" name="emailCheck" id="emailCheck" placeholder="인증번호를 입력해주세요."
-						disabled="disabled">
-					<button type="button" class="form-emailCheckBtn" id="emailCheckBtn">
-						이메일 인증</button>
+					<div class="emailCheck">
+					<input class="form-control-lg" type="text" placeholder="인증번호를 입력해주세요." aria-label="Disabled input example" id="emailCheck" name="emailCheck" disabled>
+					<button class="btn btn-outline-secondary" type="button" id="emailCheckBtn">이메일 인증</button>
+				</div>
 				</div>
 
 				<!-- 거주구 -->
-				<div class="block">
+				<div id="block">
 					<p>
 						현재 거주하고 계신 동이 어디인가요?
 					</p>
 					<small class="information">입력해주신 구의 동행을 우선적으로 보여드리기 위해 얻는
 						정보로, 이외의 용도로 사용되지 않습니다.</small>
 					<div class="border">
-						<select class="form-addrMine" name="addrMine" id="addrMine">
+						<select class="form-select form-select-lg form-addrMine" name="addrMine" id="addrMine" aria-label=".form-select-lg example">
 							<option disabled selected>거주구</option>
 							<option value="마포구">마포구</option>
 							<option value="서대문구">서대문구</option>
@@ -116,7 +114,9 @@
 				</div>
 
 			</form>
+			</section>
 		</div>
+		
 
 		<%@ include file="../include/footer.jsp" %>
 
@@ -256,6 +256,9 @@
 						return;
 					}
 				}
+				/*부적합한 아이디일 때 아이디 중복체크가 가능한 오류를 발견
+				-> '아이디 중복체크는 필수입니다' 나오기 전까지 아이디 중복체크 버튼 비활성화*/
+				document.getElementById('idCheckBtn').disabled = true;
 
 				/*아이디 형식 검사 스크립트*/
 				var id = document.getElementById("userId");
@@ -266,12 +269,15 @@
 						document.getElementById("userId").style.borderColor = "green";
 						document.getElementById("msgId").innerHTML = "아이디 중복체크는 필수 입니다.";
 						idFlag = true;
+						document.getElementById('idCheckBtn').disabled = false;
 					} else {
 						document.getElementById("userId").style.borderColor = "orange";
 						document.getElementById("msgId").innerHTML = "부적합한 아이디 입니다.";
 						idFlag = false;
+						document.getElementById('idCheckBtn').disabled = true;
 					}
 				}
+
 
 				/*비밀번호 형식 검사 스크립트*/
 				var pw = document.getElementById("userPw");
