@@ -25,8 +25,10 @@ public interface IUserMapper {
 	void updateUser(UserVO vo);
 
 	//거주구
-	String mine(String addrMine);
+	String mine(String addrGu);
 	
-	//주변구
-	String close(String addrClose);
+	//거주동
+	String dong(String addrDong);
+
+	UserVO getUser(String userId);
 }

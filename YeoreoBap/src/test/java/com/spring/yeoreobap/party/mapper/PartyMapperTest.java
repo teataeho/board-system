@@ -19,6 +19,18 @@ public class PartyMapperTest {
 	@Autowired
 	private IPartyMapper mapper;
 	
+	@Test
+	@DisplayName("글등록")
+	void registTest() {
+		for(int i=0; i< 100; i++) {
+		PartyVO vo = new PartyVO();
+//		vo.setRestId("3007-10-12312312");
+		vo.setWriter("누구");
+		vo.setTitle("파티모집" + i);
+		vo.setContent("파티모집중~~~" + i);
+		mapper.regist(vo);
+		}
+	}
 	
 	
 	@Test
