@@ -12,7 +12,8 @@ import lombok.ToString;
  	party_no INT NOT NULL,
  	writer VARCHAR(50),
  	content VARCHAR(1000),
- 	reg_date DATETIME DEFAULT CURRENT_TIMESTAMP
+ 	reg_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+ 	update_date DATETIME DEFAULT NULL
  );*/
 @Getter
 @Setter
@@ -24,5 +25,6 @@ public class ReviewReplyVO {
 	private String writer;
 	private String content;
 	private LocalDateTime regDate;
-	//replPw, updateDate??
+	private String replyPw;
+	private LocalDateTime updateDate;
 }

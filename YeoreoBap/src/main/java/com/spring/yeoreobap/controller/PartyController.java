@@ -42,11 +42,13 @@ public class PartyController {
 	public void partyList() {}
 
 	//글목록 가져오기
-	@GetMapping("/partyList/{page}")
+	@ResponseBody
+	@GetMapping("/{page}")
 	public List<PartyVO> partyList(@PathVariable int page) {
+		System.out.println(page);
 		PageVO vo = new PageVO();
 		vo.setPageNum(page);
-		vo.setCpp(10);
+		vo.setCpp(10);		
 		
 		return service.getList(vo);
 	}
@@ -99,7 +101,7 @@ public class PartyController {
 		
 		log.info("filename: " + fileName);
 		
-		File file = new File("C:/yeoreobap/party/" + fileName);
+		File file = new File("C:/yeoreobap/upload/party/" + fileName);
 		log.info(file.toString());
 		
 		ResponseEntity<byte[]> result = null;

@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
+<!DOCTYPE html>
+<html>
+<head>
+</head>
 	<%@ include file="../include/header.jsp" %>
 
 		<div class="container">
@@ -87,12 +91,12 @@
 				console.log('page: ' + page);
 				console.log('reset: ' + reset);
 
-				fetch('${pageContext.request.contextPath}/party/partyList/' + page)
-					.then(res => res.json())
-					.then(list => {
-						console.log(list);
-						console.log(list.length);
-						if (list.length === 0) isFinish = true;
+			fetch('${pageContext.request.contextPath}/party/' + page)
+			.then(res => res.json())
+			.then(list => {
+				console.log(list);
+				console.log(list.length);
+				if(list.length === 0) isFinish = true;
 
 						if (reset) {
 							while ($partyList.firstChild) {
@@ -101,11 +105,11 @@
 							page = 1;
 						}
 
-						for (vo of list) {
-							str +=
-								`<div class="thumbnail-size rounded mb-4">
-						<img class="h-100" src="${pageContext.request.contextPath}/party/getImg + ` + vo.fileName + `" alt="썸네일">
-						<div id="rdnWhlAddr" class="invisible">` + `</div>
+				for(vo of list) {
+					str +=
+					`<div class="thumbnail-size rounded mb-4">
+						<img class="h-100" src="${pageContext.request.contextPath}/party/getImg/` + vo.fileName + `" alt="썸네일">
+						<div id="rdnWhlAddr" class="invisible">` + '주소가 들어갈 공간' + `</div>
 						<div id="title" class="invisible">` + vo.title + `</div>
 					</div>`;
 						}

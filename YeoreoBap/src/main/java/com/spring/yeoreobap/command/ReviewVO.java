@@ -11,6 +11,7 @@ import lombok.ToString;
 		review_no INT PRIMARY KEY AUTO_INCREMENT,
 		writer VARCHAR(50) NOT NULL,
 		rest_id VARCHAR(50) NOT NULL,
+		title VARCHAR(300) NOT NULL,
 		content VARCHAR(3000) NOT NULL,
 		reg_date DATETIME DEFAULT CURRENT_TIMESTAMP,
 		update_date DATETIME DEFAULT NULL
