@@ -1,4 +1,4 @@
-/* 전체 기본 세팅 */
+/*--------------- General Setting ---------------*/
 .size {
     height: 500px;
     overflow: hidden;
@@ -14,16 +14,9 @@ li {
     list-style: none;
 }
 
-/* Header */
-.carousel-control.right,
-.carousel-control.left {
-    background-image: linear-gradient(to right, rgba(0, 0, 0, .0001) 0%,
-            rgba(0, 0, 0, 0) 100%)
-}
-
+/*--------------- header.jsp ---------------*/
 header {
     position: fixed;
-    background: #fff;
     background: #fff;
     left: 0;
     top: 0;
@@ -31,29 +24,57 @@ header {
     z-index: 50;
 }
 
-header .container {
-    border-bottom: 2px solid #F0975A;
-}
-
-.container .inner-container {
-    display: flex;
-    justify-content: space-between;
-}
-
-.container .inner-container .login-menu {
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: end;
-    list-style-type: none;
-}
-
 .container .inner-container .login-menu li a {
     margin-left: 20px;
-    text-decoration: none;
-    color: #F0975A;
 }
 
-/* 메인 페이지 */
+/*--------------- footer.jsp ---------------*/
+footer {
+    position: sticky;
+    width: 100%;
+}
+
+footer .container {
+    padding: 0;
+    height: 130px;
+    margin-bottom: 0px;
+    border-top: 1px solid #F4B183;
+    font-size: 0.5em;
+    padding-top: 15px;
+}
+
+.container .footerBoard .left-footer {
+    display: flex;
+    justify-content: center;
+}
+
+.container .footerBoard img {
+    width: 100px;
+    height: 50px;
+    padding: 5px;
+    margin-right: 20px;
+}
+
+.container .right-footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.container .copyright {
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    padding-top: 5px;
+}
+
+/*--------------- Main Page (home.jsp) ---------------*/
+.carousel-control.right,
+.carousel-control.left {
+    background-image: linear-gradient(to right, rgba(0, 0, 0, .0001) 0%,
+            rgba(0, 0, 0, 0) 100%)
+}
+
 .page-header h1 {
     margin-left: 10px;
     font-weight: bold;

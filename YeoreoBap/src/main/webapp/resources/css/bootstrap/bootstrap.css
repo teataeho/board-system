@@ -28,6 +28,8 @@
   --bs-pink: #d63384;
   --bs-red: #dc3545;
   --bs-orange: #F0975A;
+  --bs-light-orange: #F4B183;
+  --bs-dark-orange: #C5976B;
   --bs-yellow: #ffc107;
   --bs-green: #198754;
   --bs-teal: #20c997;
@@ -55,6 +57,8 @@
   --bs-dark: #212529;
   --bs-primary-rgb: 13, 110, 253;
   --bs-orange-rgb: 240, 151, 90;
+  --bs-light-orange-rgb: 244, 177, 131;
+  --bs-dark-orange-rgb: 197, 151, 107;
   --bs-secondary-rgb: 108, 117, 125;
   --bs-success-rgb: 25, 135, 84;
   --bs-info-rgb: 13, 202, 240;
@@ -3373,6 +3377,19 @@ fieldset:disabled .btn {
   --bs-btn-disabled-color: #fff;
   --bs-btn-disabled-bg: #0d6efd;
   --bs-btn-disabled-border-color: #0d6efd;
+}
+
+.btn-orange {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #F0975A;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #;
+  --bs-btn-focus-shadow-rgb: 197, 151, 107;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #0a58ca;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #F4B183;
 }
 
 .btn-secondary {
@@ -8243,6 +8260,16 @@ fieldset:disabled .btn {
   border-color: rgba(var(--bs-orange-rgb), var(--bs-border-opacity)) !important;
 }
 
+.border-light-orange {
+  --bs-border-opacity: 1;
+  border-color: rgba(var(--bs-light-orange-rgb), var(--bs-border-opacity)) !important;
+}
+
+.border-dark-orange {
+  --bs-border-opacity: 1;
+  border-color: rgba(var(--bs-dark-orange-rgb), var(--bs-border-opacity)) !important;
+}
+
 .border-secondary {
   --bs-border-opacity: 1;
   border-color: rgba(var(--bs-secondary-rgb), var(--bs-border-opacity)) !important;
@@ -9103,6 +9130,21 @@ fieldset:disabled .btn {
 .text-primary {
   --bs-text-opacity: 1;
   color: rgba(var(--bs-primary-rgb), var(--bs-text-opacity)) !important;
+}
+
+.text-orange {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-orange-rgb), var(--bs-text-opacity)) !important;
+}
+
+.text-light-orange {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-light-orange-rgb), var(--bs-text-opacity)) !important;
+}
+
+.text-dark-orange {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-dark-orange-rgb), var(--bs-text-opacity)) !important;
 }
 
 .text-secondary {
