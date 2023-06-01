@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
+<!DOCTYPE html>
+<html>
+<head>
+</head>
 	<%@ include file="../include/header.jsp" %>
 
 		<div class="container">
@@ -54,6 +58,7 @@
 		</div>
 
 	<script>
+		//글 작성
 		document.getElementById('register').addEventListener('click', () => {
 			location.href = '${pageContext.request.contextPath}/party/map';
 		})
@@ -70,7 +75,7 @@
 			console.log('page: ' + page);
 			console.log('reset: ' + reset);
 
-			fetch('${pageContext.request.contextPath}/party/partyList/' + page)
+			fetch('${pageContext.request.contextPath}/party/' + page)
 			.then(res => res.json())
 			.then(list => {
 				console.log(list);
@@ -87,8 +92,8 @@
 				for(vo of list) {
 					str +=
 					`<div class="thumbnail-size rounded mb-4">
-						<img class="h-100" src="${pageContext.request.contextPath}/party/getImg + ` + vo.fileName + `" alt="썸네일">
-						<div id="rdnWhlAddr" class="invisible">` +  `</div>
+						<img class="h-100" src="${pageContext.request.contextPath}/party/getImg/` + vo.fileName + `" alt="썸네일">
+						<div id="rdnWhlAddr" class="invisible">` + '주소가 들어갈 공간' + `</div>
 						<div id="title" class="invisible">` + vo.title + `</div>
 					</div>`;
 				}
@@ -103,3 +108,5 @@
 
 		} //end getList
 	</script>
+
+</html>

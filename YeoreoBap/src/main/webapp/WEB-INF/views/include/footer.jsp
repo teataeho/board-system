@@ -47,7 +47,7 @@
 							<div class="img">
 								<img src="${pageContext.request.contextPath}/img/long_logo.png"
 									class="d-flex align-items-center mb-3 link-dark text-decoration-none"
-									style="width: 100px; heigt: 50px; margin: 0 auto;"> </img>
+									style="width: 100px; margin: 0 auto;"> </img>
 							</div>
 						</div>
 						<!-- Grid column -->
