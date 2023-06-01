@@ -28,7 +28,7 @@
 
 <body>
 	<!-- Remove the container if you want to extend the Footer to full width. -->
-	<div class="container my-4">
+	<div class="container p-0 my-4">
 
 		<!-- Footer -->
 		<footer class="text-center text-lg-start black"
@@ -36,7 +36,7 @@
 
 			<!-- Section: Links  -->
 			<section class="">
-				<div class="container text-center text-md-start mt-5 border-top">
+				<div class="container p-0 text-center text-md-start mt-5 border-top border-orange">
 					<!-- Grid row -->
 					<div class="row mt-3">
 						<!-- Grid column -->
