@@ -16,8 +16,11 @@ import com.spring.yeoreobap.party.service.IPartyService;
 import com.spring.yeoreobap.util.PageCreator;
 import com.spring.yeoreobap.util.PageVO;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Controller
 @RequestMapping("/party")
+@Slf4j
 public class PartyController {
 
 	@Autowired
@@ -25,8 +28,7 @@ public class PartyController {
 
 	// 카카오맵으로 이동
 	@GetMapping("/map")
-	public void map() {
-	}
+	public void map() {}
 
 	@GetMapping("/partyList")
 	public void partyList(PageVO vo, Model model) {
