@@ -12,10 +12,9 @@ header {
 	top: 0;
 	width: 100%;
 	z-index: 50;
-	/* position�쓣 �씠�슜�븯硫� �슂�냼媛� 寃뱀퀜吏� �닔 �엳�떎. �닽�옄媛� �젣�씪 �넂��媛믪씠 �쐞濡� �뼚�삤瑜몃떎 */
 }
 
-/* header �쓽 紐⑤뱺 而⑦뀒�씠�꼫 �겢�옒�뒪�뿉 �쟻�슜�븿 */
+
 header .container {
 	padding: 0;
 	height: 80px;
@@ -24,7 +23,7 @@ header .container {
 
 }
 
-/* 濡쒓렇�씤 踰꾪듉 硫붾돱 媛�濡쒖젙�젹 */
+
 .container .inner-container {
 	display: flex;
 	position: relative;
@@ -37,7 +36,7 @@ header .container {
 	right: 0;
 }
 
-/* 濡쒓렇�씤 踰꾪듉 硫붾돱 �쐞移� 諛� �뵒�옄�씤 */
+
 .container .inner-container .login-menu>li>a {
 	margin-left: 20px;
 	color: #F0975A;

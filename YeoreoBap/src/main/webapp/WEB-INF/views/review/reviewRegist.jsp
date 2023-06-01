@@ -2,8 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <%@ include file="../include/header.jsp"%>
 <section>
+<br><br><br><br><br>
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12 content-wrap">
@@ -11,10 +13,14 @@
 					<p>후기게시판</p>
 				</div>
 
-				<form action="${pageContext.request.contextPath}/review/regist"
+				<form action="${pageContext.request.contextPath}/review/reviewRegist"
 					method="post">
 					<table class="table">
 						<tbody class="t-control">
+							<tr>
+								<td class="t-title">RESTAURANT</td>
+								<td><input class="form-control input-sm" name="restId"></td>
+							</tr>
 							<tr>
 								<td class="t-title">NAME</td>
 								<td><input class="form-control input-sm" name="writer"></td>
@@ -41,4 +47,4 @@
 		</div>
 	</div>
 </section>
-<%@ include file="../../include/footer.jsp"%>
+<%@ include file="../include/footer.jsp"%>

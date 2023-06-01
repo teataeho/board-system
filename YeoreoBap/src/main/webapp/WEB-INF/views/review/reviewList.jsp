@@ -40,27 +40,28 @@
 							<th>번호</th>
 							<th class="board-title">제목</th>
 							<th>작성자</th>
+							<th>가게 이름</th>
 							<th>등록일</th>
 							<th>수정일</th>
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach var="vo" items="${reviewList}">
-							<tr>
+							<%-- <tr>
 								<td>${vo.review_no}</td>
 								<td><a
-									href="${pageContext.request.contextPath}/reviewList/content/${vo.review_no}?pageNum=${pc.paging.pageNum}&cpp=${pc.paging.cpp}&keyword=${pc.paging.keyword}&condition=${pc.paging.condition}">${vo.title}</a>
+									href="${pageContext.request.contextPath}/review/getArticle/${vo.reviewNo}?pageNum=${pc.paging.pageNum}&cpp=${pc.paging.cpp}&keyword=${pc.paging.keyword}&condition=${pc.paging.condition}">${vo.title}</a>
 								</td>
 								<td>${vo.writer}</td>
+								<td>${vo.restId}</td>
 								<td><fmt:parseDate value="${vo.regDate}"
-										pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime"
-										type="both" /> <fmt:formatDate value="${parsedDateTime}"
-										pattern="yyyy년 MM월 dd일 HH시 mm분" /></td>
+										pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" /> <fmt:formatDate
+										value="${parsedDateTime}" pattern="yyyy년 MM월 dd일 HH시 mm분" /></td>
 								<td><fmt:parseDate value="${vo.updateDate}"
-										pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedUpdateTime"
-										type="both" /> <fmt:formatDate value="${parsedUpdateTime}"
+										pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedUpdateDateTime" />
+									<fmt:formatDate value="${parsedUpdateDateTime}"
 										pattern="yyyy년 MM월 dd일 HH시 mm분" /></td>
-							</tr>
+							</tr> --%>
 						</c:forEach>
 					</tbody>
 
@@ -87,7 +88,7 @@
 							</c:if>
 						</ul>
 						<button type="button" class="btn btn-info"
-							onclick="location.href='${pageContext.request.contextPath}/freeboard/regist'">글쓰기</button>
+							onclick="location.href='${pageContext.request.contextPath}/review/reviewRegist'">글쓰기</button>
 					</div>
 
 					<input type="hidden" name="pageNum" value="${pc.paging.pageNum}">
@@ -103,7 +104,7 @@
 	</div>
 </section>
 
-<%@ include file="../../include/footer.jsp"%>
+<%@ include file="../include/footer.jsp"%>
 
 <script>
 
@@ -127,5 +128,9 @@
         });
 
     }
+    
+    
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH시 mm분");
+    String formattedDateTime = vo.getRegDate().format(formatter);    
 
 </script>
