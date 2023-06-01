@@ -36,6 +36,14 @@
 						<div id="title" class="invisible">코너키친 갈 사람 여기여기 모여라~!</div>
 					</div>
 				</c:forEach>
+
+				<!-- 최상단 이동 버튼 -->
+				<a href="#top" id="toTheTop" class="text-orange border border-orange"><i class="bi bi-arrow-up-short"></i></a>
+
+				<!-- 글 작성 버튼 -->
+				<button type="button" id="register" class="text-orange border border-orange">
+					<i class="bi bi-pencil"></i>
+				</button>
 			</div>
 			<!-- 파티 리스트 끝 -->
 
@@ -51,11 +59,7 @@
 						</div>
 			</div> -->
 
-			<!-- 최상단 이동 버튼 -->
-			<a href="#top" id="toTheTop" class="text-orange border border-orange"><i class="bi bi-arrow-up-short"></i></a>
 
-			<!-- 글 작성 버튼 -->
-			<button type="button" id="register" class="text-orange border border-orange"><i class="bi bi-pencil"></i></button>
 
 			<%@ include file="../include/footer.jsp" %>
 		</div>
