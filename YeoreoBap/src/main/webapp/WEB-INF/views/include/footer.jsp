@@ -2,20 +2,20 @@
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 		<!-- Remove the container if you want to extend the Footer to full width. -->
-		<div class="container my-4">
+		<div class="container p-0 my-4 border-top border-orange">
 
 			<!-- Footer -->
 			<footer class="text-center text-lg-start black" style="background-color: white">
 
 				<!-- Section: Links  -->
 				<section class="">
-					<div class="container text-center text-md-start mt-5 border-top">
+					<div class="container text-center text-md-start mt-5">
 						<!-- Grid row -->
 						<div class="row mt-3">
 							<!-- Grid column -->
 							<div class="d-none d-md-block col-md-2 col-lg-2 col-xl-2 mx-auto mb-0">
 								<!-- Content -->
-								<h6 class="text-uppercase fw-bold" style="text-align:center">혼밥말고여러밥!</h6>
+								<h6 class="text-uppercase fw-bold text-center">혼밥말고 여러밥!</h6>
 								<hr class="mb-2 mt-0 d-inline-block mx-auto" />
 								<div class="img">
 									<img src="${pageContext.request.contextPath}/img/long_logo.png"
@@ -69,8 +69,9 @@
 				<!-- Section: Links  -->
 
 				<!-- Copyright -->
-				<div class="text-center p-3 mt-3" style="height: 55px; background-color: #F4B183">
-					<p id="p" class="text-black">Copyright©yeoreobap ALL Rights Reserved.</p>
+				<div class="text-center mt-3 d-flex justify-content-center align-items-center"
+					style="height: 55px; background-color: #F4B183">
+					<p id="p" class="text-white lh-lg">Copyright©yeoreobap ALL Rights Reserved.</p>
 				</div>
 				<!-- Copyright -->
 			</footer>

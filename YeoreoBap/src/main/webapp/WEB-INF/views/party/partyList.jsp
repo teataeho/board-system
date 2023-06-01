@@ -3,8 +3,12 @@
 	<%@ include file="../include/header.jsp" %>
 
 		<div class="container">
-			<div class="size"><img src="${pageContext.request.contextPath}/img/ex_carousel1.png" class="d-block w-100"
-					alt="메인 이미지1"></div>
+
+			<div class="size">
+				<img src="${pageContext.request.contextPath}/img/ex_carousel1.png" class="d-block w-100" alt="메인 이미지1">
+			</div>
+			<a id="top" class="d-block w-100">
+			</a>
 			<div class="page-header border-bottom border-orange mb-4 partyList">
 				<h2 class="text-center ms-2">
 					여러밥 모집
@@ -48,18 +52,24 @@
 			</div> -->
 
 			<!-- 최상단 이동 버튼 -->
-			<button type="button" class="text-orange border border-orange"><i class="bi bi-arrow-up-short"></i></button>
+			<a href="#top" id="toTheTop" class="text-orange border border-orange"><i class="bi bi-arrow-up-short"></i></a>
 
 			<!-- 글 작성 버튼 -->
-			<button type="button" class="text-orange border border-orange"><i class="bi bi-pencil"></i></button>
+			<button type="button" id="register" class="text-orange border border-orange"><i class="bi bi-pencil"></i></button>
 
 			<%@ include file="../include/footer.jsp" %>
 		</div>
 
 		<script>
+			// 최상단 이동 이벤트
+			document.getElementById('toTheTop').addEventListener('click', () => {
+
+			});
+
+			// 여러밥 게시글 작성 페이지 이동 이벤트
 			document.getElementById('register').addEventListener('click', () => {
 				location.href = '${pageContext.request.contextPath}/party/map';
-			})
+			});
 
 			//리스트
 			let str = '';

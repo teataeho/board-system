@@ -7,7 +7,7 @@
 				<div class="container">
 					<!-- 메인 캐러셀 -->
 					<div id="carouselExampleControls" class="active carousel slide" data-bs-ride="carousel">
-						<div class="size">
+						<div class="size mb-5">
 							<div class="carousel-inner">
 								<div class="carousel-item active" data-bs-interval="3000">
 									<img src="${pageContext.request.contextPath}/img/ex_carousel1.png" class="d-block w-100 h-100"
@@ -62,7 +62,7 @@
 					<!-- 파티 리스트 끝 -->
 
 					<!-- 후기 게시판 제목 -->
-					<div class="page-header border-bottom border-orange mt-5 mb-4">
+					<div class="page-header border-bottom border-orange mt-4 mb-4">
 						<h2 class="ms-2">
 							여러밥 후기
 							<a href="${pageContext.request.contextPath}/review/reviewList">
