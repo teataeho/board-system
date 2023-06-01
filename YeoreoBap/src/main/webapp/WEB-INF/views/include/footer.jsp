@@ -43,8 +43,7 @@
 						<div class="d-none d-md-block col-md-2 col-lg-2 col-xl-2 mx-auto mb-0">
 							<!-- Content -->
 							<h6 class="text-uppercase fw-bold" style="text-align:center">혼밥말고여러밥!</h6>
-							<hr class="d-inline-block mx-auto"
-								style="width: 100px; background-color: #F4B183; height: 2px; margin-top: 10px !important; margin-left:3vw !important;" />
+							<hr class="mb-2 mt-0 d-inline-block mx-auto" />
 							<div class="img">
 								<img src="${pageContext.request.contextPath}/img/long_logo.png"
 									class="d-flex align-items-center mb-3 link-dark text-decoration-none"
@@ -57,8 +56,7 @@
 						<div class="d-none d-md-block col-md-3 col-lg-3 col-xl-3 mx-auto mb-3">
 							<!-- Links -->
 							<h6 class="text-uppercase fw-bold">About</h6>
-							<hr class="mb-2 mt-0 d-inline-block mx-auto"
-								style="width: 60px; background-color: #F4B183; height: 2px" />
+							<hr class="mb-2 mt-0 d-inline-block mx-auto" />
 							<p id="p">대표: 김태호</p>
 							<p id="p">Tel : 02-716-1234</p>
 							<p id="p">이메일 : yeoreobap@naver.com</p>
@@ -70,8 +68,7 @@
 						<div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-md-0 mb-2">
 							<!-- Links -->
 							<h6 class="text-uppercase fw-bold">Contact</h6>
-							<hr class="mb-2 mt-0 d-inline-block mx-auto"
-								style="width: 70px; background-color: #F4B183; height: 2px" />
+							<hr class="mb-2 mt-0 d-inline-block mx-auto" />
 
 							<p id="p">
 								<a href="#">Home</a>
