@@ -1,47 +1,80 @@
-.mainArea .findPartyMenu {
-    border: solid 2px salmon;
+/* 전체 기본 세팅 */
+.size {
+    height: 500px;
+    overflow: hidden;
+    margin: 100px 0 20px;
 }
 
-.mainArea .findPartyMenu {
-    border: solid 2px yellow;
+body a {
+    text-decoration: none;
+    color: black;
+}
+
+li {
+    list-style: none;
+}
+
+/* Header */
+.carousel-control.right,
+.carousel-control.left {
+    background-image: linear-gradient(to right, rgba(0, 0, 0, .0001) 0%,
+            rgba(0, 0, 0, 0) 100%)
+}
+
+header {
+    position: fixed;
+    background: #fff;
+    background: #fff;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 50;
+}
+
+header .container {
+    border-bottom: 2px solid #F0975A;
+}
+
+.container .inner-container {
     display: flex;
+    justify-content: space-between;
 }
 
-.mainArea .findPartyMenu .party {
-    background-color: hotpink;
-}
-
-.mainArea .findPartyMenu .party>div {
+.container .inner-container .login-menu {
     display: flex;
+    flex-wrap: nowrap;
+    align-items: end;
+    list-style-type: none;
 }
 
-.mainArea .findPartyMenu .party:first-child {
-    border: dashed 2px green;
-    flex-grow: 2;
-
+.container .inner-container .login-menu li a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #F0975A;
 }
 
-.mainArea .findPartyMenu .party:nth-child(2) {
-    border: dashed 2px orange;
-    flex-grow: 1;
+/* 메인 페이지 */
+.page-header h1 {
+    margin-left: 10px;
+    font-weight: bold;
 }
 
-.mainArea .findPartyMenu .party:last-child {
-    border: solid 2px red;
-    flex-grow: 1;
+.page-header small {
+    margin-left: 10px;
+    font-size: 15px;
+    font-weight: normal;
 }
 
-.mainArea .findPartyMenu .party .partyBox {
-    width: 160px;
-    height: 240px;
-    padding: 10px;
+.p-0 .thumbnail-size {
+    width: 220px;
+    height: 300px;
+    overflow: hidden;
+    position: relative;
 }
 
-.mainArea .findPartyMenu .getParty .partyBox {
-    display: flex;
-}
-
-.mainArea .findPartyMenu .getParty .partyBox span {
-    display: flex;
-    flex-direction: row;
+.p-0 .thumbnail-size img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

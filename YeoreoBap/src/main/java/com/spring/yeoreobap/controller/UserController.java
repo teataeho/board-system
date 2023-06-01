@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.yeoreobap.command.UserVO;
+import com.spring.yeoreobap.party.service.IPartyService;
+import com.spring.yeoreobap.review.service.IReviewService;
 import com.spring.yeoreobap.user.service.IUserService;
 import com.spring.yeoreobap.util.MailSenderService;
+import com.spring.yeoreobap.util.PageCreator;
 import com.spring.yeoreobap.util.PageVO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -27,8 +30,11 @@ public class UserController {
 	@Autowired
 	private IUserService service;
 
-	//	@Autowired
-	//	private IBoardService boardService;
+	@Autowired
+	private IReviewService reviewService;
+
+	@Autowired
+	private IPartyService partyService;
 
 	@Autowired
 	private MailSenderService mailService;
@@ -76,21 +82,41 @@ public class UserController {
 	@GetMapping("/userLogin")
 	public void login() {}
 
-	//로그인 요청	post
+	// 로그인 요청 처리
+	//	@PostMapping("/userLogin")
+	//	public String login(String userId, String userPw, Model model, HttpSession session) {
+	//	    UserVO user = service.login(userId, userPw);
+	//	    if (user != null) {
+	//	        // 로그인 성공 시 세션에 사용자 정보를 저장
+	//	        session.setAttribute("user", user);
+	//	        return "/yeoreobap"; // 메인 화면으로 리다이렉트
+	//	    } else {
+	//	        model.addAttribute("msg", "loginFail");
+	//	        return "user/userLogin"; // 로그인 실패 시 로그인 페이지로 이동
+	//	    }
+	//	}
+	//로그인 요청
 	@PostMapping("/userLogin")
-	public void login(String userId, String userPw, Model model) {
+	public String login(String userId, String userPw, Model model) {
 		log.info("나는 userController의 login");
+		UserVO user = service.login(userId, userPw);
 		model.addAttribute("user", service.login(userId, userPw));
+		if(user != null) {
+			return "redirect:/";
+		} else {
+			model.addAttribute("msg", "loginFail");
+		return "user/userLogin";
+		}
 	}
 
 	//마이페이지 이동 요청
 	@GetMapping("/userMypage")
 	public void userMypage(HttpSession session, Model model, PageVO vo) {
 		String id = (String) session.getAttribute("login");
-		//		vo.setLoginId(id);		
-		//		PageCreator pc = new PageCreator(vo, boardService.getTotal(vo));
-		//		model.addAttribute("userInfo", service.getInfo(id, vo));
-		//		model.addAttribute("pc", pc);
+		vo.setLoginId(id);		
+		PageCreator pc = new PageCreator(vo, reviewService.getTotal(vo));
+		model.addAttribute("userInfo", service.getInfo(id, vo));
+		model.addAttribute("pc", pc);
 	}
 
 }

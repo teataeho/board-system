@@ -1,7 +1,5 @@
 package com.spring.yeoreobap.party.mapper;
 
-import java.util.List;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -10,7 +8,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.spring.yeoreobap.command.PartyVO;
-import com.spring.yeoreobap.util.PageVO;
 
 
 @ExtendWith(SpringExtension.class)
@@ -27,7 +24,7 @@ public class PartyMapperTest {
 	void registTest() {
 		for(int i=0; i< 100; i++) {
 		PartyVO vo = new PartyVO();
-		vo.setRestId("3007-10-12312312");
+//		vo.setRestId("3007-10-12312312");
 		vo.setWriter("누구");
 		vo.setTitle("파티모집" + i);
 		vo.setContent("파티모집중~~~" + i);
@@ -35,15 +32,6 @@ public class PartyMapperTest {
 		}
 	}
 	
-	@Test
-	@DisplayName("글리스트")
-	void getListTest() {
-		List<PartyVO> list = mapper.getList(new PageVO());
-		
-		for(PartyVO vo : list) {
-			System.out.println(vo);
-		}
-	}
 	
 	@Test
 	@DisplayName("상세보기")

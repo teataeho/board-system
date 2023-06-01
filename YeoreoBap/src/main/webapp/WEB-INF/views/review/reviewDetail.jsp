@@ -1,10 +1,10 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <%@ include file="../include/header.jsp"%>
-
+<br><br><br><br>
 <section>
 	<div class="container">
 		<div class="row">
@@ -13,7 +13,8 @@
 					<p>상세보기</p>
 				</div>
 
-				<form action="<c:url value='/review/update' />" method="post">
+				 <form action="<c:url value='/review/update'  />" method="post">
+
 					<div>
 						<label>DATE</label>
 						<c:if test="${article.updateDate == null}">
@@ -22,7 +23,7 @@
 									pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime"
 									type="both" />
 								<fmt:formatDate value="${parsedDateTime}"
-									pattern="yyyy년 MM월 dd일 HH시 mm분" />
+									pattern="yyyy.MM.dd. HH:mm 등록" />
 
 							</p>
 						</c:if>
@@ -37,9 +38,11 @@
 							</p>
 						</c:if>
 					</div>
+					
+					
 					<div class="form-group">
 						<label>번호</label> <input class="form-control" name="reviewNo"
-							value="${article.review_no}" readonly>
+							value="${article.reviewNo}" readonly>
 					</div>
 					<div class="form-group">
 						<label>작성자</label> <input class="form-control" name="writer"
@@ -55,8 +58,9 @@
 						<textarea class="form-control" rows="10" name="content" readonly>${article.content}</textarea>
 					</div>
 
-					<button type="submit" class="btn btn-primary"
-						onclick="return confirm('변경 페이지로 이동합니다.')">변경</button>
+
+					<!-- <button type="submit" class="btn btn-primary"
+						onclick="return confirm('변경 페이지로 이동합니다.')">변경</button> -->
 					<button type="button" class="btn btn-dark"
 						onclick="location.href='${pageContext.request.contextPath}/review/reviewList?pageNum=${p.pageNum}&cpp=${p.cpp}&keyword=${p.keyword}&condition=${p.condition}'">목록</button>
 					<!--    목록 누르면 화면 페이지 유지하기    -->
@@ -71,28 +75,28 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12 col-md-9 write-wrap">
-				<form class="review-wrap">
-					<div class="review-image">
+				<form class="reply-wrap">
+					<div class="reply-image">
 						<img src="${pageContext.request.contextPath}/img/profile.png">
 					</div>
 					<!--form-control은 부트스트랩의 클래스입니다-->
-					<div class="review-content">
-						<textarea class="form-control" rows="3" id="review"></textarea>
-						<div class="review-group">
-							<div class="review-input">
-								<input type="text" class="form-control" id="reviewId"
-									placeholder="이름"> <input type="password"
-									class="form-control" id="reviewPw" placeholder="비밀번호">
+					<div class="reply-content">
+						<textarea class="form-control" rows="3" id="reply"  placeholder="댓글을 입력해주세요"></textarea>
+						<div class="reply-group">
+							<div class="reply-input">
+								<input type="text" class="form-control" id="replyId" placeholder="이름"> 
+								<!-- 로그인한 아이디로 고정시키고 싶은데(readonly) -->
+								<input type="password" class="form-control" id="replyPw" placeholder="비밀번호">
 							</div>
 
-							<button type="button" id="reviewRegist" class="right btn btn-info">등록하기</button>
+							<button type="button" id="replyRegist" class="right btn btn-info">등록하기</button>
 						</div>
 
 					</div>
 				</form>
 
 				<!--여기에 접근 반복-->
-				<div id="reviewList">
+				<div id="replyList">
 					<!-- js단에서 반복문을 이용해서 댓글의 개수만큼 반복 표현 
                         <div class='review-wrap'>
                         <div class='review-image'>
@@ -109,8 +113,8 @@
                         </div>
                     </div>-->
 				</div>
-				<button type="button" class="form-control" id="moreList"
-					style="display: none;">더보기(페이징)</button>
+				<button type="button" class="form-control" id="moreList">
+					<!-- style="display: none;" -->  더보기(페이징)</button>
 			</div>
 		</div>
 	</div>
@@ -146,18 +150,18 @@
 	</div>
 </div>
 
-
-<%@ include file="../../include/footer.jsp"%>
+<br><br><br><br><br><br><br>
+<%@ include file="../include/footer.jsp"%>
 
 <script>
 window.onload = function() {
-    document.getElementById('reviewRegist').onclick = function () {
+    document.getElementById('replyRegist').onclick = function () {
         const reviewNo = '${article.reviewNo}';   //현재 게시글 번호
-        const review = document.getElementById('review').value;
-        const restId = document.getElementById('reviewId').value;
-        const reviewPw = document.getElementById('reviewPw').value;
+        const reply = document.getElementById('reply').value;
+        const replyId = document.getElementById('replyId').value;
+        const replyPw = document.getElementById('replyPw').value;
 
-        if (review === '' || reviewId=== '' || reviewPw === '') {
+        if (reply === '' || replyId === '' || replypW === '') {
             alert('이름, 비밀번호, 내용을 입력하세요');
             return;
         }
@@ -214,12 +218,16 @@ window.onload = function() {
     //요청된 페이지 번호와, 화면을 리셋할 것인지의 여부를 boolean 타입의 reset으로 받는다.
     //(페이지가 그대로 머물며 댓글이 밑에 계속 쌓이기 때문에, 상황에 따라 유동적 처리.. 페이지 리셋/누적)
 
-    function getList(pageNum, reset) {
+    //var contextPath = '${pageContext.request.contextPath}';
+    //var article = <c:out value="${article}" />; // Review 객체를 JavaScript 변수로 할당
+    //var reviewNo = article.reviewNo; // reviewNo 값을 가져옴
+    
+     function getList(pageNum, reset) {
         strAdd = '';
-        const review_no = '${article.reviewNo}'; //게시글 번호
+        const reviewNo = '${article.reviewNo}'; //게시글 번호
 
         //get방식으로 댓글 목록을 요청(비동기)
-        fetch('${pageContext.request.contextPath}/review/reviewList/' + review_no + '/' + pageNum)
+        fetch('${pageContext.request.contextPath}/review/reviewList/' + reviewNo + '/' + pageNum)
         												  ///??
         .then(res => res.json())
         .then(data => {
@@ -277,8 +285,11 @@ window.onload = function() {
             }                                                           //position      값
                                                                         
         });
-    }   //end getList();
+    }   //end getList(); 
 
+    
+    
+    
     //수정, 삭제
     /*
     document.querySelector('#reviewList').addEventListener('click', function(e){
@@ -293,7 +304,10 @@ window.onload = function() {
     addEventListener를 통해 처리해야 한다.
     */
 
-    document.getElementById('reviewList').addEventListener('click', function(e){
+    
+    
+    
+    /* document.getElementById('reviewList').addEventListener('click', function(e){
         e.preventDefault(); //태그의 고유 기능을 중지
         
         //1. 이벤트가 발생한 target이 a태그가 아니라면 이벤트 종료
@@ -333,8 +347,10 @@ window.onload = function() {
             document.getElementById('modalDelBtn').style.display = 'inline';    //삭제 버튼
             $('#reviewModal').modal('show');
         }
-    }); //수정 / 삭제 버튼 클릭 이벤트 끝
+    }); //수정 / 삭제 버튼 클릭 이벤트 끝 */
 
+    
+    
     //수정 처리 함수. (수정 모달을 열어서 수정 내용을 작성 후 수정 버튼을 클릭했을 때)
     document.getElementById('modalModBtn').onclick = () => {
         const review = document.getElementById('modalreview').value;

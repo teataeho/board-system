@@ -8,6 +8,8 @@ import com.spring.yeoreobap.command.UserVO;
 import com.spring.yeoreobap.user.mapper.IUserMapper;
 import com.spring.yeoreobap.util.PageVO;
 
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @Service
 public class UserService implements IUserService {
 
@@ -23,15 +25,19 @@ public class UserService implements IUserService {
 
 	@Override
 	public void join(UserVO vo) {
+		log.info("암호화 전 비번: " + vo.getUserPw());
+		String securePw = encoder.encode(vo.getUserPw());
+		log.info("암호화 후 비번: " + securePw);
+		vo.setUserPw(securePw);
 		mapper.join(vo);
 	}
 
 	@Override
-	public String login(String userId, String userPw) {
+	public UserVO login(String userId, String userPw) {
 		String dbPw = mapper.login(userId);	
 		if(dbPw != null) {
 			if(encoder.matches(userPw, dbPw)) {
-				return userId;
+				return mapper.getUser(userId);
 			}
 		}
 		return null;

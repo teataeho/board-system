@@ -36,7 +36,8 @@ CREATE TABLE party (
 public class PartyVO {
 	
 	private int partyNo, max;
-	private String restId;
-	private String writer, title, content;
+	private int sno;
+	private String writer, writerNick, title, content;
 	private LocalDateTime regDate, updateDate;
+	private String uploadPath, fileLoca, fileName;
 }

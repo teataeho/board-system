@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <%@ include file="../include/header.jsp"%>
 <section>
 <br><br><br><br><br>
@@ -17,19 +18,19 @@
 					<table class="table">
 						<tbody class="t-control">
 							<tr>
-								<td class="t-title">RESTAURANT</td>
+								<td class="t-title">음식점 명</td>
 								<td><input class="form-control input-sm" name="restId"></td>
 							</tr>
 							<tr>
-								<td class="t-title">NAME</td>
+								<td class="t-title">작성자</td>
 								<td><input class="form-control input-sm" name="writer"></td>
 							</tr>
 							<tr>
-								<td class="t-title">TITLE</td>
+								<td class="t-title">제목</td>
 								<td><input class="form-control input-sm" name="title"></td>
 							</tr>
 							<tr>
-								<td class="t-title">CONTENT</td>
+								<td class="t-title">내용</td>
 								<td><textarea class="form-control" rows="7" name="content"></textarea></td>
 							</tr>
 						</tbody>
@@ -46,4 +47,4 @@
 		</div>
 	</div>
 </section>
-<%@ include file="../../include/footer.jsp"%>
+<%@ include file="../include/footer.jsp"%>
