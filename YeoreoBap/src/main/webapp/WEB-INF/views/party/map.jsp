@@ -106,10 +106,12 @@
 	
 									// 마커에 클릭 이벤트를 등록합니다.
 									kakao.maps.event.addListener(marker, 'click', () => {
-										document.getElementById('sno').value = restaurant.sno;
-										document.getElementById('bplcNm').value = restaurant.bplcnm;
-										console.log(document.getElementById('sno').value);
-										console.log(document.getElementById('bplcNm').value);
+										//document.getElementById('sno').value = restaurant.sno;
+										//document.getElementById('bplcNm').value = restaurant.bplcnm;
+
+										if(confirm(restaurant.bplcnm + "를 선택하시겠습니까?")) {
+											location.href = "partyRegister?sno=" + restaurant.sno + "&bplcnm=" + restaurant.bplcnm;
+										}
 									});
 								}
 							}

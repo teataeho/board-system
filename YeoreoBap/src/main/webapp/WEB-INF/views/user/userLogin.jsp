@@ -12,7 +12,8 @@
 					</div>
 					<div class="login-div">
 						<button type="button" id="loginBtn">Login</button>
-						<button type="button" id="joinBtn" onclick="${pageContext.request.contextPath}/user/userJoin">회원가입</button>
+						<button type="button" id="joinBtn"
+							onclick="location.href='${pageContext.request.contextPath}/user/userJoin'">회원가입하기</button>
 					</div>
 
 				</div>
@@ -22,6 +23,7 @@
 		</div>
 
 		<%@ include file="../include/footer.jsp" %>
+
 			<script>
 
 				//회원 가입 완료 후 addFlashAttribute로 msg 데이터가 전달 되는 지 확인

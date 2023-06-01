@@ -5,42 +5,38 @@
 			<div class="wrap">
 
 				<div class="container">
-					<!--section main-->
-					<section class="main">
-						<!-- 메인 케러셀 -->
-						<div id="carouselExampleControls" class="active carousel slide" data-bs-ride="carousel">
-							<div class="size">
-								<div class="carousel-inner">
-									<div class="carousel-item active" data-bs-interval="3000">
-										<img src="${pageContext.request.contextPath }/img/ex_carousel1.png" class="d-block w-100 h-100"
-											alt="메인 이미지1">
-									</div>
-									<div class="carousel-item" data-bs-interval="3000">
-										<img src="${pageContext.request.contextPath }/img/ex_carousel2.png" class="d-block w-100 h-100"
-											alt="메인 이미지2">
-									</div>
-									<div class="carousel-item" data-bs-interval="3000">
-										<img src="${pageContext.request.contextPath }/img/ex_carousel3.png" class="d-block w-100 h-100"
-											alt="메인 이미지3">
-									</div>
+					<!-- 메인 캐러셀 -->
+					<div id="carouselExampleControls" class="active carousel slide" data-bs-ride="carousel">
+						<div class="size">
+							<div class="carousel-inner">
+								<div class="carousel-item active" data-bs-interval="3000">
+									<img src="${pageContext.request.contextPath}/img/ex_carousel1.png" class="d-block w-100 h-100"
+										alt="메인 이미지1">
+								</div>
+								<div class="carousel-item" data-bs-interval="3000">
+									<img src="${pageContext.request.contextPath}/img/ex_carousel2.png" class="d-block w-100 h-100"
+										alt="메인 이미지2">
+								</div>
+								<div class="carousel-item" data-bs-interval="3000">
+									<img src="${pageContext.request.contextPath}/img/ex_carousel3.png" class="d-block w-100 h-100"
+										alt="메인 이미지3">
 								</div>
 							</div>
-							<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-								data-bs-slide="prev">
-								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-								<span class="visually-hidden">Previous</span>
-							</button>
-							<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-								data-bs-slide="next">
-								<span class="carousel-control-next-icon" aria-hidden="true"></span>
-								<span class="visually-hidden">Next</span>
-							</button>
 						</div>
-						<!-- end 메인 케러셀 -->
-					</section>
-					<!--end section main-->
+						<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+							data-bs-slide="prev">
+							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Previous</span>
+						</button>
+						<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+							data-bs-slide="next">
+							<span class="carousel-control-next-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Next</span>
+						</button>
+					</div>
+					<!-- 메인 캐러셀 끝 -->
 
-					<!-- 파티 게시판 -->
+					<!-- 파티 게시판 제목 -->
 					<div class="page-header border-bottom border-orange mb-4">
 						<h2 class="ms-2">
 							여러밥 모집
@@ -51,8 +47,10 @@
 							</a>
 						</h2>
 					</div>
+					<!-- 파티 게시판 제목 끝 -->
 
-					<div class="d-inline-flex flex-wrap justify-content-around p-0">
+					<!-- 파티 리스트 -->
+					<div id="partyList" class="d-inline-flex flex-wrap justify-content-around p-0">
 						<c:forEach begin="1" step="+1" end="10">
 							<div class="thumbnail-size rounded mb-4">
 								<img class="h-100" src="${pageContext.request.contextPath}/img/thumbnail_1.jpg" alt="썸네일">
@@ -61,8 +59,9 @@
 							</div>
 						</c:forEach>
 					</div>
+					<!-- 파티 리스트 끝 -->
 
-					<!-- 후기 게시판 -->
+					<!-- 후기 게시판 제목 -->
 					<div class="page-header border-bottom border-orange mt-5 mb-4">
 						<h2 class="ms-2">
 							여러밥 후기
@@ -73,16 +72,34 @@
 							</a>
 						</h2>
 					</div>
+					<!-- 후기 게시판 제목 끝 -->
+
+					<!-- 모달 -->
+					<div class="modal" tabindex="-1">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title">Modal title</h5>
+									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+								</div>
+								<div class="modal-body">
+									<p>Modal body text goes here.</p>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+									<button type="button" class="btn btn-primary">Save changes</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 모달 끝 -->
 
 					<%@ include file="include/footer.jsp" %>
 
-						<!-- Bootstrap’s JS. -->
-						<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-							integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-							crossorigin="anonymous"></script>
-						<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-							integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-							crossorigin="anonymous"></script>
-						<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
-							integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
-							crossorigin="anonymous"></script>
+						<script>
+
+							// 썸네일 클릭 이벤트 설정
+							document.getElementById('partyList').addEventListener('click', e => {
+								console.log('e.target.currentSrc = ' + e.target.decode());
+							});
+						</script>
