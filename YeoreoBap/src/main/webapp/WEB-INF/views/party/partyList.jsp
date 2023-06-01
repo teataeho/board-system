@@ -60,4 +60,49 @@
 			document.getElementById('register').addEventListener('click', () => {
 				location.href = '${pageContext.request.contextPath}/party/map';
 			})
+
+			//리스트
+			let str = '';
+			let page = 1;
+			let isFinish = false;
+			const $partyList = document.getElementById('partyList');
+			getList(1, true);
+
+			function getList(page, reset) {
+				str = '';
+				console.log('page: ' + page);
+				console.log('reset: ' + reset);
+
+				fetch('${pageContext.request.contextPath}/party/partyList/' + page)
+					.then(res => res.json())
+					.then(list => {
+						console.log(list);
+						console.log(list.length);
+						if (list.length === 0) isFinish = true;
+
+						if (reset) {
+							while ($partyList.firstChild) {
+								$partyList.firstChild.remove();
+							}
+							page = 1;
+						}
+
+						for (vo of list) {
+							str +=
+								`<div class="thumbnail-size rounded mb-4">
+						<img class="h-100" src="${pageContext.request.contextPath}/party/getImg + ` + vo.fileName + `" alt="썸네일">
+						<div id="rdnWhlAddr" class="invisible">` + `</div>
+						<div id="title" class="invisible">` + vo.title + `</div>
+					</div>`;
+						}
+
+						if (!reset) {
+							partyList.insertAdjacentHTML('beforeend', str);
+						} else {
+							partyList.insertAdjacentHTML('afterbegin', str);
+						}
+
+					}); //end fetch
+
+			} //end getList
 		</script>

@@ -57,4 +57,9 @@ public class StoreService implements IStoreService {
 
     }
 
+	@Override
+	public StoreVO getStoreInfo(int sno) {
+		return mapper.getStoreInfo(sno);
+	}
+
 }
