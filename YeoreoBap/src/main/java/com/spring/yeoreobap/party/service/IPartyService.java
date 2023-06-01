@@ -14,9 +14,6 @@ public interface IPartyService {
 	//글 목록
 	List<PartyVO> getList(PageVO paging);
 
-	// 전체 글
-	int getTotal();
-
 	// 상세보기
 	PartyVO getArticle(int partyNo);
 

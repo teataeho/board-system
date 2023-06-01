@@ -6,13 +6,13 @@
 
 	<insert id="regist">
 		INSERT INTO party
-		(rest_id, writer, title, content, max)
-		VALUES (#{restId}, #{writer}, #{title}, #{content}, #{max})
+		(sno, bplc_nm, writer, title, content, max, file_name, upload_path)
+		VALUES (#{sno}, #{bplcNm}, #{writer}, #{title}, #{content}, #{max}, #{fileName}, #{uploadPath})
 	</insert>
 	
 	<select id="getList" resultType="party">
-		SELECT * 
-		FROM party
+		SELECT p.*, s.rdn_whl_addr
+		FROM party p JOIN store s ON p.sno = s.sno
 		ORDER BY party_no DESC
 		LIMIT #{pageStart}, #{cpp}
 	</select>

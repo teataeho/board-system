@@ -1,8 +1,17 @@
 package com.spring.yeoreobap.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,11 +22,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.yeoreobap.command.PartyVO;
 import com.spring.yeoreobap.party.service.IPartyService;
-import com.spring.yeoreobap.util.PageCreator;
 import com.spring.yeoreobap.util.PageVO;
+
+import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequestMapping("/party")
+@Slf4j
 public class PartyController {
 
 	@Autowired
@@ -25,15 +36,19 @@ public class PartyController {
 
 	// 카카오맵으로 이동
 	@GetMapping("/map")
-	public void map() {
-	}
-
+	public void map() {}
+	
 	@GetMapping("/partyList")
-	public void partyList(PageVO vo, Model model) {
-		PageCreator pc = new PageCreator(vo, service.getTotal());
+	public void partyList() {}
 
-		model.addAttribute("list", service.getList(vo));
-		model.addAttribute(pc);
+	//글목록 가져오기
+	@GetMapping("/partyList/{page}")
+	public List<PartyVO> partyList(@PathVariable int page) {
+		PageVO vo = new PageVO();
+		vo.setPageNum(page);
+		vo.setCpp(10);
+		
+		return service.getList(vo);
 	}
 	
 	@GetMapping("/partyRegister")
@@ -76,6 +91,32 @@ public class PartyController {
 	@PostMapping("/attend")
 	public void attend(String userId, int partyNo) {
 		service.attend(userId, partyNo);
+	}
+	
+	//이미지 파일 전송
+	@GetMapping("/getImg/{fileName}")
+	public ResponseEntity<byte[]> getFile(@PathVariable String fileName) {
+		
+		log.info("filename: " + fileName);
+		
+		File file = new File("C:/yeoreobap/party/" + fileName);
+		log.info(file.toString());
+		
+		ResponseEntity<byte[]> result = null;
+		
+		HttpHeaders headers = new HttpHeaders();
+		
+		try {
+			headers.add("Content_Type", Files.probeContentType(file.toPath()));
+			headers.add("merong", "hello");
+			
+			result = new ResponseEntity<byte[]>(FileCopyUtils.copyToByteArray(file), headers, HttpStatus.OK);
+		} catch (IOException e) {
+			e.printStackTrace();
+			result = new ResponseEntity<byte[]>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+		return result;
 	}
 
 }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 footer {
     position: fixed;
 	background: #fff;
@@ -40,3 +41,16 @@ footer .container {
 	font-weight: bold;
 	padding-top: 5px;
 }
+=======
+
+
+#p {
+	font-size: 10px !important;
+	margin-bottom: 0 !important;
+}
+
+h6 {
+	font-size: 12px !important;
+	margin-bottom: -10px !important;
+}
+>>>>>>> ebfbdd1dc70ab0f69d76e8fffbcb3601e111f555

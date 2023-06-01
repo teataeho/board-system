@@ -11,8 +11,6 @@ public interface IPartyMapper {
 	void regist(PartyVO vo);
 	//글 목록
 	List<PartyVO> getList(PageVO vo);
-	//게시글 총 수
-	int getTotal();
 	//상세보기
 	PartyVO getArticle(int partyNo);
 	//수정

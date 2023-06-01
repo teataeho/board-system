@@ -274,6 +274,10 @@
 		}
 	}
 
+	/*부적합한 아이디일 때 아이디 중복체크가 가능한 오류를 발견
+	-> '아이디 중복체크는 필수입니다' 나오기 전까지 아이디 중복체크 버튼 비활성화*/
+	document.getElementById('idCheckBtn').disabled = true;
+
 	/*아이디 형식 검사 스크립트*/
 	var id = document.getElementById("userId");
 	id.onkeyup = function () {
@@ -283,13 +287,16 @@
 			document.getElementById("userId").style.borderColor = "green";
 			document.getElementById("msgId").innerHTML = "아이디 중복체크는 필수 입니다.";
 			idFlag = true;
+			document.getElementById('idCheckBtn').disabled = false;
 		} else {
 			document.getElementById("userId").style.borderColor = "orange";
 			document.getElementById("msgId").innerHTML = "부적합한 아이디 입니다.";
 			idFlag = false;
+			document.getElementById('idCheckBtn').disabled = true;
 		}
 	}
 
+	
 	/*비밀번호 형식 검사 스크립트*/
 	var pw = document.getElementById("userPw");
 	pw.onkeyup = function () {

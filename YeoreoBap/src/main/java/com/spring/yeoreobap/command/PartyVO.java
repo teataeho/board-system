@@ -39,5 +39,6 @@ public class PartyVO {
 	private int sno;
 	private String writer, writerNick, title, content;
 	private LocalDateTime regDate, updateDate;
-	private String uploadPath, fileLoca, fileName;
+	private String uploadPath, fileName;
+	private String bplcNm, rdnWhlAddr;
 }

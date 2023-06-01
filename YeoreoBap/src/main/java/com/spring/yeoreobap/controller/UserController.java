@@ -1,5 +1,6 @@
 package com.spring.yeoreobap.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,11 +98,21 @@ public class UserController {
 	//	}
 	//로그인 요청
 	@PostMapping("/userLogin")
-	public String login(String userId, String userPw, Model model) {
+	public String login(String userId, String userPw, Model model, HttpServletRequest request) {
 		log.info("나는 userController의 login");
 		UserVO user = service.login(userId, userPw);
 		model.addAttribute("user", service.login(userId, userPw));
 		if(user != null) {
+			HttpSession session = request.getSession();
+			if(session != null) {
+				String sessionId = session.getId();
+				Object attribute = session.getAttribute("user");
+				if(attribute != null) {
+					UserVO sessionUser = (UserVO) attribute;
+					log.info("세션id: " + sessionId);
+					log.info("유지되는 사용자: " + sessionUser);
+				}
+			}
 			return "redirect:/";
 		} else {
 			model.addAttribute("msg", "loginFail");
