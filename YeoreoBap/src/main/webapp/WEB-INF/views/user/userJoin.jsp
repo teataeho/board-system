@@ -3,124 +3,130 @@
 
 <%@ include file="../include/header.jsp"%>
 
-<div class="join">
-	<h2 class="title">회원가입</h2>
-	<form action="${pageContext.request.contextPath}/user/join" method="POST" name="joinForm">
-		<p class="necessary">*모든 값이 필수입력값입니다!</p>
-		<!-- 아이디 -->
-		<div class="block">
-			<p>아이디 (※ 추후 변경 불가합니다.)</p>
-			<div class="idBorder">
-				<div class="border">
-					<input type="text" class="form-id" name="userId" id="userId" placeholder="아이디를 입력해주세요. (영문 4~12자)"
-						autocomplete="off">
+
+<h2 class="title">회원가입</h2>
+<div class="container">
+	<section id="section">
+		<form action="${pageContext.request.contextPath}/user/join" method="POST" name="joinForm">
+			<p class="necessary">*모든 값이 필수입력값입니다!</p>
+			<!-- 아이디 -->
+			<div id="block">
+				<p>아이디 (※ 추후 변경 불가합니다.)</p>
+				<div class="idBorder">
+					<input class="form_id form-control form-control-lg" name="userId" id="userId" type="text"
+						placeholder="아이디를 입력해주세요. (영문 4~12자)" aria-label=".form-control-lg example" autocomplete="off">
+					<button class="btn btn-outline-secondary form-idCheckBtn" type="button" id="idCheckBtn">아이디 중복
+						체크</button>
+
 				</div>
-				<button type="button" class="form-idCheckBtn" id="idCheckBtn">아이디
-					중복 체크</button>
 			</div>
-		</div>
-		<span id="msgId"></span>
+			<span id="msgId"></span>
 
-				<!-- 비밀번호 -->
-				<div id="block">
-					<p>
-						비밀번호 (※ 추후 변경 불가합니다.)
-					</p>
-					
-						<input class="form-control form-control-lg" name="userPw" id="userPw" type="password" placeholder="비밀번호를 입력해주세요. (영문, 숫자 포함8~16자)" aria-label=".form-control-lg example" autocomplete="off">
-					
-					<span id="msgPw"></span>
-				</div>
+			<!-- 비밀번호 -->
+			<div id="block">
+				<p>
+					비밀번호 (※ 추후 변경 불가합니다.)
+				</p>
 
-				<!-- 비번 체크 -->
-				<div id="block">
-					<p>
-						비밀번호 확인
-					</p>
-					
-						<input class="form-control form-control-lg" name="pwCheck" id="pwCheck" type="password" placeholder="비밀번호를 다시 한 번 입력해주세요." aria-label=".form-control-lg example" autocomplete="off">
-					
-					<span id="msgPwCheck"></span>
-				</div>
+				<input class="form-control form-control-lg" name="userPw" id="userPw" type="password"
+					placeholder="비밀번호를 입력해주세요. (영문, 숫자 포함8~16자)" aria-label=".form-control-lg example"
+					autocomplete="off">
 
-				<!-- 이름 -->
-				<div id="block">
-					<p>
-						이름
-					</p>
-					
-						<input class="form-control form-control-lg" name="userName" id="userName" type="text">
-					
-				</div>
+				<span id="msgPw"></span>
+			</div>
 
-				<!-- 닉네임 -->
-				<div id="block">
-					<p>
-						닉네임
-					</p>
-					
-						
-						<input class="form-control form-control-lg" name="userNick" id="userNick" type="text">
-				</div>
+			<!-- 비번 체크 -->
+			<div id="block">
+				<p>
+					비밀번호 확인
+				</p>
 
-		<!-- 이메일 -->
-		<div class="block">
-			<p>이메일</p>
-			<div class="emailBorder">
-				<div class="border">
-					<input type="text" class="form-control form-control-lg" name="userEmail1" id="userEmail1">
-				</div>
-				<p>@</p>
-				<div class="border">
-					<input type="text" class="form-control form-control-lg" name="userEmail2" id="userEmail2" value="">
+				<input class="form-control form-control-lg" name="pwCheck" id="pwCheck" type="password"
+					placeholder="비밀번호를 다시 한 번 입력해주세요." aria-label=".form-control-lg example" autocomplete="off">
 
+				<span id="msgPwCheck"></span>
+			</div>
+
+			<!-- 이름 -->
+			<div id="block">
+				<p>
+					이름
+				</p>
+
+				<input class="form-control form-control-lg" name="userName" id="userName" type="text">
+
+			</div>
+
+			<!-- 닉네임 -->
+			<div id="block">
+				<p>
+					닉네임
+				</p>
+
+
+				<input class="form-control form-control-lg" name="userNick" id="userNick" type="text">
+			</div>
+
+			<!-- 이메일 -->
+			<div class="block">
+				<p>이메일</p>
+				<div class="emailBorder">
 					<div class="border">
-						<select class="form-emailSelection" name="emailSelection" id="emailSelection">
-							<option value="direct">직접 입력</option>
-							<option value="naver.com">naver.com</option>
-							<option value="daum.net">daum.net</option>
-							<option value="gmail.com">gmail.com</option>
-							<option value="hanmail.com">hanmail.com</option>
-							<option value="yahoo.co.kr">yahoo.co.kr</option>
-						</select>
+						<input type="text" class="form-control form-control-lg" name="userEmail1" id="userEmail1">
+					</div>
+					<p>@</p>
+					<div class="border">
+						<input type="text" class="form-control form-control-lg" name="userEmail2" id="userEmail2"
+							value="">
+
+						<div class="border">
+							<select class="form-emailSelection" name="emailSelection" id="emailSelection">
+								<option value="direct">직접 입력</option>
+								<option value="naver.com">naver.com</option>
+								<option value="daum.net">daum.net</option>
+								<option value="gmail.com">gmail.com</option>
+								<option value="hanmail.com">hanmail.com</option>
+								<option value="yahoo.co.kr">yahoo.co.kr</option>
+							</select>
+						</div>
 					</div>
 				</div>
-			</div>
 
-					<div class="emailCheck">
-					<input class="form-control-lg" type="text" placeholder="인증번호를 입력해주세요." aria-label="Disabled input example" id="emailCheck" name="emailCheck" disabled>
+				<div class="emailCheck">
+					<input class="form-control-lg" type="text" placeholder="인증번호를 입력해주세요."
+						aria-label="Disabled input example" id="emailCheck" name="emailCheck" disabled>
 					<button class="btn btn-outline-secondary" type="button" id="emailCheckBtn">이메일 인증</button>
 				</div>
-				</div>
-
-		<!-- 거주구 -->
-		<div class="block">
-			<p>현재 거주하고 계신 구가 어디인가요?</p>
-			<small class="information">입력해주신 구의 동행을 우선적으로 보여드리기 위해 얻는
-				정보로, 이외의 용도로 사용되지 않습니다.</small>
-			<div class="border">
-				<select onchange="categoryChange(this)" name="addrGu">
-					<option value="" disabled selected hidden>거주구</option>
-					<option value="마포구">마포구</option>
-					<option value="서대문구">서대문구</option>
-				</select> <select id="addrDong" name="addrDong">
-					<option>동을 선택해주세요</option>
-				</select>
 			</div>
-		</div>
 
-		<!-- 버튼 -->
-		<div class="btns">
-			<button type="button" class="form-joinBtn" id="joinBtn">회원가입</button>
-			<button type="button" class="form-loginBtn" id="loginBtn">로그인</button>
-		</div>
+			<!-- 거주구 -->
+			<div class="block">
+				<p>활동하고싶은 동네가 어디인가요?</p>
+				<small class="information">입력해주신 동네의 동행을 우선적으로 보여드리기 위해 얻는
+					정보로, 이외의 용도로 사용되지 않습니다.</small>
+				<div class="border">
+					<select onchange="categoryChange(this)" name="addrGu">
+						<option value="" disabled selected hidden>구</option>
+						<option value="마포구">마포구</option>
+						<option value="서대문구">서대문구</option>
+					</select> <select id="addrDong" name="addrDong">
+						<option>동을 선택해주세요</option>
+					</select>
+				</div>
+			</div>
 
-			</form>
-			</section>
-		</div>
-		
+			<!-- 버튼 -->
+			<div class="btns">
+				<button type="button" class="form-joinBtn" id="joinBtn">회원가입</button>
+				<button type="button" class="form-loginBtn" id="loginBtn">로그인</button>
+			</div>
 
-		<%@ include file="../include/footer.jsp" %>
+		</form>
+	</section>
+</div>
+
+
+<%@ include file="../include/footer.jsp" %>
 
 
 <script>
@@ -183,11 +189,11 @@
 			});
 	}
 
-	document.getElementById('emailSelection').onchange = function() {
+	document.getElementById('emailSelection').onchange = function () {
 		var userEmail2 = document.getElementById('userEmail2');
 		var emailSelection = document.getElementById('emailSelection');
 
-		if(emailSelection.value === 'direct') {
+		if (emailSelection.value === 'direct') {
 			userEmail2.disabled = false;
 			userEmail2.value = '';
 		} else {
@@ -293,7 +299,7 @@
 		}
 	}
 
-	
+
 	/*비밀번호 형식 검사 스크립트*/
 	var pw = document.getElementById("userPw");
 	pw.onkeyup = function () {
