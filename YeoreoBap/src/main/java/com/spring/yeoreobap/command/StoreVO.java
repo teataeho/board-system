@@ -7,6 +7,19 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+/*
+ 	CREATE TABLE store (
+	    sno INT PRIMARY KEY,
+	    site_tel VARCHAR(30),
+	    rdn_whl_addr VARCHAR(100),
+	    bplc_nm VARCHAR(100),
+	    uptae_nm VARCHAR(20),
+	    dtlstatenm VARCHAR(10),
+	    x VARCHAR(50),
+	    y VARCHAR(50)
+	);
+ */
+
 @Getter @Setter @ToString
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class StoreVO {

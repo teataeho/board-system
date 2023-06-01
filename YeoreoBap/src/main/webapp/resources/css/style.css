@@ -16,12 +16,7 @@ li {
 
 /*--------------- header.jsp ---------------*/
 header {
-    position: fixed;
-    background: #fff;
-    left: 0;
-    top: 0;
-    width: 100%;
-    z-index: 50;
+    background-color: #fff;
 }
 
 .container .inner-container .login-menu li a {
@@ -29,16 +24,10 @@ header {
 }
 
 /*--------------- footer.jsp ---------------*/
-footer {
-    position: sticky;
-    width: 100%;
-}
-
 footer .container {
     padding: 0;
     height: 130px;
     margin-bottom: 0px;
-    border-top: 1px solid #F4B183;
     font-size: 0.5em;
     padding-top: 15px;
 }
@@ -98,4 +87,15 @@ footer .container {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+/*--------------- PartyList Page (partyList.jsp) ---------------*/
+.partyList {
+    position: relative;
+}
+
+#orderBy {
+    position: absolute;
+    top: 0;
+    right: 10px;
 }
