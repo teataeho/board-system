@@ -43,7 +43,7 @@
 					<!-- 최상단 이동 버튼 -->
 					<a href="#top" class="toTheTop"><i class="bi bi-arrow-up-short"></i></a>
 					<!-- 글 작성 버튼 -->
-					<a href="" id="register"><i class="bi bi-pencil"></i></a>
+					<a href="${pageContext.request.contextPath}/party/map" id="register"><i class="bi bi-pencil"></i></a>
 				</div>
 			</div>
 			<!-- 파티 리스트 끝 -->
@@ -66,16 +66,6 @@
 		</div>
 
 		<script>
-			// 최상단 이동 이벤트
-			document.getElementById('toTheTop').addEventListener('click', () => {
-
-			});
-
-			// 여러밥 게시글 작성 페이지 이동 이벤트
-			document.getElementById('register').addEventListener('click', () => {
-				location.href = '${pageContext.request.contextPath}/party/map';
-			});
-
 			//리스트
 			let str = '';
 			let page = 1;

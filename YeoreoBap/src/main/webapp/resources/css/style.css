@@ -88,7 +88,7 @@ h6 {
 /* 최상단 이동 버튼 */
 .stickyButtons {
 	position: sticky;
-	bottom: 10%;
+	bottom: 430px;
 	padding-left: 1220px;
 }
 
