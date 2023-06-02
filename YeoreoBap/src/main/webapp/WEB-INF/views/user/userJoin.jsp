@@ -62,58 +62,62 @@
 						<input class="form-control form-control-lg" name="userNick" id="userNick" type="text">
 					</div>
 
-					<!-- 이메일 -->
-					<div class="block">
-						<p>이메일</p>
-						<div class="emailBorder">
-							<div class="border">
-								<input type="text" class="form-control form-control-lg" name="userEmail1" id="userEmail1">
-							</div>
-							<p>@</p>
-							<div class="border">
-								<input type="text" class="form-control form-control-lg" name="userEmail2" id="userEmail2" value="">
+			<!-- 이메일 -->
+			<div id="block">
+				<p>이메일</p>
+				<div id="emailBorder">
+					
+						<input type="text" class="form-control form-control-lg" name="userEmail1" id="userEmail1">
+					
+					<p>@</p>
+					
+						<input type="text" class="form-control form-control-lg" name="userEmail2" id="userEmail2"
+							value="">
 
-								<div class="border">
-									<select class="form-emailSelection" name="emailSelection" id="emailSelection">
-										<option value="direct">직접 입력</option>
-										<option value="naver.com">naver.com</option>
-										<option value="daum.net">daum.net</option>
-										<option value="gmail.com">gmail.com</option>
-										<option value="hanmail.com">hanmail.com</option>
-										<option value="yahoo.co.kr">yahoo.co.kr</option>
-									</select>
-								</div>
-							</div>
-						</div>
-
-						<div class="emailCheck">
-							<input class="form-control-lg" type="text" placeholder="인증번호를 입력해주세요." aria-label="Disabled input example"
-								id="emailCheck" name="emailCheck" disabled>
-							<button class="btn btn-outline-secondary" type="button" id="emailCheckBtn">이메일 인증</button>
-						</div>
-					</div>
-
-					<!-- 거주구 -->
-					<div class="block">
-						<p>활동하고싶은 동네가 어디인가요?</p>
-						<small class="information">입력해주신 동네의 동행을 우선적으로 보여드리기 위해 얻는
-							정보로, 이외의 용도로 사용되지 않습니다.</small>
-						<div class="border">
-							<select onchange="categoryChange(this)" name="addrGu">
-								<option value="" disabled selected hidden>구</option>
-								<option value="마포구">마포구</option>
-								<option value="서대문구">서대문구</option>
-							</select> <select id="addrDong" name="addrDong">
-								<option>동을 선택해주세요</option>
+					
+							<select class="form-emailSelection form-select " name="emailSelection" id="emailSelection">
+								<option value="direct">직접 입력</option>
+								<option value="naver.com">naver.com</option>
+								<option value="daum.net">daum.net</option>
+								<option value="gmail.com">gmail.com</option>
+								<option value="hanmail.com">hanmail.com</option>
+								<option value="yahoo.co.kr">yahoo.co.kr</option>
 							</select>
-						</div>
-					</div>
+						
+					
+				</div>
 
-					<!-- 버튼 -->
-					<div class="btns">
-						<button type="button" class="form-joinBtn" id="joinBtn">회원가입</button>
-						<button type="button" class="form-loginBtn" id="loginBtn">로그인</button>
-					</div>
+				<div class="emailCheck">
+					<input class="form-control-lg" type="text" placeholder="인증번호를 입력해주세요."
+						id="emailCheck" name="emailCheck" disabled>
+					<button class="btn btn-outline-secondary" type="button" id="emailCheckBtn">이메일 인증</button>
+				</div>
+			</div>
+
+			<!-- 거주구 -->
+			<div id="block">
+				<p id="p2">활동하고싶은 동네가 어디인가요?</p>
+				<small class="information">입력해주신 동네의 동행을 우선적으로 보여드리기 위해 얻는
+					정보로, 이외의 용도로 사용되지 않습니다.</small>
+				<div id="locBorder">
+					<select class="form-select locGu" onchange="categoryChange(this)" name="addrGu">
+						<option value="" disabled selected hidden>구</option>
+						<option value="마포구">마포구</option>
+						<option value="서대문구">서대문구</option>
+					</select> <select class="form-select" id="addrDong" name="addrDong">
+						<option>동을 선택해주세요</option>
+					</select>
+				</div>
+			</div>
+
+			<!-- 버튼 -->
+            <div class="btns">
+                <button type="button" class="form-joinBtn btn btn-outline-secondary" id="joinBtn">회원가입</button>
+                <button type="button" class="form-loginBtn btn btn-outline-secondary" id="loginBtn">
+                    <a href="${pageContext.request.contextPath}/user/userLogin">로그인</a>
+                <!-- a태그 추가 -->
+                </button>
+            </div>
 
 				</form>
 			</section>
