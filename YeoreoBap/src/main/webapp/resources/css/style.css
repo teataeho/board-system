@@ -1,8 +1,14 @@
 /*--------------- General Setting ---------------*/
 .size {
+<<<<<<< HEAD
 	height: 500px;
 	overflow: hidden;
 	margin-top: 60px;
+=======
+    height: 500px;
+    overflow: hidden;
+    margin-top: 60px;
+>>>>>>> 68a14a2362894462fa27f39c27e2c2d18d5c8ceb
 }
 
 body a {
