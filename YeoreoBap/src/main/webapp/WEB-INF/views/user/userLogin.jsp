@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <%@ include file="../include/header.jsp"%>
-
+<body onkeydown="EnterLogin();">
 <div class="login">
 	<h2 class="title">로그인</h2>
 	<form action="${pageContext.request.contextPath}/user/userLogin"
@@ -27,7 +27,7 @@
 
 	</form>
 </div>
-
+</body>
 <%@ include file="../include/footer.jsp"%>
 
 <script>
@@ -53,6 +53,13 @@
 					}
 
 					document.loginForm.submit();
+				}
+
+				function EnterLogin() {
+					var keyCode = window.event.keyCode;
+					if(keyCode == 13) {	//Enter
+						document.loginForm.submit();
+					}
 				}
 				
 			</script>
