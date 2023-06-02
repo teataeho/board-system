@@ -22,9 +22,10 @@ public class ReviewReplyVO {
 
 	private int replyNo;
 	private int reviewNo;
-	private String writer;
-	private String content;
-	private LocalDateTime regDate;
+	
+	private String reply;
+	private String replyId;
 	private String replyPw;
+	private LocalDateTime regDate;
 	private LocalDateTime updateDate;
 }

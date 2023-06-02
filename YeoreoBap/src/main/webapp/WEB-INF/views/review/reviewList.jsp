@@ -19,18 +19,21 @@
 				<form action="<c:url value='/review/reviewList' />">
 					<div class="search-wrap">
 						<button type="submit" class="btn btn-info search-btn">검색</button>
-						<input type="text" name="keyword"
-							class="form-control search-input" value="${pc.paging.keyword}">
+						
 						<select name="condition" class="form-control search-select">
 							<option value="title"
 								${pc.paging.condition == 'title' ? 'selected' : ''}>제목</option>
 							<option value="content"
 								${pc.paging.condition == 'content' ? 'selected' : ''}>내용</option>
+							<option value="restaurant"
+								${pc.paging.condition == 'restaurant' ? 'selected' : ''}>가게 이름</option>
 							<option value="writer"
 								${pc.paging.condition == 'writer' ? 'selected' : ''}>작성자</option>
 							<option value="titleContent"
 								${pc.paging.condition == 'titleContent' ? 'selected' : ''}>제목+내용</option>
 						</select>
+						<input type="text" name="keyword"
+							class="form-control search-input" value="${pc.paging.keyword}">
 					</div>
 				</form>
 
@@ -53,7 +56,7 @@
 									href="${pageContext.request.contextPath}/review/getArticle/${vo.reviewNo}?pageNum=${pc.paging.pageNum}&cpp=${pc.paging.cpp}&keyword=${pc.paging.keyword}&condition=${pc.paging.condition}">${vo.title}</a>
 								</td>
 								<td>${vo.writer}</td>
-								<td>${vo.restId}</td>
+								<td>${vo.sno}</td>
 								<td><fmt:parseDate value="${vo.regDate}"
 										pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" /> <fmt:formatDate
 										value="${parsedDateTime}" pattern="yy년 MM월 dd일 HH시 mm분" /></td>
