@@ -2,7 +2,7 @@
 .size {
     height: 500px;
     overflow: hidden;
-    margin: 100px 0 20px;
+    margin-top: 60px;
 }
 
 body a {
@@ -16,12 +16,7 @@ li {
 
 /*--------------- header.jsp ---------------*/
 header {
-    position: fixed;
-    background: #fff;
-    left: 0;
-    top: 0;
-    width: 100%;
-    z-index: 50;
+    background-color: #fff;
 }
 
 .container .inner-container .login-menu li a {
@@ -29,43 +24,14 @@ header {
 }
 
 /*--------------- footer.jsp ---------------*/
-footer {
-    position: sticky;
-    width: 100%;
+#p {
+    font-size: 10px !important;
+    margin-bottom: 0 !important;
 }
 
-footer .container {
-    padding: 0;
-    height: 130px;
-    margin-bottom: 0px;
-    border-top: 1px solid #F4B183;
-    font-size: 0.5em;
-    padding-top: 15px;
-}
-
-.container .footerBoard .left-footer {
-    display: flex;
-    justify-content: center;
-}
-
-.container .footerBoard img {
-    width: 100px;
-    height: 50px;
-    padding: 5px;
-    margin-right: 20px;
-}
-
-.container .right-footer {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-}
-
-.container .copyright {
-    display: block;
-    text-align: center;
-    font-weight: bold;
-    padding-top: 5px;
+h6 {
+    font-size: 12px !important;
+    margin-bottom: -10px !important;
 }
 
 /*--------------- Main Page (home.jsp) ---------------*/
@@ -98,4 +64,19 @@ footer .container {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+/*--------------- PartyList Page (partyList.jsp) ---------------*/
+.partyList {
+    position: relative;
+}
+
+#orderBy {
+    position: absolute;
+    top: 0;
+    right: 10px;
+}
+
+#top {
+    height: 130px;
 }

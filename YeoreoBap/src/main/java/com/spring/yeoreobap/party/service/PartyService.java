@@ -63,7 +63,8 @@ public class PartyService implements IPartyService {
 	}
 
 	@Override
-	public List<PartyVO> getList(PageVO paging) {		
+	public List<PartyVO> getList(PageVO paging) {
+		System.out.println("머시기머시기2: " + mapper.getList(paging).toString());
 		return mapper.getList(paging);
 	}
 

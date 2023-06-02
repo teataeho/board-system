@@ -16,7 +16,7 @@ public interface IReviewService {
 	List<ReviewVO> getList(PageVO vo);
 
 	//총 게시물 수 구하기
-	int getTotal();
+	int getTotal(PageVO vo);
 
 	//상세보기
 	ReviewVO getArticle(int reviewNo);
