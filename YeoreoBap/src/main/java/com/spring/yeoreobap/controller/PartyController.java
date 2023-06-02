@@ -26,9 +26,9 @@ import com.spring.yeoreobap.util.PageVO;
 
 import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Controller
 @RequestMapping("/party")
-@Slf4j
 public class PartyController {
 
 	@Autowired
@@ -36,35 +36,47 @@ public class PartyController {
 
 	// 카카오맵으로 이동
 	@GetMapping("/map")
-	public void map() {}
-	
-	@GetMapping("/partyList")
-	public void partyList() {}
+	public void map() {
+	}
 
-	//글목록 가져오기
+	// 여러밥 모집 페이지로 이동
+	@GetMapping("/partyList")
+	public void partyList() {
+	}
+
+	// 글 목록 가져오기
 	@ResponseBody
 	@GetMapping("/{page}")
 	public List<PartyVO> partyList(@PathVariable int page) {
 		System.out.println(page);
 		PageVO vo = new PageVO();
 		vo.setPageNum(page);
-		vo.setCpp(10);		
-		
+		vo.setCpp(10);
+
 		return service.getList(vo);
 	}
-	
+
+	// 여러밥 모집글 작성 페이지 이동
 	@GetMapping("/partyRegister")
-	public void regist() {}
-	
+	public void register() {
+	}
+
+	// 여러밥 모집글 등록 (예시 사진)
+	@PostMapping("/partyRegister")
+	public String register(PartyVO vo) {
+		service.register(vo);
+		return "redirect:/party/partyList";
+	}
+
+	// 여러밥 모집글 등록 (사용자 지정 사진)
 	@PostMapping("/partyRegister")
 	public String register(PartyVO vo, MultipartFile file) {
-		//파일이 안들어왔을 때 어떻게 나오는지 확인
-		service.regist(vo, file);
+		service.register(vo, file);
 		return "redirect:/party/partyList";
 	}
 
 	@GetMapping("/content/{bno}")
-	public String freeContent(@PathVariable int partyNo, @ModelAttribute("p") PageVO paging, Model model) {
+	public String partyContent(@PathVariable int partyNo, @ModelAttribute("p") PageVO paging, Model model) {
 		model.addAttribute("article", service.getArticle(partyNo));
 		return "party/partyDetail";
 	}
@@ -94,30 +106,30 @@ public class PartyController {
 	public void attend(String userId, int partyNo) {
 		service.attend(userId, partyNo);
 	}
-	
-	//이미지 파일 전송
+
+	// 이미지 파일 전송
 	@GetMapping("/getImg/{fileName}")
 	public ResponseEntity<byte[]> getFile(@PathVariable String fileName) {
-		
+
 		log.info("filename: " + fileName);
-		
+
 		File file = new File("C:/yeoreobap/upload/party/" + fileName);
 		log.info(file.toString());
-		
+
 		ResponseEntity<byte[]> result = null;
-		
+
 		HttpHeaders headers = new HttpHeaders();
-		
+
 		try {
 			headers.add("Content_Type", Files.probeContentType(file.toPath()));
 			headers.add("merong", "hello");
-			
+
 			result = new ResponseEntity<byte[]>(FileCopyUtils.copyToByteArray(file), headers, HttpStatus.OK);
 		} catch (IOException e) {
 			e.printStackTrace();
 			result = new ResponseEntity<byte[]>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		
+
 		return result;
 	}
 

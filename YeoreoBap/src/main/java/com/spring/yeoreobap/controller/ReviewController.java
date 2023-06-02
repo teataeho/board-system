@@ -24,31 +24,35 @@ public class ReviewController {
 
 	@Autowired
 	private IReviewService service;
-	
+
+	@GetMapping("/reviewList")
+	public void reviewList() {
+	}
+
 	@GetMapping("/reviewList/{reviewNo}/{pageNum}")
 	public void reviewList(PageVO vo, Model model) {
 		PageCreator pc = new PageCreator(vo, service.getTotal(vo));
 		System.out.println("store: " + pc.toString());
 		log.info(pc.toString());
-		
-		model.addAttribute("reviewList",service.getList(vo));
+
+		model.addAttribute("reviewList", service.getList(vo));
 		model.addAttribute("pc", pc);
 	}
-	
+
 	@GetMapping("/reviewRegist")
-	public void regist() {}
-	
+	public void regist() {
+	}
+
 	@PostMapping("/reviewRegist")
 	public String regist(ReviewVO vo) {
 		service.regist(vo);
 		return "redirect:/review/reviewList";
 	}
-	
+
 	@GetMapping("/getArticle/{reviewNo}")
-	public String getArticle(@PathVariable int reviewNo, @ModelAttribute("p") PageVO vo
-			, Model model) {
+	public String getArticle(@PathVariable int reviewNo, @ModelAttribute("p") PageVO vo, Model model) {
 		model.addAttribute("article", service.getArticle(reviewNo));
 		return "review/reviewDetail";
 	}
-	
+
 }
