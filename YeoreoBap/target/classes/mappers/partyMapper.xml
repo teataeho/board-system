@@ -17,22 +17,11 @@
 		LIMIT #{pageStart}, #{cpp}
 	</select>
 	
-	<select id="getTotal" resultType="int">
-		SELECT COUNT(*)
-		FROM party
-	</select>
-	
 	<select id="getArticle" resultType="party">
-		SELECT * FROM party
-		WHERE party_no = #{partyNo}
+		SELECT p.*, s.rdn_whl_addr
+		FROM party p JOIN store s ON p.sno = s.sno
+		WHERE p.party_no = #{partyNo}
 	</select>
-	
-	<update id="update">
-		UPDATE party
-		SET title = #{title}, content = #{content},
-		update_date = current_timestamp
-		WHERE party_no = #{partyNo}
-	</update>
 	
 	<delete id="delete">
 		DELETE FROM party
