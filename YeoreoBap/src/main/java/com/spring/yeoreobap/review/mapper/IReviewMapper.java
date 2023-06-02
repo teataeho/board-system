@@ -3,7 +3,7 @@ package com.spring.yeoreobap.review.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Repository;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.yeoreobap.command.ReviewVO;
@@ -21,7 +21,7 @@ public interface IReviewMapper {
 	int getTotal();
 
 	//상세보기
-	ReviewVO getArticle(int reviewNo);
+	ReviewVO getContent(int reviewNo);
 
 	//수정
 	void update(ReviewVO vo);

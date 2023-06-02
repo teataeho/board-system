@@ -24,9 +24,25 @@ public class ReviewReplyService implements IReviewReplyService {
 	
 	@Override
 	public void replyRegist(ReviewReplyVO vo) {
+		vo.setReplyPw(encoder.encode(vo.getReplyPw()));
 		mapper.replyRegist(vo);
-
 	}
+	
+	@Override
+	public List<ReviewReplyVO> getList(int reviewNo, int pageNum){
+		
+		PageVO vo = new PageVO();
+		vo.setPageNum(reviewNo);
+		vo.setCpp(10);
+		
+		Map<String, Object> data = new HashMap<>();
+		data.put("paging", vo);
+		data.put("reviewNo", reviewNo);
+		
+		return mapper.getList(data);
+	}
+	
+	
 
 	@Override
 	public int getTotal(int partyNo) {
@@ -43,16 +59,7 @@ public class ReviewReplyService implements IReviewReplyService {
 		mapper.delete(replyNo);
 	}
 
-	@Override
-	public List<ReviewReplyVO> getList(int replyNo, int pageNum) {
-		PageVO vo = new PageVO();
-		vo.setPageNum(pageNum);
-		vo.setCpp(5);
-		Map<String, Object> data = new HashMap<>();
-		data.put("paging", vo);
-		data.put("reply_no", replyNo);
-		return mapper.getList(data);
-	}
+
 
 	@Override
 	public boolean pwCheck(ReviewReplyVO vo) {

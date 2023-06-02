@@ -23,7 +23,7 @@ public class ReviewReplyController {
 
 	@Autowired
 	private IReviewReplyService service;
-	
+
 	@PostMapping("/regist")
 	public String replyRegist(@RequestBody ReviewReplyVO vo) {
 		service.replyRegist(vo);
@@ -31,10 +31,10 @@ public class ReviewReplyController {
 	}
 	
 	//댓글 목록
-	@GetMapping("/getList/{replyNo}/{pageNum}")
-	public Map<String, Object> getList(@PathVariable int replyNo, @PathVariable int pageNum) {
-		List<ReviewReplyVO> list = service.getList(replyNo, pageNum);
-		int total = service.getTotal(replyNo);
+	@GetMapping("/getList/{reviewNo}/{pageNum}")
+	public Map<String, Object> getList(@PathVariable int reviewNo, @PathVariable int pageNum) {
+		List<ReviewReplyVO> list = service.getList(reviewNo, pageNum);
+		int total = service.getTotal(reviewNo);
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("list", list);
