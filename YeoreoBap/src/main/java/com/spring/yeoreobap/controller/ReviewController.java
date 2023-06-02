@@ -38,6 +38,9 @@ public class ReviewController {
 	@GetMapping("/reviewRegist")
 	public void regist() {}
 	
+	@GetMapping("/reviewList")
+	public void reviewList() {}
+	
 	@PostMapping("/reviewRegist")
 	public String regist(ReviewVO vo) {
 		service.regist(vo);

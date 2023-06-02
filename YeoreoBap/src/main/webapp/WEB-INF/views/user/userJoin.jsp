@@ -24,34 +24,25 @@
 
 			<!-- 비밀번호 -->
 			<div id="block">
-				<p>
-					비밀번호 (※ 추후 변경 불가합니다.)
-				</p>
+				<p>비밀번호 (※ 추후 변경 불가합니다.)</p>
 
 				<input class="form-control form-control-lg" name="userPw" id="userPw" type="password"
 					placeholder="비밀번호를 입력해주세요. (영문, 숫자 포함8~16자)" aria-label=".form-control-lg example"
-					autocomplete="off">
-
-				<span id="msgPw"></span>
+					autocomplete="off"> <span id="msgPw"></span>
 			</div>
 
 			<!-- 비번 체크 -->
 			<div id="block">
-				<p>
-					비밀번호 확인
-				</p>
+				<p>비밀번호 확인</p>
 
 				<input class="form-control form-control-lg" name="pwCheck" id="pwCheck" type="password"
-					placeholder="비밀번호를 다시 한 번 입력해주세요." aria-label=".form-control-lg example" autocomplete="off">
-
-				<span id="msgPwCheck"></span>
+					placeholder="비밀번호를 다시 한 번 입력해주세요." aria-label=".form-control-lg example" autocomplete="off"> <span
+					id="msgPwCheck"></span>
 			</div>
 
 			<!-- 이름 -->
 			<div id="block">
-				<p>
-					이름
-				</p>
+				<p>이름</p>
 
 				<input class="form-control form-control-lg" name="userName" id="userName" type="text">
 
@@ -59,9 +50,7 @@
 
 			<!-- 닉네임 -->
 			<div id="block">
-				<p>
-					닉네임
-				</p>
+				<p>닉네임</p>
 
 
 				<input class="form-control form-control-lg" name="userNick" id="userNick" type="text">
@@ -75,9 +64,8 @@
 						<input type="text" class="form-control form-control-lg" name="userEmail1" id="userEmail1">
 					
 					<p>@</p>
-					
-						<input type="text" class="form-control form-control-lg" name="userEmail2" id="userEmail2"
-							value="">
+					<div class="border">
+						<input type="text" class="form-control form-control-lg" name="userEmail2" id="userEmail2">
 
 					
 							<select class="form-emailSelection form-select " name="emailSelection" id="emailSelection">
@@ -116,23 +104,37 @@
 			</div>
 
 			<!-- 버튼 -->
-            <div class="btns">
-                <button type="button" class="form-joinBtn btn btn-outline-secondary" id="joinBtn">회원가입</button>
-                <button type="button" class="form-loginBtn btn btn-outline-secondary" id="loginBtn">
-                    <a href="${pageContext.request.contextPath}/user/userLogin">로그인</a>
-                <!-- a태그 추가 -->
-                </button>
-            </div>
+			<div class="btns">
+				<button type="button" class="form-joinBtn" id="joinBtn">회원가입</button>
+				<button type="button" class="form-loginBtn" id="loginBtn">
+					<a href="${pageContext.request.contextPath}/user/userLogin">로그인</a>
+					<!-- a태그 추가 -->
+				</button>
+			</div>
 
 		</form>
 	</section>
 </div>
 
 
-<%@ include file="../include/footer.jsp" %>
+<%@ include file="../include/footer.jsp"%>
 
 
 <script>
+	// 이메일 선택 옵션 변경 시 userEmail2 값 설정
+	document.getElementById('emailSelection').addEventListener('change', function () {
+		const emailSelection = this.value;
+		if (emailSelection === 'direct') {
+			document.getElementById('userEmail2').value = '';
+			document.getElementById('userEmail2').removeAttribute('disabled');
+			document.getElementById('userEmail2').focus();
+		} else {
+			document.getElementById('userEmail2').value = emailSelection;
+			document.getElementById('userEmail2').setAttribute('disabled', 'disabled');
+		}
+	});
+
+
 	let code = '';
 	let idFlag, pwFlag; //유효성 검사
 	//아이디 중복체크
@@ -192,18 +194,8 @@
 			});
 	}
 
-	document.getElementById('emailSelection').onchange = function () {
-		var userEmail2 = document.getElementById('userEmail2');
-		var emailSelection = document.getElementById('emailSelection');
 
-		if (emailSelection.value === 'direct') {
-			userEmail2.disabled = false;
-			userEmail2.value = '';
-		} else {
-			userEmail2.disabled = true;
-			userEmail2.value = emailSelection.value;
-		}
-	};
+
 
 
 	//인증번호 이메일 전송
@@ -211,6 +203,7 @@
 		const email = document.getElementById('userEmail1').value + '@' + document.getElementById('userEmail2')
 			.value;
 		console.log('완성된 email: ' + email);
+		console.log('email2: ' + document.getElementById('userEmail2'));
 		fetch('${pageContext.request.contextPath}/user/mailCheck?email=' + email)
 			.then(res => res.text())
 			.then(data => {
@@ -327,11 +320,11 @@
 		if (document.getElementById("pwCheck").value == document
 			.getElementById("userPw").value) {
 			document.getElementById("pwCheck").style.borderColor = "green";
-			document.getElementById("msgPw2").innerHTML = "비밀번호가 일치합니다.";
+			document.getElementById("msgPwCheck").innerHTML = "비밀번호가 일치합니다.";
 
 		} else {
 			document.getElementById("pwCheck").style.borderColor = "red";
-			document.getElementById("msgPw2").innerHTML = "비밀번호 확인란을 확인하세요.";
+			document.getElementById("msgPwCheck").innerHTML = "비밀번호 확인란을 확인하세요.";
 		}
 	}
 
