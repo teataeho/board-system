@@ -7,18 +7,18 @@
 	<h2 class="title">로그인</h2>
 	<form action="${pageContext.request.contextPath}/user/userLogin"
 		method="post" name="loginForm">
-		<div class="border">
+		<div class="loginBorder">
 			<div class="idPw">
-				<input type="text" class="form-id" name="userId" id="userId"
+				<input type="text" class="form-id form-control form-control-lg loginId" name="userId" id="userId"
 					placeholder="아이디" autocomplete="off"> <input
-					type="password" class="form-pw" name="userPw" id="userPw"
+					type="password" class="form-pw form-control form-control-lg loginPw" name="userPw" id="userPw"
 					placeholder="비밀번호">
 			</div>
 			<div class="login-div">
-				<button type="button" id="loginBtn">Login</button>
-				<button type="button" id="joinBtn">
+				<button type="button" id="loginBtn" class="loginBtn">Login</button>
+				<button type="button" id="joinBtn" class="joinBtn">
 					<a href="${pageContext.request.contextPath}/user/userJoin">회원가입하기</a>
-				<!-- a태그 추가 -->
+					<!-- a태그 추가 -->
 				</button>
 			</div>
 

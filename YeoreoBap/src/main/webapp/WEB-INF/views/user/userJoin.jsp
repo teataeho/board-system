@@ -57,18 +57,18 @@
 			</div>
 
 			<!-- 이메일 -->
-			<div class="block">
+			<div id="block">
 				<p>이메일</p>
-				<div class="emailBorder">
-					<div class="border">
+				<div id="emailBorder">
+					
 						<input type="text" class="form-control form-control-lg" name="userEmail1" id="userEmail1">
-					</div>
+					
 					<p>@</p>
 					<div class="border">
 						<input type="text" class="form-control form-control-lg" name="userEmail2" id="userEmail2">
 
-						<div class="border">
-							<select class="form-emailSelection" name="emailSelection" id="emailSelection">
+					
+							<select class="form-emailSelection form-select " name="emailSelection" id="emailSelection">
 								<option value="direct">직접 입력</option>
 								<option value="naver.com">naver.com</option>
 								<option value="daum.net">daum.net</option>
@@ -76,28 +76,28 @@
 								<option value="hanmail.com">hanmail.com</option>
 								<option value="yahoo.co.kr">yahoo.co.kr</option>
 							</select>
-						</div>
-					</div>
+						
+					
 				</div>
 
 				<div class="emailCheck">
 					<input class="form-control-lg" type="text" placeholder="인증번호를 입력해주세요."
-						aria-label="Disabled input example" id="emailCheck" name="emailCheck" disabled>
+						id="emailCheck" name="emailCheck" disabled>
 					<button class="btn btn-outline-secondary" type="button" id="emailCheckBtn">이메일 인증</button>
 				</div>
 			</div>
 
 			<!-- 거주구 -->
-			<div class="block">
-				<p>활동하고싶은 동네가 어디인가요?</p>
+			<div id="block">
+				<p id="p2">활동하고싶은 동네가 어디인가요?</p>
 				<small class="information">입력해주신 동네의 동행을 우선적으로 보여드리기 위해 얻는
 					정보로, 이외의 용도로 사용되지 않습니다.</small>
-				<div class="border">
-					<select onchange="categoryChange(this)" name="addrGu">
+				<div id="locBorder">
+					<select class="form-select locGu" onchange="categoryChange(this)" name="addrGu">
 						<option value="" disabled selected hidden>구</option>
 						<option value="마포구">마포구</option>
 						<option value="서대문구">서대문구</option>
-					</select> <select id="addrDong" name="addrDong">
+					</select> <select class="form-select" id="addrDong" name="addrDong">
 						<option>동을 선택해주세요</option>
 					</select>
 				</div>
