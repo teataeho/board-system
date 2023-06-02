@@ -13,7 +13,7 @@ public class UserAuthHandler implements HandlerInterceptor{
 	throws Exception {
 		
 		HttpSession session = request.getSession();
-		if(session.getAttribute("login") == null) {		//로그인 아직
+		if(session.getAttribute("userInfo") == null) {		//로그인 아직
 			response.sendRedirect(request.getContextPath() + "/user/userLogin");
 			return false;
 		}

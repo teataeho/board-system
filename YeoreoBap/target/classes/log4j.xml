@@ -64,7 +64,7 @@
      -->
 	
 	<!-- Application Loggers -->
-	<logger name="com.yeoreobap.myweb">
+	<logger name="com.spring.yeoreobap">
 		<level value="info" />
 	</logger>
 	

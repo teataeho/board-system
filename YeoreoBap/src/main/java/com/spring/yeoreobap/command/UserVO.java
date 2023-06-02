@@ -33,5 +33,4 @@ public class UserVO {
 	private String addrGu;
 	private String addrDong;
 	private LocalDateTime regDate;
-	private double temperature;
 }
