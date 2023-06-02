@@ -35,7 +35,7 @@ public class ReviewReplyService implements IReviewReplyService {
 	
 	@Override
 	public boolean userVerification(ReviewReplyVO vo, HttpSession session) {
-		if(session.getAttribute("login").equals(vo.getWriter())) return true;
+		if(session.getAttribute("userInfo").equals(vo.getWriter())) return true;
 		else return false;
 	}
 

@@ -47,6 +47,7 @@ public class UserController {
 	//		this.boardService = boardService;
 	//		this.mailService = mailSenderService;
 	//	}
+	
 	//회원가입 페이지로 이동
 	@GetMapping("/userJoin")
 	public void userJoin() {}
