@@ -23,7 +23,7 @@ import lombok.ToString;
 @ToString
 public class ReviewVO {
 
-	private int reviewNo;
-	private String writer, restId, title, content;
+	private int reviewNo, sno;
+	private String writer, title, content;
 	private LocalDateTime regDate, updateDate;
 }

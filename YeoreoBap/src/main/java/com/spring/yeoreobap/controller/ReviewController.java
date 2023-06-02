@@ -25,6 +25,9 @@ public class ReviewController {
 	@Autowired
 	private IReviewService service;
 	
+	@GetMapping("/reviewList")
+	public void reviewList () {}
+	
 	@GetMapping("/reviewList/{reviewNo}/{pageNum}")
 	public void reviewList(PageVO vo, Model model) {
 		PageCreator pc = new PageCreator(vo, service.getTotal(vo));
