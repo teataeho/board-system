@@ -35,14 +35,14 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public String login(String userId, String userPw) {
+	public UserVO login(String userId, String userPw) {
 		String dbPw = mapper.login(userId);	
 		if(dbPw != null) {
 			if(encoder.matches(userPw, dbPw)) {
-				return "success";
+				return mapper.getUser(userId);
 			}
 		}
-		return "fail";
+		return null;
 	}
 
 	@Override

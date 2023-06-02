@@ -23,9 +23,9 @@
 		INSERT INTO users
 		(user_id, user_pw, user_name, user_nick,
 		user_email1, user_email2,
-		addr_gu, addr_dong, temperature)
+		addr_gu, addr_dong)
 		VALUES(#{userId},#{userPw},#{userName}, #{userNick}, #{userEmail1},
-		#{userEmail2},#{addrGu},#{addrDong}, #{temperature})
+		#{userEmail2},#{addrGu},#{addrDong})
 	</insert>
 
 	<select id="login" resultType="string">
@@ -38,12 +38,12 @@
 		SELECT
 			user_name, 
 			user_email1, user_email2, addr_gu,
-			addr_dong, temperature,
-			<!-- p.party_board_no, --> 
-			p.title, p.reg_date
+			addr_dong,
+			 r.review_no,  
+			r.title, r.reg_date
 		FROM users u
-		LEFT JOIN party p
-		ON u.user_id = p.writer
+		LEFT JOIN review r
+		ON u.user_id = r.writer
 		WHERE u.user_id = #{userId}
 		<!-- ORDER BY p.party_board_no DESC -->
 		LIMIT #{paging.pageStart}, #{paging.cpp}
@@ -66,8 +66,7 @@
 		user_email1 = #{userEmail1},
 		user_email2 = #{userEmail2},
 		addr_gu = #{addrGu},
-		addr_dong = #{addrDong},
-		temperature = #{temperature}
+		addr_dong = #{addrDong}
 		WHERE
 		user_id=#{userId}
 	</update>

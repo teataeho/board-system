@@ -35,5 +35,6 @@ public class StoreVO {
     private String dtlstatenm; //영업/폐업 여부
     private String x;    //x좌표
     private String y;    //y좌표
+    private double starRate;
     
 }

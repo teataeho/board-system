@@ -57,18 +57,18 @@
 			</div>
 
 			<!-- 이메일 -->
-			<div class="block">
+			<div id="block">
 				<p>이메일</p>
-				<div class="emailBorder">
-					<div class="border">
+				<div id="emailBorder">
+					
 						<input type="text" class="form-control form-control-lg" name="userEmail1" id="userEmail1">
-					</div>
+					
 					<p>@</p>
 					<div class="border">
 						<input type="text" class="form-control form-control-lg" name="userEmail2" id="userEmail2">
 
-						<div class="border">
-							<select class="form-emailSelection" name="emailSelection" id="emailSelection">
+					
+							<select class="form-emailSelection form-select " name="emailSelection" id="emailSelection">
 								<option value="direct">직접 입력</option>
 								<option value="naver.com">naver.com</option>
 								<option value="daum.net">daum.net</option>
@@ -76,28 +76,28 @@
 								<option value="hanmail.com">hanmail.com</option>
 								<option value="yahoo.co.kr">yahoo.co.kr</option>
 							</select>
-						</div>
-					</div>
+						
+					
 				</div>
 
 				<div class="emailCheck">
 					<input class="form-control-lg" type="text" placeholder="인증번호를 입력해주세요."
-						aria-label="Disabled input example" id="emailCheck" name="emailCheck" disabled>
+						id="emailCheck" name="emailCheck" disabled>
 					<button class="btn btn-outline-secondary" type="button" id="emailCheckBtn">이메일 인증</button>
 				</div>
 			</div>
 
 			<!-- 거주구 -->
-			<div class="block">
-				<p>활동하고싶은 동네가 어디인가요?</p>
+			<div id="block">
+				<p id="p2">활동하고싶은 동네가 어디인가요?</p>
 				<small class="information">입력해주신 동네의 동행을 우선적으로 보여드리기 위해 얻는
 					정보로, 이외의 용도로 사용되지 않습니다.</small>
-				<div class="border">
-					<select onchange="categoryChange(this)" name="addrGu">
+				<div id="locBorder">
+					<select class="form-select locGu" onchange="categoryChange(this)" name="addrGu">
 						<option value="" disabled selected hidden>구</option>
 						<option value="마포구">마포구</option>
 						<option value="서대문구">서대문구</option>
-					</select> <select id="addrDong" name="addrDong">
+					</select> <select class="form-select" id="addrDong" name="addrDong">
 						<option>동을 선택해주세요</option>
 					</select>
 				</div>
@@ -121,18 +121,10 @@
 
 
 <script>
-	// 이메일 선택 옵션 변경 시 userEmail2 값 설정
-	document.getElementById('emailSelection').addEventListener('change', function () {
-		const emailSelection = this.value;
-		if (emailSelection === 'direct') {
-			document.getElementById('userEmail2').value = '';
-			document.getElementById('userEmail2').removeAttribute('disabled');
-			document.getElementById('userEmail2').focus();
-		} else {
-			document.getElementById('userEmail2').value = emailSelection;
-			document.getElementById('userEmail2').setAttribute('disabled', 'disabled');
-		}
-	});
+
+	/*부적합한 아이디일 때 아이디 중복체크가 가능한 오류를 발견
+	-> '아이디 중복체크는 필수입니다' 나오기 전까지 아이디 중복체크 버튼 비활성화*/
+	document.getElementById('idCheckBtn').disabled = true;
 
 
 	let code = '';
@@ -177,16 +169,15 @@
 			.then(data => { //텍스트만 뺀 Promise 객체로부터 data 전달받음.
 				if (data === 'available') {
 					console.log('available');
-					alert('사용 가능!')
-					//더 이상 아이디를 작성할 수 없도록 막아주겠다.
+					//더 이상 아이디를 작성할 수 없도록 
 					document.getElementById('userId').setAttribute('readonly', true);
-					//더 이상 버튼을 누를 수 없도록 버튼 비활성화.
+					//더 이상 버튼을 누를 수 없도록 
 					document.getElementById('idCheckBtn').setAttribute('disabled', true);
 					//메세지 남기기
 					document.getElementsByClassName('msgId').textContent = '사용 가능한 아이디 입니다.';
 				} else if (data == 'duplicated') {
 					console.log('duplicated');
-					alert('중복 아이디!');
+					alert('중복된 아이디입니다. 다른 아이디를 입력해주세요.');
 					document.getElementsByClassName('msgId').textContent = '중복된 아이디 입니다.';
 				} else {
 					console.log('???');
@@ -194,7 +185,39 @@
 			});
 	}
 
+	// 이메일 선택 옵션 변경 시 userEmail2 값 설정
+	document.getElementById('emailSelection').addEventListener('change', function () {
+		const emailSelection = this.value;
+		if (emailSelection === 'direct') {
+			document.getElementById('userEmail2').value = '';
+			document.getElementById('userEmail2').removeAttribute('disabled');
+			document.getElementById('userEmail2').focus();
+		} else {
+			document.getElementById('userEmail2').value = emailSelection;
+			document.getElementById('userEmail2').setAttribute('readonly', 'readonly');
+		}
+	});
 
+	
+	const email1 = document.getElementById('userEmail1');
+	const email2 = document.getElementById('userEmail2');
+	const emailSelection = document.getElementById('emailSelection');
+	const emailCheckBtn = document.getElementById('emailCheckBtn');
+	
+	/*입력 전 '이메일 인증'버튼 비활성화*/
+	function btnUpdate(){
+
+		if(email1.value === '' ||(emailSelection.value === 'direct' && email2.value === '')) {
+			emailCheckBtn.disabled = true;
+		} else {
+			emailCheckBtn.disabled = false;
+		}
+	}
+
+	email2.addEventListener('input', btnUpdate);
+	email1.addEventListener('input', btnUpdate);
+	emailSelection.addEventListener('change', btnUpdate);
+	btnUpdate();
 
 
 
@@ -203,7 +226,7 @@
 		const email = document.getElementById('userEmail1').value + '@' + document.getElementById('userEmail2')
 			.value;
 		console.log('완성된 email: ' + email);
-		console.log('email2: ' + document.getElementById('userEmail2'));
+		console.log('email2: ' + document.getElementById('userEmail2').value);
 		fetch('${pageContext.request.contextPath}/user/mailCheck?email=' + email)
 			.then(res => res.text())
 			.then(data => {
@@ -216,14 +239,12 @@
 	});
 
 	//인증번호 검증
-	//blur -> focus가 벗어나는 경우  발생.
 	document.getElementById('emailCheck').addEventListener('blur', function () {
 		console.log('blur 이벤트 발생');
 		const inputCode = this.value; // 인증번호 입력값 가져오기
 		console.log('사용자가 입력한 값: ' + inputCode);
 
 		if (inputCode === String(code)) {
-			// 인증번호가 일치하는 경우의 처리 로직
 			console.log('인증번호 일치');
 			document.getElementById('emailCheckBtn').disabled = true;
 			document.getElementById('userEmail1').setAttribute('readonly', true);
@@ -273,9 +294,6 @@
 		}
 	}
 
-	/*부적합한 아이디일 때 아이디 중복체크가 가능한 오류를 발견
-	-> '아이디 중복체크는 필수입니다' 나오기 전까지 아이디 중복체크 버튼 비활성화*/
-	document.getElementById('idCheckBtn').disabled = true;
 
 	/*아이디 형식 검사 스크립트*/
 	var id = document.getElementById("userId");
@@ -328,21 +346,6 @@
 		}
 	}
 
-	/*'거주구' 선택 불가*/
-	document.getElementById('addrGu').onchange = function () {
-		if (this.selectedIndex === 0) {
-			this.selectedIndex = -1;
-		}
-	};
-
-	document.getElementById('addrGu').addEventListener('click', function () {
-		console.log('선택된 거주구: ' + addrGu.value);
-	});
-
-	document.getElementById('addrDong').addEventListener('click', function () {
-		console.log('선택된 거주동: ' + addrDong.value);
-	});
-
 	function categoryChange(e) {
 		var addrDong_mapo = ["상암동", "성산동", "망원동", "연남동", "동교동", "서교동", "합정동", "상수동", "창전동", "신수동", "노고산동", "대흥동", "염리동",
 			"용강동", "도화동", "공덕동", "아현동", "신공덕동"
@@ -363,10 +366,5 @@
 			target.appendChild(opt);
 		}
 	}
-
-
-	/*제일 아래 로그인 버튼 누르면 로그인창 호출*/
-	document.getElementById('loginBtn').addEventListener('click', function () {
-		window.location.href = "${pageContext.request.contextPath}/user/userLogin";
-	});
+	
 </script>

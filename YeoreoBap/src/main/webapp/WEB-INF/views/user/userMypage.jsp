@@ -71,33 +71,16 @@
 												class="btn btn-primary">인증 확인</button></td>
 									</tr>
 
+									
 									<tr>
-										<td class="m-title">*휴대폰</td>
-										<td><select class="form-control input-sm sel"
-											name="userPhone1">
-												<option ${userInfo.userPhone1 == '010' ? 'selected' : ''}>010</option>
-												<option ${userInfo.userPhone1 == '011' ? 'selected' : ''}>011</option>
-												<option ${userInfo.userPhone1 == '017' ? 'selected' : ''}>017</option>
-												<option ${userInfo.userPhone1 == '018' ? 'selected' : ''}>018</option>
-										</select> <input class="form-control input-sm" name="userPhone2">
-										</td>
-									</tr>
-									<tr>
-										<td class="m-title">*우편번호</td>
-										<td><input class="form-control input-sm"
-											name="addrZipNum" value="${userInfo.addrZipNum}" readonly>
-											<button type="button" class="btn btn-primary" id="addBtn">주소찾기</button>
-										</td>
-									</tr>
-									<tr>
-										<td class="m-title">*주소</td>
+										<td class="m-title">*구</td>
 										<td><input class="form-control input-sm add"
-											name="addrBasic" value="${userInfo.addrBasic}"></td>
+											name="addrGu" value="${userInfo.addrGu}"></td>
 									</tr>
 									<tr>
-										<td class="m-title">*상세주소</td>
+										<td class="m-title">*동</td>
 										<td><input class="form-control input-sm add"
-											name="addrDetail" value="${userInfo.addrDetail}"></td>
+											name="addrDong" value="${userInfo.addrDong}"></td>
 									</tr>
 								</tbody>
 							</table>
@@ -123,10 +106,10 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:if test="${fn:length(userInfo.userBoardList) > 0}">
-										<c:forEach var="vo" items="${userInfo.userBoardList}">
+									 <c:if test="${fn:length(userInfo.reviewList) > 0}">
+										<c:forEach var="vo" items="${userInfo.reviewList}">
 											<tr>
-												<td>${vo.bno}</td>
+												<td>${vo.reviewNo}</td>
 												<td><a href="##">${vo.title}</a></td>
 												<td><fmt:parseDate value="${vo.regDate}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDate" type="both" /> 
 												<fmt:formatDate	value="${parsedDate}" pattern="yyyy년 MM월 dd일 HH:mm" />
@@ -154,10 +137,10 @@
 											</ul>
 										</div>
 
-									</c:if>
-									<c:if test="${fn:length(userInfo.userBoardList) <= 0}">
+									</c:if> 
+								<%-- 	<c:if test="${fn:length(userInfo.userBoardList) <= 0}">
 									<h2>글을 작성하지 않았습니다.</h2>
-									</c:if>
+									</c:if> --%>
 								</tbody>
 							</table>
 						</form>

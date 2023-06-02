@@ -25,6 +25,12 @@ public class ReviewController {
 	@Autowired
 	private IReviewService service;
 	
+	@GetMapping("/reviewList")
+	public void reviewList(Model model) {
+		PageVO vo = new PageVO();
+		model.addAttribute("reviewList", service.getList(vo));
+	}
+	
 	@GetMapping("/reviewList/{reviewNo}/{pageNum}")
 	public void reviewList(PageVO vo, Model model) {
 		PageCreator pc = new PageCreator(vo, service.getTotal(vo));
@@ -36,10 +42,9 @@ public class ReviewController {
 	}
 	
 	@GetMapping("/reviewRegist")
-	public void regist() {}
-	
-	@GetMapping("/reviewList")
-	public void reviewList() {}
+	public String regist() {
+		return "review/reviewRegist";
+	}
 	
 	@PostMapping("/reviewRegist")
 	public String regist(ReviewVO vo) {
@@ -47,11 +52,33 @@ public class ReviewController {
 		return "redirect:/review/reviewList";
 	}
 	
-	@GetMapping("/getArticle/{reviewNo}")
-	public String getArticle(@PathVariable int reviewNo, @ModelAttribute("p") PageVO vo
+	@GetMapping("/content/{reviewNo}")
+	public String getContent(@PathVariable int reviewNo, @ModelAttribute("p") PageVO vo
 			, Model model) {
 		model.addAttribute("article", service.getArticle(reviewNo));
 		return "review/reviewDetail";
 	}
+	
+	@PostMapping("/modify")
+	public String modify(@ModelAttribute("article") ReviewVO vo) {
+		return "review/reviewModify";
+	}
+	
+	@PostMapping("/update")
+	public String update(ReviewVO vo) {
+		service.update(vo);
+		return "redirect:/review/content/" + vo.getReviewNo();
+	}
+	
+	@PostMapping("/delete")
+	public String delete(int reviewNo) {
+		service.delete(reviewNo);
+		return "redirect:/review/reviewList";
+	}
+	
+	
+	
+	
+	
 	
 }

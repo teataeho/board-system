@@ -16,8 +16,7 @@ CREATE TABLE users(
    user_email2 VARCHAR(50),
    addr_gu VARCHAR(300),
    addr_dong VARCHAR(300),
-   reg_date DATETIME DEFAULT CURRENT_TIMESTAMP,
-   temperature INT NOT NULL DEFAULT '0'
+   reg_date DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 */
 
@@ -33,5 +32,4 @@ public class UserVO {
 	private String addrGu;
 	private String addrDong;
 	private LocalDateTime regDate;
-	private double temperature;
 }
