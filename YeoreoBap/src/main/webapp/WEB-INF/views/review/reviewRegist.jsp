@@ -19,7 +19,7 @@
 						<tbody class="t-control">
 							<tr>
 								<td class="t-title">음식점 명</td>
-								<td><input class="form-control input-sm" name="restId"></td>
+								<td><input class="form-control input-sm" name="sno"></td>
 							</tr>
 							<tr>
 								<td class="t-title">작성자</td>

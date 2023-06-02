@@ -24,9 +24,31 @@ public class ReviewReplyService implements IReviewReplyService {
 	private BCryptPasswordEncoder encoder;
 	
 	@Override
+<<<<<<< HEAD
 	public void replyRegister(ReviewReplyVO vo) {
 		mapper.replyRegister(vo);
+=======
+	public void replyRegist(ReviewReplyVO vo) {
+		vo.setReplyPw(encoder.encode(vo.getReplyPw()));
+		mapper.replyRegist(vo);
+>>>>>>> 1a467eca75f935cecd2b950d4c79fedd1785029d
 	}
+	
+	@Override
+	public List<ReviewReplyVO> getList(int reviewNo, int pageNum){
+		
+		PageVO vo = new PageVO();
+		vo.setPageNum(reviewNo);
+		vo.setCpp(10);
+		
+		Map<String, Object> data = new HashMap<>();
+		data.put("paging", vo);
+		data.put("reviewNo", reviewNo);
+		
+		return mapper.getList(data);
+	}
+	
+	
 
 	@Override
 	public int getTotal(int partyNo) {
@@ -49,15 +71,6 @@ public class ReviewReplyService implements IReviewReplyService {
 		mapper.delete(replyNo);
 	}
 
-	@Override
-	public List<ReviewReplyVO> getList(int replyNo, int pageNum) {
-		PageVO vo = new PageVO();
-		vo.setPageNum(pageNum);
-		vo.setCpp(5);
-		Map<String, Object> data = new HashMap<>();
-		data.put("paging", vo);
-		data.put("reply_no", replyNo);
-		return mapper.getList(data);
-	}
+
 
 }

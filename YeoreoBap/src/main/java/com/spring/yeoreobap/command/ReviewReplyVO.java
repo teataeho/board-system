@@ -19,8 +19,19 @@ import lombok.ToString;
 @Getter @Setter @ToString
 public class ReviewReplyVO {
 
+<<<<<<< HEAD
 	private int replyNo, reviewNo;
 	private String writer, content;
 	private LocalDateTime regDate;
 
+=======
+	private int replyNo;
+	private int reviewNo;
+	
+	private String reply;
+	private String replyId;
+	private String replyPw;
+	private LocalDateTime regDate;
+	private LocalDateTime updateDate;
+>>>>>>> 1a467eca75f935cecd2b950d4c79fedd1785029d
 }

@@ -1,5 +1,7 @@
 package com.spring.yeoreobap.user.service;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -33,14 +35,14 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public UserVO login(String userId, String userPw) {
+	public String login(String userId, String userPw) {
 		String dbPw = mapper.login(userId);	
 		if(dbPw != null) {
 			if(encoder.matches(userPw, dbPw)) {
-				return mapper.getUser(userId);
+				return "success";
 			}
 		}
-		return null;
+		return "fail";
 	}
 
 	@Override

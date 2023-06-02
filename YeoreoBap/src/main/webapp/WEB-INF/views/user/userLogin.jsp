@@ -55,8 +55,4 @@
 					document.loginForm.submit();
 				}
 				
-				 document.getElementById('joinBtn').onclick = () => {
-			            location.href='${pageContext.request.contextPath}/user/join';
-			        }
-
 			</script>
