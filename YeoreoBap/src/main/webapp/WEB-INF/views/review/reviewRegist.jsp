@@ -8,7 +8,7 @@
 <br><br><br><br><br>
 	<div class="container">
 		<div class="row">
-			<div class="col-xs-12 content-wrap">
+			<div class="col-xs-12 content-wrap" style="align-content: center;">
 				<div class="titlebox">
 					<p>후기게시판</p>
 				</div>
@@ -18,16 +18,16 @@
 					<table class="table">
 						<tbody class="t-control">
 							<tr>
-								<td class="t-title">음식점 명</td>
-								<td><input class="form-control input-sm" name="restId"></td>
-							</tr>
-							<tr>
 								<td class="t-title">작성자</td>
 								<td><input class="form-control input-sm" name="writer"></td>
 							</tr>
 							<tr>
 								<td class="t-title">제목</td>
 								<td><input class="form-control input-sm" name="title"></td>
+							</tr>
+							<tr>
+								<td class="t-title">식당 번호</td>
+								<td><input class="form-control input-sm" name="sno"></td>
 							</tr>
 							<tr>
 								<td class="t-title">내용</td>

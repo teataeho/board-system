@@ -8,7 +8,7 @@
 	<!-- namespace 탭에서 mvc 기능 추가 -->
 	<!-- web.xml에 초기 설정 파일로 이 파일을 추가 -->
 	
-	<bean id="userLoginSuccessHandler" class="com.spring.myweb.util.interceptor.UserLoginSuccessHandler" />
+	<bean id="userLoginSuccessHandler" class="com.spring.yeoreobap.util.interceptor.UserLoginSuccessHandler" />
 	<bean id="userAuth" class="com.spring.yeoreobap.util.interceptor.UserAuthHandler"/>
 	
 	<mvc:interceptors>
@@ -20,16 +20,15 @@
 		</mvc:interceptor>
 		
 		<!-- 로그인 권한 체크 인터셉터 url 매핑 -->
-		<mvc:interceptor>
+		<!-- <mvc:interceptor>
 			<mvc:mapping path="/review/reviewRegist"/>
 			<mvc:mapping path="/review/reviewList"/>
 			<mvc:mapping path="/party/partyRegister"/>
 			<mvc:mapping path="/user/userMypage"/>
-			<!-- <mvc:mapping path="/freeboard/content/**"/> -->
-			<!-- 글 상세보기 바로 보려고 잠깐 주석 -->
-			<!-- **뭐가 들어올지 모르니까 -->
+			글 상세보기 바로 보려고 잠깐 주석
+			**뭐가 들어올지 모르니까
 			<ref bean="userAuth"/>
-		</mvc:interceptor>
+		</mvc:interceptor> -->
 	</mvc:interceptors>
 
 

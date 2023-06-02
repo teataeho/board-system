@@ -40,7 +40,7 @@
 							<th>번호</th>
 							<th class="board-title">제목</th>
 							<th>작성자</th>
-							<th>가게 이름</th>
+							<th>식당 번호</th>
 							<th>등록일</th>
 							<th>수정일</th>
 						</tr>
@@ -53,13 +53,13 @@
 									href="${pageContext.request.contextPath}/review/getArticle/${vo.reviewNo}?pageNum=${pc.paging.pageNum}&cpp=${pc.paging.cpp}&keyword=${pc.paging.keyword}&condition=${pc.paging.condition}">${vo.title}</a>
 								</td>
 								<td>${vo.writer}</td>
-								<td>${vo.restId}</td>
+								<td>${vo.sno}</td>
 								<td><fmt:parseDate value="${vo.regDate}"
 										pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" /> <fmt:formatDate
-										value="${parsedDateTime}" pattern="yy년 MM월 dd일 HH시 mm분" /></td>
+										value="${parsedDateTime}" pattern="yy.MM.dd. HH:mm" /></td>
 								<td><fmt:parseDate value="${vo.updateDate}"
 										pattern="yyyy-MM-dd'T'HH:mm" var="parsedUpdateDateTime" /> <fmt:formatDate
-										value="${parsedUpdateDateTime}" pattern="yy년 MM월 dd일 HH시 mm분" /></td>
+										value="${parsedUpdateDateTime}" pattern="yy.MM.dd. HH:mm" /></td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -68,8 +68,7 @@
 
 
 				<!--페이지 네이션을 가져옴-->
-				<form action="${pageContext.request.contextPath}/review/reviewList"
-					name="pageForm">
+				<form action="${pageContext.request.contextPath}/review/reviewList" name="pageForm">
 					<div class="text-center">
 						<hr>
 						<ul id="pagination" class="pagination pagination-sm">
@@ -91,10 +90,9 @@
 					</div>
 
 					<input type="hidden" name="pageNum" value="${pc.paging.pageNum}">
-					<input type="hidden" name="cpp" value="${pc.paging.cpp}"> <input
-						type="hidden" name="keyword" value="${pc.paging.keyword}">
-					<input type="hidden" name="condition"
-						value="${pc.paging.condition}">
+					<input type="hidden" name="cpp" value="${pc.paging.cpp}"> 
+					<input type="hidden" name="keyword" value="${pc.paging.keyword}">
+					<input type="hidden" name="condition" value="${pc.paging.condition}">
 
 				</form>
 

@@ -37,7 +37,7 @@ public class ReviewService implements IReviewService {
 
 	@Override
 	public ReviewVO getArticle(int reviewNo) {
-		return mapper.getArticle(reviewNo);
+		return mapper.getContent(reviewNo);
 	}
 
 	@Override

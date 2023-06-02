@@ -6,8 +6,8 @@
 
 	<insert id="regist">
 		INSERT INTO review
-		(review_no, rest_id, writer, title, content)
-		VALUES (#{reviewNo}, #{restId}, #{writer}, #{title}, #{content})
+		(review_no, sno, writer, title, content)
+		VALUES (#{reviewNo}, #{sno}, #{writer}, #{title}, #{content})
 	</insert>
 	<!-- regDate, updateDate 삭제 -->
 	<select id="getList" resultType="review">
