@@ -22,7 +22,7 @@
 		FROM review
 	</select>
 	
-	<select id="getArticle" resultType="review">
+	<select id="getContent" resultType="review">
 		SELECT * FROM review
 		WHERE review_no = #{reviewNo}
 	</select>
