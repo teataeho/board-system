@@ -23,13 +23,10 @@
 
 					<!-- 비밀번호 -->
 					<div id="block">
-						<p>
-							비밀번호 (※ 추후 변경 불가합니다.)
-						</p>
-
+						<p>비밀번호 (※ 추후 변경 불가합니다.)</p>
 						<input class="form-control form-control-lg" name="userPw" id="userPw" type="password"
 							placeholder="비밀번호를 입력해주세요. (영문, 숫자 포함8~16자)" aria-label=".form-control-lg example" autocomplete="off">
-
+						<!-- 비밀번호 유효성 확인 -->
 						<span id="msgPw"></span>
 					</div>
 
