@@ -1,9 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
-<!DOCTYPE html>
-<html>
-<head>
-</head>
 	<%@ include file="../include/header.jsp" %>
 
 		<div class="container">
@@ -32,22 +28,23 @@
 			</div>
 
 			<!-- 파티 리스트 -->
-			<div id="partyList" class="d-inline-flex flex-wrap justify-content-around p-0">
-				<c:forEach begin="1" step="+1" end="10">
-					<div class="thumbnail-size rounded mb-4">
-						<img class="h-100" src="${pageContext.request.contextPath}/img/thumbnail_1.jpg" alt="썸네일">
-						<div id="rdnWhlAddr" class="invisible">서울 성동구</div>
-						<div id="title" class="invisible">코너키친 갈 사람 여기여기 모여라~!</div>
-					</div>
-				</c:forEach>
+			<div id="partyList">
+				<div class="d-inline-flex flex-wrap justify-content-around p-0">
+					<c:forEach begin="1" step="+1" end="10">
+						<div class="thumbnail-size rounded mb-4">
+							<img class="h-100" src="${pageContext.request.contextPath}/img/thumbnail_1.jpg" alt="썸네일">
+							<div id="rdnWhlAddr" class="invisible">서울 성동구</div>
+							<div id="title" class="invisible">코너키친 갈 사람 여기여기 모여라~!</div>
+						</div>
+					</c:forEach>
+				</div>
 
-				<!-- 최상단 이동 버튼 -->
-				<a href="#top" id="toTheTop" class="text-orange border border-orange"><i class="bi bi-arrow-up-short"></i></a>
-
-				<!-- 글 작성 버튼 -->
-				<button type="button" id="register" class="text-orange border border-orange">
-					<i class="bi bi-pencil"></i>
-				</button>
+				<div class="stickyButtons">
+					<!-- 최상단 이동 버튼 -->
+					<a href="#top" class="toTheTop"><i class="bi bi-arrow-up-short"></i></a>
+					<!-- 글 작성 버튼 -->
+					<a href="" id="register"><i class="bi bi-pencil"></i></a>
+				</div>
 			</div>
 			<!-- 파티 리스트 끝 -->
 
@@ -91,12 +88,12 @@
 				console.log('page: ' + page);
 				console.log('reset: ' + reset);
 
-			fetch('${pageContext.request.contextPath}/party/' + page)
-			.then(res => res.json())
-			.then(list => {
-				console.log(list);
-				console.log(list.length);
-				if(list.length === 0) isFinish = true;
+				fetch('${pageContext.request.contextPath}/party/' + page)
+					.then(res => res.json())
+					.then(list => {
+						console.log(list);
+						console.log(list.length);
+						if (list.length === 0) isFinish = true;
 
 						if (reset) {
 							while ($partyList.firstChild) {
@@ -105,9 +102,9 @@
 							page = 1;
 						}
 
-				for(vo of list) {
-					str +=
-					`<div class="thumbnail-size rounded mb-4">
+						for (vo of list) {
+							str +=
+								`<div class="thumbnail-size rounded mb-4">
 						<img class="h-100" src="${pageContext.request.contextPath}/party/getImg/` + vo.fileName + `" alt="썸네일">
 						<div id="rdnWhlAddr" class="invisible">` + '주소가 들어갈 공간' + `</div>
 						<div id="title" class="invisible">` + vo.title + `</div>
