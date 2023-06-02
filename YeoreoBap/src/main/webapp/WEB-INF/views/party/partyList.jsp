@@ -78,8 +78,8 @@
 
 				for (vo of list) {
 					str +=
-						`<div class="thumbnail-size rounded mb-4" id="vo.partyNo">
-									<img class="h-100" src="${pageContext.request.contextPath}/party/getImg/` + vo.fileName + `" alt="썸네일">
+						`<div class="thumbnail-size rounded mb-4">
+									<img class="h-100"  id="` + vo.partyNo + `" src="${pageContext.request.contextPath}/party/getImg/` + vo.fileName + `" alt="썸네일">
 									<div id="rdnWhlAddr" class="invisible">` + '주소가 들어갈 공간' + `</div>
 									<div id="title" class="invisible">` + vo.title + `</div>
 								</div>`;
@@ -110,4 +110,13 @@
 	}, 1000);
 
 	window.addEventListener('scroll', handleScroll);
+	//글 상세보기
+	document.getElementById('partyList').addEventListener('click', e => {
+		// if(!e.target.matches('.mb-4')) return;
+		fetch('${pageContext.request.contextPath}/content/' + e.target.id)
+		.then(res => json())
+		.then(data => {
+			console.log(data.max);
+		});
+	});
 </script>
