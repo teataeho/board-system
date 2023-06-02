@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -63,23 +64,10 @@ public class PartyController {
 		return "redirect:/party/partyList";
 	}
 
-	@GetMapping("/content/{bno}")
-	public String freeContent(@PathVariable int partyNo, @ModelAttribute("p") PageVO paging, Model model) {
-		model.addAttribute("article", service.getArticle(partyNo));
-		return "party/partyDetail";
-	}
-
-	// 글 수정 페이지 이동 처리
-	@PostMapping("/modify")
-	public String modify(@ModelAttribute("article") PartyVO vo) {
-		return "party/partyModify";
-	}
-
-	// 글 수정 처리
-	@PostMapping("/update")
-	public String update(PartyVO vo) {
-		service.update(vo);
-		return "redirect:/party/content/" + vo.getPartyNo();
+	@ResponseBody
+	@GetMapping("/content/{partyNo}")
+	public PartyVO getArticle(@PathVariable int partyNo) {
+		return service.getArticle(partyNo);
 	}
 
 	@PostMapping("/delete")

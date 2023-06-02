@@ -40,7 +40,7 @@
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th>번호</th>
+							<th>리뷰 번호</th>
 							<th class="board-title">제목</th>
 							<th>작성자</th>
 							<th>가게 이름</th>
@@ -53,7 +53,7 @@
 							<tr>
 								<td>${vo.reviewNo}</td>
 								<td><a
-									href="${pageContext.request.contextPath}/review/getArticle/${vo.reviewNo}?pageNum=${pc.paging.pageNum}&cpp=${pc.paging.cpp}&keyword=${pc.paging.keyword}&condition=${pc.paging.condition}">${vo.title}</a>
+									href="${pageContext.request.contextPath}/review/content/${vo.reviewNo}?pageNum=${pc.paging.pageNum}&cpp=${pc.paging.cpp}&keyword=${pc.paging.keyword}&condition=${pc.paging.condition}">${vo.title}</a>
 								</td>
 								<td>${vo.writer}</td>
 								<td>${vo.sno}</td>

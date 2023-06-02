@@ -9,7 +9,7 @@ import lombok.ToString;
 /*
 CREATE TABLE users(
    user_id VARCHAR(50) PRIMARY KEY,
-   user_pw VARCHAR(50) NOT NULL,
+   user_pw VARCHAR(200) NOT NULL,
    user_name VARCHAR(50) NOT NULL,
    user_nick VARCHAR(50) NOT NULL,
    user_email1 VARCHAR(50),
@@ -33,5 +33,4 @@ public class UserVO {
 	private String addrGu;
 	private String addrDong;
 	private LocalDateTime regDate;
-	private double temperature;
 }

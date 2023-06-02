@@ -47,37 +47,6 @@
 
 </div>
 <%@ include file="../include/footer.jsp" %>
-<!-- 모달달 -->
-<div class="modal" id="snsModal" role="dialog">
-	<div class="modal-dialog modal-lg">
-		<div class="modal-content">
-			<div class="modal-body row">
-				<div class="modal-img col-sm-8 col-xs-6" >
-					<img src="#" id="snsImg" width="100%">
-				</div>
-				<div class="modal-con col-sm-4 col-xs-6">
-					<div class="modal-inner">
-					<div class="profile">
-						<img src="#">
-					</div>
-					<div class="title">
-						<p id="snsWriter">테스트</p>
-						<small id="snsRegdate">21시간전</small>
-					</div>
-					<div class="content-inner">
-						<p id="snsContent">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vulputate elit libero, quis mattis enim tincidunt non. Mauris consequat ante vel urna posuere consequat. </p>
-					</div>
-					<div class="link-inner">
-						<a href="##"><i class="glyphicon glyphicon-thumbs-up"></i>좋아요</a>
-						<a href="##"><i class="glyphicon glyphicon-comment"></i>댓글달기</a> 
-						<a href="##"><i class="glyphicon glyphicon-share-alt"></i>공유하기</a>
-					</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
 
 <script>
 	//리스트
@@ -109,8 +78,8 @@
 
 				for (vo of list) {
 					str +=
-						`<div class="thumbnail-size rounded mb-4" id="vo.partyNo">
-									<img class="h-100" src="${pageContext.request.contextPath}/party/getImg/` + vo.fileName + `" alt="썸네일">
+						`<div class="thumbnail-size rounded mb-4">
+									<img class="h-100"  id="` + vo.partyNo + `" src="${pageContext.request.contextPath}/party/getImg/` + vo.fileName + `" alt="썸네일">
 									<div id="rdnWhlAddr" class="invisible">` + '주소가 들어갈 공간' + `</div>
 									<div id="title" class="invisible">` + vo.title + `</div>
 								</div>`;
@@ -141,4 +110,13 @@
 	}, 1000);
 
 	window.addEventListener('scroll', handleScroll);
+	//글 상세보기
+	document.getElementById('partyList').addEventListener('click', e => {
+		// if(!e.target.matches('.mb-4')) return;
+		fetch('${pageContext.request.contextPath}/content/' + e.target.id)
+		.then(res => json())
+		.then(data => {
+			console.log(data.max);
+		});
+	});
 </script>
