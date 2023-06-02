@@ -1,82 +1,136 @@
 /*--------------- General Setting ---------------*/
 .size {
+<<<<<<< HEAD
+	height: 500px;
+	overflow: hidden;
+	margin-top: 60px;
+=======
     height: 500px;
     overflow: hidden;
     margin-top: 60px;
+>>>>>>> 68a14a2362894462fa27f39c27e2c2d18d5c8ceb
 }
 
 body a {
-    text-decoration: none;
-    color: black;
+	text-decoration: none;
+	color: black;
 }
 
 li {
-    list-style: none;
+	list-style: none;
+}
+
+i {
+	position: relative;
 }
 
 /*--------------- header.jsp ---------------*/
 header {
-    background-color: #fff;
+	background-color: #fff;
 }
 
 .container .inner-container .login-menu li a {
-    margin-left: 20px;
+	margin-left: 20px;
 }
 
 /*--------------- footer.jsp ---------------*/
 #p {
-    font-size: 10px !important;
-    margin-bottom: 0 !important;
+	font-size: 10px !important;
+	margin-bottom: 0 !important;
 }
 
 h6 {
-    font-size: 12px !important;
-    margin-bottom: -10px !important;
+	font-size: 12px !important;
+	margin-bottom: -10px !important;
 }
 
 /*--------------- Main Page (home.jsp) ---------------*/
 .carousel-control.right,
 .carousel-control.left {
-    background-image: linear-gradient(to right, rgba(0, 0, 0, .0001) 0%,
-            rgba(0, 0, 0, 0) 100%)
+	background-image: linear-gradient(to right, rgba(0, 0, 0, .0001) 0%,
+			rgba(0, 0, 0, 0) 100%)
 }
 
 .page-header h1 {
-    margin-left: 10px;
-    font-weight: bold;
+	margin-left: 10px;
+	font-weight: bold;
 }
 
 .page-header small {
-    margin-left: 10px;
-    font-size: 15px;
-    font-weight: normal;
+	margin-left: 10px;
+	font-size: 15px;
+	font-weight: normal;
 }
 
 .p-0 .thumbnail-size {
-    width: 220px;
-    height: 300px;
-    overflow: hidden;
-    position: relative;
+	width: 220px;
+	height: 300px;
+	overflow: hidden;
+	position: relative;
 }
 
 .p-0 .thumbnail-size img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 /*--------------- PartyList Page (partyList.jsp) ---------------*/
 .partyList {
-    position: relative;
+	position: relative;
 }
 
 #orderBy {
-    position: absolute;
-    top: 0;
-    right: 10px;
+	position: absolute;
+	top: 0;
+	right: 10px;
 }
 
 #top {
-    height: 130px;
+	height: 130px;
+}
+
+/* 최상단 이동 버튼 */
+.stickyButtons {
+	position: sticky;
+	bottom: 430px;
+	padding-left: 1220px;
+}
+
+.stickyButtons a {
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	margin-top: 15px;
+}
+
+i.bi-arrow-up-short {
+	font-size: 40px;
+}
+
+i.bi-arrow-up-short::before {
+	background-color: #fff;
+	color: #F0975A;
+	border: 2px solid #F0975A;
+	border-radius: 50%;
+}
+
+#register {
+	display: inline-block;
+	width: 42px;
+	height: 42px;
+
+	background-color: #fff;
+	color: #F0975A;
+	border: 2px solid #F0975A;
+	border-radius: 50%;
+}
+
+i.bi-pencil {
+	font-size: 25px;
+}
+
+i.bi-pencil::before {
+	padding: 6.5px;
 }
