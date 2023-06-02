@@ -186,7 +186,6 @@
 						});
 				}
 
-<<<<<<< HEAD
 				document.getElementById('emailSelection').onchange = function () {
 					var userEmail2 = document.getElementById('userEmail2');
 					var emailSelection = document.getElementById('emailSelection');
@@ -199,20 +198,6 @@
 						userEmail2.value = emailSelection.value;
 					}
 				};
-=======
-	document.getElementById('emailSelection').onchange = function () {
-		var userEmail2 = document.getElementById('userEmail2');
-		var emailSelection = document.getElementById('emailSelection');
-
-		if (emailSelection.value === 'direct') {
-			userEmail2.disabled = false;
-			userEmail2.value = '';
-		} else {
-			userEmail2.disabled = true;
-			userEmail2.value = emailSelection.value;
-		}
-	};
->>>>>>> 68a14a2362894462fa27f39c27e2c2d18d5c8ceb
 
 
 				//인증번호 이메일 전송
@@ -289,7 +274,6 @@
 					}
 				}
 
-<<<<<<< HEAD
 				/*부적합한 아이디일 때 아이디 중복체크가 가능한 오류를 발견
 				-> '아이디 중복체크는 필수입니다' 나오기 전까지 아이디 중복체크 버튼 비활성화*/
 				document.getElementById('idCheckBtn').disabled = true;
@@ -311,98 +295,6 @@
 						document.getElementById('idCheckBtn').disabled = true;
 					}
 				}
-=======
-	/*부적합한 아이디일 때 아이디 중복체크가 가능한 오류를 발견
-	-> '아이디 중복체크는 필수입니다' 나오기 전까지 아이디 중복체크 버튼 비활성화*/
-	document.getElementById('idCheckBtn').disabled = true;
-
-	/*아이디 형식 검사 스크립트*/
-	var id = document.getElementById("userId");
-	id.onkeyup = function () {
-		/*test메서드를 통해 비교하며, 매칭되면 true, 아니면 false 반환*/
-		var regex = /^[A-Za-z0-9+]{4,12}$/;
-		if (regex.test(document.getElementById("userId").value)) {
-			document.getElementById("userId").style.borderColor = "green";
-			document.getElementById("msgId").innerHTML = "아이디 중복체크는 필수 입니다.";
-			idFlag = true;
-			document.getElementById('idCheckBtn').disabled = false;
-		} else {
-			document.getElementById("userId").style.borderColor = "orange";
-			document.getElementById("msgId").innerHTML = "부적합한 아이디 입니다.";
-			idFlag = false;
-			document.getElementById('idCheckBtn').disabled = true;
-		}
-	}
-
-
-	/*비밀번호 형식 검사 스크립트*/
-	var pw = document.getElementById("userPw");
-	pw.onkeyup = function () {
-		var regex = /^[A-Za-z0-9+]{8,16}$/;
-		if (regex.test(document.getElementById("userPw").value)) {
-			document.getElementById("userPw").style.borderColor = "green";
-			document.getElementById("msgPw").innerHTML = "사용가능합니다.";
-			pwFlag = true;
-
-		} else {
-			document.getElementById("userPw").style.borderColor = "orange";
-			document.getElementById("msgPw").innerHTML = "비밀번호를 제대로 입력하세요.";
-			pwFlag = false;
-
-		}
-	}
-
-	/*비밀번호 확인검사*/
-	var pwCheck = document.getElementById("pwCheck");
-	pwCheck.onkeyup = function () {
-		var regex = /^[A-Za-z0-9+]{8,16}$/;
-		if (document.getElementById("pwCheck").value == document
-			.getElementById("userPw").value) {
-			document.getElementById("pwCheck").style.borderColor = "green";
-			document.getElementById("msgPw2").innerHTML = "비밀번호가 일치합니다.";
-
-		} else {
-			document.getElementById("pwCheck").style.borderColor = "red";
-			document.getElementById("msgPw2").innerHTML = "비밀번호 확인란을 확인하세요.";
-		}
-	}
-
-	/*'거주구' 선택 불가*/
-	document.getElementById('addrGu').onchange = function () {
-		if (this.selectedIndex === 0) {
-			this.selectedIndex = -1;
-		}
-	};
-
-	document.getElementById('addrGu').addEventListener('click', function () {
-		console.log('선택된 거주구: ' + addrGu.value);
-	});
-
-	document.getElementById('addrDong').addEventListener('click', function () {
-		console.log('선택된 거주동: ' + addrDong.value);
-	});
-
-	function categoryChange(e) {
-		var addrDong_mapo = ["상암동", "성산동", "망원동", "연남동", "동교동", "서교동", "합정동", "상수동", "창전동", "신수동", "노고산동", "대흥동", "염리동",
-			"용강동", "도화동", "공덕동", "아현동", "신공덕동"
-		];
-		var addrDong_seodaemun = ["북가좌동", "남가좌동", "홍은동", "홍제동", "연희동", "신촌동", "봉원동", "북아현동", "현저동", "천연동"];
-
-		var target = document.getElementById("addrDong");
-
-		if (e.value == "마포구") var d = addrDong_mapo;
-		else if (e.value == "서대문구") var d = addrDong_seodaemun;
-
-		target.options.length = 0;
-
-		for (x in d) {
-			var opt = document.createElement("option");
-			opt.value = d[x];
-			opt.innerHTML = d[x];
-			target.appendChild(opt);
-		}
-	}
->>>>>>> 68a14a2362894462fa27f39c27e2c2d18d5c8ceb
 
 
 				/*비밀번호 형식 검사 스크립트*/
