@@ -104,12 +104,12 @@ small.information {
 }
 
 #joinBtn, #loginBtn {
-	width: 135px !important;
-	height: 50px !important;
-	margin: 0 10px !important;
+	width: 135px;
+	height: 50px;
+	margin: 0 10px;
 	background: #F4B183;
 	border: #F4B183;
-	color: white !important;
+	color: white;
 	transition: 0.3s;
 	
 }

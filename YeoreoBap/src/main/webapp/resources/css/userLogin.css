@@ -1,51 +1,45 @@
-.login {
-	padding-top: 100px;
-}
-
-.login .title {
-	text-align: center;
-	margin-bottom: 80px;
-}
-
-.login .border {
-	border: none !important;
-	width: 40%;
-	margin: 0 auto !important;	
+.loginBorder {
 	display: flex;
-	justify-content: center;
+    justify-content: center;
+    align-items: center;
+	margin-bottom: 200px;
 }
 
-/* 아이디, 비밀번호 칸 정렬 및 디자인*/
-.login .border .idPw {
-	display: flex;
-	flex-direction: column;
-	margin-right: 10px;
-	margin-bottom: 15px;
+.loginBorder .idPw {
+	margin-bottom: 30px;
 }
 
-.border .idPw .form-id, .border .idPw .form-pw{
-	border-radius: 5px;
-	margin: 3px 0;
+.loginBorder .idPw #userId.loginId {
+	margin-bottom: 10px;
 }
 
-/* 로그인 버튼 */
+.loginBorder .idPw #userPw.loginPw {
+	margin-top: 10px;
+}
+
 .login-div {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-}
-#loginBtn {
-	border: #F4B183;
-	border-radius: 5px;
-	color: white;
-	background-color: #F4B183;
-	width: 80px;
-	height: 80px;
 }
 
-#joinBtn {
-	text-decoration: none;
-	color: #F4B183;
-	font-size: 0.8em;
-	margin-top: 10px;
+#loginBtn.loginBtn {
+	width: 100px;
+	height: 100px;
+	border-radius: 5px;
 }
+
+#joinBtn.joinBtn {
+	background-color: white;
+	padding: 0;
+	width: 100px;
+	height: 30px;
+	text-align: center;
+}
+
+#joinBtn a {
+	text-decoration: none;
+	color: #F0975A;
+	font-size: 15px;
+	
+}
+
