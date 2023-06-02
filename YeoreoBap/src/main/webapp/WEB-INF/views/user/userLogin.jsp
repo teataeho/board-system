@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 	<%@ include file="../include/header.jsp" %>
-
+<br><br><br><br><br><br>
 		<div class="login">
 			<h2 class="title">로그인</h2>
-			<form action="" method="post" name="loginForm">
+			<form action="${pageContext.request.contextPath}/user/userLogin" method="post" name="loginForm">
 				<div class="border">
 					<div class="idPw">
 						<input type="text" class="form-id" name="userId" id="userId" placeholder="아이디" autocomplete="off">
@@ -48,5 +48,9 @@
 
 					document.loginForm.submit();
 				}
+				
+				 document.getElementById('joinBtn').onclick = () => {
+			            location.href='${pageContext.request.contextPath}/user/join';
+			        }
 
 			</script>

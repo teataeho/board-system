@@ -47,21 +47,20 @@
 					</thead>
 					<tbody>
 						<c:forEach var="vo" items="${reviewList}">
-							<%-- <tr>
-								<td>${vo.review_no}</td>
+							<tr>
+								<td>${vo.reviewNo}</td>
 								<td><a
 									href="${pageContext.request.contextPath}/review/getArticle/${vo.reviewNo}?pageNum=${pc.paging.pageNum}&cpp=${pc.paging.cpp}&keyword=${pc.paging.keyword}&condition=${pc.paging.condition}">${vo.title}</a>
 								</td>
 								<td>${vo.writer}</td>
 								<td>${vo.restId}</td>
 								<td><fmt:parseDate value="${vo.regDate}"
-										pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" /> <fmt:formatDate
-										value="${parsedDateTime}" pattern="yyyy년 MM월 dd일 HH시 mm분" /></td>
+										pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" /> <fmt:formatDate
+										value="${parsedDateTime}" pattern="yy년 MM월 dd일 HH시 mm분" /></td>
 								<td><fmt:parseDate value="${vo.updateDate}"
-										pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedUpdateDateTime" />
-									<fmt:formatDate value="${parsedUpdateDateTime}"
-										pattern="yyyy년 MM월 dd일 HH시 mm분" /></td>
-							</tr> --%>
+										pattern="yyyy-MM-dd'T'HH:mm" var="parsedUpdateDateTime" /> <fmt:formatDate
+										value="${parsedUpdateDateTime}" pattern="yy년 MM월 dd일 HH시 mm분" /></td>
+							</tr>
 						</c:forEach>
 					</tbody>
 
@@ -108,29 +107,17 @@
 
 <script>
 
-   
     window.onload = function() {
-
-   
         document.getElementById('pagination').addEventListener('click', e => {
             if(!e.target.matches('a')) {
                 return;
             }
-
             e.preventDefault(); 
-
-            
             const value = e.target.dataset.pagenum;
 
             document.pageForm.pageNum.value = value;
             document.pageForm.submit();
-
         });
 
     }
-    
-    
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH시 mm분");
-    String formattedDateTime = vo.getRegDate().format(formatter);    
-
 </script>
