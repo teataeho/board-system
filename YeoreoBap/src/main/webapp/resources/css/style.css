@@ -1,8 +1,8 @@
 /*--------------- General Setting ---------------*/
 .size {
-    height: 500px;
-    overflow: hidden;
-    margin-top: 60px;
+	height: 500px;
+	overflow: hidden;
+	margin-top: 60px;
 }
 
 body a {
