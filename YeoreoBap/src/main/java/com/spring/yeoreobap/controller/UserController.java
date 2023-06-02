@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.yeoreobap.command.UserVO;
@@ -81,44 +83,56 @@ public class UserController {
 
 	//로그인 페이지로 이동 요청 	get
 	@GetMapping("/userLogin")
-	public void login() {}
+	public String login(Model model, HttpSession session) {
+		session.removeAttribute("user");
+		return "user/userLogin";
+
+	}
 
 	// 로그인 요청 처리
-	//	@PostMapping("/userLogin")
-	//	public String login(String userId, String userPw, Model model, HttpSession session) {
-	//	    UserVO user = service.login(userId, userPw);
-	//	    if (user != null) {
-	//	        // 로그인 성공 시 세션에 사용자 정보를 저장
-	//	        session.setAttribute("user", user);
-	//	        return "/yeoreobap"; // 메인 화면으로 리다이렉트
-	//	    } else {
-	//	        model.addAttribute("msg", "loginFail");
-	//	        return "user/userLogin"; // 로그인 실패 시 로그인 페이지로 이동
-	//	    }
+	//		@PostMapping("/userLogin")
+	//		public String login(String userId, String userPw, Model model, HttpSession session) {
+	//		    UserVO user = service.login(userId, userPw);
+	//		    if (user != null) {
+	//		        // 로그인 성공 시 세션에 사용자 정보를 저장
+	//		        model.addAttribute("user", user);
+	//		        return "redirect:/"; // 메인 화면으로 리다이렉트
+	//		    } else {
+	//		        model.addAttribute("msg", "loginFail");
+	//		        return "user/userLogin"; // 로그인 실패 시 로그인 페이지로 이동
+	//		    }
+	//		}
+
+	// 로그인 요청 처리
+    @PostMapping("/userLogin")
+    public String login(String userId, String userPw, Model model) {
+        log.info("나는 userController의 login");
+        String result = service.login(userId, userPw);
+        if (result.equals("success")) {
+            return "redirect:/";
+        } else {
+            model.addAttribute("msg", "loginFail");
+            return "user/userLogin";
+        }
+    }
+	//		model.addAttribute("user", service.login(userId, userPw));
+	//		if(user != null) {
+	//			HttpSession session = request.getSession();
+	//			if(session != null) {
+	//				String sessionId = session.getId();
+	//				Object attribute = session.getAttribute("user");
+	//				if(attribute != null) {
+	//					UserVO sessionUser = (UserVO) attribute;
+	//					log.info("세션id: " + sessionId);
+	//					log.info("유지되는 사용자: " + sessionUser);
+	//				}
+	//			}
+	//			return "redirect:/";
+	//		} else {
+	//			model.addAttribute("msg", "loginFail");
+	//		return "user/userLogin";
+	//		}
 	//	}
-	//로그인 요청
-	@PostMapping("/userLogin")
-	public String login(String userId, String userPw, Model model, HttpServletRequest request) {
-		log.info("나는 userController의 login");
-		UserVO user = service.login(userId, userPw);
-		model.addAttribute("user", service.login(userId, userPw));
-		if(user != null) {
-			HttpSession session = request.getSession();
-			if(session != null) {
-				String sessionId = session.getId();
-				Object attribute = session.getAttribute("user");
-				if(attribute != null) {
-					UserVO sessionUser = (UserVO) attribute;
-					log.info("세션id: " + sessionId);
-					log.info("유지되는 사용자: " + sessionUser);
-				}
-			}
-			return "redirect:/";
-		} else {
-			model.addAttribute("msg", "loginFail");
-		return "user/userLogin";
-		}
-	}
 
 	//마이페이지 이동 요청
 	@GetMapping("/userMypage")

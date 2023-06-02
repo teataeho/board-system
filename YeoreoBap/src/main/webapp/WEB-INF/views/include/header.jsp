@@ -29,7 +29,7 @@
 		</head>
 
 		<body>
-			<header>
+			<header class="sticky-top">
 				<div class="container border-bottom border-2 border-orange">
 					<div class="inner-container d-flex justify-content-between">
 						<!-- 로고 -->
