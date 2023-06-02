@@ -38,6 +38,8 @@
             </div>
         </div>
         </section>
+        
+        <%@ include file="../include/footer.jsp" %>
 
         <script>
             //목록 이동 처리
@@ -70,4 +72,4 @@
                 }
             }
         </script>
-<%@ include file="../include/footer.jsp" %>      
+  

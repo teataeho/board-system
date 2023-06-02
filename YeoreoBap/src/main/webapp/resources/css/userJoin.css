@@ -1,10 +1,7 @@
-#section{
+#section {
 	margin: 0 auto;
 	max-width: 600px;
 }
-
-
-
 
 .title {
 	padding-top: 80px;
@@ -35,7 +32,9 @@
 	flex-grow: 5;
 	margin-right: 10px;
 }
-#idCheckBtn, #emailCheckBtn {
+
+#idCheckBtn,
+#emailCheckBtn {
 	display: block;
 	flex-grow: 1;
 	background: #F4B183;
@@ -43,7 +42,9 @@
 	color: white;
 	transition: 0.3s;
 }
-#idCheckBtn:hover, #emailCheckBtn:hover {
+
+#idCheckBtn:hover,
+#emailCheckBtn:hover {
 	background: #F0975A;
 }
 
@@ -53,24 +54,30 @@
 	align-items: center;
 	margin-bottom: 10px;
 }
+
 #emailBorder p {
 	margin: 0 10px;
 }
+
 #userEmail1 {
 	flex-grow: 10;
 }
+
 #userEmail2 {
 	flex-grow: 10;
 	margin-right: 10px;
 }
+
 #emailSelection {
 	flex-grow: 10;
 	margin-bottom: 0;
 	height: 48.67px;
 }
+
 .emailCheck {
 	display: flex;
 }
+
 #emailCheck {
 	flex-grow: 5;
 	margin-right: 10px;
@@ -78,7 +85,7 @@
 
 
 /* 활동하고싶은동네 */
-#block p#p2{
+#block p#p2 {
 	margin-top: 40px;
 }
 
@@ -90,6 +97,7 @@ small.information {
 	display: flex;
 	height: 48.67px;
 }
+
 #locBorder .locGu {
 	margin-right: 10px;
 }
@@ -99,11 +107,12 @@ small.information {
 	margin-top: 100px;
 	display: flex;
 	margin-top: 100px;
-    display: flex;
-    justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 
-#joinBtn, #loginBtn {
+#joinBtn,
+#loginBtn {
 	width: 135px;
 	height: 50px;
 	margin: 0 10px;
@@ -111,10 +120,11 @@ small.information {
 	border: #F4B183;
 	color: white;
 	transition: 0.3s;
-	
+
 }
 
-#joinBtn:hover, #loginBtn:hover {
+#joinBtn:hover,
+#loginBtn:hover {
 	background: #F0975A;
 }
 

@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,13 +26,13 @@ public class ReviewReplyController {
 	@Autowired
 	private IReviewReplyService service;
 	
-	@PostMapping("/regist")
-	public String replyRegist(@RequestBody ReviewReplyVO vo) {
-		service.replyRegist(vo);
-		return "registSuccess";
+	@PostMapping("/register")
+	public String replyRegister(@RequestBody ReviewReplyVO vo) {
+		service.replyRegister(vo);
+		return "registerSuccess";
 	}
 	
-	//댓글 목록
+	// 댓글 목록
 	@GetMapping("/getList/{replyNo}/{pageNum}")
 	public Map<String, Object> getList(@PathVariable int replyNo, @PathVariable int pageNum) {
 		List<ReviewReplyVO> list = service.getList(replyNo, pageNum);
@@ -42,21 +44,21 @@ public class ReviewReplyController {
 		return map;
 	}
 	
-	//댓글 수정
+	// 댓글 수정
 	@PutMapping("/{replyNo}")
-	public String update(@PathVariable int reviewNo, @RequestBody ReviewReplyVO vo) {
+	public String update(@PathVariable int reviewNo, @RequestBody ReviewReplyVO vo, HttpSession session) {
 		vo.setReplyNo(reviewNo);
-		if(service.pwCheck(vo)) {
+		if(service.userVerification(vo, session)) {
 			service.update(vo);
 			return "replyUpdateSuccess";
 		} else return "replyUpdateFail";
 	}
 	
-	//댓글 삭제
+	// 댓글 삭제
 	@DeleteMapping("/{replyNo}")
-	public String delete(@PathVariable int replyNo, @RequestBody ReviewReplyVO vo) {
+	public String delete(@PathVariable int replyNo, @RequestBody ReviewReplyVO vo, HttpSession session) {
 		vo.setReplyNo(replyNo);
-		if(service.pwCheck(vo)) {
+		if(service.userVerification(vo, session)) {
 			service.delete(replyNo);
 			return "replyDeleteSuccess";
 		} else return "replyDeleteFail";

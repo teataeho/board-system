@@ -69,8 +69,8 @@ public class PartyController {
 	}
 
 	// 여러밥 모집글 등록 (사용자 지정 사진)
-	@PostMapping("/partyRegister")
-	public String register(PartyVO vo, MultipartFile file) {
+	@PostMapping("/partyRegisterCustom")
+	public String registerCustomPicture(PartyVO vo, MultipartFile file) {
 		service.register(vo, file);
 		return "redirect:/party/partyList";
 	}

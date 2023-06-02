@@ -7,31 +7,23 @@ import lombok.Setter;
 import lombok.ToString;
 
 /*
-CREATE TABLE users(
-   user_id VARCHAR(50) PRIMARY KEY,
-   user_pw VARCHAR(50) NOT NULL,
-   user_name VARCHAR(50) NOT NULL,
-   user_nick VARCHAR(50) NOT NULL,
-   user_email1 VARCHAR(50),
-   user_email2 VARCHAR(50),
-   addr_gu VARCHAR(300),
-   addr_dong VARCHAR(300),
-   reg_date DATETIME DEFAULT CURRENT_TIMESTAMP,
-   temperature INT NOT NULL DEFAULT '0'
-);
+	CREATE TABLE users(
+	   user_id VARCHAR(50) PRIMARY KEY,
+	   user_pw VARCHAR(300) NOT NULL,
+	   user_name VARCHAR(50) NOT NULL,
+	   user_nick VARCHAR(50) NOT NULL,
+	   user_email1 VARCHAR(50) NOT NULL,
+	   user_email2 VARCHAR(50) NOT NULL,
+	   addr_gu VARCHAR(300) NOT NULL,
+	   addr_dong VARCHAR(300) NOT NULL,
+	   reg_date DATETIME DEFAULT CURRENT_TIMESTAMP
+	);
 */
 
 @Getter @Setter @ToString
 public class UserVO {
 
-	private String userId;
-	private String userPw;
-	private String userName;
-	private String userNick;
-	private String userEmail1;
-	private String userEmail2;
-	private String addrGu;
-	private String addrDong;
+	private String userId, userPw, userName, userNick, userEmail1, userEmail2, addrGu, addrDong;
 	private LocalDateTime regDate;
-	private double temperature;
+
 }
