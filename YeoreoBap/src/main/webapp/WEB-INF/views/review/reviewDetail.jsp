@@ -82,7 +82,7 @@
 			<div class="col-xs-12 col-md-9 write-wrap">
 				<form class="reply-wrap">
 					<div class="reply-image">
-						<img src="${pageContext.request.contextPath}/img/profile.png">
+						<%-- <img src="${pageContext.request.contextPath}/img/profile.png"> --%>
 					</div>
 					<!--form-control은 부트스트랩의 클래스입니다-->
 					<div class="reply-content">
@@ -189,7 +189,7 @@ document.getElementById('delBtn').onclick = () => {
 								const replyId = document.getElementById('replyId').value;
 								const replyPw = document.getElementById('replyPw').value;
 
-								if (reply === '' || replyId === '' || replypW === '') {
+								if (reply === '' || replyId === '' || replyPw === '') {
 									alert('이름, 비밀번호, 내용을 입력하세요');
 									return;
 								}
@@ -202,19 +202,19 @@ document.getElementById('delBtn').onclick = () => {
 									},
 									body: JSON.stringify({
 										'review_no': reviewNo,
-										'review': review,
-										'reviewId': reviewId,
-										'reviewPw': reviewPw
+										'reply' : reply,
+										'replyId' : replyId,
+										'replyPw' : replyPw
 									})
 								};
 
-								fetch('${pageContext.request.contextPath}/review/regist', reqObj)
+								fetch('${pageContext.request.contextPath}/review/reviewRegist', reqObj)
 									.then(res => res.text())
 									.then(data => {
 										console.log('통신 성공!: ' + data);
-										document.getElementById('review').value = '';
-										document.getElementById('reviewId').value = '';
-										document.getElementById('reviewPw').value = '';
+										document.getElementById('reply').value = '';
+										document.getElementById('replyId').value = '';
+										document.getElementById('replyPw').value = '';
 										//등록 완료 후 댓글 목록 함수를 호출해서 비동기식으로 목록 표현
 										getList(1, true);
 										//더보기버튼 눌러서 댓글 더 보려하면 false

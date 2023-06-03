@@ -18,8 +18,8 @@
 				<!--form select를 가져온다 -->
 				<form action="<c:url value='/review/reviewList' />">
 					<div class="search-wrap">
-						<button type="submit" class="btn btn-info search-btn">검색</button>
 						
+						<button type="submit" class="btn btn-info search-btn">검색</button>
 						<select name="condition" class="form-control search-select">
 							<option value="title"
 								${pc.paging.condition == 'title' ? 'selected' : ''}>제목</option>
