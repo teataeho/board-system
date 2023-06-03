@@ -44,7 +44,7 @@
 
 
 					<div class="form-group">
-						<label>후기 번호</label> <input class="form-control" name="reviewNo"
+						<label>후기 번호</label> <input id="reviewNo" class="form-control" name="reviewNo"
 							value="${article.reviewNo}" readonly>
 					</div>
 					<div class="form-group">
@@ -86,17 +86,17 @@
 					</div>
 					<!--form-control은 부트스트랩의 클래스입니다-->
 					<div class="reply-content">
-						<textarea class="form-control" rows="3" id="reply"
-							placeholder="댓글을 입력해주세요"></textarea>
+						
 						<div class="reply-group">
 							<div class="reply-input">
 								<input type="text" class="form-control" id="replyId"
-									placeholder="이름">
+									value="${userInfo.userNick}" readonly>
 								<!-- 로그인한 아이디로 고정시키고 싶은데(readonly) -->
 								<input type="password" class="form-control" id="replyPw"
 									placeholder="비밀번호">
 							</div>
-
+							<textarea class="form-control" rows="3" id="reply"
+							placeholder="댓글을 입력해주세요"></textarea>
 							<button type="button" id="replyRegist" class="right btn btn-info">등록하기</button>
 						</div>
 
@@ -105,13 +105,13 @@
 
 				<!--여기에 접근 반복-->
 				<div id="replyList">
-					<!-- js단에서 반복문을 이용해서 댓글의 개수만큼 반복 표현 
-                        <div class='review-wrap'>
-                        <div class='review-image'>
+					 
+                        <div class='reply-wrap'>
+                        <div class='reply-image'>
                             <img src='${pageContext.request.contextPath}/img/profile.png'>
                         </div>
-                        <div class='review-content'>
-                            <div class='review-group'>
+                        <div class='reply-content'>
+                            <div class='reply-group'>
                                 <strong class='left'>honggildong</strong> 
                                 <small class='left'>2019/12/10</small>
                                 <a href='#' class='right'><span class='glyphicon glyphicon-pencil'></span>수정</a>
@@ -119,7 +119,7 @@
                             </div>
                             <p class='clearfix'>여기는 댓글영역</p>
                         </div>
-                    </div>-->
+                    </div>
 				</div>
 				<button type="button" class="form-control" id="moreList">
 					<!-- style="display: none;" -->
@@ -131,7 +131,7 @@
 </section>
 
 <!-- 모달 -->
-<div class="modal fade" id="reviewModal" role="dialog">
+<div class="modal fade" id="replyModal" role="dialog">
 	<div class="modal-dialog modal-md">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -141,11 +141,11 @@
 			</div>
 			<div class="modal-body">
 				<!-- 수정폼 id값을 확인하세요-->
-				<div class="review-content">
-					<textarea class="form-control" rows="4" id="modalreview"
+				<div class="reply-content">
+					<textarea class="form-control" rows="4" id="modalReply"
 						placeholder="내용입력"></textarea>
-					<div class="review-group">
-						<div class="review-input">
+					<div class="repply-group">
+						<div class="reply-input">
 							<input type="hidden" id="modalRno"> <input
 								type="password" class="form-control" placeholder="비밀번호"
 								id="modalPw">
@@ -160,18 +160,10 @@
 	</div>
 </div>
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+
 <%@ include file="../include/footer.jsp"%>
 
 <script>
-
-//삭제 버튼 이벤트 처리
 
 const $form = document.form;
 document.getElementById('delBtn').onclick = () => {
@@ -183,14 +175,17 @@ document.getElementById('delBtn').onclick = () => {
 
 
 						window.onload = function () {
-							document.getElementById('replyRegist').onclick = function () {
-								const reviewNo = '${article.reviewNo}';   //현재 게시글 번호
+							document.getElementById('replyRegist').onclick = () => {
+								const reviewNo = document.getElementById('reviewNo').value //현재 게시글 번호
 								const reply = document.getElementById('reply').value;
 								const replyId = document.getElementById('replyId').value;
 								const replyPw = document.getElementById('replyPw').value;
 
-								if (reply === '' || replyId === '' || replypW === '') {
-									alert('이름, 비밀번호, 내용을 입력하세요');
+								if(reply === '') {
+									alert('내용을 입력해주세요.');
+									return;
+								} else if(replyPw === '') {
+									alert('비밀번호를 입력해주세요.');
 									return;
 								}
 
@@ -201,81 +196,64 @@ document.getElementById('delBtn').onclick = () => {
 										'Content-Type': 'application/json'
 									},
 									body: JSON.stringify({
-										'review_no': reviewNo,
-										'review': review,
-										'reviewId': reviewId,
-										'reviewPw': reviewPw
+										'reviewNo': reviewNo,
+										'reply': reply,
+										'replyId': replyId,
+										'replyPw': replyPw
 									})
 								};
 
-								fetch('${pageContext.request.contextPath}/review/regist', reqObj)
+								fetch('${pageContext.request.contextPath}/reply/regist', reqObj)
 									.then(res => res.text())
 									.then(data => {
 										console.log('통신 성공!: ' + data);
-										document.getElementById('review').value = '';
-										document.getElementById('reviewId').value = '';
-										document.getElementById('reviewPw').value = '';
+										document.getElementById('reply').value = '';
+										document.getElementById('replyPw').value = '';
 										//등록 완료 후 댓글 목록 함수를 호출해서 비동기식으로 목록 표현
 										getList(1, true);
-										//더보기버튼 눌러서 댓글 더 보려하면 false
+							
 									});
 
 							}   //댓글 등록 이벤트 끝
 
-							//더보기 버튼 처리(클릭시 전역변수 page에 +1한 값을 요청)
+						
 							document.getElementById('moreList').onclick = () => {
-								/*
-								왜 false?
-								더보기  댓글을 누적해서 보여준다.
-								1페이지 댓글 내용 밑에 2페이지 누적해서 깔아야 한다.
-								1페이지 삭제 후 2페이지 출력이 아니다.
-								*/
+								
 								getList(++page, false);
 							}
 
 
-							let page = 1;   //전역 의미로 사용할 페이지 번호
-							let strAdd = '';    //화면에 그려넣을 태그를 문자열의 형태로 추가할 변수
-							const $reviewList = document.getElementById('reviewList');
+							let page = 1;   
+							let strAdd = '';   
+							const $replyList = document.getElementById('replyList');
 
-							//게시글 상세보기 화면에 처음 진입했을 시 댓글 리스트 호출
+							
 							getList(1, true);
-
-							//댓글 목록 호출 함수
-							//getList의 매개값으로 뭘 줄것인가
-							//요청된 페이지 번호와, 화면을 리셋할 것인지의 여부를 boolean 타입의 reset으로 받는다.
-							//(페이지가 그대로 머물며 댓글이 밑에 계속 쌓이기 때문에, 상황에 따라 유동적 처리.. 페이지 리셋/누적)
-
-							//var contextPath = '${pageContext.request.contextPath}';
-							//var article = <c:out value="${article}" />; // Review 객체를 JavaScript 변수로 할당
-							//var reviewNo = article.reviewNo; // reviewNo 값을 가져옴
 
 							function getList(pageNum, reset) {
 								strAdd = '';
 								const reviewNo = '${article.reviewNo}'; //게시글 번호
 
 								//get방식으로 댓글 목록을 요청(비동기)
-								fetch('${pageContext.request.contextPath}/review/reviewList/' + reviewNo + '/' + pageNum)
+								fetch('${pageContext.request.contextPath}/reply/getList/' + reviewNo + '/' + pageNum)
 									///??
 									.then(res => res.json())
 									.then(data => {
 										console.log(data);
 
 										let total = data.total; //총 댓글 수
-										let reviewList = data.list;  //후기 리스트
+										let replyList = data.list;  //후기 리스트
 
-										//insert, update, delete 작업 후에는
-										//댓글 내용 태그를 누적하고 있는 strAdd 변수를 초기화해서 
-										//마치 화면이 리셋된 것처럼 보여줘야 한다.
+										
 										if (reset) {
-											while ($reviewList.firstChild) {
-												$reviewList.firstChild.remove();
+											while ($replyList.firstChild) {
+												$replyList.firstChild.remove();
 											}
 											page = 1;
 										}
 
 										//응답 데이터의 길이가 0과 같거나 더 작으면 함수를 종료
-										if (reviewList.length <= 0) return;
+										if (replyList.length <= 0) return;
 
 										//페이지번호 * 이번 요청으로 받은 댓글 수보다 전체 댓글 개수가 적다면 더보기 버튼 없어도 된다.
 										console.log('현재 페이지: ' + page);
@@ -285,31 +263,29 @@ document.getElementById('delBtn').onclick = () => {
 											document.getElementById('moreList').style.display = 'block';
 										}
 
-										//reviewList의 개수만큼 태그를 문자열 형태로 직접 그린것
-										//중간에 들어갈 댓글 글쓴이, 날짜, 댓글 내용은 목록에서 꺼내서 표현
-										for (let i = 0; i < reviewList.length; i++) {
+										for (let i = 0; i < replyList.length; i++) {
 											strAdd +=
-												`<div class='review-wrap'>
-                        <div class='review-image'>
+												`<div class='reply-wrap'>
+                        <div class='reply-image'>
                             <img src='${pageContext.request.contextPath}/img/profile.png'>
                         </div>
-                        <div class='review-content'>
-                            <div class='review-group'>
-                                <strong class='left'>` + reviewList[i].reviewId + `</strong> 
-                                <small class='left'>` + (reviewList[i].updateDate != null ? parseTime(reviewList[i].updateDate) + ' (수정됨)' : parseTime(reviewList[i].reviewDate)) + `</small>
-                                <a href='` + reviewList[i].rno + `' class='right reviewDelete'><span class='glyphicon glyphicon-remove'></span>삭제</a> &nbsp;
-                                <a href='` + reviewList[i].rno + `' class='right reviewModify'><span class='glyphicon glyphicon-pencil'></span>수정</a>
+                        <div class='reply-content'>
+                            <div class='reply-group'>
+                                <strong class='left'>` + replyList[i].replyId + `</strong> 
+                                <small class='left'>` + (replyList[i].updateDate != null ? parseTime(replyList[i].updateDate) + ' (수정됨)' : parseTime(replyList[i].replyDate)) + `</small>
+                                <a href='` + replyList[i].replyNo + `' class='right replyDelete'><span class='glyphicon glyphicon-remove'></span>삭제</a> &nbsp;
+                                <a href='` + replyList[i].replyNo + `' class='right replyModify'><span class='glyphicon glyphicon-pencil'></span>수정</a>
                             </div>
-                            <p class='clearfix'>` + reviewList[i].review + `</p>
+                            <p class='clearfix'>` + replyList[i].reply + `</p>
                         </div>
                     </div>`;
 										}
 
 										//id가 reviewList라는 div 영역에 문자열 형식으로 모든 댓글을 추가.
 										if (!reset) {
-											document.getElementById('reviewList').insertAdjacentHTML('beforeend', strAdd);
+											document.getElementById('replyList').insertAdjacentHTML('beforeend', strAdd);
 										} else {                                                     //position      값    
-											document.getElementById('reviewList').insertAdjacentHTML('afterbegin', strAdd);
+											document.getElementById('replyList').insertAdjacentHTML('afterbegin', strAdd);
 										}                                                           //position      값
 
 									});

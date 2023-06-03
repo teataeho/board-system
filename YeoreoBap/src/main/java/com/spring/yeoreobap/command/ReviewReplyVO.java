@@ -27,5 +27,4 @@ public class ReviewReplyVO {
 	private String replyId;
 	private String replyPw;
 	private LocalDateTime regDate;
-	private LocalDateTime updateDate;
 }
