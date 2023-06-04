@@ -32,7 +32,7 @@
 	<select id="idCheck" resultType="string">
 		SELECT reply_id
 		FROM reviewReply
-		WHERE reply_no = #{replyNo}
+		WHERE review_no = #{reviewNo}
 	</select>
 	
 
