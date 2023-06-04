@@ -6,8 +6,8 @@
 
 	<insert id="replyRegist">
 		INSERT INTO reviewReply
-		(review_no, review_reply, reply_id, reply_pw)
-		VALUES (#{reviewNo}, #{reply}, #{replyId}, #{replyPw})
+		(review_no, reply, reply_id)
+		VALUES (#{reviewNo}, #{reply}, #{replyId})
 	</insert>
 	
 	<select id="getList" resultType="rReply">
@@ -29,18 +29,13 @@
 		WHERE review_no = #{reviewNo}
 	</select> -->
 	
-	<select id="pwCheck" resultType="string">
-		SELECT reply_pw
+	<select id="idCheck" resultType="string">
+		SELECT reply_id
 		FROM reviewReply
 		WHERE reply_no = #{replyNo}
 	</select>
 	
-	<update id="update">
-		update reviewReply
-		SET review_reply = #{reply}
-		WHERE reply_no = #{replyNo}
-	</update>
-	
+
 	<delete id="delete">
 		DELETE FROM reviewReply
 		WHERE reply_no = #{replyNo}

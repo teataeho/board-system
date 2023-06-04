@@ -16,12 +16,9 @@ public interface IReviewReplyService {
 
 	//댓글 개수
 	int getTotal(int replyNo);
-
-	//비밀번호 확인
-	boolean pwCheck(ReviewReplyVO vo);
-
-	//댓글 수정
-	void update(ReviewReplyVO vo);
+	
+	//아이디 확인
+	boolean idCheck(ReviewReplyVO vo);
 
 	//댓글 삭제
 	void delete(int replyNo);
