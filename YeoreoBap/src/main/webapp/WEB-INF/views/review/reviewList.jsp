@@ -46,7 +46,7 @@
 							<th>리뷰 번호</th>
 							<th class="board-title">제목</th>
 							<th>작성자</th>
-							<th>식당 번호</th>
+							<th>식당 이름</th>
 							<th>등록일</th>
 							<th>수정일</th>
 						</tr>
@@ -59,7 +59,7 @@
 									href="${pageContext.request.contextPath}/review/content/${vo.reviewNo}?pageNum=${pc.paging.pageNum}&cpp=${pc.paging.cpp}&keyword=${pc.paging.keyword}&condition=${pc.paging.condition}">${vo.title}</a>
 								</td>
 								<td>${vo.userNick}</td>
-								<td>${vo.sno}</td>
+								<td>${vo.bplcNm}</td>
 								<td><fmt:parseDate value="${vo.regDate}"
 										pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" /> <fmt:formatDate
 										value="${parsedDateTime}" pattern="yy.MM.dd. HH:mm" /></td>

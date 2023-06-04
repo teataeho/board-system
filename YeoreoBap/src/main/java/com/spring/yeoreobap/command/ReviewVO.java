@@ -30,5 +30,5 @@ public class ReviewVO {
 	private int reviewReplyCnt;
 	
 	private String userNick;
-	private String bplc_nm;
+	private String bplcNm;
 }
