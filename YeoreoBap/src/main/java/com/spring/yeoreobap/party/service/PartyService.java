@@ -89,4 +89,9 @@ public class PartyService implements IPartyService {
 		mapper.attend(vo);
 	}
 
+	@Override
+	public void cancelAttend(ParticipantsVO vo) {
+		mapper.cancelAttend(vo);		
+	}
+
 }

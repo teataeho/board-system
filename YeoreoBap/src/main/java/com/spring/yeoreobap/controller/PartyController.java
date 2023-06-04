@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -82,6 +83,13 @@ public class PartyController {
 	@PostMapping("/attend")
 	public String attend(@RequestBody ParticipantsVO vo) {
 		service.attend(vo);
+		return "success";
+	}
+	
+	@ResponseBody
+	@DeleteMapping("/cancelAttend")
+	public String cancelAttend(@RequestBody ParticipantsVO vo) {
+		service.cancelAttend(vo);
 		return "success";
 	}
 	

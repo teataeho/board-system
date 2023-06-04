@@ -22,5 +22,7 @@ public interface IPartyMapper {
 	void delete(int partyNo);
 	//참여
 	void attend(ParticipantsVO vo);
+	//참가 취소
+	void cancelAttend(ParticipantsVO vo);
 	
 }

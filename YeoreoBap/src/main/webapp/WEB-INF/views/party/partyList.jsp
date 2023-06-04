@@ -198,5 +198,26 @@
 				}
 			})
 		}
+
+		//참가취소
+		if(e.target.id === 'cancelAttend') {
+			fetch('cancelAttend', {
+				method: 'delete',
+				headers: {
+                        'Content-Type':'application/json'
+                    },
+                    body: JSON.stringify({
+                        'userId' : uid,
+						'partyNo' : document.getElementById('hiddenPartyNo').value
+                    })
+			})
+			.then(res => res.text())
+			.then(text => {
+				if(text === 'success') {
+					alert('파티에서 나오셨습니다.');
+					modal.hide();
+				}
+			})
+		}
 	});
 </script>

@@ -13,13 +13,13 @@
 					<p>후기게시판</p>
 				</div>
 
-				<form action="${pageContext.request.contextPath}/review/reviewRegist"
+				<form action="${pageContext.request.contextPath}/review/regist"
 					method="post">
 					<table class="table">
 						<tbody class="t-control">
 							<tr>
 								<td class="t-title">작성자</td>
-								<td><input class="form-control input-sm" name="writer"></td>
+								<td><input class="form-control input-sm" value="${userInfo.userNick}" readonly></td>
 							</tr>
 							<tr>
 								<td class="t-title">제목</td>
@@ -35,7 +35,7 @@
 							</tr>
 						</tbody>
 					</table>
-					
+					<input type="hidden" name="writer" value="${userInfo.userId}">
 					<div class="titlefoot">
 						<button class="btn" type="submit">등록</button>
 						<button class="btn" type="button" onclick="location.href='${pageContext.request.contextPath}/review/reviewList'">목록</button>
