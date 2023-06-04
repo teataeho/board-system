@@ -4,6 +4,28 @@
 
 <mapper namespace="com.spring.yeoreobap.review.mapper.IReviewMapper">
 
+
+<sql id="search">
+	 	<if test="condition == 'title'">
+	 		WHERE title LIKE CONCAT('%', #{keyword}, '%')
+	 	</if>
+	 	<if test="condition == 'writer'">
+	 		WHERE writer LIKE CONCAT('%', #{keyword}, '%')
+	 	</if>
+	 	<if test="condition == 'content'">
+	 		WHERE content LIKE CONCAT('%', #{keyword}, '%')
+	 	</if>
+	 	<if test="condition == 'restaurant'">
+	 		WHERE sno LIKE CONCAT('%', #{keyword}, '%')
+	 	</if>
+	 	<if test="condition == 'titleContent'">
+	 		WHERE title LIKE CONCAT('%', #{keyword}, '%')
+	 		OR content LIKE CONCAT('%', #{keyword}, '%')
+	 	</if>
+	 </sql>
+
+
+
 	<insert id="regist">
 		INSERT INTO review
 		(review_no, sno, writer, title, content)
@@ -13,6 +35,7 @@
 	<select id="getList" resultType="review">
 		SELECT * 
 		FROM review
+		<include refid="search" />
 		ORDER BY review_no DESC
 		LIMIT #{pageStart}, #{cpp}
 	</select>
@@ -20,6 +43,7 @@
 	<select id="getTotal" resultType="int">
 		SELECT COUNT(*)
 		FROM review
+		<include refid="search" />
 	</select>
 	
 	<select id="getContent" resultType="review">
