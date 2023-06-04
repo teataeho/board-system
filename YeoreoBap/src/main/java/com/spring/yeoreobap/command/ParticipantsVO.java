@@ -10,6 +10,6 @@ import lombok.ToString;
 public class ParticipantsVO {
 	
 	private int pNo, partyNo;
-	private String user_id;
+	private String userId;
 
 }

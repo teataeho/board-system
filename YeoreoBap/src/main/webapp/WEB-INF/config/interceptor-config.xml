@@ -20,15 +20,14 @@
 		</mvc:interceptor>
 		
 		<!-- 로그인 권한 체크 인터셉터 url 매핑 -->
-		<!-- <mvc:interceptor>
-			<mvc:mapping path="/review/reviewRegist"/>
-			<mvc:mapping path="/review/reviewList"/>
+		<mvc:interceptor>
+			<mvc:mapping path="/party/map"/>
 			<mvc:mapping path="/party/partyRegister"/>
+			<mvc:mapping path="/party/delete"/>
+			<mvc:mapping path="/party/attend"/>
 			<mvc:mapping path="/user/userMypage"/>
-			글 상세보기 바로 보려고 잠깐 주석
-			**뭐가 들어올지 모르니까
 			<ref bean="userAuth"/>
-		</mvc:interceptor> -->
+		</mvc:interceptor>
 	</mvc:interceptors>
 
 

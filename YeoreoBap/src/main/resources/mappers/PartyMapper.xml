@@ -18,9 +18,17 @@
 	</select>
 	
 	<select id="getArticle" resultType="party">
-		SELECT p.*, s.rdn_whl_addr
+		SELECT p.*, s.rdn_whl_addr,
+			(
+		    SELECT COUNT(*) FROM participants
+				WHERE party_no = #{partyNo}
+		    ) AS attended,
+		    (
+		    SELECT COUNT(*) FROM participants
+				WHERE party_no = #{partyNo} AND user_id = #{userId}
+		    ) AS attended_num
 		FROM party p JOIN store s ON p.sno = s.sno
-		WHERE p.party_no = #{partyNo}
+		WHERE p.party_no = #{partyNo};
 	</select>
 	
 	<delete id="delete">

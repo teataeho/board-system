@@ -1,6 +1,7 @@
 package com.spring.yeoreobap.command;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -32,4 +33,6 @@ public class UserVO {
 	private String addrGu;
 	private String addrDong;
 	private LocalDateTime regDate;
+	
+	private List<PartyVO> userPartyList;
 }

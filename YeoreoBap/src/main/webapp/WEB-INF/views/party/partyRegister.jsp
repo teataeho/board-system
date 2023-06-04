@@ -25,8 +25,8 @@
 						<span>*(jpg, jpeg, png) 파일만 가능합니다.</span>
 					</div>
 				</div>
-				글쓴이(로그인구현시 생략)
-				<input type="text" name="writer">
+				<input type="text" id="userNick" readonly>
+				<input type="hidden" name="writer" id="writer">
 				<div>
 					<p>제목</p>
 					<div class="border"><input type="text" class="form-title" name="title" id="title"
@@ -66,7 +66,8 @@
 	</style>
 
 	<script>
-		document.getElementById('file-upload-img')
+		document.getElementById('writer').value = '${userInfo.userId}';
+		document.getElementById('userNick').value = '${userInfo.userNick}';
 
 		//자바 스크립트 파일 미리보기 기능
 		function readURL(input) {

@@ -48,6 +48,28 @@
 </div>
 <%@ include file="../include/footer.jsp" %>
 
+<!-- 모달달 -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+	  <div class="modal-content">
+		<div class="modal-header">
+			<input type="hidden" id="hiddenPartyNo">
+			<input type="hidden" id="hiddenUserId">
+		  <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+		  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		</div>
+		<div class="modal-body">
+		  ...
+		</div>
+		<div class="modal-footer">
+		  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">모달 누르면 그냥 지워지는 버튼</button>
+		</div>
+	  </div>
+	</div>
+  </div>
+</div>
+
+
 <script>
 	//리스트
 	let str = '';
@@ -62,7 +84,7 @@
 		console.log('page: ' + page);
 		console.log('reset: ' + reset);
 
-		fetch('${pageContext.request.contextPath}/party/' + page)
+		fetch('${pageContext.request.contextPath}/party/partyList/' + page)
 			.then(res => res.json())
 			.then(list => {
 				console.log(list);
@@ -110,13 +132,71 @@
 	}, 1000);
 
 	window.addEventListener('scroll', handleScroll);
+	
+	//모달달
+	var modal = new bootstrap.Modal(document.querySelector('.modal'));
+	const $modalFooter = document.querySelector('.modal-footer');
+
 	//글 상세보기
+	const uid = '${userInfo.userId}';
 	document.getElementById('partyList').addEventListener('click', e => {
-		// if(!e.target.matches('.mb-4')) return;
-		fetch('${pageContext.request.contextPath}/content/' + e.target.id)
-		.then(res => json())
+		if(uid === '') {
+			alert('로그인을 해야 사용할 수 있는 서비스 입니다.');
+			return;
+		}
+		$modalFooter.removeChild($modalFooter.lastElementChild);
+
+		fetch('content/' + e.target.id + '/' + uid)
+		.then(res => res.json())
 		.then(data => {
-			console.log(data.max);
+			document.getElementById('hiddenPartyNo').value = data.partyNo
+			document.getElementById('hiddenUserId').value = data.writer;
+			document.querySelector('.modal-title').textContent = data.title;
+			document.querySelector('.modal-body').textContent = data.content;
+
+			//버튼선택
+			if(uid === data.writer) {
+				$modalFooter.insertAdjacentHTML('beforeend', 
+				`<button type="button" class="btn btn-primary" id="deleteParty">삭제</button>`);
+			} else if(data.attended === 0) {
+				if(data.attendedNum >= data.max) {				
+					$modalFooter.insertAdjacentHTML('beforeend', 
+					`<button type="button" class="btn btn-primary" id="attend" disabled>참가</button>`);
+				} else {
+					$modalFooter.insertAdjacentHTML('beforeend', 
+					`<button type="button" class="btn btn-primary" id="attend">참가</button>`);
+				}
+			} else {
+				$modalFooter.insertAdjacentHTML('beforeend', 
+				`<button type="button" class="btn btn-primary" id="cancelAttend">참가취소</button>`);
+			}
 		});
+
+		modal.show();
+	});
+
+	$modalFooter.addEventListener('click', e => {
+		//참가
+		if(e.target.id === 'attend') {
+			fetch('attend', {
+                    method: 'post',
+                    headers: {
+                        'Content-Type':'application/json'
+                    },
+                    body: JSON.stringify({
+                        'userId' : uid,
+						'partyNo' : document.getElementById('hiddenPartyNo').value
+                    })
+                })
+			.then(res => res.text())
+			.then(text => {
+				if(text === 'success') {
+					alert('파티에 참가하셨습니다.');
+					modal.hide();
+				} else {
+					alert('파티 참가에 실패하셨습니다. 다시 시도해주세요.');
+				}
+			})
+		}
 	});
 </script>
