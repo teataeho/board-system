@@ -34,7 +34,6 @@ import lombok.ToString;
 public class ReviewVO {
 
 	private int reviewNo, sno;
-<<<<<<< HEAD
 	private String writer, title, content, fileName;
 	private LocalDateTime regDate, updateDate;
 
@@ -45,4 +44,3 @@ public class ReviewVO {
 
 	private int reviewReplyCnt;
 }
->>>>>>> 1a467eca75f935cecd2b950d4c79fedd1785029d
