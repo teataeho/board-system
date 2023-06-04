@@ -24,6 +24,12 @@ i {
 	color: red;
 }
 
+.information {
+	font-size: 13px;
+	color: lightgray;
+	margin-bottom: 5px;
+}
+
 /*--------------- header.jsp ---------------*/
 header {
 	background-color: #fff;
@@ -113,21 +119,11 @@ h6 {
 	height: 48.67px;
 }
 
-.emailCheck {
-	display: flex;
-}
-
 #emailCheck {
-	flex-grow: 5;
 	margin-right: 10px;
 }
 
-
 /* 활동하고 싶은 동네 */
-small.information {
-	font-size: 15px;
-}
-
 #locBorder {
 	display: flex;
 	height: 48.67px;
@@ -139,9 +135,7 @@ small.information {
 
 /* 회원가입 로그인 버튼 */
 .btns {
-	margin-top: 100px;
-	display: flex;
-	margin-top: 100px;
+	margin-top: 30px;
 	display: flex;
 	justify-content: center;
 }
@@ -151,21 +145,53 @@ small.information {
 	width: 135px;
 	height: 50px;
 	margin: 0 10px;
-	background: #F4B183;
-	border: #F4B183;
-	color: white;
-	transition: 0.3s;
-
 }
 
-#joinBtn:hover,
-#loginBtn:hover {
-	background: #F0975A;
+
+/*--------------- Login Page (userLogin.jsp) ---------------*/
+.loginBorder {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 200px;
 }
 
-#loginBtn a {
+.loginBorder .idPw {
+	margin-bottom: 30px;
+}
+
+.loginBorder .idPw #userId.loginId {
+	margin-bottom: 10px;
+}
+
+.loginBorder .idPw #userPw.loginPw {
+	margin-top: 10px;
+}
+
+.login-div {
+	display: flex;
+	flex-direction: column;
+}
+
+#loginBtn.loginBtn {
+	width: 100px;
+	height: 100px;
+	border-radius: 5px;
+}
+
+#joinBtn.joinBtn {
+	background-color: white;
+	padding: 0;
+	width: 100px;
+	height: 30px;
+	text-align: center;
+}
+
+#joinBtn a {
 	text-decoration: none;
-	color: white;
+	color: #F0975A;
+	font-size: 15px;
+
 }
 
 /*--------------- PartyList Page (partyList.jsp) ---------------*/

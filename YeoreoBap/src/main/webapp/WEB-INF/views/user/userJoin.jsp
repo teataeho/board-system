@@ -23,47 +23,51 @@
 					<!-- 비밀번호 -->
 					<div class="row justify-content-between has-validation mb-4">
 						<label for="userPw" class="form-label">비밀번호 <span class="necessary">(※ 추후 변경 불가합니다.)</span></label>
-						<div class="w-100 d-flex">
+						<div class="w-100">
 							<input id="userPw" class="col form-control form-control-lg" name="userPw" type="password"
 								placeholder="비밀번호를 입력해주세요. (영문, 숫자 포함 8~16자)" required>
 						</div>
 						<div id="pwValidMsg" class="valid-feedback">사용 가능한 비밀번호입니다! :)</div>
-						<div id="pwInvalidMsg" class="invalid-feedback">부적합한 비밀번호입니다! :(</div>
+						<div id="pwInvalidMsg" class="invalid-feedback">부적합한 비밀번호입니다. :(</div>
 					</div>
 
 					<!-- 비번 체크 -->
 					<div class="row justify-content-between has-validation mb-4">
 						<label for="pwCheck" class="form-label">비밀번호 확인</label>
-						<div class="w-100 d-flex">
+						<div class="w-100">
 							<input id="pwCheck" class="col form-control form-control-lg" name="pwCheck" type="password"
 								placeholder="비밀번호를 다시 한 번 입력해주세요." required>
 						</div>
-						<div id="pwCValidMsg" class="valid-feedback">일치하는 비밀번호입니다! :)</div>
-						<div id="pwCInvalidMsg" class="invalid-feedback">불일치하는 비밀번호입니다! :(</div>
+						<div id="pwCValidMsg" class="valid-feedback">비밀번호가 일치합니다! :)</div>
+						<div id="pwCInvalidMsg" class="invalid-feedback">비밀번호가 불일치합니다. :(</div>
 					</div>
 
 					<!-- 이름 -->
-					<div class="mb-3">
-						<p class="m-1">이름</p>
-						<input class="form-control form-control-lg" name="userName" id="userName" type="text">
+					<div class="row justify-content-between mb-4">
+						<label for="userName" class="form-label">이름</label>
+						<div class="w-100">
+							<input class="form-control form-control-lg" name="userName" id="userName" type="text" required>
+						</div>
 					</div>
 
 					<!-- 닉네임 -->
-					<div class="mb-3">
-						<p class="m-1">닉네임</p>
-						<input class="form-control form-control-lg" name="userNick" id="userNick" type="text">
+					<div class="row justify-content-between mb-4">
+						<label for="userNick" class="form-label">닉네임</label>
+						<div class="w-100 d-flex">
+							<input class="form-control form-control-lg" name="userNick" id="userNick" type="text" required>
+						</div>
 					</div>
 
 					<!-- 이메일 -->
-					<div class="mb-3">
-						<p class="m-1">이메일</p>
+					<div class="row mb-4">
+						<label for="userEmail1" class="form-label">이메일</label>
 						<div id="emailBorder">
 							<input type="text" class="form-control form-control-lg" name="userEmail1" id="userEmail1">
 							<p>@</p>
-							<input type="text" class="form-control form-control-lg" name="userEmail2" id="userEmail2" value="">
+							<input type="text" class="form-control form-control-lg" name="userEmail2" id="userEmail2">
 
-							<select class="form-emailSelection form-select " name="emailSelection" id="emailSelection">
-								<option value="direct">직접 입력</option>
+							<select class="form-emailSelection form-select" name="emailSelection" id="emailSelection">
+								<option value="direct" selected>직접 입력</option>
 								<option value="naver.com">naver.com</option>
 								<option value="daum.net">daum.net</option>
 								<option value="gmail.com">gmail.com</option>
@@ -72,17 +76,20 @@
 							</select>
 						</div>
 
-						<div class="emailCheck">
-							<input class="form-control-lg" type="text" placeholder="인증번호를 입력해주세요." id="emailCheck" name="emailCheck"
-								disabled>
-							<button class="btn btn-orange" type="button" id="emailCheckBtn">이메일 인증</button>
+						<!-- 이메일 인증 -->
+						<div class="d-flex has-validation">
+							<input class="col form-control form-control-lg" type="text" placeholder="인증번호를 입력해주세요." id="emailCheck"
+								name="emailCheck" disabled>
+							<button class="col-3 btn btn-orange" type="button" id="emailCheckBtn" disabled>이메일 인증</button>
+							<div id="emailValidMsg" class="valid-feedback">인증번호가 일치합니다! :)</div>
+							<div id="emailInvalidMsg" class="invalid-feedback">인증번호가 불일치합니다. :(</div>
 						</div>
 					</div>
 
 					<!-- 거주구 -->
 					<div class="mb-3">
-						<p class="m-1">활동하고 싶은 동네가 어디인가요?</p>
-						<small class="information">입력해주신 동네의 동행을 우선적으로 보여드리기 위해 얻는
+						<label for="gu">주로 활동하고 싶으신 동네가 어디인가요?</label>
+						<small class="information d-block">입력해주신 동네의 동행을 우선적으로 보여드리기 위해 얻는
 							정보로, 이외의 용도로 사용되지 않습니다.</small>
 						<div id="locBorder">
 							<select class="form-select locGu" onchange="categoryChange(this)" name="addrGu">
@@ -97,9 +104,9 @@
 
 					<!-- 버튼 -->
 					<div class="btns">
-						<button type="button" class="form-joinBtn" id="joinBtn">회원가입</button>
-						<button type="button" class="form-cancel" id="cancelBtn">
-							<a href="${pageContext.request.contextPath}">취소</a>
+						<button type="button" class="btn btn-orange" id="joinBtn">회원가입</button>
+						<button type="button" class="btn btn-outline-orange" id="cancelBtn"
+							onclick="location.href='${pageContext.request.contextPath}/'">취소
 						</button>
 					</div>
 
@@ -113,81 +120,37 @@
 				let code = '';
 				let pwFlag;
 
-				// 아이디 중복 체크 버튼 클릭 이벤트
-				document.getElementById('idCheckBtn').onclick = function () {
-					const userId = document.getElementById('userId').value;
+				// 아이디 형식 검사
+				document.getElementById("userId").onkeyup = function () {
+					var regex = /^[A-Za-z0-9+]{4,12}$/;
+					const $userId = document.getElementById('userId');
+					document.getElementById('idInvalidMsg').textContent = '부적합한 아이디입니다. :(';
 
+					if (regex.test($userId.value)) {
+						$userId.classList.remove('is-invalid');
+						$userId.classList.add('is-valid');
+						document.getElementById('idInvalidMsg').style.display = 'none';
+						document.getElementById('idValidMsg').style.display = 'block';
+						document.getElementById('idCheckBtn').disabled = false;
+					} else {
+						$userId.classList.remove('is-valid');
+						$userId.classList.add('is-invalid');
+						document.getElementById('idValidMsg').style.display = 'none';
+						document.getElementById('idInvalidMsg').style.display = 'block';
+						document.getElementById('idCheckBtn').disabled = true;
+					}
+				}
+
+
+				// 아이디 중복 체크
+				document.getElementById('idCheckBtn').onclick = function () {
 					// 아이디 중복 확인 비동기 요청 준비
 					const xhr = new XMLHttpRequest();
 
-					// 이메일 선택 옵션 변경 시 userEmail2 값 설정
-					document.getElementById('emailSelection').addEventListener('change', function () {
-						const emailSelection = this.value;
-						if (emailSelection === 'direct') {
-							document.getElementById('userEmail2').value = '';
-							document.getElementById('userEmail2').removeAttribute('disabled');
-							document.getElementById('userEmail2').focus();
-						} else {
-							document.getElementById('userEmail2').value = emailSelection;
-							document.getElementById('userEmail2').setAttribute('disabled', 'disabled');
-						}
-					});
-
-					//아이디 중복체크
-					document.getElementById('idCheckBtn').onclick = function () {
-						const userId = document.getElementById('userId').value;
-						if (userId === '') {
-							alert('아이디는 필수값입니다!') //확인
-							return;
-						}
-
-						// 서버 요청 정보 설정
-						xhr.open('POST', '${pageContext.request.contextPath}/user/idCheck');
-
-						// 요청 정보를 헤더에 설정
-						xhr.setRequestHeader('content-type', 'text/plain');
-						xhr.send(userId);
-
-						xhr.onload = () => {
-							console.log(xhr.status);
-							console.log(xhr.response);
-						}
-
-						// 요청에 관련된 정보 객체
-						const reqObj = {
-							method: 'post',
-							headers: {
-								'Content-Type': 'text/plain'
-							},
-							body: userId
-						};
-
-						// 비동기 요청 보내기
-						fetch('${pageContext.request.contextPath}/user/idCheck', reqObj)
-							.then(res => res.text())
-							.then(data => {
-								const $userId = document.getElementById('userId');
-								if (data === 'available') {
-									$userId.style.color = '#198754';
-									$userId.setAttribute('disabled', true);
-									document.getElementById('idCheckBtn').setAttribute('disabled', true);
-									document.getElementById('idValidMsg').textContent = '사용 가능한 아이디입니다. :)';
-								} else {
-									$userId.classList.remove('is-valid');
-									$userId.classList.add('is-invalid');
-									document.getElementById('idValidMsg').style.display = 'none';
-									document.getElementById('idInvalidMsg').textContent = '중복되는 아이디입니다. :(';
-									document.getElementById('idInvalidMsg').style.display = 'block';
-									$userId.value = '';
-									$userId.focus();
-								}
-							});
-					}
-
-					//서버 요청 정보 설정
+					// 서버 요청 정보 설정
 					xhr.open('POST', '${pageContext.request.contextPath}/user/idCheck');
 
-					//요청 정보를 헤더에 설정
+					// 요청 정보를 헤더에 설정
 					xhr.setRequestHeader('content-type', 'text/plain');
 					xhr.send(userId);
 
@@ -196,8 +159,7 @@
 						console.log(xhr.response);
 					}
 
-
-					//요청에 관련된 정보 객체
+					// 요청에 관련된 정보 객체
 					const reqObj = {
 						method: 'post',
 						headers: {
@@ -206,25 +168,24 @@
 						body: userId
 					};
 
-
 					// 비동기 요청 보내기
 					fetch('${pageContext.request.contextPath}/user/idCheck', reqObj)
-						.then(res => res.text()) //요청 완료 후 응답 정보에서 텍스트만 빼기
-						.then(data => { //텍스트만 뺀 Promise 객체로부터 data 전달받음.
+						.then(res => res.text())
+						.then(data => {
+							const $userId = document.getElementById('userId');
 							if (data === 'available') {
-								console.log('available');
-								//더 이상 아이디를 작성할 수 없도록 
-								document.getElementById('userId').setAttribute('readonly', true);
-								//더 이상 버튼을 누를 수 없도록 
+								$userId.style.color = '#198754';
+								$userId.setAttribute('disabled', true);
 								document.getElementById('idCheckBtn').setAttribute('disabled', true);
-								//메세지 남기기
-								document.getElementById('msgId').textContent = '사용 가능한 아이디 입니다.';
-							} else if (data == 'duplicated') {
-								console.log('duplicated');
-								alert('중복된 아이디입니다. 다른 아이디를 입력해주세요.');
-								document.getElementsByClassName('msgId').textContent = '중복된 아이디 입니다.';
+								document.getElementById('idValidMsg').textContent = '사용 가능한 아이디입니다. :)';
 							} else {
-								console.log('???');
+								$userId.classList.remove('is-valid');
+								$userId.classList.add('is-invalid');
+								document.getElementById('idValidMsg').style.display = 'none';
+								document.getElementById('idInvalidMsg').textContent = '중복되는 아이디입니다. :(';
+								document.getElementById('idInvalidMsg').style.display = 'block';
+								$userId.value = '';
+								$userId.focus();
 							}
 						});
 				}
@@ -340,27 +301,6 @@
 				/* 부적합한 아이디일 때 아이디 중복체크가 가능한 오류를 발견
 				-> '아이디 중복체크는 필수입니다' 나오기 전까지 아이디 중복체크 버튼 비활성화 */
 				document.getElementById('idCheckBtn').disabled = true;
-
-				/* 아이디 형식 검사 */
-				document.getElementById("userId").onkeyup = function () {
-					var regex = /^[A-Za-z0-9+]{4,12}$/;
-					const $userId = document.getElementById('userId');
-					document.getElementById('idInvalidMsg').textContent = '부적합한 아이디입니다. :(';
-
-					if (regex.test($userId.value)) {
-						$userId.classList.remove('is-invalid');
-						$userId.classList.add('is-valid');
-						document.getElementById('idInvalidMsg').style.display = 'none';
-						document.getElementById('idValidMsg').style.display = 'block';
-						document.getElementById('idCheckBtn').disabled = false;
-					} else {
-						$userId.classList.remove('is-valid');
-						$userId.classList.add('is-invalid');
-						document.getElementById('idValidMsg').style.display = 'none';
-						document.getElementById('idInvalidMsg').style.display = 'block';
-						document.getElementById('idCheckBtn').disabled = true;
-					}
-				}
 
 				/* 비밀번호 형식 검사 */
 				document.getElementById("userPw").onkeyup = function () {

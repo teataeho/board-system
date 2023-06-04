@@ -14,9 +14,6 @@
 
 			<!-- style.css -->
 			<link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
-			<link href="${pageContext.request.contextPath}/css/userJoin.css" rel="stylesheet">
-			<link href="${pageContext.request.contextPath}/css/userLogin.css" rel="stylesheet">
-			<link href="${pageContext.request.contextPath}/css/reviewList.css" rel="stylesheet">
 
 			<!-- bootstrap.css -->
 			<link href="${pageContext.request.contextPath}/css/bootstrap/bootstrap.css" rel="stylesheet">

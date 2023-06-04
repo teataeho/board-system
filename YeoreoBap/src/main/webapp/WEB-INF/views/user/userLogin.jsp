@@ -1,36 +1,34 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
-<%@ include file="../include/header.jsp"%>
-<body onkeydown="EnterLogin();">
-<div class="login">
-	<h2 class="title">로그인</h2>
-	<form action="${pageContext.request.contextPath}/user/userLogin"
-		method="post" name="loginForm">
-		<div class="loginBorder">
-			<div class="idPw">
-				<input type="text" class="form-id form-control form-control-lg loginId" name="userId" id="userId"
-					placeholder="아이디" autocomplete="off"> <input
-					type="password" class="form-pw form-control form-control-lg loginPw" name="userPw" id="userPw"
-					placeholder="비밀번호">
+	<%@ include file="../include/header.jsp" %>
+
+		<body onkeydown="EnterLogin();">
+			<div class="container">
+				<h2 class="text-center border-bottom border-orange pb-3 mb-4">로그인</h2>
+				<form action="${pageContext.request.contextPath}/user/userLogin" method="post" name="loginForm">
+					<div class="loginBorder">
+						<div class="idPw">
+							<input type="text" class="form-id form-control form-control-lg loginId" name="userId" id="userId"
+								placeholder="아이디" autocomplete="off"> <input type="password"
+								class="form-pw form-control form-control-lg loginPw" name="userPw" id="userPw" placeholder="비밀번호">
+						</div>
+						<div class="login-div">
+							<button type="button" id="loginBtn" class="loginBtn">Login</button>
+							<button type="button" id="joinBtn" class="joinBtn">
+								<a href="${pageContext.request.contextPath}/user/userJoin">회원가입하기</a>
+								<!-- a태그 추가 -->
+							</button>
+						</div>
+
+					</div>
+
+
+				</form>
 			</div>
-			<div class="login-div">
-				<button type="button" id="loginBtn" class="loginBtn">Login</button>
-				<button type="button" id="joinBtn" class="joinBtn">
-					<a href="${pageContext.request.contextPath}/user/userJoin">회원가입하기</a>
-					<!-- a태그 추가 -->
-				</button>
-			</div>
+		</body>
+		<%@ include file="../include/footer.jsp" %>
 
-		</div>
-
-
-	</form>
-</div>
-</body>
-<%@ include file="../include/footer.jsp"%>
-
-<script>
+			<script>
 
 				//회원 가입 완료 후 addFlashAttribute로 msg 데이터가 전달 되는 지 확인
 				const msg = '${msg}';
@@ -55,11 +53,12 @@
 					document.loginForm.submit();
 				}
 
+				// 엔터 키 눌러도 로그인 진행되게끔
 				function EnterLogin() {
 					var keyCode = window.event.keyCode;
-					if(keyCode == 13) {	//Enter
+					if (keyCode == 13) {	// Enter
 						document.loginForm.submit();
 					}
 				}
-				
+
 			</script>

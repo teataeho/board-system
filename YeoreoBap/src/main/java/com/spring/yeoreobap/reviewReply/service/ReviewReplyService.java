@@ -24,13 +24,8 @@ public class ReviewReplyService implements IReviewReplyService {
 	private BCryptPasswordEncoder encoder;
 	
 	@Override
-<<<<<<< HEAD
 	public void replyRegister(ReviewReplyVO vo) {
 		mapper.replyRegister(vo);
-=======
-	public void replyRegist(ReviewReplyVO vo) {
-		mapper.replyRegist(vo);
->>>>>>> 1a467eca75f935cecd2b950d4c79fedd1785029d
 	}
 	
 	@Override
@@ -46,8 +41,6 @@ public class ReviewReplyService implements IReviewReplyService {
 		
 		return mapper.getList(data);
 	}
-	
-	
 
 	@Override
 	public int getTotal(int partyNo) {
@@ -56,7 +49,7 @@ public class ReviewReplyService implements IReviewReplyService {
 	
 	@Override
 	public boolean userVerification(ReviewReplyVO vo, HttpSession session) {
-		if(session.getAttribute("userInfo").equals(vo.getWriter())) return true;
+		if(session.getAttribute("userInfo").equals(vo.getUserNick())) return true;
 		else return false;
 	}
 
@@ -64,18 +57,16 @@ public class ReviewReplyService implements IReviewReplyService {
 	public void delete(int replyNo) {
 		mapper.delete(replyNo);
 	}
-
-<<<<<<< HEAD
-
-
-}
-=======
+	
 	@Override
 	public boolean idCheck(ReviewReplyVO vo) {
 		String dbId = mapper.idCheck(vo.getReplyNo());
 		return encoder.matches(vo.getReplyId(), dbId);
 	}
 
+	@Override
+	public void update(ReviewReplyVO vo) {
+		
+	}
 
 }
->>>>>>> 954c3b98a2828b24da47c8c92e08656637cabb52
