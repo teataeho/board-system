@@ -37,11 +37,9 @@ public class ReviewController {
 	}
 	
 	@GetMapping("/reviewRegist")
-	public String regist() {
-		return "review/reviewRegist";
-	}
+	public void regist() {}
 	
-	@PostMapping("/reviewRegist")
+	@PostMapping("/regist")
 	public String regist(ReviewVO vo) {
 		service.regist(vo);
 		return "redirect:/review/reviewList";
@@ -56,6 +54,7 @@ public class ReviewController {
 	
 	@PostMapping("/modify")
 	public String modify(@ModelAttribute("article") ReviewVO vo) {
+		log.info(vo.toString());
 		return "review/reviewModify";
 	}
 	

@@ -24,7 +24,6 @@ public class ReviewReplyService implements IReviewReplyService {
 	
 	@Override
 	public void replyRegist(ReviewReplyVO vo) {
-		vo.setReplyPw(encoder.encode(vo.getReplyPw()));
 		mapper.replyRegist(vo);
 	}
 	
@@ -32,7 +31,7 @@ public class ReviewReplyService implements IReviewReplyService {
 	public List<ReviewReplyVO> getList(int reviewNo, int pageNum){
 		
 		PageVO vo = new PageVO();
-		vo.setPageNum(reviewNo);
+		vo.setPageNum(pageNum);
 		vo.setCpp(10);
 		
 		Map<String, Object> data = new HashMap<>();
@@ -50,21 +49,15 @@ public class ReviewReplyService implements IReviewReplyService {
 	}
 
 	@Override
-	public void update(ReviewReplyVO vo) {
-		mapper.update(vo);
-	}
-
-	@Override
 	public void delete(int replyNo) {
 		mapper.delete(replyNo);
 	}
 
-
-
 	@Override
-	public boolean pwCheck(ReviewReplyVO vo) {
-		String dbPw = mapper.pwCheck(vo.getReplyNo());
-		return encoder.matches(vo.getReplyPw(), dbPw);
+	public boolean idCheck(ReviewReplyVO vo) {
+		String dbId = mapper.idCheck(vo.getReplyNo());
+		return encoder.matches(vo.getReplyId(), dbId);
 	}
+
 
 }

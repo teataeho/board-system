@@ -15,12 +15,9 @@ public interface IReviewReplyMapper {
 
 	//댓글 개수
 	int getTotal(int replyNo);
-
-	//비밀번호 확인
-	String pwCheck(int replyNo);
-
-	//댓글 수정
-	void update(ReviewReplyVO vo);
+	
+	//id 확인
+	String idCheck(int replyNo);
 
 	//댓글 삭제
 	void delete(int replyNo);

@@ -20,7 +20,7 @@
 
 				</div>
 			</div>
-			<span id="msgId"></span>
+			<span id="msgId" class="msgId"></span>
 
 			<!-- 비밀번호 -->
 			<div id="block">
@@ -174,7 +174,7 @@
 					//더 이상 버튼을 누를 수 없도록 
 					document.getElementById('idCheckBtn').setAttribute('disabled', true);
 					//메세지 남기기
-					document.getElementsByClassName('msgId').textContent = '사용 가능한 아이디 입니다.';
+					document.getElementById('msgId').textContent = '사용 가능한 아이디 입니다.';
 				} else if (data == 'duplicated') {
 					console.log('duplicated');
 					alert('중복된 아이디입니다. 다른 아이디를 입력해주세요.');

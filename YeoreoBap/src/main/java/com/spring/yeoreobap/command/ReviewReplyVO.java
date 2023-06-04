@@ -7,14 +7,14 @@ import lombok.Setter;
 import lombok.ToString;
 
 /*
- CREATE TABLE reviewReply(
- 	reply_no INT PRIMARY KEY AUTO_INCREMENT,
- 	party_no INT NOT NULL,
- 	writer VARCHAR(50),
- 	content VARCHAR(1000),
- 	reg_date DATETIME DEFAULT CURRENT_TIMESTAMP,
- 	update_date DATETIME DEFAULT NULL
- );*/
+ * CREATE TABLE reviewReply(
+     reply_no INT PRIMARY KEY AUTO_INCREMENT,
+     review_no INT NOT NULL,
+     review_reply VARCHAR(1000),
+     reply_id VARCHAR(50),
+     reg_date DATETIME DEFAULT CURRENT_TIMESTAMP
+ );
+ */
 @Getter
 @Setter
 @ToString
@@ -25,7 +25,5 @@ public class ReviewReplyVO {
 	
 	private String reply;
 	private String replyId;
-	private String replyPw;
 	private LocalDateTime regDate;
-	private LocalDateTime updateDate;
 }

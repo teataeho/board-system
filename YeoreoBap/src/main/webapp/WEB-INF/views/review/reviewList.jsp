@@ -6,21 +6,19 @@
 <%@ include file="../include/header.jsp"%>
 
 <section>
-	<div class="container-fluid">
+	<div class="container">
 		<div class="row">
 			<!--lg에서 9그리드, xs에서 전체그리드-->
 			<div class="col-lg-9 col-xs-12 board-table">
-				<div class="titlebox">
-					<p>후기 게시판</p>
+				<div id="reviewListTitle">
+					<h2>후기 게시판</h2>
 				</div>
-				<hr>
+		
 
 				<!--form select를 가져온다 -->
 				<form action="<c:url value='/review/reviewList' />">
-					<div class="search-wrap">
-						<button type="submit" class="btn btn-info search-btn">검색</button>
-						
-						<select name="condition" class="form-control search-select">
+					<div id="search-wrap">
+						<select name="condition" class="form-select" id="select">
 							<option value="title"
 								${pc.paging.condition == 'title' ? 'selected' : ''}>제목</option>
 							<option value="content"
@@ -33,10 +31,13 @@
 								${pc.paging.condition == 'titleContent' ? 'selected' : ''}>제목+내용</option>
 						</select>
 						<input type="text" name="keyword"
-							class="form-control search-input" value="${pc.paging.keyword}">
+							class="form-control search-input" value="${pc.paging.keyword}" id="keywordInput">
+						<button type="submit" class="btn btn-info search-btn" id="searchBtn">검색</button>
+						
 					</div>
+					
 				</form>
-
+<hr>
 				<table class="table table-bordered">
 					<thead>
 						<tr>
