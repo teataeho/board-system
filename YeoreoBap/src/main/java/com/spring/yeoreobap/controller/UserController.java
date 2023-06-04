@@ -96,8 +96,8 @@ public class UserController {
 	//마이페이지 이동 요청
 	@GetMapping("/userMypage")
 	public void userMypage(HttpSession session, Model model, PageVO vo) {
-		String id = (String) session.getAttribute("login");
-		vo.setLoginId(id);
+		UserVO user = (UserVO) session.getAttribute("userInfo");
+		String id = user.getUserId();
 		PageCreator pc = new PageCreator(vo, reviewService.getTotal(vo));
 		model.addAttribute("userInfo", service.getInfo(id, vo));
 		model.addAttribute("pc", pc);

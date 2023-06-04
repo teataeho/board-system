@@ -42,21 +42,12 @@ public class ReviewReplyController {
 		return map;
 	}
 	
-	//댓글 수정
-	@PutMapping("/{replyNo}")
-	public String update(@PathVariable int reviewNo, @RequestBody ReviewReplyVO vo) {
-		vo.setReplyNo(reviewNo);
-		if(service.pwCheck(vo)) {
-			service.update(vo);
-			return "replyUpdateSuccess";
-		} else return "replyUpdateFail";
-	}
-	
+
 	//댓글 삭제
 	@DeleteMapping("/{replyNo}")
 	public String delete(@PathVariable int replyNo, @RequestBody ReviewReplyVO vo) {
 		vo.setReplyNo(replyNo);
-		if(service.pwCheck(vo)) {
+		if(service.idCheck(vo)) {
 			service.delete(replyNo);
 			return "replyDeleteSuccess";
 		} else return "replyDeleteFail";
