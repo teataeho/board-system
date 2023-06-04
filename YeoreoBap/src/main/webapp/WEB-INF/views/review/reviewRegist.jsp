@@ -30,7 +30,7 @@
 								<td>
 									<c:set var="party" value="${party}" />
 									<c:set var="attendedParty" value="${attendedParty}" />
-									<select>
+									<select name="sno">
 									  <c:forEach items="${party}" var="party" varStatus="status">
 									    <option value="${party.sno}">${party.bplcNm}</option>
 									  </c:forEach>
