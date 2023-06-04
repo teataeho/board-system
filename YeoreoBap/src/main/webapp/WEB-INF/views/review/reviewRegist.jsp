@@ -26,8 +26,19 @@
 								<td><input class="form-control input-sm" name="title"></td>
 							</tr>
 							<tr>
-								<td class="t-title">식당 번호</td>
-								<td><input class="form-control input-sm" name="sno"></td>
+								<td class="t-title">식당 이름</td>
+								<td>
+									<c:set var="party" value="${party}" />
+									<c:set var="attendedParty" value="${attendedParty}" />
+									<select>
+									  <c:forEach items="${party}" var="party" varStatus="status">
+									    <option value="${party.sno}">${party.bplcNm}</option>
+									  </c:forEach>
+									  <c:forEach items="${attendedParty}" var="attendedParty" varStatus="status">
+									    <option value="${attendedParty.sno}">${attendedParty.bplcNm}</option>
+									  </c:forEach>
+									</select>
+								</td>
 							</tr>
 							<tr>
 								<td class="t-title">내용</td>

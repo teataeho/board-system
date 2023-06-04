@@ -69,11 +69,12 @@ public class PartyController {
 	@ResponseBody
 	@GetMapping("/content/{partyNo}/{uid}")
 	public PartyVO getArticle(@PathVariable int partyNo, @PathVariable("uid") String userId) {
+		log.info(userId);
 		return service.getArticle(partyNo, userId);
 	}
 
-	@PostMapping("/delete")
-	public String delete(int partyNo) {
+	@GetMapping("/delete/{partyNo}")
+	public String delete(@PathVariable int partyNo) {
 		service.delete(partyNo);
 		return "redirect:/party/partyList";
 	}

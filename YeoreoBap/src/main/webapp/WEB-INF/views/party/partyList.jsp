@@ -58,9 +58,11 @@
 		  <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
 		  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		</div>
+		<span>식당이름</span><span class="modal-res-name"></span>
 		<div class="modal-body">
-		  ...
+			...
 		</div>
+		<span>정원</span><span class="modal-max"></span>
 		<div class="modal-footer">
 		  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">모달 누르면 그냥 지워지는 버튼</button>
 		</div>
@@ -138,7 +140,7 @@
 	const $modalFooter = document.querySelector('.modal-footer');
 
 	//글 상세보기
-	const uid = '${userInfo.userId}';
+	let uid = '${userInfo.userId}';
 	document.getElementById('partyList').addEventListener('click', e => {
 		if(uid === '') {
 			alert('로그인을 해야 사용할 수 있는 서비스 입니다.');
@@ -152,14 +154,16 @@
 			document.getElementById('hiddenPartyNo').value = data.partyNo
 			document.getElementById('hiddenUserId').value = data.writer;
 			document.querySelector('.modal-title').textContent = data.title;
+			document.querySelector('.modal-res-name').textContent = data.bplcNm;
 			document.querySelector('.modal-body').textContent = data.content;
-
+			document.querySelector('.modal-max').textContent = data.max + '명';
+			console.log(data.attended);
 			//버튼선택
 			if(uid === data.writer) {
 				$modalFooter.insertAdjacentHTML('beforeend', 
 				`<button type="button" class="btn btn-primary" id="deleteParty">삭제</button>`);
 			} else if(data.attended === 0) {
-				if(data.attendedNum >= data.max) {				
+				if(data.attendedNum >= data.max - 1) {				
 					$modalFooter.insertAdjacentHTML('beforeend', 
 					`<button type="button" class="btn btn-primary" id="attend" disabled>참가</button>`);
 				} else {
@@ -218,6 +222,13 @@
 					modal.hide();
 				}
 			})
+		}
+
+		//삭제
+		if(e.target.id === 'deleteParty') {
+			if(confirm('정말로 파티를 해체하시겠습니까?')) {
+				location.href = 'delete/' + document.getElementById('hiddenPartyNo').value;
+			}
 		}
 	});
 </script>

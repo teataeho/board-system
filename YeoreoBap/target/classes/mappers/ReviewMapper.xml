@@ -64,6 +64,17 @@
 		WHERE review_no = #{reviewNo}
 	</delete>
 	
+	<select id="getResList1" resultType="party">
+		SELECT sno, bplc_nm
+		FROM party
+		WHERE writer = #{userId}
+	</select>
 	
+	<select id="getResList2" resultType="party">
+		SELECT p.sno, p.bplc_nm
+		FROM participants s JOIN party p
+		ON p.party_no = s.party_no
+		WHERE s.user_id = #{userId}
+	</select>
 
 </mapper>

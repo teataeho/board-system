@@ -22,11 +22,11 @@
 			(
 		    SELECT COUNT(*) FROM participants
 				WHERE party_no = #{partyNo}
-		    ) AS attended,
+		    ) AS attended_num,
 		    (
 		    SELECT COUNT(*) FROM participants
 				WHERE party_no = #{partyNo} AND user_id = #{userId}
-		    ) AS attended_num
+		    ) AS attended
 		FROM party p JOIN store s ON p.sno = s.sno
 		WHERE p.party_no = #{partyNo};
 	</select>

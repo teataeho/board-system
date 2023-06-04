@@ -1,5 +1,9 @@
 package com.spring.yeoreobap.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,9 +12,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.spring.yeoreobap.command.PartyVO;
 import com.spring.yeoreobap.command.ReviewVO;
+import com.spring.yeoreobap.command.UserVO;
 import com.spring.yeoreobap.review.service.IReviewService;
 import com.spring.yeoreobap.util.PageCreator;
 import com.spring.yeoreobap.util.PageVO;
@@ -37,7 +44,13 @@ public class ReviewController {
 	}
 	
 	@GetMapping("/reviewRegist")
-	public void regist() {}
+	public void regist(HttpSession session, Model model) {
+		
+		String userId = ((UserVO) session.getAttribute("userInfo")).getUserId();
+		
+		model.addAttribute("party" ,service.getResList1(userId));
+		model.addAttribute("attendedParty" ,service.getResList2(userId));
+	}
 	
 	@PostMapping("/regist")
 	public String regist(ReviewVO vo) {
@@ -69,9 +82,6 @@ public class ReviewController {
 		service.delete(reviewNo);
 		return "redirect:/review/reviewList";
 	}
-	
-	
-	
 	
 	
 	
