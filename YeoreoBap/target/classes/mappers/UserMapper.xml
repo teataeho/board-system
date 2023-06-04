@@ -11,21 +11,22 @@
         <result property="userEmail2" column="user_email2" />
         <result property="addrGu" column="addr_gu" />
         <result property="addrDong" column="addr_dong" />
-		<collection property="userBoardList" resultMap="list"/>
+		<collection property="userPartyList" resultMap="list"/>
 	</resultMap>
 
-	<resultMap type="user" id="list">
-		<id property="bno" column="bno"/>
+	<resultMap type="party" id="list">
+		<id property="partyNo" column="party_no"/>
 		<result property="title" column="title"/>
 		<result property="regDate" column="reg_date"/>		
 	</resultMap>
+	
 	<insert id="join">
 		INSERT INTO users
 		(user_id, user_pw, user_name, user_nick,
 		user_email1, user_email2,
-		addr_gu, addr_dong, temperature)
+		addr_gu, addr_dong)
 		VALUES(#{userId},#{userPw},#{userName}, #{userNick}, #{userEmail1},
-		#{userEmail2},#{addrGu},#{addrDong}, #{temperature})
+		#{userEmail2},#{addrGu},#{addrDong})
 	</insert>
 
 	<select id="login" resultType="string">
@@ -38,8 +39,8 @@
 		SELECT
 			user_name, 
 			user_email1, user_email2, addr_gu,
-			addr_dong, temperature,
-			<!-- p.party_board_no, --> 
+			addr_dong,
+			 p.party_no,  
 			p.title, p.reg_date
 		FROM users u
 		LEFT JOIN party p
@@ -49,7 +50,7 @@
 		LIMIT #{paging.pageStart}, #{paging.cpp}
 	</select>
 
-	<select id="getUser" resultType="com.spring.yeoreobap.command.UserVO">
+	<select id="getUser" resultType="user">
 		SELECT * FROM users WHERE user_id = #{userId}
 	</select>
 
@@ -66,8 +67,7 @@
 		user_email1 = #{userEmail1},
 		user_email2 = #{userEmail2},
 		addr_gu = #{addrGu},
-		addr_dong = #{addrDong},
-		temperature = #{temperature}
+		addr_dong = #{addrDong}
 		WHERE
 		user_id=#{userId}
 	</update>

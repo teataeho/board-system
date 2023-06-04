@@ -15,9 +15,15 @@ public interface IReviewReplyMapper {
 
 	// 댓글 개수
 	int getTotal(int replyNo);
+<<<<<<< HEAD
 
 	// 댓글 수정
 	void update(ReviewReplyVO vo);
+=======
+	
+	//id 확인
+	String idCheck(int replyNo);
+>>>>>>> 954c3b98a2828b24da47c8c92e08656637cabb52
 
 	// 댓글 삭제
 	void delete(int replyNo);

@@ -24,11 +24,12 @@ import lombok.ToString;
 	);
 */
 
-@Getter @Setter @ToString
+@Getter
+@Setter
+@ToString
 public class PartyVO {
-	
-	private int partyNo, sno, max, viewNum;
-	private String bplcNm, writer, writerNick, title, content, uploadPath, fileName;
+
+	private int partyNo, sno, max, viewNum, attendedNum, attended;
+	private String bplcNm, writer, writerNick, title, content, uploadPath, fileName, rdnWhlAddr;
 	private LocalDateTime regDate, updateDate;
-	
 }

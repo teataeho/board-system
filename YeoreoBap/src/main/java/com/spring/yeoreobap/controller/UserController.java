@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.yeoreobap.command.UserVO;
@@ -97,11 +98,19 @@ public class UserController {
 	//마이페이지 이동 요청
 	@GetMapping("/userMypage")
 	public void userMypage(HttpSession session, Model model, PageVO vo) {
-		String id = (String) session.getAttribute("login");
-		vo.setLoginId(id);
-		PageCreator pc = new PageCreator(vo, reviewService.getTotal(vo));
+		UserVO user = (UserVO) session.getAttribute("userInfo");
+		String id = user.getUserId();
+//		PageCreator pc = new PageCreator(vo, partyService.getTotal(vo));
 		model.addAttribute("userInfo", service.getInfo(id, vo));
-		model.addAttribute("pc", pc);
+//		model.addAttribute("pc", pc);
 	}
 
+	//로그아웃 요청
+	@RequestMapping("/userLogout")
+	public ModelAndView logout(HttpSession session) {
+		session.invalidate();
+		ModelAndView mv = new ModelAndView("redirect:/");
+		return mv;
+	}
+	
 }

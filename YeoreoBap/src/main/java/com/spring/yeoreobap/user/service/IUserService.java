@@ -1,7 +1,5 @@
 package com.spring.yeoreobap.user.service;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.stereotype.Service;
 
 import com.spring.yeoreobap.command.UserVO;
@@ -17,7 +15,7 @@ public interface IUserService {
 	void join(UserVO vo);
 
 	//로그인
-	String login(String userId, String userPw);
+	UserVO login(String userId, String userPw);
 
 	//MyPage
 	//회원 정보 얻기

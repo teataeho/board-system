@@ -11,7 +11,7 @@ public class PageCreator {
 	private int articleTotalCount, endPage, beginPage;
 	private boolean prev, next;
 	
-	private final int buttonNum = 10;
+	private final int buttonNum = 5;
 	
 	public PageCreator(PageVO paging, int articleTotalCount) {
 		this.paging = paging;

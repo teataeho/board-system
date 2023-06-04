@@ -1,5 +1,9 @@
 package com.spring.yeoreobap.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,37 +12,32 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.spring.yeoreobap.command.PartyVO;
 import com.spring.yeoreobap.command.ReviewVO;
+import com.spring.yeoreobap.command.UserVO;
 import com.spring.yeoreobap.review.service.IReviewService;
 import com.spring.yeoreobap.util.PageCreator;
 import com.spring.yeoreobap.util.PageVO;
 
 import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Controller
 @RequestMapping("/review")
-@Slf4j
 public class ReviewController {
 
 	@Autowired
 	private IReviewService service;
-<<<<<<< HEAD
 
-	@GetMapping("/reviewList")
-	public void reviewList() {
-	}
-
-=======
-	
 	@GetMapping("/reviewList")
 	public void reviewList(Model model) {
 		PageVO vo = new PageVO();
 		model.addAttribute("reviewList", service.getList(vo));
 	}
-	
->>>>>>> 1a467eca75f935cecd2b950d4c79fedd1785029d
+
 	@GetMapping("/reviewList/{reviewNo}/{pageNum}")
 	public void reviewList(PageVO vo, Model model) {
 		PageCreator pc = new PageCreator(vo, service.getTotal(vo));
@@ -50,22 +49,19 @@ public class ReviewController {
 	}
 
 	@GetMapping("/reviewRegist")
-<<<<<<< HEAD
-	public void regist() {
+	public void regist(HttpSession session, Model model) {
+
+		String userId = ((UserVO) session.getAttribute("userInfo")).getUserId();
+
+		model.addAttribute("party", service.getResList1(userId));
+		model.addAttribute("attendedParty", service.getResList2(userId));
 	}
 
-=======
-	public String regist() {
-		return "review/reviewRegist";
-	}
-	
->>>>>>> 1a467eca75f935cecd2b950d4c79fedd1785029d
 	@PostMapping("/reviewRegist")
 	public String regist(ReviewVO vo) {
 		service.regist(vo);
 		return "redirect:/review/reviewList";
 	}
-<<<<<<< HEAD
 
 	@GetMapping("/getArticle/{reviewNo}")
 	public String getArticle(@PathVariable int reviewNo, @ModelAttribute("p") PageVO vo, Model model) {
@@ -73,36 +69,28 @@ public class ReviewController {
 		return "review/reviewDetail";
 	}
 
-=======
-	
 	@GetMapping("/content/{reviewNo}")
-	public String getContent(@PathVariable int reviewNo, @ModelAttribute("p") PageVO vo
-			, Model model) {
+	public String getContent(@PathVariable int reviewNo, @ModelAttribute("p") PageVO vo, Model model) {
 		model.addAttribute("article", service.getArticle(reviewNo));
 		return "review/reviewDetail";
 	}
-	
+
 	@PostMapping("/modify")
 	public String modify(@ModelAttribute("article") ReviewVO vo) {
+		log.info(vo.toString());
 		return "review/reviewModify";
 	}
-	
+
 	@PostMapping("/update")
 	public String update(ReviewVO vo) {
 		service.update(vo);
 		return "redirect:/review/content/" + vo.getReviewNo();
 	}
-	
+
 	@PostMapping("/delete")
 	public String delete(int reviewNo) {
 		service.delete(reviewNo);
 		return "redirect:/review/reviewList";
 	}
-	
-	
-	
-	
-	
-	
->>>>>>> 1a467eca75f935cecd2b950d4c79fedd1785029d
+
 }

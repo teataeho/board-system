@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.spring.yeoreobap.command.ParticipantsVO;
 import com.spring.yeoreobap.command.PartyVO;
 import com.spring.yeoreobap.util.PageVO;
 
@@ -19,7 +20,7 @@ public interface IPartyService {
 	List<PartyVO> getList(PageVO paging);
 
 	// 상세보기
-	PartyVO getArticle(int partyNo);
+	PartyVO getArticle(int partyNo, String userId);
 
 	// 수정
 	void update(PartyVO vo);
@@ -28,5 +29,8 @@ public interface IPartyService {
 	void delete(int partyNo);
 
 	// 참여
-	void attend(String userId, int partyNo);
+	void attend(ParticipantsVO vo);
+	
+	// 참가 취소
+	void cancelAttend(ParticipantsVO vo);
 }
