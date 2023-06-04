@@ -20,7 +20,7 @@
 
 				</div>
 			</div>
-			<span id="msgId"></span>
+			<span id="msgId" class="msgId"></span>
 
 			<!-- 비밀번호 -->
 			<div id="block">
@@ -106,9 +106,8 @@
 			<!-- 버튼 -->
 			<div class="btns">
 				<button type="button" class="form-joinBtn" id="joinBtn">회원가입</button>
-				<button type="button" class="form-loginBtn" id="loginBtn">
-					<a href="${pageContext.request.contextPath}/user/userLogin">로그인</a>
-					<!-- a태그 추가 -->
+				<button type="button" class="form-cancel" id="cancelBtn">
+					<a href="${pageContext.request.contextPath}">취소</a>
 				</button>
 			</div>
 
@@ -174,7 +173,7 @@
 					//더 이상 버튼을 누를 수 없도록 
 					document.getElementById('idCheckBtn').setAttribute('disabled', true);
 					//메세지 남기기
-					document.getElementsByClassName('msgId').textContent = '사용 가능한 아이디 입니다.';
+					document.getElementById('msgId').textContent = '사용 가능한 아이디 입니다.';
 				} else if (data == 'duplicated') {
 					console.log('duplicated');
 					alert('중복된 아이디입니다. 다른 아이디를 입력해주세요.');
@@ -346,6 +345,7 @@
 		}
 	}
 
+	/* '구'에 따라 '동' 선택 */
 	function categoryChange(e) {
 		var addrDong_mapo = ["상암동", "성산동", "망원동", "연남동", "동교동", "서교동", "합정동", "상수동", "창전동", "신수동", "노고산동", "대흥동", "염리동",
 			"용강동", "도화동", "공덕동", "아현동", "신공덕동"
@@ -365,6 +365,11 @@
 			opt.innerHTML = d[x];
 			target.appendChild(opt);
 		}
+	}
+
+	/* 회원가입 취소 */
+	document.getElementById('cancelBtn').onclick = function() {
+		window.confirm('회원가입을 취소하시겠습니까?');
 	}
 	
 </script>

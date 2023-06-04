@@ -11,14 +11,15 @@
         <result property="userEmail2" column="user_email2" />
         <result property="addrGu" column="addr_gu" />
         <result property="addrDong" column="addr_dong" />
-		<collection property="userBoardList" resultMap="list"/>
+		<collection property="userPartyList" resultMap="list"/>
 	</resultMap>
 
-	<resultMap type="user" id="list">
-		<id property="bno" column="bno"/>
+	<resultMap type="party" id="list">
+		<id property="partyNo" column="party_no"/>
 		<result property="title" column="title"/>
 		<result property="regDate" column="reg_date"/>		
 	</resultMap>
+	
 	<insert id="join">
 		INSERT INTO users
 		(user_id, user_pw, user_name, user_nick,
@@ -39,17 +40,17 @@
 			user_name, 
 			user_email1, user_email2, addr_gu,
 			addr_dong,
-			 r.review_no,  
-			r.title, r.reg_date
+			 p.party_no,  
+			p.title, p.reg_date
 		FROM users u
-		LEFT JOIN review r
-		ON u.user_id = r.writer
+		LEFT JOIN party p
+		ON u.user_id = p.writer
 		WHERE u.user_id = #{userId}
 		<!-- ORDER BY p.party_board_no DESC -->
 		LIMIT #{paging.pageStart}, #{paging.cpp}
 	</select>
 
-	<select id="getUser" resultType="com.spring.yeoreobap.command.UserVO">
+	<select id="getUser" resultType="user">
 		SELECT * FROM users WHERE user_id = #{userId}
 	</select>
 

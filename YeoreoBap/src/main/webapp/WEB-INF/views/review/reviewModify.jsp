@@ -12,8 +12,8 @@
                         
                         <form action="${pageContext.request.contextPath}/review/update" method="post" name="updateForm">
                             <div class="form-group">
-                                <label>번호</label>
-                                <input class="form-control" name="bno" value="${article.bno}" readonly>
+                                <label>후기 번호</label>
+                                <input class="form-control" name="reviewNo" value="${article.reviewNo}" readonly>
                             </div>
                             <div class="form-group">
                                 <label>작성자</label>
@@ -29,15 +29,17 @@
                                 <textarea class="form-control" rows="10" name="content">${article.content}</textarea>
                             </div>
 
-                            <button type="button" id="listBtn" class="btn btn-dark">목록</button>    
-                            <button type="button" id="updateBtn" class="btn btn-primary">변경</button>
-                            <button type="button" id="delBtn" class="btn btn-info">삭제</button>
+                            <button type="button" id="listBtn" class="btn">목록</button>    
+                            <button type="button" id="updateBtn" class="btn">변경</button>
+                            <button type="button" id="delBtn" class="btn">삭제</button>
                     </form>
                                     
                 </div>
             </div>
         </div>
         </section>
+<%@ include file="../include/footer.jsp" %>      
+
 
         <script>
             //목록 이동 처리
@@ -70,4 +72,3 @@
                 }
             }
         </script>
-<%@ include file="../include/footer.jsp" %>      

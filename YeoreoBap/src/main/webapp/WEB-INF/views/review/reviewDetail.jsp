@@ -1,95 +1,111 @@
-﻿﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-		<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+﻿﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-			<%@ include file="../include/header.jsp" %>
-				<br><br><br><br>
-				<section>
-					<div class="container">
-						<div class="row">
-							<div class="col-xs-12 col-md-9 write-wrap">
-								<div class="titlebox">
-									<p>상세보기</p>
-								</div>
+<%@ include file="../include/header.jsp"%>
+<br>
+<br>
+<br>
+<br>
+<section>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-md-9 write-wrap">
+				<div class="titlebox">
+					<p>상세보기</p>
+				</div>
 
-								<form action="<c:url value='/review/update'  />" method="post">
+				<form action="${pageContext.request.contextPath}/review/modify" method="post" name="form">
 
-									<div>
-										<label>DATE</label>
-										<c:if test="${article.updateDate == null}">
-											<p>
-												<fmt:parseDate value="${article.regDate}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime"
-													type="both" />
-												<fmt:formatDate value="${parsedDateTime}" pattern="yyyy.MM.dd. HH:mm 등록" />
+					<div>
+						<label>DATE</label>
+						<c:if test="${article.updateDate == null}">
+							<p>
+								<fmt:parseDate value="${article.regDate}"
+									pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime"
+									type="both" />
+								<fmt:formatDate value="${parsedDateTime}"
+									pattern="yyyy.MM.dd. HH:mm 등록" />
 
-											</p>
-										</c:if>
-										<c:if test="${article.updateDate != null}">
-											<p>
-												<fmt:parseDate value="${article.updateDate}" pattern="yyyy-MM-dd'T'HH:mm:ss"
-													var="parsedDateTime" type="both" />
-												<fmt:formatDate value="${parsedDateTime}" pattern="yyyy년 MM월 dd일 HH시 mm분" />
+							</p>
+						</c:if>
+						<c:if test="${article.updateDate != null}">
+							<p>
+								<fmt:parseDate value="${article.updateDate}"
+									pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime"
+									type="both" />
+								<fmt:formatDate value="${parsedDateTime}"
+									pattern="yyyy년 MM월 dd일 HH시 mm분" />
 
-											</p>
-										</c:if>
-									</div>
-
-
-									<div class="form-group">
-										<label>번호</label> <input class="form-control" name="reviewNo" value="${article.reviewNo}" readonly>
-									</div>
-									<div class="form-group">
-										<label>작성자</label> <input class="form-control" name="writer" value="${article.writer}" readonly>
-									</div>
-									<div class="form-group">
-										<label>제목</label> <input class="form-control" name="title" value="${article.title}" readonly>
-									</div>
-
-									<div class="form-group">
-										<label>내용</label>
-										<textarea class="form-control" rows="10" name="content" readonly>${article.content}</textarea>
-									</div>
-
-
-									<!-- <button type="submit" class="btn btn-primary"
-						onclick="return confirm('변경 페이지로 이동합니다.')">변경</button> -->
-									<button type="button" class="btn btn-dark"
-										onclick="location.href='${pageContext.request.contextPath}/review/reviewList?pageNum=${p.pageNum}&cpp=${p.cpp}&keyword=${p.keyword}&condition=${p.condition}'">목록</button>
-									<!--    목록 누르면 화면 페이지 유지하기    -->
-								</form>
-							</div>
-						</div>
+							</p>
+						</c:if>
 					</div>
-				</section>
 
-				<!-- 댓글 영역 시작 -->
-				<section style="margin-top: 80px;">
-					<div class="container">
-						<div class="row">
-							<div class="col-xs-12 col-md-9 write-wrap">
-								<form class="reply-wrap">
-									<div class="reply-image">
-										<img src="${pageContext.request.contextPath}/img/profile.png">
-									</div>
-									<!--form-control은 부트스트랩의 클래스입니다-->
-									<div class="reply-content">
-										<textarea class="form-control" rows="3" id="reply" placeholder="댓글을 입력해주세요"></textarea>
-										<div class="reply-group">
-											<div class="reply-input">
-												<input type="text" class="form-control" id="replyId" placeholder="이름">
-												<!-- 로그인한 아이디로 고정시키고 싶은데(readonly) -->
-												<input type="password" class="form-control" id="replyPw" placeholder="비밀번호">
-											</div>
 
-											<button type="button" id="replyRegist" class="right btn btn-info">등록하기</button>
-										</div>
+					<div class="form-group">
+						<label>후기 번호</label> <input class="form-control" name="reviewNo"
+							value="${article.reviewNo}" readonly>
+					</div>
+					<div class="form-group">
+						<label>작성자</label> <input class="form-control" name="writer"
+							value="${article.writer}" readonly>
+					</div>
+					<div class="form-group">
+						<label>제목</label> <input class="form-control" name="title"
+							value="${article.title}" readonly>
+					</div>
 
-									</div>
-								</form>
+					<div class="form-group">
+						<label>내용</label>
+						<textarea class="form-control" rows="10" name="content" readonly>${article.content}</textarea>
+					</div>
 
-								<!--여기에 접근 반복-->
-								<div id="replyList">
-									<!-- js단에서 반복문을 이용해서 댓글의 개수만큼 반복 표현 
+
+					<button type="submit" class="btn"
+						onclick="return confirm('수정 페이지로 이동합니다.')">수정</button>
+					<button type="button" class="btn"
+						onclick="location.href='${pageContext.request.contextPath}/review/reviewList?pageNum=${p.pageNum}&cpp=${p.cpp}&keyword=${p.keyword}&condition=${p.condition}'">목록</button>
+					<!--    목록 누르면 화면 페이지 유지하기    -->
+					<button type="button" id="delBtn" class="btn">삭제</button>
+					
+				</form>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- 댓글 영역 시작 -->
+<section style="margin-top: 80px;">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-md-9 write-wrap">
+				<form class="reply-wrap">
+					<div class="reply-image">
+						<%-- <img src="${pageContext.request.contextPath}/img/profile.png"> --%>
+					</div>
+					<!--form-control은 부트스트랩의 클래스입니다-->
+					<div class="reply-content">
+						<textarea class="form-control" rows="3" id="reply"
+							placeholder="댓글을 입력해주세요"></textarea>
+						<div class="reply-group">
+							<div class="reply-input">
+								<input type="text" class="form-control" id="replyId"
+									placeholder="이름">
+								<!-- 로그인한 아이디로 고정시키고 싶은데(readonly) -->
+								<input type="password" class="form-control" id="replyPw"
+									placeholder="비밀번호">
+							</div>
+
+							<button type="button" id="replyRegist" class="right btn btn-info">등록하기</button>
+						</div>
+
+					</div>
+				</form>
+
+				<!--여기에 접근 반복-->
+				<div id="replyList">
+					<!-- js단에서 반복문을 이용해서 댓글의 개수만큼 반복 표현 
                         <div class='review-wrap'>
                         <div class='review-image'>
                             <img src='${pageContext.request.contextPath}/img/profile.png'>
@@ -104,45 +120,68 @@
                             <p class='clearfix'>여기는 댓글영역</p>
                         </div>
                     </div>-->
-								</div>
-								<button type="button" class="form-control" id="moreList">
-									<!-- style="display: none;" --> 더보기(페이징)</button>
-							</div>
-						</div>
-					</div>
-				</section>
+				</div>
+				<button type="button" class="form-control" id="moreList">
+					<!-- style="display: none;" -->
+					더보기(페이징)
+				</button>
+			</div>
+		</div>
+	</div>
+</section>
 
-				<!-- 모달 -->
-				<div class="modal fade" id="reviewModal" role="dialog">
-					<div class="modal-dialog modal-md">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="btn btn-default pull-right" data-dismiss="modal">닫기</button>
-								<h4 class="modal-title">댓글수정</h4>
-							</div>
-							<div class="modal-body">
-								<!-- 수정폼 id값을 확인하세요-->
-								<div class="review-content">
-									<textarea class="form-control" rows="4" id="modalreview" placeholder="내용입력"></textarea>
-									<div class="review-group">
-										<div class="review-input">
-											<input type="hidden" id="modalRno"> <input type="password" class="form-control" placeholder="비밀번호"
-												id="modalPw">
-										</div>
-										<button class="right btn btn-info" id="modalModBtn">수정하기</button>
-										<button class="right btn btn-info" id="modalDelBtn">삭제하기</button>
-									</div>
-								</div>
-								<!-- 수정폼끝 -->
-							</div>
+<!-- 모달 -->
+<div class="modal fade" id="reviewModal" role="dialog">
+	<div class="modal-dialog modal-md">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="btn btn-default pull-right"
+					data-dismiss="modal">닫기</button>
+				<h4 class="modal-title">댓글수정</h4>
+			</div>
+			<div class="modal-body">
+				<!-- 수정폼 id값을 확인하세요-->
+				<div class="review-content">
+					<textarea class="form-control" rows="4" id="modalreview"
+						placeholder="내용입력"></textarea>
+					<div class="review-group">
+						<div class="review-input">
+							<input type="hidden" id="modalRno"> <input
+								type="password" class="form-control" placeholder="비밀번호"
+								id="modalPw">
 						</div>
+						<button class="right btn btn-info" id="modalModBtn">수정하기</button>
+						<button class="right btn btn-info" id="modalDelBtn">삭제하기</button>
 					</div>
 				</div>
+				<!-- 수정폼끝 -->
+			</div>
+		</div>
+	</div>
+</div>
 
-				<br><br><br><br><br><br><br>
-				<%@ include file="../include/footer.jsp" %>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<%@ include file="../include/footer.jsp"%>
 
-					<script>
+<script>
+
+//삭제 버튼 이벤트 처리
+
+const $form = document.form;
+document.getElementById('delBtn').onclick = () => {
+    if (confirm('정말 삭제하시겠습니까?')) {
+        $form.setAttribute('action', '${pageContext.request.contextPath}/review/delete');
+        $form.submit();
+    }
+}
+
+
 						window.onload = function () {
 							document.getElementById('replyRegist').onclick = function () {
 								const reviewNo = '${article.reviewNo}';   //현재 게시글 번호
@@ -150,7 +189,7 @@
 								const replyId = document.getElementById('replyId').value;
 								const replyPw = document.getElementById('replyPw').value;
 
-								if (reply === '' || replyId === '' || replypW === '') {
+								if (reply === '' || replyId === '' || replyPw === '') {
 									alert('이름, 비밀번호, 내용을 입력하세요');
 									return;
 								}
@@ -163,19 +202,19 @@
 									},
 									body: JSON.stringify({
 										'review_no': reviewNo,
-										'review': review,
-										'reviewId': reviewId,
-										'reviewPw': reviewPw
+										'reply' : reply,
+										'replyId' : replyId,
+										'replyPw' : replyPw
 									})
 								};
 
-								fetch('${pageContext.request.contextPath}/review/regist', reqObj)
+								fetch('${pageContext.request.contextPath}/review/reviewRegist', reqObj)
 									.then(res => res.text())
 									.then(data => {
 										console.log('통신 성공!: ' + data);
-										document.getElementById('review').value = '';
-										document.getElementById('reviewId').value = '';
-										document.getElementById('reviewPw').value = '';
+										document.getElementById('reply').value = '';
+										document.getElementById('replyId').value = '';
+										document.getElementById('replyPw').value = '';
 										//등록 완료 후 댓글 목록 함수를 호출해서 비동기식으로 목록 표현
 										getList(1, true);
 										//더보기버튼 눌러서 댓글 더 보려하면 false

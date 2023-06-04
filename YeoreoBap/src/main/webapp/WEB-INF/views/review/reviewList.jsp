@@ -18,8 +18,8 @@
 				<!--form select를 가져온다 -->
 				<form action="<c:url value='/review/reviewList' />">
 					<div class="search-wrap">
-						<button type="submit" class="btn btn-info search-btn">검색</button>
 						
+						<button type="submit" class="btn btn-info search-btn">검색</button>
 						<select name="condition" class="form-control search-select">
 							<option value="title"
 								${pc.paging.condition == 'title' ? 'selected' : ''}>제목</option>
@@ -40,7 +40,7 @@
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th>번호</th>
+							<th>리뷰 번호</th>
 							<th class="board-title">제목</th>
 							<th>작성자</th>
 							<th>식당 번호</th>
@@ -53,7 +53,7 @@
 							<tr>
 								<td>${vo.reviewNo}</td>
 								<td><a
-									href="${pageContext.request.contextPath}/review/getArticle/${vo.reviewNo}?pageNum=${pc.paging.pageNum}&cpp=${pc.paging.cpp}&keyword=${pc.paging.keyword}&condition=${pc.paging.condition}">${vo.title}</a>
+									href="${pageContext.request.contextPath}/review/content/${vo.reviewNo}?pageNum=${pc.paging.pageNum}&cpp=${pc.paging.cpp}&keyword=${pc.paging.keyword}&condition=${pc.paging.condition}">${vo.title}</a>
 								</td>
 								<td>${vo.writer}</td>
 								<td>${vo.sno}</td>

@@ -24,6 +24,7 @@ public class ReviewReplyController {
 	@Autowired
 	private IReviewReplyService service;
 
+	//댓글 등록
 	@PostMapping("/regist")
 	public String replyRegist(@RequestBody ReviewReplyVO vo) {
 		service.replyRegist(vo);
