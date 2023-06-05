@@ -251,3 +251,16 @@ i.bi-pencil {
 i.bi-pencil::before {
 	padding: 6.5px;
 }
+
+/* reviewRegist.jsp 별점 모달 css */
+.rating-stars {
+	font-size: 30px;
+	cursor: pointer;
+	color: gray;
+}
+.rating-stars .star {
+	color: gray;
+}
+.rating-stars .star.active {
+	color: gold;
+}

@@ -57,7 +57,7 @@ public class ReviewController {
 		model.addAttribute("attendedParty", service.getResList2(userId));
 	}
 
-	@PostMapping("/reviewRegist")
+	@PostMapping("/regist")
 	public String regist(ReviewVO vo) {
 		service.regist(vo);
 		return "redirect:/review/reviewList";
