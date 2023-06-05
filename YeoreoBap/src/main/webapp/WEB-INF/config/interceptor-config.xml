@@ -16,6 +16,7 @@
 		<!-- 로그인 이후에 실행되는 postHandler를 어떤 url에 동작하게 할 지 세팅 -->
 		<mvc:interceptor>
 			<mvc:mapping path="/user/userLogin" />
+			<mvc:mapping path="/user/userUpdate" />
 			<ref bean="userLoginSuccessHandler" />
 		</mvc:interceptor>
 		

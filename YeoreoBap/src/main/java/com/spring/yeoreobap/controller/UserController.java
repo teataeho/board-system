@@ -79,6 +79,17 @@ public class UserController {
 		return "redirect:/user/userLogin";
 	}
 
+	
+	//수정 요청
+	@PostMapping("/userUpdate")
+	public String updateUser(UserVO vo, Model model, HttpSession session) {
+		service.updateUser(vo);		
+		//model.addAttribute("user", service.login(vo.getUserId(), vo.getUserPw()));
+		session.setAttribute("user", service.login(vo.getUserId(), vo.getUserPw()));
+		return "redirect:/user/userMypage";
+	}
+	
+	
 
 	//로그인 페이지로 이동 요청 	get
 	@GetMapping("/userLogin")
@@ -98,11 +109,11 @@ public class UserController {
 	//마이페이지 이동 요청
 	@GetMapping("/userMypage")
 	public void userMypage(HttpSession session, Model model, PageVO vo) {
-		UserVO user = (UserVO) session.getAttribute("userInfo");
-		String id = user.getUserId();
-//		PageCreator pc = new PageCreator(vo, partyService.getTotal(vo));
+		String id = (String) session.getAttribute("login");
+		vo.setLoginId(id);
+		PageCreator pc = new PageCreator(vo, partyService.getTotal(vo));
 		model.addAttribute("userInfo", service.getInfo(id, vo));
-//		model.addAttribute("pc", pc);
+		model.addAttribute("pc", pc);
 	}
 
 	//로그아웃 요청
@@ -112,5 +123,4 @@ public class UserController {
 		ModelAndView mv = new ModelAndView("redirect:/");
 		return mv;
 	}
-	
 }

@@ -20,7 +20,7 @@
 					<option>동을 선택해주세요</option>
 				</select>
 				<button type="button" id="search">검색</button>
-			<form action="#" method="post">
+			<form action="" method="post">
 				<input type="hidden" id="sno" name="sno">
 				<input type="hidden" id="bplcNm" name="bplcNm">
 			</form>
@@ -106,7 +106,7 @@
 											//document.getElementById('bplcNm').value = restaurant.bplcnm;
 
 											if (confirm(restaurant.bplcnm + "에서 여러밥하시겠습니까? :)")) {
-												location.href = "partyRegister?sno=" + restaurant.sno + "&bplcnm=" + restaurant.bplcnm;
+												location.href = "${pageContext.request.contextPath}/party/partyRegister?sno=" + restaurant.sno + "&bplcnm=" + restaurant.bplcnm;
 											}
 										});
 									}

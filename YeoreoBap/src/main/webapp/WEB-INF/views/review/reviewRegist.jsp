@@ -48,7 +48,7 @@
 					</table>
 					<input type="hidden" name="writer" value="${userInfo.userId}">
 					<div class="titlefoot">
-						<button class="btn" type="submit">등록</button>
+						<button class="btn" type="submit" id="uploadBtn">등록</button>
 						<button class="btn" type="button" onclick="location.href='${pageContext.request.contextPath}/review/reviewList'">목록</button>
 					</div>
 					
