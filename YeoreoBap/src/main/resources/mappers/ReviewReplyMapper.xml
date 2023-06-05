@@ -12,10 +12,11 @@
 	
 	<select id="getList" resultType="rReply">
 		SELECT r.*, u.user_nick
-		FROM reviewReply r JOIN users u
-		ON r.reply_id = u.user_id
-		WHERE review_no = #{reviewNo}
-		ORDER BY reply_no DESC
+		FROM reviewReply r 
+		JOIN users u
+		ON r.reply_id = u.user_nick
+		WHERE r.review_no = #{reviewNo}
+		ORDER BY r.reply_no DESC
 		LIMIT #{paging.pageStart}, #{paging.cpp}
 	</select>
 	
