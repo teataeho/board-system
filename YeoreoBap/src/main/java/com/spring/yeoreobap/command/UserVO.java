@@ -28,6 +28,8 @@ public class UserVO {
 
 	private String userId, userPw, userName, userNick, userEmail1, userEmail2, addrGu, addrDong;
 	private LocalDateTime regDate;
+	
+	// Join
 	private List<PartyVO> userPartyList;
 
 }
