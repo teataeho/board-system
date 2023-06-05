@@ -101,13 +101,13 @@
 													// 생성된 마커를 배열에 추가합니다
 													markers.push(marker);
 
-													// 마커에 마우스 오버 이벤트를 등록합니다
-													kakao.maps.event.addListener(marker, 'mouseover', function () {
-														var content = '<div style="padding:5px;font-size:12px;">' + restaurant
-															.bplcnm + '</div>'; // 음식점 이름을 표시할 컨텐츠 HTML
-														infowindow.setContent(content); // 인포윈도우에 컨텐츠를 설정합니다
-														infowindow.open(map, marker); // 인포윈도우를 표시합니다
-													});
+										// 마커에 마우스 오버 이벤트를 등록합니다
+										kakao.maps.event.addListener(marker, 'mouseover', function () {
+											var content = '<div style="padding:5px;font-size:12px;">' + restaurant
+												.bplcnm + '<br>★: ' + restaurant.avgRate + '</div>'; // 음식점 이름을 표시할 컨텐츠 HTML
+											infowindow.setContent(content); // 인포윈도우에 컨텐츠를 설정합니다
+											infowindow.open(map, marker); // 인포윈도우를 표시합니다
+										});
 
 													// 마커에 마우스 아웃 이벤트를 등록합니다
 													kakao.maps.event.addListener(marker, 'mouseout', function () {
