@@ -4,15 +4,40 @@
 
 <mapper namespace="com.spring.yeoreobap.review.mapper.IReviewMapper">
 
+
+<sql id="search">
+	 	<if test="condition == 'title'">
+	 		WHERE title LIKE CONCAT('%', #{keyword}, '%')
+	 	</if>
+	 	<if test="condition == 'writer'">
+	 		WHERE writer LIKE CONCAT('%', #{keyword}, '%')
+	 	</if>
+	 	<if test="condition == 'content'">
+	 		WHERE content LIKE CONCAT('%', #{keyword}, '%')
+	 	</if>
+	 	<if test="condition == 'restaurant'">
+	 		WHERE sno LIKE CONCAT('%', #{keyword}, '%')
+	 	</if>
+	 	<if test="condition == 'titleContent'">
+	 		WHERE title LIKE CONCAT('%', #{keyword}, '%')
+	 		OR content LIKE CONCAT('%', #{keyword}, '%')
+	 	</if>
+	 </sql>
+
+
+
 	<insert id="regist">
 		INSERT INTO review
-		(review_no, rest_id, writer, title, content)
-		VALUES (#{reviewNo}, #{restId}, #{writer}, #{title}, #{content})
+		(review_no, sno, writer, title, content)
+		VALUES (#{reviewNo}, #{sno}, #{writer}, #{title}, #{content})
 	</insert>
 	<!-- regDate, updateDate 삭제 -->
 	<select id="getList" resultType="review">
-		SELECT * 
-		FROM review
+		SELECT r.*, u.user_nick, s.bplc_nm
+		FROM review r JOIN users u
+		ON r.writer = u.user_id
+		JOIN store s ON r.sno = s.sno
+		<include refid="search" />
 		ORDER BY review_no DESC
 		LIMIT #{pageStart}, #{cpp}
 	</select>
@@ -20,9 +45,10 @@
 	<select id="getTotal" resultType="int">
 		SELECT COUNT(*)
 		FROM review
+		<include refid="search" />
 	</select>
 	
-	<select id="getArticle" resultType="review">
+	<select id="getContent" resultType="review">
 		SELECT * FROM review
 		WHERE review_no = #{reviewNo}
 	</select>
@@ -39,6 +65,17 @@
 		WHERE review_no = #{reviewNo}
 	</delete>
 	
+	<select id="getResList1" resultType="party">
+		SELECT sno, bplc_nm
+		FROM party
+		WHERE writer = #{userId}
+	</select>
 	
+	<select id="getResList2" resultType="party">
+		SELECT p.sno, p.bplc_nm
+		FROM participants s JOIN party p
+		ON p.party_no = s.party_no
+		WHERE s.user_id = #{userId}
+	</select>
 
 </mapper>

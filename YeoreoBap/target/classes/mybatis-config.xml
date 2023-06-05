@@ -28,6 +28,8 @@
         <typeAlias type="com.spring.yeoreobap.command.ReviewVO" alias="review"/>
         <typeAlias type="com.spring.yeoreobap.command.PartyReplyVO" alias="pReply"/>
         <typeAlias type="com.spring.yeoreobap.command.ReviewReplyVO" alias="rReply"/>
+        <typeAlias type="com.spring.yeoreobap.command.StarVO" alias="star"/>
+        <typeAlias type="com.spring.yeoreobap.command.ParticipantsVO" alias="participants"/>
     </typeAliases>
      
 </configuration>
