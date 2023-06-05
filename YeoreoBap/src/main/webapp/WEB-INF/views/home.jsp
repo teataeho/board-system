@@ -72,6 +72,7 @@
 							</a>
 						</h2>
 					</div>
+					<a href="${pageContext.request.contextPath}/store/input">데이터인풋</a>
 					<!-- 후기 게시판 제목 끝 -->
 
 					<!-- 모달 -->
