@@ -297,7 +297,7 @@ a {
 }
 
 a:hover {
-  color: var(--bs-link-hover-color);
+  color: #F0975A;
 }
 
 a:not([href]):not([class]),
@@ -2376,6 +2376,12 @@ progress {
 }
 
 .form-control:disabled {
+  border: 1px solid #ced4da;
+  background-color: #e9ecef;
+  opacity: 1;
+}
+
+.form-control:read-only {
   border: 1px solid #ced4da;
   background-color: #e9ecef;
   opacity: 1;
@@ -8272,6 +8278,12 @@ fieldset:disabled .btn {
 
 .border-orange {
   --bs-border-opacity: 1;
+  border-color: rgba(var(--bs-orange-rgb), var(--bs-border-opacity)) !important;
+}
+
+.border-thick-orange {
+  --bs-border-opacity: 1;
+  border-width: 2px !important;
   border-color: rgba(var(--bs-orange-rgb), var(--bs-border-opacity)) !important;
 }
 

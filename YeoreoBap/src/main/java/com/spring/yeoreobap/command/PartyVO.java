@@ -12,7 +12,6 @@ import lombok.ToString;
 	    sno INT NOT NULL,
 	    bplc_nm VARCHAR(50) NOT NULL,
 	    writer VARCHAR(50) NOT NULL,
-	    writer_nick VARCHAR(50) NOT NULL,
 	    title VARCHAR(100) NOT NULL,
 	    content VARCHAR(3000) NOT NULL,
 	    reg_date DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -30,6 +29,9 @@ import lombok.ToString;
 public class PartyVO {
 
 	private int partyNo, sno, max, viewNum, attendedNum, attended;
-	private String bplcNm, writer, writerNick, title, content, uploadPath, fileName, rdnWhlAddr;
+	private String bplcNm, writer, title, content, uploadPath, fileName, rdnWhlAddr;
 	private LocalDateTime regDate, updateDate;
+	
+	// Join
+	private String writerNick;
 }
