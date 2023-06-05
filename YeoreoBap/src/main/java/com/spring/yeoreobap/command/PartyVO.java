@@ -41,4 +41,5 @@ public class PartyVO {
 	private LocalDateTime regDate, updateDate;
 	private String uploadPath, fileName;
 	private String bplcNm, rdnWhlAddr;
+	private int attendedNum, attended;
 }

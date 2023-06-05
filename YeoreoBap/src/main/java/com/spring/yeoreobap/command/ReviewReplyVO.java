@@ -26,4 +26,6 @@ public class ReviewReplyVO {
 	private String reply;
 	private String replyId;
 	private LocalDateTime regDate;
+	
+	private String userNick;
 }

@@ -33,8 +33,10 @@
 	</insert>
 	<!-- regDate, updateDate 삭제 -->
 	<select id="getList" resultType="review">
-		SELECT * 
-		FROM review
+		SELECT r.*, u.user_nick, s.bplc_nm
+		FROM review r JOIN users u
+		ON r.writer = u.user_id
+		JOIN store s ON r.sno = s.sno
 		<include refid="search" />
 		ORDER BY review_no DESC
 		LIMIT #{pageStart}, #{cpp}
@@ -47,7 +49,10 @@
 	</select>
 	
 	<select id="getContent" resultType="review">
-		SELECT * FROM review
+		SELECT r.*, u.user_nick
+		FROM review r 
+		JOIN users u
+		ON r.writer = u.user_id
 		WHERE review_no = #{reviewNo}
 	</select>
 	
@@ -63,6 +68,17 @@
 		WHERE review_no = #{reviewNo}
 	</delete>
 	
+	<select id="getResList1" resultType="party">
+		SELECT sno, bplc_nm
+		FROM party
+		WHERE writer = #{userId}
+	</select>
 	
+	<select id="getResList2" resultType="party">
+		SELECT p.sno, p.bplc_nm
+		FROM participants s JOIN party p
+		ON p.party_no = s.party_no
+		WHERE s.user_id = #{userId}
+	</select>
 
 </mapper>

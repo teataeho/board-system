@@ -17,13 +17,13 @@
                             </div>
                             <div class="form-group">
                                 <label>작성자</label>
-                                <input class="form-control" name="writer" value="${article.writer}" readonly>
+                                <input class="form-control" name="userNick" value="${article.userNick}" readonly>
                             </div>    
                             <div class="form-group">
                                 <label>제목</label>
                                 <input class="form-control" name="title" value="${article.title}">
                             </div>
-
+                            <input type="hidden" name="writer" value="${article.writer}">
                             <div class="form-group">
                                 <label>내용</label>
                                 <textarea class="form-control" rows="10" name="content">${article.content}</textarea>

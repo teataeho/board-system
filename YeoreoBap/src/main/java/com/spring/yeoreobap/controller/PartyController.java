@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.spring.yeoreobap.command.ParticipantsVO;
 import com.spring.yeoreobap.command.PartyVO;
 import com.spring.yeoreobap.party.service.IPartyService;
 import com.spring.yeoreobap.util.PageVO;
@@ -44,7 +46,7 @@ public class PartyController {
 
 	//글목록 가져오기
 	@ResponseBody
-	@GetMapping("/{page}")
+	@GetMapping("/partyList/{page}")
 	public List<PartyVO> partyList(@PathVariable int page) {
 		System.out.println(page);
 		PageVO vo = new PageVO();
@@ -65,13 +67,14 @@ public class PartyController {
 	}
 
 	@ResponseBody
-	@GetMapping("/content/{partyNo}")
-	public PartyVO getArticle(@PathVariable int partyNo) {
-		return service.getArticle(partyNo);
+	@GetMapping("/content/{partyNo}/{uid}")
+	public PartyVO getArticle(@PathVariable int partyNo, @PathVariable("uid") String userId) {
+		log.info(userId);
+		return service.getArticle(partyNo, userId);
 	}
 
-	@PostMapping("/delete")
-	public String delete(int partyNo) {
+	@GetMapping("/delete/{partyNo}")
+	public String delete(@PathVariable int partyNo) {
 		service.delete(partyNo);
 		return "redirect:/party/partyList";
 	}
@@ -79,8 +82,16 @@ public class PartyController {
 	// 참가시 유저아이디와 글번호를 모두 가져와야함 가져오는 방식은 미정
 	@ResponseBody
 	@PostMapping("/attend")
-	public void attend(String userId, int partyNo) {
-		service.attend(userId, partyNo);
+	public String attend(@RequestBody ParticipantsVO vo) {
+		service.attend(vo);
+		return "success";
+	}
+	
+	@ResponseBody
+	@DeleteMapping("/cancelAttend")
+	public String cancelAttend(@RequestBody ParticipantsVO vo) {
+		service.cancelAttend(vo);
+		return "success";
 	}
 	
 	//이미지 파일 전송

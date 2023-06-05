@@ -18,6 +18,7 @@
 					<li><a data-toggle="tab" href="#myBoard">내글</a></li>
 					<li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
 				</ul>
+				<p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
 				<div class="tab-content">
 					<div id="info" class="tab-pane fade in active">
 
@@ -106,7 +107,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									 <c:if test="${fn:length(userInfo.reviewList) > 0}">
+								
 										<c:forEach var="vo" items="${userInfo.reviewList}">
 											<tr>
 												<td>${vo.reviewNo}</td>
@@ -137,7 +138,7 @@
 											</ul>
 										</div>
 
-									</c:if> 
+									
 								<%-- 	<c:if test="${fn:length(userInfo.userBoardList) <= 0}">
 									<h2>글을 작성하지 않았습니다.</h2>
 									</c:if> --%>

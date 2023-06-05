@@ -49,14 +49,14 @@
 							name="reviewNo" value="${article.reviewNo}" readonly>
 					</div>
 					<div class="form-group">
-						<label>작성자</label> <input class="form-control" name="writer"
-							value="${article.writer}" readonly>
+						<label>작성자</label> <input class="form-control" name="userNick"
+							value="${article.userNick}(${article.writer})" readonly>
 					</div>
 					<div class="form-group">
 						<label>제목</label> <input class="form-control" name="title"
 							value="${article.title}" readonly>
 					</div>
-
+					
 					<div class="form-group">
 						<label>내용</label>
 						<textarea class="form-control" rows="10" name="content" readonly>${article.content}</textarea>

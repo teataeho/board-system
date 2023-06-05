@@ -17,8 +17,10 @@
 
 				<!--form select를 가져온다 -->
 				<form action="<c:url value='/review/reviewList' />">
-					<div id="search-wrap">
-						<select name="condition" class="form-select" id="select">
+					<div class="search-wrap">
+						
+						<button type="submit" class="btn btn-info search-btn">검색</button>
+						<select name="condition" class="form-control search-select">
 							<option value="title"
 								${pc.paging.condition == 'title' ? 'selected' : ''}>제목</option>
 							<option value="content"
@@ -44,7 +46,7 @@
 							<th>리뷰 번호</th>
 							<th class="board-title">제목</th>
 							<th>작성자</th>
-							<th>식당 번호</th>
+							<th>식당 이름</th>
 							<th>등록일</th>
 							<th>수정일</th>
 						</tr>
@@ -56,8 +58,8 @@
 								<td><a
 									href="${pageContext.request.contextPath}/review/content/${vo.reviewNo}?pageNum=${pc.paging.pageNum}&cpp=${pc.paging.cpp}&keyword=${pc.paging.keyword}&condition=${pc.paging.condition}">${vo.title}</a>
 								</td>
-								<td>${vo.writer}</td>
-								<td>${vo.sno}</td>
+								<td>${vo.userNick}</td>
+								<td>${vo.bplcNm}</td>
 								<td><fmt:parseDate value="${vo.regDate}"
 										pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" /> <fmt:formatDate
 										value="${parsedDateTime}" pattern="yy.MM.dd. HH:mm" /></td>
