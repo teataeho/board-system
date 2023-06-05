@@ -108,9 +108,9 @@
 								</thead>
 								<tbody>
 								
-										<c:forEach var="vo" items="${userInfo.reviewList}">
+										<c:forEach var="vo" items="${userInfo.userPartyList}">
 											<tr>
-												<td>${vo.reviewNo}</td>
+												<td>${vo.partyNo}</td>
 												<td><a href="##">${vo.title}</a></td>
 												<td><fmt:parseDate value="${vo.regDate}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDate" type="both" /> 
 												<fmt:formatDate	value="${parsedDate}" pattern="yyyy년 MM월 dd일 HH:mm" />
