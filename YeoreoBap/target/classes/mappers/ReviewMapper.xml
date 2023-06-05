@@ -49,7 +49,10 @@
 	</select>
 	
 	<select id="getContent" resultType="review">
-		SELECT * FROM review
+		SELECT r.*, u.user_nick
+		FROM review r 
+		JOIN users u
+		ON r.writer = u.user_id
 		WHERE review_no = #{reviewNo}
 	</select>
 	
