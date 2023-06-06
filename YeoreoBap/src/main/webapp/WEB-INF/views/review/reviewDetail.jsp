@@ -1,4 +1,4 @@
-﻿﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿﻿﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -46,12 +46,15 @@
 							작성자 <span>|</span>
 						</p>
 						<p class="reviewData">${article.userNick}(${article.writer})</p>
+						<input type="hidden" value="${article.userNick}" name="userNick">
+						<input type="hidden" value="${article.writer}" name="writer">
 					</div>
 					<div class="form-group">
 						<p class="subTitle">
 							제목 <span>|</span>
 						</p>
 						<p class="reviewData reviewTitle text-truncate">${article.title}</p>
+						<input type="hidden" value="${article.title}" name="title">
 					</div>
 
 					<div class="form-group">
@@ -59,6 +62,7 @@
 							내용 <span>|</span>
 						</p>
 						<p class="reviewData dataBorder">${article.content}</p>
+						<input type="hidden" value="${article.content}" name="content">
 					</div>
 
 					<div class="reviewBtns">
@@ -113,7 +117,7 @@
 				</form>
 
 				<!--여기에 접근 반복-->
-				<div id="replyListWrap"></div>
+				<div id="replyList"></div>
 				<button type="button" class="form-control" id="moreList"
 					style="display: none;">더보기(페이징)</button>
 			</div>
@@ -228,7 +232,7 @@ document.querySelector('.reviewBtns').addEventListener('click', e => {
 												<div class='reply-wrap'>
                         <div class="reply-content">
                             <div class='my-reply-group'>
-                                <p class='left'>` + replyList[i].replyId + `</p> <span>|</span>
+                                <p class='left'>` + replyList[i].userNick + `</p> <span>|</span>
                                 <p class='clearfix'>` + replyList[i].reply + `</p>
                                 <a href='` + replyList[i].replyNo + `' class='right replyDelete'>X삭제</a>
                             </div>

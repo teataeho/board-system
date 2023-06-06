@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.spring.yeoreobap.command.PartyReplyVO;
 import com.spring.yeoreobap.command.ReviewReplyVO;
 import com.spring.yeoreobap.reviewReply.mapper.IReviewReplyMapper;
 import com.spring.yeoreobap.util.PageVO;

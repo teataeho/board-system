@@ -18,6 +18,18 @@ i {
 	position: relative;
 }
 
+.necessary {
+	font-weight: bold;
+	font-size: 15px;
+	color: red;
+}
+
+.information {
+	font-size: 13px;
+	color: lightgray;
+	margin-bottom: 5px;
+}
+
 /*--------------- header.jsp ---------------*/
 header {
 	background-color: #fff;
@@ -59,16 +71,144 @@ h6 {
 .p-0 .thumbnail-size {
 	width: 220px;
 	height: 300px;
+	background-color: black;
 	overflow: hidden;
 	position: relative;
+
+	margin-right: 30px;
+	margin-bottom: 30px;
 }
 
 .p-0 .thumbnail-size img {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+	cursor: pointer;
+	transition: 0.3s ease-in-out;
 }
+
+.p-0 .thumbnail-size img:hover {
+	opacity: 0.5;
+}
+
+.gradient {
+	position: absolute;
+	bottom: -180px;
+
+	width: 225px;
+	height: 160px;
+	transition: 0.3s ease-in-out;
+	background-image: url('../img/gradient.png');
+}
+
+.gradient:hover {
+	position: absolute;
+	bottom: 0;
+}
+
+/*--------------- Join Page (userJoin.jsp) ---------------*/
+#section {
+	margin: 70px auto 0;
+	max-width: 600px;
+}
+
+/* 아이디 input, btn */
+#userId {
+	margin-right: 10px;
+}
+
+/* 이메일 input */
+#emailBorder {
+	display: flex;
+	align-items: center;
+	margin-bottom: 10px;
+}
+
+#emailBorder p {
+	margin: 0 10px;
+}
+
+#userEmail1 {
+	flex-grow: 10;
+}
+
+#userEmail2 {
+	flex-grow: 10;
+	margin-right: 10px;
+}
+
+#emailSelection {
+	flex-grow: 10;
+	margin-bottom: 0;
+	height: 48.67px;
+}
+
+#emailCheck {
+	margin-right: 10px;
+}
+
+#emailVerification {
+	width: 600px;
+	margin-left: 1px;
+}
+
+/* 활동하고 싶은 동네 */
+#locBorder {
+	display: flex;
+	height: 48.67px;
+}
+
+#locBorder .locGu {
+	margin-right: 10px;
+}
+
+/* 회원가입 로그인 버튼 */
+.btns {
+	margin-top: 30px;
+	display: flex;
+	justify-content: center;
+}
+
+#joinBtn,
+#loginBtn {
+	width: 135px;
+	height: 50px;
+	margin: 0 10px;
+}
+
+
+/*--------------- Login Page (userLogin.jsp) ---------------*/
+.loginBorder {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 200px;
+}
+
+.loginBorder .idPw {
+	margin-bottom: 30px;
+}
+
+.loginBorder .idPw #userId.loginId {
+	margin-bottom: 10px;
+}
+
+.loginBorder .idPw #userPw.loginPw {
+	margin-top: 10px;
+}
+
+.login-div {
+	display: flex;
+	flex-direction: column;
+}
+
+#loginBtn.loginBtn {
+	width: 106px;
+	height: 106px;
+}
+
+#userLoginBtns a {
+	margin-top: 6px;
+	font-size: 15px;
+}
+
 
 /*--------------- PartyList Page (partyList.jsp) ---------------*/
 .partyList {
@@ -86,10 +226,18 @@ h6 {
 }
 
 /* 최상단 이동 버튼 */
-.stickyButtons {
+.partyListStickyBtns {
 	position: sticky;
 	bottom: 430px;
-	padding-left: 1220px;
+}
+
+.stickyButtons {
+	display: inline-flex;
+	flex-direction: column;
+	height: 120px;
+
+	position: absolute;
+	right: 15px;
 }
 
 .stickyButtons a {
@@ -127,4 +275,17 @@ i.bi-pencil {
 
 i.bi-pencil::before {
 	padding: 6.5px;
+}
+
+/* reviewRegist.jsp 별점 모달 css */
+.rating-stars {
+	font-size: 30px;
+	cursor: pointer;
+	color: gray;
+}
+.rating-stars .star {
+	color: gray;
+}
+.rating-stars .star.active {
+	color: gold;
 }

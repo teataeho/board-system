@@ -1,9 +1,7 @@
 package com.spring.yeoreobap.reviewReply.service;
 
 import java.util.List;
-import java.util.Map;
 
-import com.spring.yeoreobap.command.PartyReplyVO;
 import com.spring.yeoreobap.command.ReviewReplyVO;
 
 public interface IReviewReplyService {

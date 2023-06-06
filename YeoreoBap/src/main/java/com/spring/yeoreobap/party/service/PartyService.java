@@ -22,8 +22,14 @@ public class PartyService implements IPartyService {
 	@Autowired
 	private IPartyMapper mapper;
 
+	// 예시 이미지 사용 시 등록
 	@Override
-	public void regist(PartyVO vo, MultipartFile file) {
+	public void register(PartyVO vo) {
+
+	}
+
+	@Override
+	public void register(PartyVO vo, MultipartFile file) {
 
 		// 기본 경로는 C:/test/upload로 사용하겠습니다.
 		String uploadPath = "C:/yeoreobap/upload/party";
@@ -92,6 +98,11 @@ public class PartyService implements IPartyService {
 	@Override
 	public void cancelAttend(ParticipantsVO vo) {
 		mapper.cancelAttend(vo);		
+	}
+
+	@Override
+	public int getTotal(PageVO vo) {
+		return mapper.getTotal(vo);
 	}
 
 }

@@ -1,7 +1,5 @@
 package com.spring.yeoreobap.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
-import com.spring.yeoreobap.command.PartyVO;
 import com.spring.yeoreobap.command.ReviewVO;
 import com.spring.yeoreobap.command.UserVO;
 import com.spring.yeoreobap.review.service.IReviewService;

@@ -1,4 +1,4 @@
-﻿﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -10,92 +10,79 @@
 	<!--Toggleable / Dynamic Tabs긁어옴-->
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-12 col-md-10 col-lg-9 myInfo">
-				<div class="titlebox">MEMBER INFO</div>
+			<div class="col-sm-9 col-md-9 col-lg-9 myInfo">
 
-				<ul class="nav nav-tabs tabs-style">
-					<li class="active"><a data-toggle="tab" href="#info">내정보</a></li>
-					<li><a data-toggle="tab" href="#myBoard">내글</a></li>
-					<li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
-				</ul>
-				<p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+				<section id="section">
+				<h2 class="titlebox text-center border-bottom border-orange pb-3 mb-4">MY PAGE</h2>
+			</section>
+				<br>
 				<div class="tab-content">
-					<div id="info" class="tab-pane fade in active">
 
-						<p>*표시는 필수 입력 표시입니다</p>
-						<form action="${pageContext.request.contextPath}/user/userUpdate"
-							method="post" name="updateForm">
-							<table class="table">
-								<tbody class="m-control">
-									<tr>
-										<td class="m-title">*ID</td>
-										<td><input class="form-control input-sm" name="userId"
-											value="${login}" readonly></td>
-									</tr>
-									<tr>
-										<td class="m-title">*이름</td>
-										<td><input class="form-control input-sm" name="userName"
-											value="${userInfo.userName}"></td>
-									</tr>
-									<tr>
-										<td class="m-title">*비밀번호</td>
-										<td><input class="form-control input-sm" name="userPw"></td>
-									</tr>
-									<tr>
-										<td class="m-title">*비밀번호 확인</td>
-										<td><input class="form-control input-sm"
-											name="userPwChlk"></td>
-									</tr>
-									<tr>
-										<td class="m-title">*E-mail</td>
-										<td><input class="form-control input-sm" id="userEmail1"
-											name="userEmail1" value="${userInfo.userEmail1}"> <select
-											class="form-control input-sm sel" id="userEmail2"
-											name="userEmail2">
-												<option
-													${userInfo.userEmail2 == '@naver.com' ? 'selected' : ''}>@naver.com</option>
-												<option
-													${userInfo.userEmail2 == '@gmail.com' ? 'selected' : ''}>@gmail.com</option>
-												<option
-													${userInfo.userEmail2 == '@daum.net' ? 'selected' : ''}>@daum.net</option>
-										</select>
-											<button type="button" id="mail-check-btn"
-												class="btn btn-primary">이메일 인증</button></td>
-									</tr>
-									<tr id="mailAuth">
-										<td>인증번호 입력란</td>
-										<td><input type="text"
-											class="form-control mail-check-input"
-											placeholder="인증번호 6자리를 입력하세요." maxlength="6"
-											disabled="disabled">
-											<button type="button" id="mail-auth-btn"
-												class="btn btn-primary">인증 확인</button></td>
-									</tr>
+					<form action="${pageContext.request.contextPath}/user/userUpdate"
+						method="post" name="updateForm">
 
-									
-									<tr>
-										<td class="m-title">*구</td>
-										<td><input class="form-control input-sm add"
-											name="addrGu" value="${userInfo.addrGu}"></td>
-									</tr>
-									<tr>
-										<td class="m-title">*동</td>
-										<td><input class="form-control input-sm add"
-											name="addrDong" value="${userInfo.addrDong}"></td>
-									</tr>
-								</tbody>
-							</table>
-						</form>
+						<table class="table" id="mapageTable">
+							<tbody class="m-control">
+								<tr>
+									<td class="m-title">ID<span>|</span></td>
+									<td><input class="form-control input-sm" name="userId"
+										value="${userInfo.userId}" readonly></td>
+								</tr>
+								<tr>
+									<td class="m-title">이름<span>|</span></td>
+									<td><input class="form-control input-sm" name="userName"
+										value="${userInfo.userName}" readonly></td>
+								</tr>
 
-						<div class="titlefoot">
-							<button class="btn">수정</button>
-							<button class="btn">목록</button>
-						</div>
+								<tr>
+									<td class="m-title">*닉네임<span>|</span></td>
+									<td><input class="form-control input-sm" name="userNick"
+										value="${userInfo.userNick}"></td>
+								</tr>
+								<tr>
+									<td class="m-title">E-mail<span>|</span></td>
+									<td><input class="form-control input-sm" id="userEmail1"
+										name="userEmail1"
+										value="${userInfo.userEmail1}@${userInfo.userEmail2}" readonly>
+									</td>
+								</tr>
+
+
+								<tr class="locationTr">
+									<td class="m-title">*구<span>|</span></td>
+									<td><select name="addrGu" id="addrGu"
+										onchange="categoryChange(this)" class="form-select">
+											<option value="${userInfo.addrGu}">${userInfo.addrGu}</option>
+											<c:choose>
+												<c:when test="${userInfo.addrGu == '서대문구'}">
+													<option value="마포구">마포구</option>
+												</c:when>
+												<c:when test="${userInfo.addrGu == '마포구'}">
+													<option value="서대문구">서대문구</option>
+												</c:when>
+											</c:choose>
+									</select></td>
+								</tr>
+								<tr class="locationTr">
+									<td class="m-title">*동<span>|</span></td>
+									<td><select class="form-select" id="addrDong"
+										name="addrDong">
+											<option value="${userInfo.addrDong}">${userInfo.addrDong}</option>
+									</select></td>
+								</tr>
+							</tbody>
+						</table>
+
+					</form>
+
+					<div class="titlefoot" id="mypageBtn">
+						<button class="btn mypageBtn" id="updateBtn">수정</button>
 					</div>
-					<!-- 첫번째 토글 끝 -->
 
+					<!-- 첫번째 토글 끝 -->
+					<hr><br><br><br><br><br>
 					<!-- 두번째 토글 메뉴의 시작 -->
-					<div id="myBoard" class="tab-pane fade">
+					
 						<p>*내 게시글 관리</p>
 						<form>
 							<table class="table">
@@ -107,53 +94,62 @@
 									</tr>
 								</thead>
 								<tbody>
-								
-										<c:forEach var="vo" items="${userInfo.reviewList}">
-											<tr>
-												<td>${vo.reviewNo}</td>
-												<td><a href="##">${vo.title}</a></td>
-												<td><fmt:parseDate value="${vo.regDate}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDate" type="both" /> 
-												<fmt:formatDate	value="${parsedDate}" pattern="yyyy년 MM월 dd일 HH:mm" />
-												</td>
-											</tr>
-										</c:forEach>
 
-										<div class="text-center">
-											<hr>
-											<ul id="pagination" class="pagination pagination-sm">
-												<c:if test="${pc.prev}">
-													<li><a href="#" data-pagenum="${pc.beginPage-1}">이전</a></li>
-												</c:if>
-
-												<c:forEach var="num" begin="${pc.beginPage}"
-													end="${pc.endPage}">
-													<li class="${pc.paging.pageNum == num ? 'active' : ''}">
-														<a href="#" data-pagenum="${num}">${num}</a>
-													</li>
-												</c:forEach>
-
-												<c:if test="${pc.next}">
-													<li><a href="#" data-pagenum="${pc.endPage+1}">다음</a></li>
-												</c:if>
-											</ul>
-										</div>
-
-									
-								<%-- 	<c:if test="${fn:length(userInfo.userBoardList) <= 0}">
-									<h2>글을 작성하지 않았습니다.</h2>
-									</c:if> --%>
+									<c:forEach var="vo" items="${user.userPartyList}">
+										<tr>
+											<td>${vo.partyNo}</td>
+											<td><a href="##">${vo.title}</a></td>
+											<td><fmt:parseDate value="${vo.regDate}"
+													pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDate"
+													type="both" /> <fmt:formatDate value="${parsedDate}"
+													pattern="yyyy년 MM월 dd일 HH:mm" /></td>
+										</tr>
+									</c:forEach>
+										<hr>
 								</tbody>
 							</table>
 						</form>
-					</div>
+					
 					<!-- 두번째 토글 끝 -->
-					<div id="menu2" class="tab-pane fade">
-						<h3>Menu 2</h3>
-						<p>Some content in menu 2.</p>
-					</div>
 				</div>
+				<br><br>
 			</div>
 		</div>
 	</div>
 </section>
+
 <%@ include file="../include/footer.jsp"%>
+
+<script>
+	function categoryChange(e) {
+		var addrDong_mapo = [ "상암동", "성산동", "망원동", "연남동", "동교동", "서교동", "합정동",
+				"상수동", "창전동", "신수동", "노고산동", "대흥동", "염리동", "용강동", "도화동", "공덕동",
+				"아현동", "신공덕동" ];
+		var addrDong_seodaemun = [ "북가좌동", "남가좌동", "홍은동", "홍제동", "연희동", "신촌동",
+				"봉원동", "북아현동", "현저동", "천연동" ];
+
+		var target = document.getElementById("addrDong");
+
+		if (e.value == "마포구")
+			var d = addrDong_mapo;
+		else if (e.value == "서대문구")
+			var d = addrDong_seodaemun;
+
+		target.options.length = 0;
+
+		for (x in d) {
+			var opt = document.createElement("option");
+			opt.value = d[x];
+			opt.innerHTML = d[x];
+			target.appendChild(opt);
+		}
+	}
+document.getElementById('updateBtn').onclick = function() {
+			if (confirm('정보를 수정합니다.')) {
+				document.updateForm.submit();
+			} else {
+				alert('정보 수정을 취소합니다.');
+			}
+		
+	}
+	</script>

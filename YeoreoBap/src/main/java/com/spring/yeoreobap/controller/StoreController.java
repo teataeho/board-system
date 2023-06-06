@@ -23,10 +23,10 @@ public class StoreController {
 		service.readOpenStoresFromJson();
 	}
 	
-	@GetMapping("/getList/{uptaeNm}")
-	public List<StoreVO> storeList(@PathVariable String uptaeNm) {
+	@GetMapping("/getList/{uptaeNm}/{addrDong}")
+	public List<StoreVO> storeList(@PathVariable String uptaeNm, @PathVariable String addrDong) {
 		System.out.println(uptaeNm);
-		return service.getList(uptaeNm, "%(동교동)");
+		return service.getList(uptaeNm, "%(" + addrDong + ")");
 	}
 	
 }

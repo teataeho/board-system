@@ -3,10 +3,8 @@ package com.spring.yeoreobap.review.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
-
 import org.springframework.web.multipart.MultipartFile;
 
-import com.spring.yeoreobap.command.ParticipantsVO;
 import com.spring.yeoreobap.command.PartyVO;
 import com.spring.yeoreobap.command.ReviewVO;
 import com.spring.yeoreobap.util.PageVO;

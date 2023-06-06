@@ -11,8 +11,8 @@ import lombok.Getter;
 @ToString
 public class StarVO {
 
-	private int star_no, sno;
-    private String user_id;
-    private double star_rate;
-    
+    private int starNo, sno;
+    private String userId;
+    private double starRate;
+
 }
