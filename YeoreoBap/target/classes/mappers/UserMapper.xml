@@ -37,19 +37,11 @@
 	
 	<select id="getInfo" resultMap="userMap">
 		SELECT
-<<<<<<< HEAD
-			user_name, user_nick,
-			user_email1, user_email2,
-			addr_gu, addr_dong,
-			p.party_no,  
-			p.title, p.reg_date
-=======
 			user_id, user_name, user_nick
 			user_email1, user_email2, addr_gu,
 			addr_dong<!-- ,
 			 p.party_no,  
 			p.title, p.reg_date -->
->>>>>>> origin/feat/garden
 		FROM users u
 		<!-- LEFT JOIN party p 
 		ON u.user_id = p.writer -->

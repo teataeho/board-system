@@ -59,11 +59,12 @@
 							<h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
 							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 						</div>
-						<span>식당이름</span><span class="modal-res-name"></span>
 						<div class="modal-body">
-							...
+							<span>식당이름</span><span class="res-name"></span>		<br>
+							<span class="content"></span>		<br>
+							<span>정원</span><span class="max"></span>	<br><br>
+							<a href="#" id="like" class="text-danger"><i class="bi bi-heart"></i></a>
 						</div>
-						<span>정원</span><span class="modal-max"></span>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">모달 누르면 그냥 지워지는 버튼</button>
 						</div>
@@ -166,10 +167,19 @@
 							document.getElementById('hiddenPartyNo').value = data.partyNo
 							document.getElementById('hiddenUserId').value = data.writer;
 							document.querySelector('.modal-title').textContent = data.title;
-							document.querySelector('.modal-res-name').textContent = data.bplcNm;
-							document.querySelector('.modal-body').textContent = data.content;
-							document.querySelector('.modal-max').textContent = data.max + '명';
+							document.querySelector('.res-name').textContent = data.bplcNm;
+							document.querySelector('.content').textContent = data.content;
+							document.querySelector('.max').textContent = data.max + '명';
 							console.log(data.attended);
+							//좋아요 true, false
+							if(data.isLike === 1) {
+								document.querySelector('#like i').classList.remove('bi-heart');
+								document.querySelector('#like i').classList.add('bi-heart-fill');
+							} else {
+								document.querySelector('#like i').classList.remove('bi-heart-fill');
+								document.querySelector('#like i').classList.add('bi-heart');								
+							}
+
 							// 버튼 선택
 							if (uid === data.writer) {
 								$modalFooter.insertAdjacentHTML('beforeend',
@@ -177,7 +187,7 @@
 							} else if (data.attended === 0) {
 								if (data.attendedNum >= data.max - 1) {
 									$modalFooter.insertAdjacentHTML('beforeend',
-										`<button type="button" class="btn btn-primary" id="attend" disabled>참가</button>`);
+										`<button type="button" class="btn btn-primary" id="attend" disabled>완료</button>`);
 								} else {
 									$modalFooter.insertAdjacentHTML('beforeend',
 										`<button type="button" class="btn btn-primary" id="attend">참가</button>`);
@@ -243,4 +253,54 @@
 						}
 					}
 				});
+
+				//좋아요
+				document.getElementById('like').addEventListener('click', e => {
+					e.preventDefault();
+					if(!e.target.matches('i')) return;
+					//좋아요
+					if(document.querySelector('#like i').classList.contains('bi-heart')) {
+						fetch('${pageContext.request.contextPath}/like/partyLike', {
+								method: 'post',
+								headers: {
+									'Content-Type': 'application/json'
+								},
+								body: JSON.stringify({
+									'userId': uid,
+									'partyNo': document.getElementById('hiddenPartyNo').value
+								})
+							})
+						.then(res => res.text())
+						.then(text => {
+							if(text !== 'success') {
+								alert('이미 좋아요를 한 게시물이거나 알 수 없는 오류로 인해 좋아요가 취소되었습니다.');
+							} else {
+								document.querySelector('#like i').classList.remove('bi-heart')
+								document.querySelector('#like i').classList.add('bi-heart-fill');
+							}
+						})
+					}
+					//좋아요 삭제
+					if(document.querySelector('#like i').classList.contains('bi-heart-fill')) {
+						fetch('${pageContext.request.contextPath}/like/deletePartyLike', {
+								method: 'post',
+								headers: {
+									'Content-Type': 'application/json'
+								},
+								body: JSON.stringify({
+									'userId': uid,
+									'partyNo': document.getElementById('hiddenPartyNo').value
+								})
+							})
+						.then(res => res.text())
+						.then(text => {
+							if(text !== 'success') {
+								alert('삭제가 안됐습니다.');
+							} else {
+								document.querySelector('#like i').classList.remove('bi-heart-fill')
+								document.querySelector('#like i').classList.add('bi-heart');
+							}
+						})
+					}
+				})
 			</script>

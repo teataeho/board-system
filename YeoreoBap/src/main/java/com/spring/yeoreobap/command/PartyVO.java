@@ -28,10 +28,12 @@ import lombok.ToString;
 @ToString
 public class PartyVO {
 
-	private int partyNo, sno, max, viewNum, attendedNum, attended;
+	private int partyNo, sno, max;
 	private String bplcNm, writer, title, content, uploadPath, fileName, rdnWhlAddr;
 	private LocalDateTime regDate, updateDate;
 	
 	// Join
+	private int attendedNum, attended, isLike;
 	private String writerNick;
+	
 }
