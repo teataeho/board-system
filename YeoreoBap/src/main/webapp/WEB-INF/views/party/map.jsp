@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 	<%@ include file="../include/header.jsp" %>
-
+	<link href="${pageContext.request.contextPath}/css/map.css" rel="stylesheet">
+	
 		<div class="container">
 			<section id="section">
 				<h2 class="text-center border-bottom border-orange pb-3 mb-4">어디서 여러밥하시겠습니까?</h2>
@@ -35,7 +36,8 @@
 		</div>
 
 		<%@ include file="../include/footer.jsp" %>
-
+		<script type="text/javascript"
+            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b8a76526619d3746d10b810c5fd28b62&libraries=services"></script>
 		<script>
 			// 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
 			var infowindow = new kakao.maps.InfoWindow({

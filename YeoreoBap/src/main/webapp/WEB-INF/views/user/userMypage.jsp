@@ -10,35 +10,37 @@
 	<!--Toggleable / Dynamic Tabs긁어옴-->
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-12 col-md-10 col-lg-9 myInfo">
-			<br><br>
-				<div class="titlebox">MY PAGE</div>
+			<div class="col-sm-9 col-md-9 col-lg-9 myInfo">
+
+				<section id="section">
+				<h2 class="titlebox text-center border-bottom border-orange pb-3 mb-4">MY PAGE</h2>
+			</section>
 				<br>
 				<div class="tab-content">
 
 					<form action="${pageContext.request.contextPath}/user/userUpdate"
 						method="post" name="updateForm">
 
-						<table class="table">
+						<table class="table" id="mapageTable">
 							<tbody class="m-control">
 								<tr>
-									<td class="m-title">ID</td>
+									<td class="m-title">ID<span>|</span></td>
 									<td><input class="form-control input-sm" name="userId"
 										value="${userInfo.userId}" readonly></td>
 								</tr>
 								<tr>
-									<td class="m-title">이름</td>
+									<td class="m-title">이름<span>|</span></td>
 									<td><input class="form-control input-sm" name="userName"
 										value="${userInfo.userName}" readonly></td>
 								</tr>
 
 								<tr>
-									<td class="m-title">*닉네임</td>
+									<td class="m-title">*닉네임<span>|</span></td>
 									<td><input class="form-control input-sm" name="userNick"
 										value="${userInfo.userNick}"></td>
 								</tr>
 								<tr>
-									<td class="m-title">E-mail</td>
+									<td class="m-title">E-mail<span>|</span></td>
 									<td><input class="form-control input-sm" id="userEmail1"
 										name="userEmail1"
 										value="${userInfo.userEmail1}@${userInfo.userEmail2}" readonly>
@@ -46,10 +48,10 @@
 								</tr>
 
 
-								<tr>
-									<td class="m-title">*구</td>
+								<tr class="locationTr">
+									<td class="m-title">*구<span>|</span></td>
 									<td><select name="addrGu" id="addrGu"
-										onchange="categoryChange(this)">
+										onchange="categoryChange(this)" class="form-select">
 											<option value="${userInfo.addrGu}">${userInfo.addrGu}</option>
 											<c:choose>
 												<c:when test="${userInfo.addrGu == '서대문구'}">
@@ -60,8 +62,9 @@
 												</c:when>
 											</c:choose>
 									</select></td>
-
-									<td class="m-title">*동</td>
+								</tr>
+								<tr class="locationTr">
+									<td class="m-title">*동<span>|</span></td>
 									<td><select class="form-select" id="addrDong"
 										name="addrDong">
 											<option value="${userInfo.addrDong}">${userInfo.addrDong}</option>
@@ -72,9 +75,8 @@
 
 					</form>
 
-					<div class="titlefoot">
-						<button class="btn" id="updateBtn">수정</button>
-						
+					<div class="titlefoot" id="mypageBtn">
+						<button class="btn mypageBtn" id="updateBtn">수정</button>
 					</div>
 
 					<!-- 첫번째 토글 끝 -->
