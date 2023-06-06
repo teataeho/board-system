@@ -29,7 +29,7 @@ public class ReviewReplyController {
 	// 댓글 등록
 	@PostMapping("/regist")
 	public String replyRegist(@RequestBody ReviewReplyVO vo) {
-		service.replyRegister(vo);
+		service.replyRegist(vo);
 		return "registSuccess";
 	}
 

@@ -27,6 +27,7 @@ public class ReviewReplyVO {
 	private String replyId;
 	private LocalDateTime regDate;
 
+	//조인용
 	private String userNick;
 
 }
