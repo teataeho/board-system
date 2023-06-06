@@ -2,54 +2,69 @@
 
 	<%@ include file="../include/header.jsp" %>
 
-		<div class="join">
+		<div class="join container">
 			<h2 class="title">파티 모집글 작성하기</h2>
-			<form action="${pageContext.request.contextPath}/party/partyRegisterCustom" method="POST" enctype="multipart/form-data">
-				<p>썸네일 사진을 선택해주세요.</p>
-				<div class="pictures">
-					<!-- <input type="checkbox" name="ex-pic1" id="pic1" src="${pageContext.request.contextPath}/img/">
-					<input type="image" name="ex-pic2" id="pic2" src="${pageContext.request.contextPath}/img/">
-					<input type="image" name="ex-pic3" id="pic3" src="${pageContext.request.contextPath}/img/"> -->
-
-					<!-- 사용자 지정 -->
-
-					<div class="custom">
-						<p>사용자 지정</p>
-						<div class="imgSelect">
-							<label for="file-upload" class="custom-file-upload">
-								<input type="file" name="file" id="file-upload" accept="image/jpg, image/jpeg, image/png" />
-								<img id="file-upload-img" src="${pageContext.request.contextPath}/img/upload.png" alt="이미지 선택" />
-							</label>
-
+			<form action="${pageContext.request.contextPath}/party/partyRegister" method="POST" enctype="multipart/form-data">
+				<div class="bigBorder">	
+					<div class="smallBorder">
+						<div class="border">
+							<p>닉네임<span>|</span></p>
+							<input type="text" class="form-control userNickName" id="userNick" readonly>
+							<input type="hidden" name="writer" id="writer">
 						</div>
-						<span>*(jpg, jpeg, png) 파일만 가능합니다.</span>
+						<div>
+							<div class="border">
+								<p>제목<span>|</span></p>
+								<input type="text" class="form-title form-control" name="title" id="title"
+									placeholder="ex) OOO 같이 갈 사람 구해요~!" autocomplete="off">
+							</div>
+							<div class="border">
+								<p>내용<span>|</span></p>
+								<textarea class="form-content form-control" name="content" id="content" cols="10" rows="10"
+									placeholder="ex) OO시에 OO에서 만나서 여러밥해요!" autocomplete="off"></textarea>
+							</div>
+						</div>
+						
+					<div class="partyPeople">
+						<p><span>＃</span>최대 몇 명까지 모이기 원하시나요?</p>
+						<select id="max" name="max" class="form-select">
+							<option value="2">2명</option>
+							<option value="3">3명</option>
+							<option value="4">4명</option>
+						</select>
+					</div>
+					<div class="restName">					
+						<p><span>＃</span>식당명</p>
+						<input type="text" class="form-control restName2" name="bplcNm" id="restName" value="${param.bplcnm}" readonly>
 					</div>
 				</div>
-				<input type="text" id="userNick" readonly>
-				<input type="hidden" name="writer" id="writer">
-				<div>
-					<p>제목</p>
-					<div class="border"><input type="text" class="form-title" name="title" id="title"
-							placeholder="ex) OOO 같이 갈 사람 구해요~!" autocomplete="off">
-					</div>
-					<p>내용</p>
-					<div class="border">
-						<textarea class="form-content" name="content" id="content" cols="10" rows="10"
-							placeholder="ex) OO시에 OO에서 만나서 여러밥해요!" autocomplete="off"></textarea>
-					</div>
-				</div>
-
-				<div>
-					<p>최대 몇 명까지 모이기 원하시나요?</p>
-					<select id="max" name="max">
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-					</select>
-					<p>식당명</p>
-					<input type="text" name="bplcNm" id="restName" value="${param.bplcnm}" readonly>
-				</div>
+				
+				
 				<input type="hidden" name="sno" value="${param.sno}">
+
+				
+					<div class="pictures">
+						<p>썸네일 사진을 선택해주세요.</p>
+						<!-- <input type="checkbox" name="ex-pic1" id="pic1" src="${pageContext.request.contextPath}/img/">
+						<input type="image" name="ex-pic2" id="pic2" src="${pageContext.request.contextPath}/img/">
+						<input type="image" name="ex-pic3" id="pic3" src="${pageContext.request.contextPath}/img/"> -->
+						
+						<!-- 사용자 지정 -->
+	
+						<div class="custom">
+							
+							<div class="imgSelect">
+								<label for="file-upload" class="custom-file-upload">
+									<input type="file" name="file" id="file-upload" accept="image/jpg, image/jpeg, image/png"/>
+									
+									<img id="file-upload-img" src="${pageContext.request.contextPath}/img/upload.png" alt="이미지 선택" />
+									<p>첨부하기</p>
+								</label>
+							</div>
+							<span class="warn">*(jpg, jpeg, png) 파일만 가능합니다.</span>
+						</div>
+					</div>
+				</div>
 
 				<button type="submit" id="writeBtn"
 					onclick="console.log(document.getElementById('file-upload').value)">등록하기</button>
