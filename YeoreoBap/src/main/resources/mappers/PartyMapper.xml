@@ -18,9 +18,17 @@
 	</select>
 	
 	<select id="getArticle" resultType="party">
-		SELECT p.*, s.rdn_whl_addr
+		SELECT p.*, s.rdn_whl_addr,
+			(
+		    SELECT COUNT(*) FROM participants
+				WHERE party_no = #{partyNo}
+		    ) AS attended_num,
+		    (
+		    SELECT COUNT(*) FROM participants
+				WHERE party_no = #{partyNo} AND user_id = #{userId}
+		    ) AS attended
 		FROM party p JOIN store s ON p.sno = s.sno
-		WHERE p.party_no = #{partyNo}
+		WHERE p.party_no = #{partyNo};
 	</select>
 	
 	<delete id="delete">
@@ -33,5 +41,15 @@
 		(party_no, user_id)
 		VALUES (#{partyNo}, #{userId})
 	</insert>
+	
+	<delete id="cancelAttend">
+		DELETE FROM participants
+		WHERE party_no = #{partyNo} AND user_id = #{userId}
+	</delete>
+
+
+<select id="getTotal" resultType="int">
+  SELECT COUNT(*) FROM party
+</select>
 
 </mapper>

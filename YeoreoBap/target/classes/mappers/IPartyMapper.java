@@ -9,7 +9,8 @@ import com.spring.yeoreobap.command.PartyVO;
 import com.spring.yeoreobap.util.PageVO;
 
 public interface IPartyMapper {
-	
+
+
 	//글 등록
 	void regist(PartyVO vo);
 	//글 목록
@@ -24,7 +25,4 @@ public interface IPartyMapper {
 	void attend(ParticipantsVO vo);
 	//참가 취소
 	void cancelAttend(ParticipantsVO vo);
-	
-	//총 게시물 수 (mypage)
-		int getTotal(PageVO vo);
 }

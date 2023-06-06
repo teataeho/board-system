@@ -18,6 +18,18 @@ i {
 	position: relative;
 }
 
+.necessary {
+	font-weight: bold;
+	font-size: 15px;
+	color: red;
+}
+
+.information {
+	font-size: 13px;
+	color: lightgray;
+	margin-bottom: 5px;
+}
+
 /*--------------- header.jsp ---------------*/
 header {
 	background-color: #fff;
@@ -70,6 +82,118 @@ h6 {
 	transform: translate(-50%, -50%);
 }
 
+/*--------------- Join Page (userJoin.jsp) ---------------*/
+#section {
+	margin: 70px auto 0;
+	max-width: 600px;
+}
+
+/* 아이디 input, btn */
+#userId {
+	margin-right: 10px;
+}
+
+/* 이메일 input */
+#emailBorder {
+	display: flex;
+	align-items: center;
+	margin-bottom: 10px;
+}
+
+#emailBorder p {
+	margin: 0 10px;
+}
+
+#userEmail1 {
+	flex-grow: 10;
+}
+
+#userEmail2 {
+	flex-grow: 10;
+	margin-right: 10px;
+}
+
+#emailSelection {
+	flex-grow: 10;
+	margin-bottom: 0;
+	height: 48.67px;
+}
+
+#emailCheck {
+	margin-right: 10px;
+}
+
+/* 활동하고 싶은 동네 */
+#locBorder {
+	display: flex;
+	height: 48.67px;
+}
+
+#locBorder .locGu {
+	margin-right: 10px;
+}
+
+/* 회원가입 로그인 버튼 */
+.btns {
+	margin-top: 30px;
+	display: flex;
+	justify-content: center;
+}
+
+#joinBtn,
+#loginBtn {
+	width: 135px;
+	height: 50px;
+	margin: 0 10px;
+}
+
+
+/*--------------- Login Page (userLogin.jsp) ---------------*/
+.loginBorder {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 200px;
+}
+
+.loginBorder .idPw {
+	margin-bottom: 30px;
+}
+
+.loginBorder .idPw #userId.loginId {
+	margin-bottom: 10px;
+}
+
+.loginBorder .idPw #userPw.loginPw {
+	margin-top: 10px;
+}
+
+.login-div {
+	display: flex;
+	flex-direction: column;
+}
+
+#loginBtn.loginBtn {
+	width: 100px;
+	height: 100px;
+	border-radius: 5px;
+}
+
+#joinBtn.joinBtn {
+	background-color: white;
+	padding: 0;
+	width: 100px;
+	height: 30px;
+	text-align: center;
+}
+
+#joinBtn a {
+	text-decoration: none;
+	color: #F0975A;
+	font-size: 15px;
+
+}
+
 /*--------------- PartyList Page (partyList.jsp) ---------------*/
 .partyList {
 	position: relative;
@@ -89,7 +213,6 @@ h6 {
 .stickyButtons {
 	position: sticky;
 	bottom: 430px;
-	padding-left: 1220px;
 }
 
 .stickyButtons a {

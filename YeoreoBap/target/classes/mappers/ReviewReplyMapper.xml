@@ -6,16 +6,18 @@
 
 	<insert id="replyRegist">
 		INSERT INTO reviewReply
-		(review_no, review_reply, reg_date)
-		VALUES (#{replyNo}, #{reviewReply}, #{regDate})
+		(review_no, reply, reply_id)
+		VALUES (#{reviewNo}, #{reply}, #{replyId})
 	</insert>
 	
 	<select id="getList" resultType="rReply">
-		SELECT * 
-		FROM reviewReply
-		WHERE review_no = #{reviewNo}
-		ORDER BY reply_no DESC
-		LIMIT #{pageStart}, #{cpp}
+		SELECT r.*, u.user_nick
+		FROM reviewReply r 
+		JOIN users u
+		ON r.reply_id = u.user_nick
+		WHERE r.review_no = #{reviewNo}
+		ORDER BY r.reply_no DESC
+		LIMIT #{paging.pageStart}, #{paging.cpp}
 	</select>
 	
 	<select id="getTotal" resultType="int">
@@ -29,20 +31,13 @@
 		WHERE review_no = #{reviewNo}
 	</select> -->
 	
-	<select id="pwCheck" resultType="string">
-		SELECT reply_pw
+	<select id="idCheck" resultType="string">
+		SELECT reply_id
 		FROM reviewReply
 		WHERE review_no = #{reviewNo}
 	</select>
 	
-<!-- 	<update id="update">
-		update reviewReply
-		SET review = #{content},
-		수정됨?
-		update_date = current_timestamp
-		WHERE reply_no = #{replyNo}
-	</update> -->
-	
+
 	<delete id="delete">
 		DELETE FROM reviewReply
 		WHERE reply_no = #{replyNo}

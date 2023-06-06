@@ -32,13 +32,6 @@ public class PartyMapperTest {
 		}
 	}
 	
-	
-	@Test
-	@DisplayName("상세보기")
-	void getArticleTest() {
-		mapper.getArticle(100);
-	}
-	
 	@Test
 	@DisplayName("수정")
 	void updateTest() {

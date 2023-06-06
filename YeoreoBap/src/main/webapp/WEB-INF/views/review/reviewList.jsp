@@ -6,20 +6,18 @@
 <%@ include file="../include/header.jsp"%>
 
 <section>
-	<div class="container-fluid">
-		<div class="row">
+	<div class="container">
+		<div class="row" id="reviewList">
 			<!--lg에서 9그리드, xs에서 전체그리드-->
 			<div class="col-lg-9 col-xs-12 board-table">
-				<div class="titlebox">
-					<p>후기 게시판</p>
+				<div id="reviewListTitle">
+					<h2>후기 게시판</h2>
 				</div>
-				<hr>
+		
 
 				<!--form select를 가져온다 -->
 				<form action="<c:url value='/review/reviewList' />">
 					<div class="search-wrap">
-						
-						<button type="submit" class="btn btn-info search-btn">검색</button>
 						<select name="condition" class="form-control search-select">
 							<option value="title"
 								${pc.paging.condition == 'title' ? 'selected' : ''}>제목</option>
@@ -33,17 +31,20 @@
 								${pc.paging.condition == 'titleContent' ? 'selected' : ''}>제목+내용</option>
 						</select>
 						<input type="text" name="keyword"
-							class="form-control search-input" value="${pc.paging.keyword}">
+							class="form-control search-input" value="${pc.paging.keyword}" id="keywordInput">
+						<button type="submit" class="btn btn-info search-btn" id="searchBtn">검색</button>
+						
 					</div>
+					
 				</form>
-
+<hr>
 				<table class="table table-bordered">
 					<thead>
 						<tr>
 							<th>리뷰 번호</th>
 							<th class="board-title">제목</th>
 							<th>작성자</th>
-							<th>식당 번호</th>
+							<th>식당 이름</th>
 							<th>등록일</th>
 							<th>수정일</th>
 						</tr>
@@ -55,8 +56,8 @@
 								<td><a
 									href="${pageContext.request.contextPath}/review/content/${vo.reviewNo}?pageNum=${pc.paging.pageNum}&cpp=${pc.paging.cpp}&keyword=${pc.paging.keyword}&condition=${pc.paging.condition}">${vo.title}</a>
 								</td>
-								<td>${vo.writer}</td>
-								<td>${vo.sno}</td>
+								<td>${vo.userNick}</td>
+								<td>${vo.bplcNm}</td>
 								<td><fmt:parseDate value="${vo.regDate}"
 										pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" /> <fmt:formatDate
 										value="${parsedDateTime}" pattern="yy.MM.dd. HH:mm" /></td>
@@ -121,4 +122,48 @@
         });
 
     }
+
+	let str = '';
+	let page = 1;
+	let isFinish = false;
+	const $reviewList = document.getElementById('reviewList');
+
+	getList(1, true);
+
+	function getList(page, reset) {
+		str = '';
+		console.log('page: ' + page);
+		console.log('reset: ' + reset);
+
+		fetch('${pageContext.request.contextPath}/review/reviewList/' + page)
+		.then(res => res.json())
+		.then(list => {
+			console.log(list);
+			console.log(list.length);
+			if(list.length === 0) isFinish = true;
+
+			if(reset) {
+				while($reviewList.firstChild) {
+					$reviewList.firstChild.remove();
+				}
+				page = 1;
+			}
+
+			for (vo of list) {
+				str += 
+				`<div class="review img">
+					<img class="h-100"  id="` + vo.reviewNo + `" src="${pageContext.request.contextPath}/review/getImg/` + vo.fileName + `" alt="사진">
+								</div>`;
+			}
+
+			if(!reset) {
+				$reviewList.insertAdjacentHTML('beforeend', str);
+			} else {
+				$reviewList.insertAdjacentHTML('afterbegin', str);
+			}
+
+		})
+		
+	}
 </script>
+

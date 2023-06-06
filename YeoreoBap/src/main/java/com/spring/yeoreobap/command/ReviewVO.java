@@ -28,4 +28,7 @@ public class ReviewVO {
 	private LocalDateTime regDate, updateDate;
 
 	private int reviewReplyCnt;
+
+	private String userNick;
+	private String bplcNm;
 }

@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Mapper;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.spring.yeoreobap.command.ParticipantsVO;
+import com.spring.yeoreobap.command.PartyVO;
 import com.spring.yeoreobap.command.ReviewVO;
 import com.spring.yeoreobap.util.PageVO;
 @Mapper
@@ -31,4 +33,7 @@ public interface IReviewMapper {
 
 	//파일업로드
 	void upload(int reviewNo, MultipartFile file);
+
+	List<PartyVO> getResList1(String userId);
+	List<PartyVO> getResList2(String userId);
 }

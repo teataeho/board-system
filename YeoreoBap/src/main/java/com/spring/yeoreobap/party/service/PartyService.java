@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.spring.yeoreobap.command.ParticipantsVO;
 import com.spring.yeoreobap.command.PartyVO;
 import com.spring.yeoreobap.party.mapper.IPartyMapper;
 import com.spring.yeoreobap.util.PageVO;
@@ -21,8 +22,14 @@ public class PartyService implements IPartyService {
 	@Autowired
 	private IPartyMapper mapper;
 
+	// 예시 이미지 사용 시 등록
 	@Override
-	public void regist(PartyVO vo, MultipartFile file) {
+	public void register(PartyVO vo) {
+
+	}
+
+	@Override
+	public void register(PartyVO vo, MultipartFile file) {
 
 		// 기본 경로는 C:/test/upload로 사용하겠습니다.
 		String uploadPath = "C:/yeoreobap/upload/party";
@@ -69,8 +76,8 @@ public class PartyService implements IPartyService {
 	}
 
 	@Override
-	public PartyVO getArticle(int partyNo) {
-		return mapper.getArticle(partyNo);
+	public PartyVO getArticle(int partyNo, String userId) {
+		return mapper.getArticle(partyNo, userId);
 	}
 
 	@Override
@@ -84,8 +91,18 @@ public class PartyService implements IPartyService {
 	}
 
 	@Override
-	public void attend(String userId, int partyNo) {
-		mapper.attend(userId, partyNo);
+	public void attend(ParticipantsVO vo) {
+		mapper.attend(vo);
+	}
+
+	@Override
+	public void cancelAttend(ParticipantsVO vo) {
+		mapper.cancelAttend(vo);		
+	}
+
+	@Override
+	public int getTotal(PageVO vo) {
+		return mapper.getTotal(vo);
 	}
 
 }
