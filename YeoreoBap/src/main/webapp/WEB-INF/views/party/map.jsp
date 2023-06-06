@@ -6,9 +6,12 @@
 			<section id="section">
 				<h2 class="text-center border-bottom border-orange pb-3 mb-4">어디서 여러밥하시겠습니까?</h2>
 			</section>
+			<div id="map" class="border border-thick-orange rounded mt-10" style="width: 70%; height: 500px;"></div>
+			
 			<div class="d-flex justify-content-center">
-				<div id="map" class="border border-thick-orange rounded mt-10" style="width: 70%; height: 500px;"></div>
+				
 				<select class="form-select" name="uptaeNm" id="uptaeNm">
+					<option value="" disabled selected hidden>식당 분류</option>
 					<option value="한식">한식</option>
 					<option value="경양식">경양식</option>
 					<option value="일식">일식</option>

@@ -17,6 +17,7 @@
 			<link href="${pageContext.request.contextPath}/css/reviewList.css" rel="stylesheet">
 			<link href="${pageContext.request.contextPath}/css/reviewDetail.css" rel="stylesheet">
 			<link href="${pageContext.request.contextPath}/css/partyRegister.css" rel="stylesheet">
+			<link href="${pageContext.request.contextPath}/css/map.css" rel="stylesheet">
 			
 
 			<!-- bootstrap.css -->
