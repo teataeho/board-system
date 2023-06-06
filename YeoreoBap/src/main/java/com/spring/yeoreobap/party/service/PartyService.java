@@ -100,4 +100,9 @@ public class PartyService implements IPartyService {
 		mapper.cancelAttend(vo);		
 	}
 
+	@Override
+	public int getTotal(PageVO vo) {
+		return mapper.getTotal(vo);
+	}
+
 }

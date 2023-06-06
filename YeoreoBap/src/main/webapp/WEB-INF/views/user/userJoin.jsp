@@ -1,6 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 
-	<%@ include file="../include/header.jsp" %>
+<%@ include file="../include/header.jsp"%>
+
 
 		<div class="container">
 			<section id="section">
@@ -68,15 +70,18 @@
 							<input type="text" class="form-control form-control-lg" name="userEmail2" id="userEmail2"
 								autocomplete="off">
 
-							<select class="form-emailSelection form-select" name="emailSelection" id="emailSelection">
-								<option value="direct" selected>직접 입력</option>
+					
+							<select class="form-emailSelection form-select " name="emailSelection" id="emailSelection">
+								<option value="direct">직접 입력</option>
 								<option value="naver.com">naver.com</option>
 								<option value="daum.net">daum.net</option>
 								<option value="gmail.com">gmail.com</option>
 								<option value="hanmail.com">hanmail.com</option>
 								<option value="yahoo.co.kr">yahoo.co.kr</option>
 							</select>
-						</div>
+						
+					
+				</div>
 
 						<!-- 이메일 인증 -->
 						<div class="has-validation mb-4">
@@ -107,19 +112,20 @@
 						</div>
 					</div>
 
-					<!-- 버튼 -->
-					<div class="btns">
-						<button type="button" class="btn btn-orange" id="joinBtn">회원가입</button>
-						<button type="button" class="btn btn-outline-orange" id="cancelBtn"
-							onclick="location.href='${pageContext.request.contextPath}/'">취소
-						</button>
-					</div>
+			<!-- 버튼 -->
+			<div class="btns">
+				<button type="button" class="form-joinBtn" id="joinBtn">회원가입</button>
+				<button type="button" class="form-cancel" id="cancelBtn">
+					<a href="${pageContext.request.contextPath}">취소</a>
+				</button>
+			</div>
 
-				</form>
-			</section>
-		</div>
+		</form>
+	</section>
+</div>
 
-		<%@ include file="../include/footer.jsp" %>
+
+<%@ include file="../include/footer.jsp"%>
 
 			<script>
 				let code = '';
@@ -307,12 +313,12 @@
 					];
 					var addrDong_seodaemun = ["북가좌동", "남가좌동", "홍은동", "홍제동", "연희동", "신촌동", "봉원동", "북아현동", "현저동", "천연동"];
 
-					var target = document.getElementById("addrDong");
+		var target = document.getElementById("addrDong");
 
-					if (e.value == "마포구") var d = addrDong_mapo;
-					else if (e.value == "서대문구") var d = addrDong_seodaemun;
+		if (e.value == "마포구") var d = addrDong_mapo;
+		else if (e.value == "서대문구") var d = addrDong_seodaemun;
 
-					target.options.length = 0;
+		target.options.length = 0;
 
 					for (x in d) {
 						var opt = document.createElement("option");

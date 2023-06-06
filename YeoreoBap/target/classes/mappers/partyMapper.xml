@@ -45,4 +45,9 @@
 		WHERE party_no = #{partyNo} AND user_id = #{userId}
 	</delete>
 
+
+<select id="getTotal" resultType="int">
+  SELECT COUNT(*) FROM party
+</select>
+
 </mapper>

@@ -126,4 +126,48 @@
         });
 
     }
+
+	let str = '';
+	let page = 1;
+	let isFinish = false;
+	const $reviewList = document.getElementById('reviewList');
+
+	getList(1, true);
+
+	function getList(page, reset) {
+		str = '';
+		console.log('page: ' + page);
+		console.log('reset: ' + reset);
+
+		fetch('${pageContext.request.contextPath}/review/reviewList/' + page)
+		.then(res => res.json())
+		.then(list => {
+			console.log(list);
+			console.log(list.length);
+			if(list.length === 0) isFinish = true;
+
+			if(reset) {
+				while($reviewList.firstChild) {
+					$reviewList.firstChild.remove();
+				}
+				page = 1;
+			}
+
+			for (vo of list) {
+				str += 
+				`<div class="review img">
+					<img class="h-100"  id="` + vo.reviewNo + `" src="${pageContext.request.contextPath}/review/getImg/` + vo.fileName + `" alt="사진">
+								</div>`;
+			}
+
+			if(!reset) {
+				$reviewList.insertAdjacentHTML('beforeend', str);
+			} else {
+				$reviewList.insertAdjacentHTML('afterbegin', str);
+			}
+
+		})
+		
+	}
 </script>
+

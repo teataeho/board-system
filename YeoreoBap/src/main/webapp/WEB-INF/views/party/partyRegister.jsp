@@ -4,8 +4,7 @@
 
 		<div class="join">
 			<h2 class="title">파티 모집글 작성하기</h2>
-			<form action="${pageContext.request.contextPath}/party/partyRegisterCustom" method="POST"
-				enctype="multipart/form-data">
+			<form action="${pageContext.request.contextPath}/party/partyRegisterCustom" method="POST" enctype="multipart/form-data">
 				<p>썸네일 사진을 선택해주세요.</p>
 				<div class="pictures">
 					<!-- <input type="checkbox" name="ex-pic1" id="pic1" src="${pageContext.request.contextPath}/img/">

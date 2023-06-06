@@ -111,7 +111,7 @@
 											//document.getElementById('bplcNm').value = restaurant.bplcnm;
 
 											if (confirm(restaurant.bplcnm + "에서 여러밥하시겠습니까? :)")) {
-												location.href = "partyRegister?sno=" + restaurant.sno + "&bplcnm=" + restaurant.bplcnm;
+												location.href = "${pageContext.request.contextPath}/party/partyRegister?sno=" + restaurant.sno + "&bplcnm=" + restaurant.bplcnm;
 											}
 										});
 									}
