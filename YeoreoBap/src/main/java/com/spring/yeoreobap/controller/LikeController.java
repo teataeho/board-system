@@ -30,4 +30,6 @@ public class LikeController {
 		return "success";
 	}
 	
+	
+	
 }

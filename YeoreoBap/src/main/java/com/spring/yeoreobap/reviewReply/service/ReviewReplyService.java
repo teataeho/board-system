@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -24,8 +22,8 @@ public class ReviewReplyService implements IReviewReplyService {
 	private BCryptPasswordEncoder encoder;
 	
 	@Override
-	public void replyRegister(ReviewReplyVO vo) {
-		mapper.replyRegister(vo);
+	public void replyRegist(ReviewReplyVO vo) {
+		mapper.replyRegist(vo);
 	}
 	
 	@Override
@@ -40,32 +38,24 @@ public class ReviewReplyService implements IReviewReplyService {
 		
 		return mapper.getList(data);
 	}
+	
+	
 
 	@Override
 	public int getTotal(int replyNo) {
 		return mapper.getTotal(replyNo);
-	}
-	
-	@Override
-	public boolean userVerification(ReviewReplyVO vo, HttpSession session) {
-		if(session.getAttribute("userInfo").equals(vo.getUserNick())) return true;
-		else return false;
 	}
 
 	@Override
 	public void delete(int replyNo) {
 		mapper.delete(replyNo);
 	}
-	
+
 	@Override
 	public boolean idCheck(ReviewReplyVO vo) {
 		String dbId = mapper.idCheck(vo.getReplyNo());
 		return encoder.matches(vo.getReplyId(), dbId);
 	}
 
-	@Override
-	public void update(ReviewReplyVO vo) {
-		
-	}
 
 }
