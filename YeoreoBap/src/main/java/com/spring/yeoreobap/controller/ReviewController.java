@@ -78,7 +78,8 @@ public class ReviewController {
 	}
 	
 	@PostMapping("/delete")
-	public String delete(int reviewNo) {
+	public String delete(@ModelAttribute("article") ReviewVO vo) {
+		int reviewNo = vo.getReviewNo();
 		service.delete(reviewNo);
 		return "redirect:/review/reviewList";
 	}

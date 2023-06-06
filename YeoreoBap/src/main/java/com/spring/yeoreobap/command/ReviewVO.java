@@ -1,6 +1,7 @@
 package com.spring.yeoreobap.command;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -31,4 +32,17 @@ public class ReviewVO {
 	
 	private String userNick;
 	private String bplcNm;
+	
+	public String getParsedRegDate() {
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH시 mm분");
+		return this.regDate.format(dtf);
+	}
+	
+	public String getParsedUpdateDate() {
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH시 mm분");
+		return this.updateDate.format(dtf);
+
+	}
+	
+	
 }
