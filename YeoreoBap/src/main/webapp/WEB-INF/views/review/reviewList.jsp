@@ -7,9 +7,9 @@
 
 <section>
 	<div class="container">
-		<div class="row" id="reviewList">
-			<!--lg에서 9그리드, xs에서 전체그리드-->
-			<div class="col-lg-9 col-xs-12 board-table">
+		<div class="row">
+			<!--lg에서 10그리드, xs에서 전체그리드-->
+			<div class="col-lg-10 col-xs-12 board-table" id="reviewBoard">
 				<div id="reviewListTitle">
 					<h2>후기 게시판</h2>
 				</div>
@@ -17,9 +17,10 @@
 
 				<!--form select를 가져온다 -->
 				<form action="<c:url value='/review/reviewList' />">
-					<div class="search-wrap">
-						<select name="condition" class="form-control search-select">
-							<option value="title"
+					<div id="search-wrap">
+						
+						<select name="condition" class="form-select search-select">
+							<option value="title" class="title"
 								${pc.paging.condition == 'title' ? 'selected' : ''}>제목</option>
 							<option value="content"
 								${pc.paging.condition == 'content' ? 'selected' : ''}>내용</option>
@@ -37,31 +38,34 @@
 					</div>
 					
 				</form>
-<hr>
-				<table class="table table-bordered">
+
+				<table class="table table-bordered table-hover" id="table">
 					<thead>
 						<tr>
-							<th>리뷰 번호</th>
-							<th class="board-title">제목</th>
-							<th>작성자</th>
+							<th class="reviewNo">리뷰 번호</th>
+							<th id="board-title">제목</th>
+							<th class="reviewWriter">작성자</th>
 							<th>식당 이름</th>
-							<th>등록일</th>
-							<th>수정일</th>
+							<th class="day">등록일</th>
+							<th class="day">수정일</th>
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach var="vo" items="${reviewList}">
 							<tr>
-								<td>${vo.reviewNo}</td>
-								<td><a
+								<td class="reviewNo">${vo.reviewNo}</td>
+								<td id="review-title" >
+								<div class="text-truncate">
+								<a 
 									href="${pageContext.request.contextPath}/review/content/${vo.reviewNo}?pageNum=${pc.paging.pageNum}&cpp=${pc.paging.cpp}&keyword=${pc.paging.keyword}&condition=${pc.paging.condition}">${vo.title}</a>
+								</div>
 								</td>
-								<td>${vo.userNick}</td>
+								<td class="reviewWriter">${vo.userNick}</td>
 								<td>${vo.bplcNm}</td>
-								<td><fmt:parseDate value="${vo.regDate}"
+								<td class="day"><fmt:parseDate value="${vo.regDate}"
 										pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" /> <fmt:formatDate
 										value="${parsedDateTime}" pattern="yy.MM.dd. HH:mm" /></td>
-								<td><fmt:parseDate value="${vo.updateDate}"
+								<td class="day"><fmt:parseDate value="${vo.updateDate}"
 										pattern="yyyy-MM-dd'T'HH:mm" var="parsedUpdateDateTime" /> <fmt:formatDate
 										value="${parsedUpdateDateTime}" pattern="yy.MM.dd. HH:mm" /></td>
 							</tr>
@@ -74,7 +78,7 @@
 				<!--페이지 네이션을 가져옴-->
 				<form action="${pageContext.request.contextPath}/review/reviewList" name="pageForm">
 					<div class="text-center">
-						<hr>
+						
 						<ul id="pagination" class="pagination pagination-sm">
 							<c:if test="${pc.prev}">
 								<li><a href="#" data-pagenum="${pc.beginPage-1}">이전</a></li>
@@ -89,7 +93,7 @@
 								<li><a href="#" data-pagenum="${pc.endPage+1}">다음</a></li>
 							</c:if>
 						</ul>
-						<button type="button" class="btn btn-info"
+						<button type="button" class="btn btn-info" id="writeBtn"
 							onclick="location.href='${pageContext.request.contextPath}/review/reviewRegist'">글쓰기</button>
 					</div>
 
@@ -122,48 +126,4 @@
         });
 
     }
-
-	let str = '';
-	let page = 1;
-	let isFinish = false;
-	const $reviewList = document.getElementById('reviewList');
-
-	getList(1, true);
-
-	function getList(page, reset) {
-		str = '';
-		console.log('page: ' + page);
-		console.log('reset: ' + reset);
-
-		fetch('${pageContext.request.contextPath}/review/reviewList/' + page)
-		.then(res => res.json())
-		.then(list => {
-			console.log(list);
-			console.log(list.length);
-			if(list.length === 0) isFinish = true;
-
-			if(reset) {
-				while($reviewList.firstChild) {
-					$reviewList.firstChild.remove();
-				}
-				page = 1;
-			}
-
-			for (vo of list) {
-				str += 
-				`<div class="review img">
-					<img class="h-100"  id="` + vo.reviewNo + `" src="${pageContext.request.contextPath}/review/getImg/` + vo.fileName + `" alt="사진">
-								</div>`;
-			}
-
-			if(!reset) {
-				$reviewList.insertAdjacentHTML('beforeend', str);
-			} else {
-				$reviewList.insertAdjacentHTML('afterbegin', str);
-			}
-
-		})
-		
-	}
 </script>
-

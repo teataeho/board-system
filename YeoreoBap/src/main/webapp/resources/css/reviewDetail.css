@@ -1,0 +1,153 @@
+/* 전체영역 */
+.row {
+	justify-content: center;
+}
+
+/* title */
+.titlebox h3 {
+    padding-top: 50px;
+	text-align: center;
+	margin-bottom: 50px;
+}
+
+.regDate {
+	display: flex;
+}
+.regDate .subTitle{
+	font-size: 0.9em;
+	font-weight: bold;
+	width: 110px;
+	text-align: right;
+}
+
+.subTitle > span {
+	color: #F4B183;
+	margin-right: 10px;
+}
+.regDate p {
+	font-size: 0.8em;
+}
+
+/* form-group */
+.form-group {
+	display: flex;
+}
+
+.form-group .subTitle {
+	font-size: 0.9em;
+	font-weight: bold;
+	width: 110px;
+	text-align: right;
+}
+
+.form-group .reviewData{
+	font-size: 0.8em;
+}
+
+.form-group .reviewTitle {
+	width: 80%;
+}
+.form-group .dataBorder {
+	border: 1px solid gainsboro;
+	border-radius: 5px;
+	width: 80%;
+	height: 200px;
+	margin-bottom: 0;
+	padding: 5px 10px;
+}
+
+
+/* 수정목록삭제 버튼 */
+.reviewBtns {
+	float: right;
+	margin: 10px 10px 0 0;
+}
+
+.reviewBtns button {
+	color: white;
+	background: #F4B183;
+    border: #F4B183;
+    transition: 0.3s;
+	border-radius: 5px;
+}
+.reviewBtns button:hover {
+	background: #F0975A;
+	color: white;
+}
+
+
+
+/* 댓글 영역 */
+.container h5 {
+	text-align: center;
+	margin: 20px 0;
+}
+
+.replyUser {
+	display: flex;
+}
+.reply-input .subTitle {
+	font-size: 0.9em;
+	font-weight: bold;
+	text-align: left;
+} 
+.userNick {
+	font-size: 0.8em;
+}
+
+.reply-group .reply-input {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 30px;
+}
+#reply {
+	margin-right: 10px;
+}
+
+/* 등록하기 버튼 */
+#replyRegist {
+	width: 100px;
+	color: white;
+	background: #F4B183;
+    border: #F4B183;
+    transition: 0.3s;
+}
+
+#replyRegist:hover {
+	background: #F0975A;
+}
+
+
+/* 기존 댓글 */
+
+.my-reply-group {
+	display: flex;
+	position: relative;
+}
+
+.my-reply-group span {
+	color: #F4B183;
+	margin: 0 10px 0 5px;
+}
+.left {
+	display: inline-block;
+	width: 80px;
+	text-align: right;
+	overflow: hidden;
+	font-size: 0.9em;
+	
+}
+.clearfix {
+	display: inline block;
+	font-size: 0.8em;
+	width: 70%;
+}
+.replyDelete {
+	font-size: 0.7em;
+	border: 1px solid #F0975A;
+	border-radius: 5px;
+	padding: 3px;
+	height: 30px;
+	position: absolute;
+	right: 0;
+}

@@ -3,7 +3,11 @@
 	<%@ include file="../include/header.jsp" %>
 
 		<div class="container">
-			<div id="map" style="width: 70%; height: 500px;"></div>
+			<section id="section">
+				<h2 class="text-center border-bottom border-orange pb-3 mb-4">어디서 여러밥하시겠습니까?</h2>
+			</section>
+			<div class="d-flex justify-content-center">
+				<div id="map" class="border border-thick-orange rounded mt-10" style="width: 70%; height: 500px;"></div>
 				<select class="form-select" name="uptaeNm" id="uptaeNm">
 					<option value="한식">한식</option>
 					<option value="경양식">경양식</option>
@@ -20,14 +24,15 @@
 					<option>동을 선택해주세요</option>
 				</select>
 				<button type="button" id="search">검색</button>
-			<form action="" method="post">
+			</div>
+			<form action="#" method="post">
 				<input type="hidden" id="sno" name="sno">
 				<input type="hidden" id="bplcNm" name="bplcNm">
 			</form>
 		</div>
 
-		<script type="text/javascript"
-			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b8a76526619d3746d10b810c5fd28b62&libraries=services"></script>
+		<%@ include file="../include/footer.jsp" %>
+
 		<script>
 			// 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
 			var infowindow = new kakao.maps.InfoWindow({
@@ -90,7 +95,7 @@
 										// 마커에 마우스 오버 이벤트를 등록합니다
 										kakao.maps.event.addListener(marker, 'mouseover', function () {
 											var content = '<div style="padding:5px;font-size:12px;">' + restaurant
-												.bplcnm + '</div>'; // 음식점 이름을 표시할 컨텐츠 HTML
+												.bplcnm + '<br>★: ' + restaurant.avgRate + '</div>'; // 음식점 이름을 표시할 컨텐츠 HTML
 											infowindow.setContent(content); // 인포윈도우에 컨텐츠를 설정합니다
 											infowindow.open(map, marker); // 인포윈도우를 표시합니다
 										});
