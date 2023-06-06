@@ -39,19 +39,21 @@
 		SELECT
 			user_id, user_name, user_nick
 			user_email1, user_email2, addr_gu,
-			addr_dong<!-- ,
+			addr_dong,
 			 p.party_no,  
-			p.title, p.reg_date -->
+			p.title, p.reg_date 
 		FROM users u
-		<!-- LEFT JOIN party p 
-		ON u.user_id = p.writer -->
+		 LEFT JOIN party p 
+		ON u.user_id = p.writer
 		WHERE u.user_id = #{userId}
-		<!-- ORDER BY p.party_board_no DESC -->
+		ORDER BY p.party_no DESC
 		LIMIT #{paging.pageStart}, #{paging.cpp}
 	</select>
 
 	<select id="getUser" resultType="user">
-		SELECT * FROM users WHERE user_id = #{userId}
+		SELECT user_id, user_name, user_nick,
+			user_email1, user_email2, addr_gu, addr_dong
+		 FROM users WHERE user_id = #{userId}
 	</select>
 
 	<select id="idCheck" resultType="int">
@@ -62,8 +64,7 @@
 
 	<update id="updateUser">
 		UPDATE users
-		SET user_pw = #{userPw},
-		user_nick = #{userNick},
+		SET user_nick = #{userNick},
 		addr_gu = #{addrGu},
 		addr_dong = #{addrDong}
 		WHERE
