@@ -3,6 +3,8 @@ package com.spring.yeoreobap.reviewReply.mapper;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.spring.yeoreobap.command.ReviewReplyVO;
 
 public interface IReviewReplyMapper {

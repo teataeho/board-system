@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.spring.yeoreobap.command.ReviewReplyVO;
@@ -17,9 +16,6 @@ public class ReviewReplyService implements IReviewReplyService {
 
 	@Autowired
 	private IReviewReplyMapper mapper;
-	
-	@Autowired
-	private BCryptPasswordEncoder encoder;
 	
 	@Override
 	public void replyRegist(ReviewReplyVO vo) {
@@ -52,9 +48,11 @@ public class ReviewReplyService implements IReviewReplyService {
 	}
 
 	@Override
-	public boolean idCheck(ReviewReplyVO vo) {
-		String dbId = mapper.idCheck(vo.getReplyNo());
-		return encoder.matches(vo.getReplyId(), dbId);
+	public boolean idCheck(int replyNo, String userId) {
+		if(mapper.idCheck(replyNo).equals(userId)) {
+			return true;
+		}
+		return false;
 	}
 
 

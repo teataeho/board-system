@@ -17,9 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.yeoreobap.command.ReviewReplyVO;
+import com.spring.yeoreobap.command.UserVO;
 import com.spring.yeoreobap.reviewReply.service.IReviewReplyService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @RestController
+@Slf4j
 @RequestMapping("/reply")
 public class ReviewReplyController {
 
@@ -46,10 +50,12 @@ public class ReviewReplyController {
 	}
 
 	// 댓글 삭제
-	@DeleteMapping("/{replyNo}")
-	public String delete(@PathVariable int replyNo, @RequestBody ReviewReplyVO vo, HttpSession session) {
-		vo.setReplyNo(replyNo);
-		if (service.idCheck(vo)) {
+	@DeleteMapping("/delete/{replyNo}")
+	public String delete(@PathVariable int replyNo, HttpSession session) {
+		log.info("replyNo : " + replyNo);
+		log.info("userId : " + ((UserVO) session.getAttribute("userInfo")).getUserId());
+		System.out.println("delete 요청");		
+		if (service.idCheck(replyNo, ((UserVO) session.getAttribute("userInfo")).getUserId())) {
 			service.delete(replyNo);
 			return "replyDeleteSuccess";
 		} else
