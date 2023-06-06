@@ -33,6 +33,8 @@
 
 		<%@ include file="../include/footer.jsp" %>
 
+		<script type="text/javascript"
+			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b8a76526619d3746d10b810c5fd28b62&libraries=services"></script>
 		<script>
 			// 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
 			var infowindow = new kakao.maps.InfoWindow({

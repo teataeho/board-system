@@ -11,11 +11,24 @@
 	</insert>
 	
 	<select id="getList" resultType="party">
-		SELECT p.*, s.rdn_whl_addr
+		SELECT p.*, s.rdn_whl_addr,
+			(SELECT COUNT(*) FROM partylike l
+			WHERE p.party_no = l.party_no) AS likeCount
 		FROM party p
 		JOIN store s
 		ON p.sno = s.sno
 		ORDER BY party_no DESC
+		LIMIT #{pageStart}, #{cpp}
+	</select>
+	
+	<select id="getListByLike" resultType="party">
+		SELECT p.*, s.rdn_whl_addr,
+			(SELECT COUNT(*) FROM partylike l
+			WHERE p.party_no = l.party_no) AS likeCount
+		FROM party p
+		JOIN store s
+		ON p.sno = s.sno
+		ORDER BY likeCount DESC
 		LIMIT #{pageStart}, #{cpp}
 	</select>
 	
@@ -47,9 +60,8 @@
 		WHERE party_no = #{partyNo} AND user_id = #{userId}
 	</delete>
 
-
-<select id="getTotal" resultType="int">
-  SELECT COUNT(*) FROM party
-</select>
+	<select id="getTotal" resultType="int">
+	  SELECT COUNT(*) FROM party
+	</select>
 
 </mapper>

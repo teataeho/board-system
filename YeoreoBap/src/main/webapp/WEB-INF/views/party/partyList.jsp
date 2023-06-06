@@ -187,7 +187,7 @@
 							} else if (data.attended === 0) {
 								if (data.attendedNum >= data.max - 1) {
 									$modalFooter.insertAdjacentHTML('beforeend',
-										`<button type="button" class="btn btn-primary" id="attend" disabled>완료</button>`);
+										`<button type="button" class="btn btn-primary" id="attend" disabled>풀파티</button>`);
 								} else {
 									$modalFooter.insertAdjacentHTML('beforeend',
 										`<button type="button" class="btn btn-primary" id="attend">참가</button>`);
