@@ -33,7 +33,6 @@ public class ReviewReplyService implements IReviewReplyService {
 		
 		PageVO vo = new PageVO();
 		vo.setPageNum(pageNum);
-		vo.setCpp(10);
 		
 		Map<String, Object> data = new HashMap<>();
 		data.put("paging", vo);
@@ -43,8 +42,8 @@ public class ReviewReplyService implements IReviewReplyService {
 	}
 
 	@Override
-	public int getTotal(int partyNo) {
-		return mapper.getTotal(partyNo);
+	public int getTotal(int replyNo) {
+		return mapper.getTotal(replyNo);
 	}
 	
 	@Override
