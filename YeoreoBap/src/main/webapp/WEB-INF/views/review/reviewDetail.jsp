@@ -259,6 +259,9 @@
 					            .then(res => res.text())
 					            .then(data => {
 									if(data === 'replyDeleteSuccess') window.location.reload();
+									else {
+										alert('본인의 댓글만 지울 수 있습니다.');
+									}
 					            })
 					            .catch(error => {
 					                console.error('삭제 요청 중 오류 발생:', error);

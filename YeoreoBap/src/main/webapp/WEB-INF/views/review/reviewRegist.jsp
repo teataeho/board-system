@@ -107,7 +107,7 @@
 
         console.log('별점: ' + rating);
 		setTimeout(() => {
-			if(!confirm('별점을 매겨주세요.')) {
+			if(!confirm('별점을 매기시겠습니까?')) {
 				return;
 			} else {
 				fetch('${pageContext.request.contextPath}/star/insertStar', {
