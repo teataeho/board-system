@@ -24,8 +24,8 @@
 						최신순
 					</button>
 					<ul class="dropdown-menu">
-						<li><a class="dropdown-item" href="#">최신순</a></li>
-						<li><a class="dropdown-item" href="#"><span class="necessary">핫!</span>한 순</a></li>
+						<li><a class="dropdown-item" href="#" value="orderByLatest">최신순</a></li>
+						<li><a class="dropdown-item" href="#" value="orderByLike"><span class="necessary">핫!</span>한 순</a></li>
 					</ul>
 				</div>
 			</div>
