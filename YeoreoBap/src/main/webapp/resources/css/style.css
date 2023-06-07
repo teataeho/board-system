@@ -68,16 +68,7 @@ h6 {
 	font-weight: normal;
 }
 
-.p-0 .thumbnail-size {
-	width: 220px;
-	height: 300px;
-	background-color: black;
-	overflow: hidden;
-	position: relative;
 
-	margin-right: 30px;
-	margin-bottom: 30px;
-}
 
 .p-0 .thumbnail-size img {
 	cursor: pointer;
@@ -283,9 +274,11 @@ i.bi-pencil::before {
 	cursor: pointer;
 	color: gray;
 }
+
 .rating-stars .star {
 	color: gray;
 }
+
 .rating-stars .star.active {
 	color: gold;
 }

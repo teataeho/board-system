@@ -5,7 +5,7 @@
 		<div class="join container">
 			<h2 class="title">파티 모집글 작성하기</h2>
 			<form action="${pageContext.request.contextPath}/party/partyRegister" method="POST" enctype="multipart/form-data">
-				<div class="bigBorder">	
+				<div class="bigBorder">
 					<div class="smallBorder">
 						<div class="border">
 							<p>닉네임<span>|</span></p>
@@ -24,44 +24,45 @@
 									placeholder="ex) OO시에 OO에서 만나서 여러밥해요!" autocomplete="off"></textarea>
 							</div>
 						</div>
-						
-					<div class="partyPeople">
-						<p><span>＃</span>최대 몇 명까지 모이기 원하시나요?</p>
-						<select id="max" name="max" class="form-select">
-							<option value="2">2명</option>
-							<option value="3">3명</option>
-							<option value="4">4명</option>
-						</select>
-					</div>
-					<div class="restName">					
-						<p><span>＃</span>식당명</p>
-						<input type="text" class="form-control restName2" name="bplcNm" id="restName" value="${param.bplcnm}" readonly>
-					</div>
-				</div>
-				
-				
-				<input type="hidden" name="sno" value="${param.sno}">
 
-				
+						<div class="partyPeople">
+							<p><span>＃</span>최대 몇 명까지 모이기 원하시나요?</p>
+							<select id="max" name="max" class="form-select">
+								<option value="2">2명</option>
+								<option value="3">3명</option>
+								<option value="4">4명</option>
+							</select>
+						</div>
+						<div class="restName">
+							<p><span>＃</span>식당명</p>
+							<input type="text" class="form-control restName2" name="bplcNm" id="restName" value="${param.bplcnm}"
+								readonly>
+						</div>
+					</div>
+
+
+					<input type="hidden" name="sno" value="${param.sno}">
+
+
 					<div class="pictures">
 						<p>썸네일 사진을 선택해주세요.</p>
 						<!-- <input type="checkbox" name="ex-pic1" id="pic1" src="${pageContext.request.contextPath}/img/">
 						<input type="image" name="ex-pic2" id="pic2" src="${pageContext.request.contextPath}/img/">
 						<input type="image" name="ex-pic3" id="pic3" src="${pageContext.request.contextPath}/img/"> -->
-						
+
 						<!-- 사용자 지정 -->
-	
+
 						<div class="custom">
-							
+
 							<div class="imgSelect">
 								<label for="file-upload" class="custom-file-upload">
-									<input type="file" name="file" id="file-upload" accept="image/jpg, image/jpeg, image/png"/>
-									
+									<input type="file" name="file" id="file-upload" accept="image/jpg, image/jpeg, image/png" />
+
 									<img id="file-upload-img" src="${pageContext.request.contextPath}/img/upload.png" alt="이미지 선택" />
 									<p>첨부하기</p>
 								</label>
 							</div>
-							<span class="warn">*(jpg, jpeg, png) 파일만 가능합니다.</span>
+							<span class="necessary">*(jpg, jpeg, png) 파일만 가능합니다.</span>
 						</div>
 					</div>
 				</div>

@@ -32,7 +32,7 @@
 
 			<!-- 파티 리스트 -->
 			<div class="partyContainer">
-				<div id="partyList" class="d-inline-flex flex-wrap p-0">
+				<div id="partyList" class="d-inline-flex flex-wrap">
 				</div>
 				<div class="partyListStickyBtns">
 					<div class="stickyButtons">
@@ -60,9 +60,9 @@
 							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 						</div>
 						<div class="modal-body">
-							<span>식당이름</span><span class="res-name"></span>		<br>
-							<span class="content"></span>		<br>
-							<span>정원</span><span class="max"></span>	<br><br>
+							<span>식당이름</span><span class="res-name"></span> <br>
+							<span class="content"></span> <br>
+							<span>정원</span><span class="max"></span> <br><br>
 							<a href="#" id="like" class="text-danger"><i class="bi bi-heart"></i></a>
 						</div>
 						<div class="modal-footer">
@@ -105,12 +105,35 @@
 							}
 
 							for (vo of list) {
+								if (vo.fileName === null) {
+									fileStr = `${pageContext.request.contextPath}/party/getImg/thumbnail_3.jpg`;
+								} else {
+									fileStr = `${pageContext.request.contextPath}/party/getImg/` + vo.fileName;
+								}
 								str +=
-									`<div class="thumbnail-size rounded d-flex justify-content-center">
-										<div class="gradient"></div>
-										<img class="h-100"  id="` + vo.partyNo + `" src="${pageContext.request.contextPath}/party/getImg/` + vo.fileName + `" alt="썸네일">
-									</div>`;
+									`<div class="grid">
+										<figure class="rounded effect-zoe">
+											<img class="h-100" id="` + vo.partyNo + `" src="` + fileStr + `" alt="썸네일">
+											<figcaption>
+												<h2>
+													<span>`+ vo.rdnWhlAddr.slice(-4, -1) + `</span> <br>
+													` + vo.title + `
+												</h2>
+												<p class="icon-links">
+													<c:choose>
+														<c:when test="${userInfo == null}">
+															<i class="bi bi-heart"></i>
+														</c:when>
+														<c:otherwise>
+															<i class="bi bi-heart-fill"></i>
+														</c:otherwise>
+													</c:choose>
+												</p>
+											</figcaption>
+										</figure>
+										</div>`;
 							}
+
 
 							if (!reset) {
 								$partyList.insertAdjacentHTML('beforeend', str);
@@ -172,12 +195,12 @@
 							document.querySelector('.max').textContent = data.max + '명';
 							console.log(data.attended);
 							//좋아요 true, false
-							if(data.isLike === 1) {
+							if (data.isLike === 1) {
 								document.querySelector('#like i').classList.remove('bi-heart');
 								document.querySelector('#like i').classList.add('bi-heart-fill');
 							} else {
 								document.querySelector('#like i').classList.remove('bi-heart-fill');
-								document.querySelector('#like i').classList.add('bi-heart');								
+								document.querySelector('#like i').classList.add('bi-heart');
 							}
 
 							// 버튼 선택
@@ -257,50 +280,50 @@
 				//좋아요
 				document.getElementById('like').addEventListener('click', e => {
 					e.preventDefault();
-					if(!e.target.matches('i')) return;
+					if (!e.target.matches('i')) return;
 					//좋아요
-					if(document.querySelector('#like i').classList.contains('bi-heart')) {
+					if (document.querySelector('#like i').classList.contains('bi-heart')) {
 						fetch('${pageContext.request.contextPath}/like/partyLike', {
-								method: 'post',
-								headers: {
-									'Content-Type': 'application/json'
-								},
-								body: JSON.stringify({
-									'userId': uid,
-									'partyNo': document.getElementById('hiddenPartyNo').value
-								})
+							method: 'post',
+							headers: {
+								'Content-Type': 'application/json'
+							},
+							body: JSON.stringify({
+								'userId': uid,
+								'partyNo': document.getElementById('hiddenPartyNo').value
 							})
-						.then(res => res.text())
-						.then(text => {
-							if(text !== 'success') {
-								alert('이미 좋아요를 한 게시물이거나 알 수 없는 오류로 인해 좋아요가 취소되었습니다.');
-							} else {
-								document.querySelector('#like i').classList.remove('bi-heart')
-								document.querySelector('#like i').classList.add('bi-heart-fill');
-							}
 						})
+							.then(res => res.text())
+							.then(text => {
+								if (text !== 'success') {
+									alert('이미 좋아요를 한 게시물이거나 알 수 없는 오류로 인해 좋아요가 취소되었습니다.');
+								} else {
+									document.querySelector('#like i').classList.remove('bi-heart')
+									document.querySelector('#like i').classList.add('bi-heart-fill');
+								}
+							})
 					}
 					//좋아요 삭제
-					if(document.querySelector('#like i').classList.contains('bi-heart-fill')) {
+					if (document.querySelector('#like i').classList.contains('bi-heart-fill')) {
 						fetch('${pageContext.request.contextPath}/like/deletePartyLike', {
-								method: 'post',
-								headers: {
-									'Content-Type': 'application/json'
-								},
-								body: JSON.stringify({
-									'userId': uid,
-									'partyNo': document.getElementById('hiddenPartyNo').value
-								})
+							method: 'post',
+							headers: {
+								'Content-Type': 'application/json'
+							},
+							body: JSON.stringify({
+								'userId': uid,
+								'partyNo': document.getElementById('hiddenPartyNo').value
 							})
-						.then(res => res.text())
-						.then(text => {
-							if(text !== 'success') {
-								alert('삭제가 안됐습니다.');
-							} else {
-								document.querySelector('#like i').classList.remove('bi-heart-fill')
-								document.querySelector('#like i').classList.add('bi-heart');
-							}
 						})
+							.then(res => res.text())
+							.then(text => {
+								if (text !== 'success') {
+									alert('삭제가 안됐습니다.');
+								} else {
+									document.querySelector('#like i').classList.remove('bi-heart-fill')
+									document.querySelector('#like i').classList.add('bi-heart');
+								}
+							})
 					}
 				})
 			</script>
