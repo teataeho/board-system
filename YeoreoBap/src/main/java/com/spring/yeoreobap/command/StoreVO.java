@@ -17,7 +17,7 @@ import lombok.ToString;
 		dtlstatenm VARCHAR(10),
 		x VARCHAR(50),
 		y VARCHAR(50),
-		star_rate INT DEFAULT 0
+		star_rate double DEFAULT 0
 	);
  */
 
@@ -38,6 +38,8 @@ public class StoreVO {
 	private String dtlstatenm; // 영업/폐업 여부
 	private String x; // x좌표
 	private String y; // y좌표
-	private double starRate;
+	
+	//조인용
+	private double avgRate;
 
 }

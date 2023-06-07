@@ -5,8 +5,14 @@
 <mapper namespace="com.spring.yeoreobap.store.mapper.IStoreMapper">
 
     <select id="getList" resultType="store">
-		SELECT * FROM store
-		WHERE rdn_whl_addr LIKE #{addr} AND uptae_nm = #{uptaeNm}
+    	SELECT s.*, avg_star_rate.avg_rate
+		FROM store s
+		LEFT JOIN (
+		    SELECT sno, AVG(star_rate) AS avg_rate
+		    FROM star
+		    GROUP BY sno
+		) avg_star_rate ON s.sno = avg_star_rate.sno
+		WHERE s.rdn_whl_addr LIKE #{addr} AND s.uptae_nm = #{uptaeNm}
 	</select>
 	
 	<insert id="inputData">

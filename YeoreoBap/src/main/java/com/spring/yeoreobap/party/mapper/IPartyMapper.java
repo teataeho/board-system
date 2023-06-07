@@ -25,4 +25,6 @@ public interface IPartyMapper {
 	//참가 취소
 	void cancelAttend(ParticipantsVO vo);
 	
+	//총 게시물 수 (mypage)
+		int getTotal(PageVO vo);
 }
