@@ -296,8 +296,8 @@ a {
   text-decoration: underline;
 }
 
-a:hover {
-  color: #F0975A;
+a:focus {
+  outline: none;
 }
 
 a:not([href]):not([class]),

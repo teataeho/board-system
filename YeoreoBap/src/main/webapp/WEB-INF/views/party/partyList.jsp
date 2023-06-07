@@ -63,7 +63,7 @@
 							<span>식당이름</span><span class="res-name"></span> <br>
 							<span class="content"></span> <br>
 							<span>정원</span><span class="max"></span> <br><br>
-							<a href="#" id="like" class="text-danger"><i class="bi bi-heart"></i></a>
+							<a href="" id="like"><i class="bi bi-heart text-danger"></i></a>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">모달 누르면 그냥 지워지는 버튼</button>
@@ -113,21 +113,19 @@
 								str +=
 									`<div class="grid">
 										<figure class="rounded effect-zoe">
-											<img class="h-100" id="` + vo.partyNo + `" src="` + fileStr + `" alt="썸네일">
-											<figcaption>
+											<div class="position">
+												<img class="h-100" id="` + vo.partyNo + `" src="` + fileStr + `" alt="썸네일">
+											</div>
+											<figcaption class="d-inline-flex flex-wrap justify-content-between align-items-end">
 												<h2>
-													<span>`+ vo.rdnWhlAddr.slice(-4, -1) + `</span> <br>
+													<span class="text-orange">`+ vo.rdnWhlAddr.slice(-4, -1) + `</span> <br>
+													<div class="text-truncate">
 													` + vo.title + `
+													</div>
 												</h2>
-												<p class="icon-links">
-													<c:choose>
-														<c:when test="${userInfo == null}">
-															<i class="bi bi-heart"></i>
-														</c:when>
-														<c:otherwise>
-															<i class="bi bi-heart-fill"></i>
-														</c:otherwise>
-													</c:choose>
+												<p class="icon-links d-flex justify-content-start align-items-center">
+													<i class="bi bi-heart-fill text-danger d-inline-block"></i>
+													<span>` + vo.likeCount + `</span>
 												</p>
 											</figcaption>
 										</figure>
@@ -164,13 +162,6 @@
 				// 모달달
 				var modal = new bootstrap.Modal(document.querySelector('.modal'));
 				const $modalFooter = document.querySelector('.modal-footer');
-
-				// 마우스 호버 시 약간의 정보 뜨기
-				document.getElementById('partyList').addEventListener('mouseover', e => {
-					if (!e.target.matches('img')) return;
-					console.log(e.target.previousSibling.previousSibling);
-
-				});
 
 				// 글 상세보기
 				let uid = '${userInfo.userId}';
@@ -281,6 +272,7 @@
 				document.getElementById('like').addEventListener('click', e => {
 					e.preventDefault();
 					if (!e.target.matches('i')) return;
+
 					//좋아요
 					if (document.querySelector('#like i').classList.contains('bi-heart')) {
 						fetch('${pageContext.request.contextPath}/like/partyLike', {

@@ -11,7 +11,7 @@
 }
 
 /* Common style */
-.grid figure {
+.grid figure.effect-zoe {
 	width: 220px;
 	height: 300px;
 	position: relative;
@@ -23,12 +23,21 @@
 	cursor: pointer;
 }
 
-.grid figure img {
+.grid figure .position {
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+}
+
+.grid figure img {
+	transition: 0.3s ease-in-out;
 	opacity: 1;
+}
+
+.grid figure:hover img {
+	transform: scale(1.1);
+	opacity: 0.5;
 }
 
 .grid figure figcaption {
@@ -93,7 +102,7 @@
 figure.effect-zoe figcaption {
 	top: auto;
 	bottom: 0;
-	padding: 1em;
+	padding: 10px;
 	height: 3.75em;
 	background: linear-gradient(rgba(255, 255, 255, 0), #F0975A);
 	background-position: bottom;
@@ -103,30 +112,17 @@ figure.effect-zoe figcaption {
 	transform: translate3d(0, 100%, 0);
 }
 
-figure.effect-zoe p.icon-links a {
-	color: #3c4a50;
-	font-size: 1.4em;
+figure.effect-zoe .text-truncate {
+	width: 200px;
 }
 
-figure.effect-zoe:hover p.icon-links a:hover,
-figure.effect-zoe:hover p.icon-links a:focus {
-	color: #252d31;
+p.icon-links {
+	font-size: 13px;
 }
 
-figure.effect-zoe p.description {
-	position: absolute;
-	bottom: 8em;
-	padding: 2em;
-	color: #fff;
-	text-transform: none;
-	font-size: 90%;
-	opacity: 0;
-	-webkit-backface-visibility: hidden;
-	/* Fix for Chrome 37.0.2062.120 (Mac) */
-	-webkit-transition: opacity 0.35s;
-	transition: opacity 0.35s;
-	-webkit-backface-visibility: hidden;
-	/* Fix for Chrome 37.0.2062.120 (Mac) */
+p.icon-links i::before {
+	padding-top: 6px;
+	margin-right: 5px;
 }
 
 figure.effect-zoe h2,
@@ -160,10 +156,6 @@ figure.effect-zoe p.icon-links a span::before {
 
 figure.effect-zoe h2 {
 	display: inline-block;
-}
-
-figure.effect-zoe:hover p.description {
-	opacity: 1;
 }
 
 figure.effect-zoe:hover figcaption,

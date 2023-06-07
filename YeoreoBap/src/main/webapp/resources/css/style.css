@@ -68,32 +68,6 @@ h6 {
 	font-weight: normal;
 }
 
-
-
-.p-0 .thumbnail-size img {
-	cursor: pointer;
-	transition: 0.3s ease-in-out;
-}
-
-.p-0 .thumbnail-size img:hover {
-	opacity: 0.5;
-}
-
-.gradient {
-	position: absolute;
-	bottom: -180px;
-
-	width: 225px;
-	height: 160px;
-	transition: 0.3s ease-in-out;
-	background-image: url('../img/gradient.png');
-}
-
-.gradient:hover {
-	position: absolute;
-	bottom: 0;
-}
-
 /*--------------- Join Page (userJoin.jsp) ---------------*/
 #section {
 	margin: 70px auto 0;
