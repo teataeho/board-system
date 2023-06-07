@@ -2,6 +2,7 @@
 
 	<%@ include file="../include/header.jsp" %>
 
+
 		<div class="container">
 			<section id="section">
 				<h2 class="text-center border-bottom border-orange pb-3 mb-4">회원가입</h2>
@@ -68,14 +69,17 @@
 							<input type="text" class="form-control form-control-lg" name="userEmail2" id="userEmail2"
 								autocomplete="off">
 
-							<select class="form-emailSelection form-select" name="emailSelection" id="emailSelection">
-								<option value="direct" selected>직접 입력</option>
+
+							<select class="form-emailSelection form-select " name="emailSelection" id="emailSelection">
+								<option value="direct">직접 입력</option>
 								<option value="naver.com">naver.com</option>
 								<option value="daum.net">daum.net</option>
 								<option value="gmail.com">gmail.com</option>
 								<option value="hanmail.com">hanmail.com</option>
 								<option value="yahoo.co.kr">yahoo.co.kr</option>
 							</select>
+
+
 						</div>
 
 						<!-- 이메일 인증 -->
@@ -110,14 +114,14 @@
 					<!-- 버튼 -->
 					<div class="btns">
 						<button type="button" class="btn btn-orange" id="joinBtn">회원가입</button>
-						<button type="button" class="btn btn-outline-orange" id="cancelBtn"
-							onclick="location.href='${pageContext.request.contextPath}/'">취소
-						</button>
+						<button type="button" class="btn btn-outline-orange"
+							onclick="location.href='${pageContext.request.contextPath}/'">취소</button>
 					</div>
 
 				</form>
 			</section>
 		</div>
+
 
 		<%@ include file="../include/footer.jsp" %>
 
@@ -365,13 +369,6 @@
 					} else {
 						alert('입력값을 다시 한 번 확인해주세요! :(');
 					}
-				}
-
-				/* 회원가입 취소 */
-				document.getElementById('cancelBtn').onclick = function () {
-					if (confirm('회원가입을 취소하시겠습니까?')) {
-						location.href = '${pageContext.request.contextPath}/';
-					} else return;
 				}
 
 			</script>

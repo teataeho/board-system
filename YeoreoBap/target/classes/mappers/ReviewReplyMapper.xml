@@ -5,41 +5,41 @@
 <mapper namespace="com.spring.yeoreobap.reviewReply.mapper.IReviewReplyMapper">
 
 	<insert id="replyRegist">
-		INSERT INTO reviewReply
+		INSERT INTO reviewreply
 		(review_no, reply, reply_id)
 		VALUES (#{reviewNo}, #{reply}, #{replyId})
 	</insert>
 	
 	<select id="getList" resultType="rReply">
 		SELECT r.*, u.user_nick
-		FROM reviewReply r 
+		FROM reviewreply r 
 		JOIN users u
-		ON r.reply_id = u.user_nick
-		WHERE r.review_no = #{reviewNo}
-		ORDER BY r.reply_no DESC
+		ON r.reply_id = u.user_id
+		WHERE review_no = #{reviewNo}
+		ORDER BY reply_no DESC
 		LIMIT #{paging.pageStart}, #{paging.cpp}
 	</select>
 	
 	<select id="getTotal" resultType="int">
 		SELECT COUNT(*)
-		FROM reviewReply
+		FROM reviewreply
 		WHERE review_no = #{reviewNo}
 	</select>
 	
 	<!-- <select id="getContent" resultType="rReply">
-		SELECT * FROM reviewReply
+		SELECT * FROM reviewreply
 		WHERE review_no = #{reviewNo}
 	</select> -->
 	
 	<select id="idCheck" resultType="string">
 		SELECT reply_id
-		FROM reviewReply
-		WHERE review_no = #{reviewNo}
+		FROM reviewreply
+		WHERE reply_no = #{replyNo}
 	</select>
 	
 
 	<delete id="delete">
-		DELETE FROM reviewReply
+		DELETE FROM reviewreply
 		WHERE reply_no = #{replyNo}
 	</delete>
 

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.spring.yeoreobap.like.mapper.ILikeMapper">
+
+	<insert id="insertPartyLike">
+		INSERT INTO partyLike
+		(party_no, user_id)
+		VALUES (#{partyNo}, #{userId})
+	</insert>
+	
+	<delete id="deletePartyLike">
+		DELETE FROM partyLike
+		WHERE party_no = #{partyNo} AND user_id = #{userId}
+	</delete>
+	
+	<insert id="insertReviewLike">
+		INSERT INTO reviewLike
+		(review_no, user_id)
+		VALUES (#{rewviewNo}, #{userId})
+	</insert>
+	
+	<delete id="deleteReviewLike">
+		DELETE FROM reviewLike
+		WHERE review_no = #{reviewNo} AND user_id = #{userId}
+	</delete>
+
+</mapper>

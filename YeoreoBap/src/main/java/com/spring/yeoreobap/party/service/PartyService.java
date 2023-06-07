@@ -22,12 +22,6 @@ public class PartyService implements IPartyService {
 	@Autowired
 	private IPartyMapper mapper;
 
-	// 예시 이미지 사용 시 등록
-	@Override
-	public void register(PartyVO vo) {
-
-	}
-
 	@Override
 	public void register(PartyVO vo, MultipartFile file) {
 
@@ -98,6 +92,11 @@ public class PartyService implements IPartyService {
 	@Override
 	public void cancelAttend(ParticipantsVO vo) {
 		mapper.cancelAttend(vo);		
+	}
+
+	@Override
+	public int getTotal(PageVO vo) {
+		return mapper.getTotal(vo);
 	}
 
 }

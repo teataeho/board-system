@@ -17,7 +17,7 @@ public class UserService implements IUserService {
 	private IUserMapper mapper;
 	@Autowired
 	private BCryptPasswordEncoder encoder;
-	
+
 	@Override
 	public int idCheck(String userId) {
 		return mapper.idCheck(userId);
@@ -34,10 +34,12 @@ public class UserService implements IUserService {
 
 	@Override
 	public UserVO login(String userId, String userPw) {
-		String dbPw = mapper.login(userId);	
-		if(dbPw != null) {
-			if(encoder.matches(userPw, dbPw)) {
-				return mapper.getUser(userId);
+		if(userPw != null) {
+			String dbPw = mapper.login(userId);	
+			if(dbPw != null) {
+				if(encoder.matches(userPw, dbPw)) {
+					return mapper.getUser(userId);
+				}
 			}
 		}
 		return null;
