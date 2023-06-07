@@ -52,21 +52,22 @@
 			<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
 				aria-labelledby="staticBackdropLabel" aria-hidden="true">
 				<div class="modal-dialog modal-dialog-centered">
-					<div class="modal-content">
-						<div class="modal-header">
+					<div class="modal-content d-flex">
+						<img id="modalImg" src="" alt="이미지">
+						<div class="modal-header d-flex align-items-center">
 							<input type="hidden" id="hiddenPartyNo">
 							<input type="hidden" id="hiddenUserId">
-							<h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+							<h5 class="modal-title me-auto" id="staticBackdropLabel">Modal title</h5>
+							<a href="" id="like"><i class="bi bi-heart text-danger"></i></a>
 							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 						</div>
 						<div class="modal-body">
-							<span>식당이름</span><span class="res-name"></span> <br>
+							<span>식당이름 : </span><span class="res-name"></span> <br>
 							<span class="content"></span> <br>
-							<span>정원</span><span class="max"></span> <br><br>
-							<a href="" id="like"><i class="bi bi-heart text-danger"></i></a>
+							<span>정원 : </span><span class="max"></span> <br><br>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">모달 누르면 그냥 지워지는 버튼</button>
+							<button type="button" class="modalBtn btn btn-orange"></button>
 						</div>
 					</div>
 				</div>
@@ -114,7 +115,7 @@
 									`<div class="grid">
 										<figure class="rounded effect-zoe">
 											<div class="position">
-												<img class="h-100" id="` + vo.partyNo + `" src="` + fileStr + `" alt="썸네일">
+												<img id="` + vo.partyNo + `" src="` + fileStr + `" alt="썸네일">
 											</div>
 											<figcaption class="d-inline-flex flex-wrap justify-content-between align-items-end">
 												<h2>
@@ -131,7 +132,6 @@
 										</figure>
 										</div>`;
 							}
-
 
 							if (!reset) {
 								$partyList.insertAdjacentHTML('beforeend', str);
@@ -162,6 +162,7 @@
 				// 모달달
 				var modal = new bootstrap.Modal(document.querySelector('.modal'));
 				const $modalFooter = document.querySelector('.modal-footer');
+				const $modalBtn = document.querySelector('.modalBtn');
 
 				// 글 상세보기
 				let uid = '${userInfo.userId}';
@@ -173,8 +174,6 @@
 					}
 					console.log('e.target : ' + e.target);
 
-					$modalFooter.removeChild($modalFooter.lastElementChild);
-
 					fetch('content/' + e.target.id + '/' + uid)
 						.then(res => res.json())
 						.then(data => {
@@ -185,6 +184,13 @@
 							document.querySelector('.content').textContent = data.content;
 							document.querySelector('.max').textContent = data.max + '명';
 							console.log(data.attended);
+
+							if (data.fileName === null) {
+								document.getElementById('modalImg').setAttribute('src', '${pageContext.request.contextPath}/party/getImg/thumbnail_3.jpg');
+							} else {
+								document.getElementById('modalImg').setAttribute('src', '${pageContext.request.contextPath}/party/getImg/' + data.fileName);
+							}
+
 							//좋아요 true, false
 							if (data.isLike === 1) {
 								document.querySelector('#like i').classList.remove('bi-heart');
@@ -195,20 +201,28 @@
 							}
 
 							// 버튼 선택
+							if ($modalBtn.classList.contains('btn-outline-orange')) {
+								$modalBtn.classList.remove('btn-outline-orange');
+								$modalBtn.classList.add('btn-orange');
+							}
+
 							if (uid === data.writer) {
-								$modalFooter.insertAdjacentHTML('beforeend',
-									`<button type="button" class="btn btn-primary" id="deleteParty">삭제</button>`);
+								$modalBtn.id = 'deleteParty';
+								$modalBtn.textContent = '삭제';
 							} else if (data.attended === 0) {
 								if (data.attendedNum >= data.max - 1) {
-									$modalFooter.insertAdjacentHTML('beforeend',
-										`<button type="button" class="btn btn-primary" id="attend" disabled>풀파티</button>`);
+									$modalBtn.id = 'attend';
+									$modalBtn.disabled = true;
+									$modalBtn.textContent = '풀파티';
 								} else {
-									$modalFooter.insertAdjacentHTML('beforeend',
-										`<button type="button" class="btn btn-primary" id="attend">참가</button>`);
+									$modalBtn.id = 'attend';
+									$modalBtn.textContent = '참가하기';
 								}
 							} else {
-								$modalFooter.insertAdjacentHTML('beforeend',
-									`<button type="button" class="btn btn-primary" id="cancelAttend">참가취소</button>`);
+								$modalBtn.id = 'cancelAttend';
+								$modalBtn.classList.remove('btn-orange');
+								$modalBtn.classList.add('btn-outline-orange');
+								$modalBtn.textContent = '참가 취소';
 							}
 						});
 

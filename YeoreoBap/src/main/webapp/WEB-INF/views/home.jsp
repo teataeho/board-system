@@ -131,21 +131,23 @@
 									}
 									str +=
 										`<div class="grid">
-										<figure class="rounded effect-zoe">
-											<img class="h-100" id="` + vo.partyNo + `" src="` + fileStr + `" alt="썸네일">
-											<figcaption class="d-inline-flex flex-wrap justify-content-between align-items-end">
-												<h2>
-													<span class="text-orange">`+ vo.rdnWhlAddr.slice(-4, -1) + `</span> <br>
-													<div class="text-truncate">
-													` + vo.title + `
-													</div>
-												</h2>
-												<p class="icon-links d-flex justify-content-start align-items-center">
-													<i class="bi bi-heart-fill text-danger d-inline-block"></i>
-													<span>` + vo.likeCount + `</span>
-												</p>
-											</figcaption>
-										</figure>
+											<figure class="rounded effect-zoe">
+												<div class="position">
+													<img id="` + vo.partyNo + `" src="` + fileStr + `" alt="썸네일">
+												</div>
+												<figcaption class="d-inline-flex flex-wrap justify-content-between align-items-end">
+													<h2>
+														<span class="text-orange">`+ vo.rdnWhlAddr.slice(-4, -1) + `</span> <br>
+														<div class="text-truncate">
+														` + vo.title + `
+														</div>
+													</h2>
+													<p class="icon-links d-flex justify-content-start align-items-center">
+														<i class="bi bi-heart-fill text-danger d-inline-block"></i>
+														<span>` + vo.likeCount + `</span>
+													</p>
+												</figcaption>
+											</figure>
 										</div>`;
 								}
 
