@@ -51,15 +51,32 @@
 
 					<!-- 파티 리스트 -->
 					<div id="partyList" class="d-inline-flex flex-wrap justify-content-around p-0">
-						<c:forEach begin="1" step="+1" end="10">
-							<div class="thumbnail-size rounded mb-4">
-								<img class="h-100" src="${pageContext.request.contextPath}/img/thumbnail_1.jpg" alt="썸네일">
-								<div id="rdnWhlAddr" class="invisible">서울 성동구</div>
-								<div id="title" class="invisible">코너키친 갈 사람 여기여기 모여라~!</div>
-							</div>
-						</c:forEach>
 					</div>
 					<!-- 파티 리스트 끝 -->
+
+					<!-- 모달달 -->
+					<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+						aria-labelledby="staticBackdropLabel" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered">
+							<div class="modal-content">
+								<div class="modal-header">
+									<input type="hidden" id="hiddenPartyNo">
+									<input type="hidden" id="hiddenUserId">
+									<h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+								</div>
+								<div class="modal-body">
+									<span>식당 이름 : </span><span class="res-name"></span> <br>
+									<span class="content"></span> <br>
+									<span>정원 : </span><span class="max"></span> <br><br>
+									<a href="" id="like"><i class="bi bi-heart text-danger"></i></a>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">모달 누르면 그냥 지워지는 버튼</button>
+								</div>
+							</div>
+						</div>
+					</div>
 
 					<!-- 후기 게시판 제목 -->
         <div class="page-header border-bottom border-orange mt-4 mb-4">
@@ -73,75 +90,86 @@
         <!-- 후기 게시판 제목 끝 -->
 
         <table class="table table-bordered table-hover" id="table">
-					<thead>
-						<tr>
-							<th class="reviewNo">리뷰 번호</th>
-							<th id="board-title">제목</th>
-							<th class="reviewWriter">작성자</th>
-							<th>식당 이름</th>
-							<th class="day">등록일</th>
-							<th class="day">수정일</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="vo" items="${reviewList}">
-							<tr>
-								<td class="reviewNo">${vo.reviewNo}</td>
-								<td id="review-title" >
-								<div class="text-truncate">
-								<a 
-									href="${pageContext.request.contextPath}/review/content/${vo.reviewNo}?pageNum=${pc.paging.pageNum}&cpp=${pc.paging.cpp}&keyword=${pc.paging.keyword}&condition=${pc.paging.condition}">${vo.title}</a>
-								</div>
-								</td>
-								<td class="reviewWriter">${vo.userNick}</td>
-								<td>${vo.bplcNm}</td>
-								<td class="day"><fmt:parseDate value="${vo.regDate}"
-										pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" /> <fmt:formatDate
-										value="${parsedDateTime}" pattern="yy.MM.dd. HH:mm" /></td>
-								<td class="day"><fmt:parseDate value="${vo.updateDate}"
-										pattern="yyyy-MM-dd'T'HH:mm" var="parsedUpdateDateTime" /> <fmt:formatDate
-										value="${parsedUpdateDateTime}" pattern="yy.MM.dd. HH:mm" /></td>
-							</tr>
-						</c:forEach>
-					</tbody>
-
-				</table>
+			
+		</table>
     </div>
 </div>
 
-					<!-- 모달 -->
-					<div class="modal" tabindex="-1">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h5 class="modal-title">Modal title</h5>
-									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-								</div>
-								<div class="modal-body">
-									<p>Modal body text goes here.</p>
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-									<button type="button" class="btn btn-primary">Save changes</button>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- 모달 끝 -->
-
 					<%@ include file="include/footer.jsp" %>
 
-						<script>
+				</div>
 
-							// 썸네일 클릭 이벤트 설정
-							document.getElementById('partyList').addEventListener('click', e => {
-								console.log('e.target.currentSrc = ' + e.target.decode());
-							});
+				<script>
+					// 리스트
+					let str = '';
+					let page = 1;
+					let isFinish = false;
+					const $partyList = document.getElementById('partyList');
+					const $stickyButtons = document.querySelector('.stickyButtons');
+					getList(1, true);
 
-							fetch('${pageContext.request.contextPath}/review/reviewList2/')
+					function getList(page, reset) {
+						str = '';
+						console.log('page: ' + page);
+						console.log('reset: ' + reset);
+
+						fetch('${pageContext.request.contextPath}/party/partyList/' + page)
+							.then(res => res.json())
+							.then(list => {
+								console.log(list);
+								console.log(list.length);
+								if (list.length === 0) isFinish = true;
+
+								if (reset) {
+									while ($partyList.firstChild) {
+										$partyList.firstChild.remove();
+									}
+									page = 1;
+								}
+
+								for (vo of list) {
+									if (vo.fileName === null) {
+										fileStr = `${pageContext.request.contextPath}/party/getImg/thumbnail_3.jpg`;
+									} else {
+										fileStr = `${pageContext.request.contextPath}/party/getImg/` + vo.fileName;
+									}
+									str +=
+										`<div class="grid">
+											<figure class="rounded effect-zoe">
+												<div class="position">
+													<img id="` + vo.partyNo + `" src="` + fileStr + `" alt="썸네일">
+												</div>
+												<figcaption class="d-inline-flex flex-wrap justify-content-between align-items-end">
+													<h2>
+														<span class="text-orange">`+ vo.rdnWhlAddr.slice(-4, -1) + `</span> <br>
+														<div class="text-truncate">
+														` + vo.title + `
+														</div>
+													</h2>
+													<p class="icon-links d-flex justify-content-start align-items-center">
+														<i class="bi bi-heart-fill text-danger d-inline-block"></i>
+														<span>` + vo.likeCount + `</span>
+													</p>
+												</figcaption>
+											</figure>
+										</div>`;
+								}
+
+
+								if (!reset) {
+									$partyList.insertAdjacentHTML('beforeend', str);
+								} else {
+									$partyList.insertAdjacentHTML('afterbegin', str);
+								}
+
+							}); //end fetch
+
+					} //end getList
+
+					fetch('${pageContext.request.contextPath}/review/reviewList2/')
 							.then(res => res.text())
 							.then(data => {
 								const table = document.getElementById('table');
 								table.innerHTML = data;
 							});
-						</script>
+				</script>
