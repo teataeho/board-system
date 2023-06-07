@@ -11,7 +11,7 @@
 	</insert>
 	
 	<select id="getList" resultType="party">
-		SELECT p.*, s.rdn_whl_addr,
+		SELECT p.*, s.rdn_whl_addr, s.uptae_nm,
 			(SELECT COUNT(*) FROM partylike l
 			WHERE p.party_no = l.party_no) AS likeCount
 		FROM party p

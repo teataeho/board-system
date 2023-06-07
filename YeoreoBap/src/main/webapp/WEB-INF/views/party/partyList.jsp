@@ -62,16 +62,15 @@
 							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 						</div>
 						<div class="modal-body">
-							<span>식당이름 : </span><span class="res-name"></span> <br>
 							<span class="content"></span> <br>
-							<span>정원 : </span><span class="max"></span> <br><br>
 						</div>
 						<div class="modal-footer">
+							<span>식당이름 : </span><span class="res-name"></span> <br>
+							<span>정원 : </span><span class="max"></span> <br><br>
 							<button type="button" class="modalBtn btn btn-orange"></button>
 						</div>
 					</div>
 				</div>
-			</div>
 			</div>
 
 
@@ -119,7 +118,7 @@
 											</div>
 											<figcaption class="d-inline-flex flex-wrap justify-content-between align-items-end">
 												<h2>
-													<span class="text-orange">`+ vo.rdnWhlAddr.slice(-4, -1) + `</span> <br>
+													<span class="text-orange">`+ vo.uptaeNm + ` · ` + (vo.rdnWhlAddr).slice((vo.rdnWhlAddr).indexOf("(") + 1, -1) + `</span> <br>
 													<div class="text-truncate">
 													` + vo.title + `
 													</div>
