@@ -63,7 +63,7 @@ public class PartyController {
 	public void register() {
 	}
 
-	// 여러밥 모집글 등록 (사용자 지정 사진)
+	// 여러밥 모집글 등록
 	@PostMapping("/partyRegister")
 	public String registerCustomPicture(PartyVO vo, MultipartFile file) {
 		if(file.getSize() == 0) {
