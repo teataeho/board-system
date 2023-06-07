@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 		<%@ include file="include/header.jsp" %>
 			<div class="wrap">
 
@@ -62,17 +62,52 @@
 					<!-- 파티 리스트 끝 -->
 
 					<!-- 후기 게시판 제목 -->
-					<div class="page-header border-bottom border-orange mt-4 mb-4">
-						<h2 class="ms-2">
-							여러밥 후기
-							<a href="${pageContext.request.contextPath}/review/reviewList">
-								<small class="text-muted">더보기
-									<i class="bi bi-chevron-right"></i>
-								</small>
-							</a>
-						</h2>
-					</div>
-					<!-- 후기 게시판 제목 끝 -->
+        <div class="page-header border-bottom border-orange mt-4 mb-4">
+            <h2 class="ms-2">
+                여러밥 후기
+                <a href="${pageContext.request.contextPath}/review/reviewList">
+                    <small class="text-muted">더보기 <i class="bi bi-chevron-right"></i></small>
+                </a>
+            </h2>
+        </div>
+        <!-- 후기 게시판 제목 끝 -->
+
+        <table class="table table-bordered table-hover" id="table">
+					<thead>
+						<tr>
+							<th class="reviewNo">리뷰 번호</th>
+							<th id="board-title">제목</th>
+							<th class="reviewWriter">작성자</th>
+							<th>식당 이름</th>
+							<th class="day">등록일</th>
+							<th class="day">수정일</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="vo" items="${reviewList}">
+							<tr>
+								<td class="reviewNo">${vo.reviewNo}</td>
+								<td id="review-title" >
+								<div class="text-truncate">
+								<a 
+									href="${pageContext.request.contextPath}/review/content/${vo.reviewNo}?pageNum=${pc.paging.pageNum}&cpp=${pc.paging.cpp}&keyword=${pc.paging.keyword}&condition=${pc.paging.condition}">${vo.title}</a>
+								</div>
+								</td>
+								<td class="reviewWriter">${vo.userNick}</td>
+								<td>${vo.bplcNm}</td>
+								<td class="day"><fmt:parseDate value="${vo.regDate}"
+										pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" /> <fmt:formatDate
+										value="${parsedDateTime}" pattern="yy.MM.dd. HH:mm" /></td>
+								<td class="day"><fmt:parseDate value="${vo.updateDate}"
+										pattern="yyyy-MM-dd'T'HH:mm" var="parsedUpdateDateTime" /> <fmt:formatDate
+										value="${parsedUpdateDateTime}" pattern="yy.MM.dd. HH:mm" /></td>
+							</tr>
+						</c:forEach>
+					</tbody>
+
+				</table>
+    </div>
+</div>
 
 					<!-- 모달 -->
 					<div class="modal" tabindex="-1">
@@ -101,5 +136,12 @@
 							// 썸네일 클릭 이벤트 설정
 							document.getElementById('partyList').addEventListener('click', e => {
 								console.log('e.target.currentSrc = ' + e.target.decode());
+							});
+
+							fetch('${pageContext.request.contextPath}/review/reviewList2/')
+							.then(res => res.text())
+							.then(data => {
+								const table = document.getElementById('table');
+								table.innerHTML = data;
 							});
 						</script>

@@ -30,6 +30,10 @@ public class ReviewService implements IReviewService {
 	public List<ReviewVO> getList(PageVO vo) {
 		return mapper.getList(vo);
 	}
+	@Override
+	public List<ReviewVO> getList2() {
+		return mapper.getList2();
+	}
 
 	@Override
 	public int getTotal(PageVO vo) {

@@ -38,6 +38,11 @@ public class ReviewController {
 		model.addAttribute("pc", pc);
 	}
 	
+	@GetMapping("/reviewList2")
+	public void reviewList2(Model model) {
+		model.addAttribute("reviewList",service.getList2());
+	}
+	
 	@GetMapping("/reviewRegist")
 	public void regist(HttpSession session, Model model) {
 		
