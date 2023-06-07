@@ -27,4 +27,6 @@ public interface IPartyMapper {
 	
 	//총 게시물 수 (mypage)
 		int getTotal(PageVO vo);
+	//홈꺼 리스트
+	List<PartyVO> getListHome();
 }

@@ -21,6 +21,11 @@ public class PartyService implements IPartyService {
 
 	@Autowired
 	private IPartyMapper mapper;
+	
+	@Override
+	public void register(PartyVO vo) {
+		mapper.regist(vo);
+	}
 
 	@Override
 	public void register(PartyVO vo, MultipartFile file) {
@@ -97,6 +102,11 @@ public class PartyService implements IPartyService {
 	@Override
 	public int getTotal(PageVO vo) {
 		return mapper.getTotal(vo);
+	}
+
+	@Override
+	public List<PartyVO> getListHome() {
+		return mapper.getListHome();
 	}
 
 }

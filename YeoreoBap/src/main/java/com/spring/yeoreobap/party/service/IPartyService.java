@@ -9,6 +9,9 @@ import com.spring.yeoreobap.command.PartyVO;
 import com.spring.yeoreobap.util.PageVO;
 
 public interface IPartyService {
+	
+	// 글 등록 (사진없음)
+	void register(PartyVO vo);
 
 	// 글 등록 (사용자 지정 파일)
 	void register(PartyVO vo, MultipartFile file);
@@ -33,4 +36,7 @@ public interface IPartyService {
 	
 	//총 게시물 수 (mypage)
 	int getTotal(PageVO vo);
+
+	//홈화면에 올릴 리스트
+	List<PartyVO> getListHome();
 }

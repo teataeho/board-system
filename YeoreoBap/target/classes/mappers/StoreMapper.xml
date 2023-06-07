@@ -8,7 +8,7 @@
     	SELECT s.*, avg_star_rate.avg_rate
 		FROM store s
 		LEFT JOIN (
-		    SELECT sno, AVG(star_rate) AS avg_rate
+		    SELECT sno, ROUND(AVG(star_rate), 1) AS avg_rate
 		    FROM star
 		    GROUP BY sno
 		) avg_star_rate ON s.sno = avg_star_rate.sno

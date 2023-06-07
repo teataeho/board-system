@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 	<%@ include file="../include/header.jsp" %>
 
@@ -29,6 +30,7 @@
 					</ul>
 				</div>
 			</div>
+			
 
 			<!-- 파티 리스트 -->
 			<div class="partyContainer">
@@ -44,7 +46,6 @@
 				</div>
 			</div>
 			<!-- 파티 리스트 끝 -->
-
 		</div>
 		<%@ include file="../include/footer.jsp" %>
 
@@ -79,6 +80,7 @@
 			<script>
 				// 리스트
 				let str = '';
+				let fileStr = '';
 				let page = 1;
 				let isFinish = false;
 				const $partyList = document.getElementById('partyList');
@@ -104,11 +106,16 @@
 								page = 1;
 							}
 
-							for (vo of list) {
+							for (vo of list) {								
+								if(vo.fileName === null) {
+									fileStr = `${pageContext.request.contextPath}/party/getImg/thumbnail_3.jpg`;
+								} else {
+									fileStr = `${pageContext.request.contextPath}/party/getImg/` + vo.fileName;
+								}
 								str +=
 									`<div class="thumbnail-size rounded d-flex justify-content-center">
 										<div class="gradient"></div>
-										<img class="h-100"  id="` + vo.partyNo + `" src="${pageContext.request.contextPath}/party/getImg/` + vo.fileName + `" alt="썸네일">
+										<img class="h-100"  id="` + vo.partyNo + `" src="` + fileStr + `" alt="썸네일">
 									</div>`;
 							}
 
@@ -258,7 +265,7 @@
 				document.getElementById('like').addEventListener('click', e => {
 					e.preventDefault();
 					if(!e.target.matches('i')) return;
-					//좋아요
+					//좋아요 등록
 					if(document.querySelector('#like i').classList.contains('bi-heart')) {
 						fetch('${pageContext.request.contextPath}/like/partyLike', {
 								method: 'post',
