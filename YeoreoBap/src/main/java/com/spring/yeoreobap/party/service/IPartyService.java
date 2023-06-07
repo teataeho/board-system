@@ -10,9 +10,6 @@ import com.spring.yeoreobap.util.PageVO;
 
 public interface IPartyService {
 
-	// 글 등록 (예시 사진)
-	void register(PartyVO vo);
-
 	// 글 등록 (사용자 지정 파일)
 	void register(PartyVO vo, MultipartFile file);
 

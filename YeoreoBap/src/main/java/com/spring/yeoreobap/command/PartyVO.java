@@ -33,7 +33,7 @@ public class PartyVO {
 	private LocalDateTime regDate, updateDate;
 	
 	// Join
-	private int attendedNum, attended, isLike;
+	private int attendedNum, attended, isLike, likeCount;
 	private String writerNick;
 	
 }

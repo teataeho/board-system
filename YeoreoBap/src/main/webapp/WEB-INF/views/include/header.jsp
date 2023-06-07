@@ -18,6 +18,8 @@
 			<link href="${pageContext.request.contextPath}/css/reviewDetail.css" rel="stylesheet">
 			<link href="${pageContext.request.contextPath}/css/partyRegister.css" rel="stylesheet">
 			
+			<link href="${pageContext.request.contextPath}/css/userMypage.css" rel="stylesheet">
+			
 
 			<!-- bootstrap.css -->
 			<link href="${pageContext.request.contextPath}/css/bootstrap/bootstrap.css" rel="stylesheet">

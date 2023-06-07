@@ -22,12 +22,6 @@ public class PartyService implements IPartyService {
 	@Autowired
 	private IPartyMapper mapper;
 
-	// 예시 이미지 사용 시 등록
-	@Override
-	public void register(PartyVO vo) {
-
-	}
-
 	@Override
 	public void register(PartyVO vo, MultipartFile file) {
 

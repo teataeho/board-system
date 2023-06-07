@@ -16,6 +16,8 @@ public interface IReviewMapper {
 
 	//글 목록
 	List<ReviewVO> getList(PageVO vo);
+	//글 목록
+	List<ReviewVO> getList2();
 
 	//총 게시물 수 구하기
 	int getTotal();

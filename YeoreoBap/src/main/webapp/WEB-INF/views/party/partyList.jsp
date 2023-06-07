@@ -24,8 +24,8 @@
 						최신순
 					</button>
 					<ul class="dropdown-menu">
-						<li><a class="dropdown-item" href="#">최신순</a></li>
-						<li><a class="dropdown-item" href="#"><span class="necessary">핫!</span>한 순</a></li>
+						<li><a class="dropdown-item" href="#" value="orderByLatest">최신순</a></li>
+						<li><a class="dropdown-item" href="#" value="orderByLike"><span class="necessary">핫!</span>한 순</a></li>
 					</ul>
 				</div>
 			</div>
@@ -187,7 +187,7 @@
 							} else if (data.attended === 0) {
 								if (data.attendedNum >= data.max - 1) {
 									$modalFooter.insertAdjacentHTML('beforeend',
-										`<button type="button" class="btn btn-primary" id="attend" disabled>완료</button>`);
+										`<button type="button" class="btn btn-primary" id="attend" disabled>풀파티</button>`);
 								} else {
 									$modalFooter.insertAdjacentHTML('beforeend',
 										`<button type="button" class="btn btn-primary" id="attend">참가</button>`);

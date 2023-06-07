@@ -1,0 +1,26 @@
+/* map 위치 가운데 정렬 */
+#map {
+	margin: 0 auto 50px;
+}
+
+/* select버튼 크기 조정 */
+#uptaeNm, .locGu, #addrDong{
+	margin: 0 10px;
+}
+.d-flex.justify-content-center {
+	margin: 0 150px;
+}
+
+/* 검색버튼 */
+button#search {
+	min-width: 100px;
+	color: white;
+	background: #F4B183;
+	border: #F4B183;
+	border-radius: 5px;
+	transition: 0.3s
+}
+
+button#search:hover {
+	background: #F0975A;
+}
