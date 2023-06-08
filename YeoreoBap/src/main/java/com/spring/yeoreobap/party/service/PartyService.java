@@ -105,9 +105,8 @@ public class PartyService implements IPartyService {
 	}
 
 	@Override
-	public List<PartyVO> getListHome(PageVO paging) {
-		paging.setCpp(5);
-		return mapper.getListHome(paging);
+	public List<PartyVO> getListHome() {
+		return mapper.getListHome();
 	}
 
 	@Override

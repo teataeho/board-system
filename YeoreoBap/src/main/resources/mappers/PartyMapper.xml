@@ -90,7 +90,7 @@
 		JOIN store s
 		ON p.sno = s.sno
 		ORDER BY likeCount DESC
-		LIMIT #{pageStart}, #{cpp}
+		LIMIT 0, 5
 	</select>
 
 </mapper>

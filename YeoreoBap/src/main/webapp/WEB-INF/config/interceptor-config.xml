@@ -10,8 +10,6 @@
 	
 	<bean id="userLoginSuccessHandler" class="com.spring.yeoreobap.util.interceptor.UserLoginSuccessHandler" />
 	<bean id="userAuth" class="com.spring.yeoreobap.util.interceptor.UserAuthHandler"/>
-	<bean id="userRest" class="com.spring.yeoreobap.util.interceptor.UserRestHandler"/>
-
 	
 	<mvc:interceptors>
 	
