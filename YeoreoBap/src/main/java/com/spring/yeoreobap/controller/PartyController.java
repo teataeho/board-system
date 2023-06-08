@@ -134,8 +134,14 @@ public class PartyController {
 	// 홈화면 글목록 불러오기
 	@ResponseBody
 	@GetMapping("/getListHome")
-	public List<PartyVO> getListHome(PageVO vo) {
-		return service.getListHome(vo);
+	public List<PartyVO> getListHome() {
+		return service.getListHome();
+	}
+	
+	@ResponseBody
+	@GetMapping("/getParticipantsParty/{uid}")
+	public List<PartyVO> getParticipantsParty(@PathVariable("uid") String userId) {
+		return service.getParticipantsParty(userId);
 	}
 
 }

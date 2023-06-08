@@ -90,7 +90,7 @@
 					<br>
 					<!-- 두번째 토글 메뉴의 시작 -->
 
-					<p>*내 게시글 관리</p>
+					<p>*내 파티 관리</p>
 					<form>
 						<table class="table" id="partyList">
 							<thead>
@@ -118,6 +118,29 @@
 					</form>
 
 					<!-- 두번째 토글 끝 -->
+					<hr>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+
+					<!-- 세번째 토글 메뉴의 시작 -->
+					<p>*참가한 파티</p>
+					<form>
+						<table class="table">
+							<thead>
+								<tr>
+									<td>번호</td>
+									<td>제목</td>
+									<td>작성일</td>
+								</tr>
+							</thead>
+							<tbody id="participantsList">
+							</tbody>
+						</table>
+					</form>
+					<!-- 세번째 토글 끝 -->
 				</div>
 				<form action="${pageContext.request.contextPath}/user/deleteUser"
 					method="post" name="deleteForm">
@@ -372,4 +395,22 @@ document.getElementById('deleteUser').onclick = function() {
 			return false;
 		}
 }
+
+//참여한 파티 보이기
+let parStr = '';
+fetch('${pageContext.request.contextPath}/party/getParticipantsParty/' + uid)
+.then(res => res.json())
+.then(data => {
+	for(let vo of data) {
+		parStr += `<tr>
+						<td>${vo.partyNo}</td>
+						<td><a href="##" id="${vo.partyNo}">${vo.title}</a></td>
+						<td><fmt:parseDate value="${vo.regDate}"
+								pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDate" type="both" />
+							<fmt:formatDate value="${parsedDate}"
+								pattern="yyyy년 MM월 dd일 HH:mm" /></td>
+					</tr>`;
+	}
+	document.getElementById('participantsList').insertAdjacentHTML('beforeend', parStr);
+});
 	</script>

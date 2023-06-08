@@ -30,10 +30,12 @@ public interface IPartyMapper {
 
 	// 참가 취소
 	void cancelAttend(ParticipantsVO vo);
-
-	// 총 게시물 수 (mypage)
-	int getTotal(PageVO vo);
-
-	// 홈꺼 리스트
-	List<PartyVO> getListHome(PageVO vo);
+	
+	//총 게시물 수 (mypage)
+		int getTotal(PageVO vo);
+	//홈꺼 리스트
+	List<PartyVO> getListHome();
+	
+	//마이페이지에 쓸 참여파티
+	List<PartyVO> getParticipantsParty(String userId);
 }

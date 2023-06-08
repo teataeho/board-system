@@ -24,10 +24,12 @@ public class UserLoginSuccessHandler implements HandlerInterceptor {
 		UserVO vo = (UserVO) map.get("user");
 
 		if (vo != null) {
-			log.info("login Success");
+			log.info("loginSuccess");
 			HttpSession session = request.getSession();
 			session.setAttribute("userInfo", vo);
 			response.sendRedirect(request.getContextPath() + "/");
+		} else if (request.getMethod().equals("POST")) {
+			modelAndView.addObject("msg", "loginFail");
 		} else {
 			modelAndView.addObject("msg", "notLoggedIn");
 		}

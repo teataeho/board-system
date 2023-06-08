@@ -10,8 +10,6 @@
 	
 	<bean id="userLoginSuccessHandler" class="com.spring.yeoreobap.util.interceptor.UserLoginSuccessHandler" />
 	<bean id="userAuth" class="com.spring.yeoreobap.util.interceptor.UserAuthHandler"/>
-	<bean id="userRest" class="com.spring.yeoreobap.util.interceptor.UserRestHandler"/>
-
 	
 	<mvc:interceptors>
 	
@@ -33,7 +31,6 @@
 			<mvc:mapping path="/review/modify"/>
 			<mvc:mapping path="/review/update"/>
 			<mvc:mapping path="/review/delete"/>
-			<mvc:mapping path="/reply/regist"/>
 			<ref bean="userAuth"/>
 		</mvc:interceptor>
 		

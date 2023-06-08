@@ -42,12 +42,11 @@
 				<table class="table table-bordered table-hover" id="table">
 					<thead>
 						<tr>
-							<th class="reviewNo">리뷰 번호</th>
+							<th class="reviewNo">번호</th>
 							<th id="board-title">제목</th>
 							<th class="reviewWriter">작성자</th>
 							<th>식당 이름</th>
 							<th class="day">등록일</th>
-							<th class="day">수정일</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -65,9 +64,6 @@
 								<td class="day"><fmt:parseDate value="${vo.regDate}"
 										pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" /> <fmt:formatDate
 										value="${parsedDateTime}" pattern="yy.MM.dd. HH:mm" /></td>
-								<td class="day"><fmt:parseDate value="${vo.updateDate}"
-										pattern="yyyy-MM-dd'T'HH:mm" var="parsedUpdateDateTime" /> <fmt:formatDate
-										value="${parsedUpdateDateTime}" pattern="yy.MM.dd. HH:mm" /></td>
 							</tr>
 						</c:forEach>
 					</tbody>

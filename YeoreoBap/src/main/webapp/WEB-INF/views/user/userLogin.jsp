@@ -32,6 +32,8 @@
 				const msg = '${msg}';
 				if (msg === 'joinSuccess') {
 					alert('회원 가입이 완료되었습니다. :)');
+				} else if (msg === 'loginFail') {
+					alert('로그인에 실패하셨습니다. 아이디와 비번을 확인해주세요. :(');
 				}
 
 				// 로그인 확인

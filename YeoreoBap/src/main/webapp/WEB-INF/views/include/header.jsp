@@ -18,6 +18,7 @@
 			<link href="${pageContext.request.contextPath}/css/reviewDetail.css" rel="stylesheet">
 			<link href="${pageContext.request.contextPath}/css/partyRegister.css" rel="stylesheet">
 			<link href="${pageContext.request.contextPath}/css/userMypage.css" rel="stylesheet">
+			<link href="${pageContext.request.contextPath}/css/reviewModify.css" rel="stylesheet">
 
 			<!-- hover template -->
 			<link href="${pageContext.request.contextPath}/css/hover-template/normalize.css" rel="stylesheet">
@@ -47,14 +48,18 @@
 
 
 						<!-- 우측 상단 메뉴 -->
-						<ul class="login-menu d-flex flex-nowrap align-items-end">
+						<ul class="login-menu d-flex flex-wrap align-items-end">
 							<c:if test="${userInfo == null}">
 								<li><a class="text-orange" href="${pageContext.request.contextPath}/user/userJoin">Join</a></li>
 								<li><a class="text-orange" href="${pageContext.request.contextPath}/user/userLogin">Login</a></li>
 							</c:if>
 							<c:if test="${userInfo != null}">
-								<li><span class="text-orange">${userInfo.userNick == null ? userInfo.userId : userInfo.userNick}님
-										환영합니다</span></li>
+								<li>
+									<span id="welcomeMsg" class="text-orange">
+										<strong> ${userInfo.userNick == null ? userInfo.userId : userInfo.userNick}</strong>
+										님 환영합니다!
+									</span>
+								</li>
 								<li><a class="text-orange" href="${pageContext.request.contextPath}/user/userMypage">MyPage</a></li>
 								<li><a class="text-orange" href="${pageContext.request.contextPath}/user/userLogout">Logout</a></li>
 							</c:if>
