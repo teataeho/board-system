@@ -149,28 +149,30 @@
 
 <!-- 모달달 -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-	aria-labelledby="staticBackdropLabel" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered">
-		<div class="modal-content d-flex">
-			<img id="modalImg" src="" alt="이미지">
-			<div class="modal-header d-flex align-items-center">
-				<input type="hidden" id="hiddenPartyNo">
-				<input type="hidden" id="hiddenUserId">
-				<h5 class="modal-title me-auto" id="staticBackdropLabel">Modal title</h5>
-				<a href="" id="like"><i class="bi bi-heart text-danger"></i></a>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			</div>
-			<div class="modal-body">
-				<span class="content"></span> <br>
-			</div>
-			<div class="modal-footer">
-				<span>식당이름 : </span><span class="res-name"></span> <br>
-				<span>정원 : </span><span class="max"></span> <br><br>
-				<button type="button" class="modalBtn btn btn-orange"></button>
-			</div>
-		</div>
-	</div>
-</div>
+							aria-labelledby="staticBackdropLabel" aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered">
+								<div class="modal-content">
+									<div class="modal-img-size"><img id="modalImg" src="" alt="이미지"></div>
+									<div class="modal-header d-flex align-items-center shadow">
+										<input type="hidden" id="hiddenPartyNo">
+										<input type="hidden" id="hiddenUserId">
+										<h5 class="modal-title me-auto" id="staticBackdropLabel">Modal title</h5>
+										<a href="" id="like"><i class="bi bi-heart text-danger"></i></a>
+										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+									</div>
+									<div class="modal-body">
+										<span class="content"></span> <br>
+									</div>
+									<div class="modal-footer d-flex flex-nowrap justify-content-between border-top border-light-orange">
+										<div class="modal-footer-left">
+											<span>식당이름 : </span><span class="res-name"></span> <br>
+											<span>정원 : </span><span class="attendedNum"></span> / <span class="max"></span>명
+										</div>
+										<button type="button" class="modalBtn btn btn-orange"></button>
+									</div>
+								</div>
+							</div>
+						</div>
 <%@ include file="../include/footer.jsp"%>
 <script>
 	const uid = '${userInfo.userId}';
