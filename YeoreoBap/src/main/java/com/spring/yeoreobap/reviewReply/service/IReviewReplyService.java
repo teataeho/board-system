@@ -16,7 +16,7 @@ public interface IReviewReplyService {
 	int getTotal(int replyNo);
 	
 	//아이디 확인
-	boolean idCheck(ReviewReplyVO vo);
+	boolean idCheck(int replyNo, String userId);
 
 	//댓글 삭제
 	void delete(int replyNo);

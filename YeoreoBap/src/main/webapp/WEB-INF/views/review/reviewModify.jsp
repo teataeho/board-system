@@ -7,31 +7,32 @@
             <div class="row">
                 <div class="col-xs-12 col-md-9 write-wrap">
                         <div class="titlebox">
-                            <p>수정하기</p>
+                            <h2>수정하기</h2>
                         </div>
                         
                         <form action="${pageContext.request.contextPath}/review/update" method="post" name="updateForm">
-                            <div class="form-group">
-                                <label>후기 번호</label>
-                                <input class="form-control" name="reviewNo" value="${article.reviewNo}" readonly>
+                            <div class="form-group modify-form-group">
+                                <p>후기 번호<span>|</span></p>
+                                <input class="form-control modify-form-control" id="inputForm" name="reviewNo" value="${article.reviewNo}" readonly>
                             </div>
-                            <div class="form-group">
-                                <label>작성자</label>
-                                <input class="form-control" name="userNick" value="${article.userNick}" readonly>
+                            <div class="form-group modify-form-group">
+                                <p>작성자<span>|</span></p>
+                                <input class="form-control modify-form-control" id="inputForm" name="userNick" value="${article.userNick}" readonly>
                             </div>    
-                            <div class="form-group">
-                                <label>제목</label>
-                                <input class="form-control" name="title" value="${article.title}">
+                            <div class="form-group modify-form-group">
+                                <p>제목<span>|</span></p>
+                                <input class="form-control modify-form-control" id="inputForm" name="title" value="${article.title}">
                             </div>
                             <input type="hidden" name="writer" value="${article.writer}">
-                            <div class="form-group">
-                                <label>내용</label>
-                                <textarea class="form-control" rows="10" name="content">${article.content}</textarea>
+                            <div class="form-group modify-form-group">
+                                <p>내용<span>|</span></p>
+                                <textarea class="form-control modify-form-control" id="inputForm" rows="10" name="content">${article.content}</textarea>
                             </div>
-
-                            <button type="button" id="listBtn" class="btn">목록</button>    
-                            <button type="button" id="updateBtn" class="btn">변경</button>
-                            <button type="button" id="delBtn" class="btn">삭제</button>
+							<div class="modifyBtns">
+	                            <button type="button" id="updateBtn" class="btn">변경</button>
+	                            <button type="button" id="delBtn" class="btn">삭제</button>
+	                            <button type="button" id="listBtn" class="btn">목록</button> 
+                            </div>
                     </form>
                                     
                 </div>

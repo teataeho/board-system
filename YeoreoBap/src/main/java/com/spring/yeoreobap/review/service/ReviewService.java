@@ -23,12 +23,15 @@ public class ReviewService implements IReviewService {
 	@Override
 	public void regist(ReviewVO vo) {
 		mapper.regist(vo);
-
 	}
 
 	@Override
 	public List<ReviewVO> getList(PageVO vo) {
 		return mapper.getList(vo);
+	}
+	@Override
+	public List<ReviewVO> getList2() {
+		return mapper.getList2();
 	}
 
 	@Override

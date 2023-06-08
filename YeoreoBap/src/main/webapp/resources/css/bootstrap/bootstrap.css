@@ -296,8 +296,8 @@ a {
   text-decoration: underline;
 }
 
-a:hover {
-  color: #F0975A;
+a:focus {
+  outline: none;
 }
 
 a:not([href]):not([class]),
@@ -5987,7 +5987,6 @@ fieldset:disabled .btn {
 
 .btn-close:focus {
   outline: 0;
-  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
   opacity: 1;
 }
 
@@ -6091,7 +6090,7 @@ fieldset:disabled .btn {
   --bs-modal-inner-border-radius: calc(0.5rem - 1px);
   --bs-modal-header-padding-x: 1rem;
   --bs-modal-header-padding-y: 1rem;
-  --bs-modal-header-padding: 1rem 1rem;
+  --bs-modal-header-padding: 0.5rem 1rem;
   --bs-modal-header-border-color: var(--bs-border-color);
   --bs-modal-header-border-width: 1px;
   --bs-modal-title-line-height: 1.5;
@@ -6157,6 +6156,7 @@ fieldset:disabled .btn {
 }
 
 .modal-content {
+  overflow: hidden;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -6165,7 +6165,7 @@ fieldset:disabled .btn {
   pointer-events: auto;
   background-color: var(--bs-modal-bg);
   background-clip: padding-box;
-  border: var(--bs-modal-border-width) solid var(--bs-modal-border-color);
+  border: 2px solid var(--bs-orange);
   border-radius: var(--bs-modal-border-radius);
   outline: 0;
 }
@@ -6197,14 +6197,14 @@ fieldset:disabled .btn {
   align-items: center;
   justify-content: space-between;
   padding: var(--bs-modal-header-padding);
-  border-bottom: var(--bs-modal-header-border-width) solid var(--bs-modal-header-border-color);
+  border-bottom: var(--bs-modal-header-border-width) solid var(--bs-light-orange);
   border-top-left-radius: var(--bs-modal-inner-border-radius);
   border-top-right-radius: var(--bs-modal-inner-border-radius);
 }
 
 .modal-header .btn-close {
   padding: calc(var(--bs-modal-header-padding-y) * 0.5) calc(var(--bs-modal-header-padding-x) * 0.5);
-  margin: calc(-0.5 * var(--bs-modal-header-padding-y)) calc(-0.5 * var(--bs-modal-header-padding-x)) calc(-0.5 * var(--bs-modal-header-padding-y)) auto;
+  margin: calc(-0.5 * var(--bs-modal-header-padding-y)) calc(-0.5 * var(--bs-modal-header-padding-x)) calc(-0.5 * var(--bs-modal-header-padding-y)) 10px;
 }
 
 .modal-title {

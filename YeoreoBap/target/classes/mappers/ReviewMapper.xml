@@ -34,12 +34,22 @@
 	<!-- regDate, updateDate 삭제 -->
 	<select id="getList" resultType="review">
 		SELECT r.*, u.user_nick, s.bplc_nm
-		FROM review r JOIN users u
+		FROM review r
+		JOIN users u
 		ON r.writer = u.user_id
 		JOIN store s ON r.sno = s.sno
 		<include refid="search" />
 		ORDER BY review_no DESC
 		LIMIT #{pageStart}, #{cpp}
+	</select>
+	
+	<select id="getList2" resultType="review">
+		SELECT r.*, u.user_nick, s.bplc_nm
+		FROM review r JOIN users u
+		ON r.writer = u.user_id
+		JOIN store s ON r.sno = s.sno
+		ORDER BY review_no DESC
+		LIMIT 0, 5
 	</select>
 	
 	<select id="getTotal" resultType="int">

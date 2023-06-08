@@ -8,20 +8,19 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 
-public class UserAuthHandler implements HandlerInterceptor{
+public class UserAuthHandler implements HandlerInterceptor {
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-	throws Exception {
-		
+			throws Exception {
+
 		HttpSession session = request.getSession();
-		if(session.getAttribute("userInfo") == null) {		//로그인 아직
-//			response.sendRedirect(request.getContextPath() + "/user/userLogin");
+		if (session.getAttribute("userInfo") == null) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('로그인이 필요한 서비스입니다.');"
+			out.println("<script>alert('로그인이 필요한 서비스입니다. :)');"
 					+ "location.href = '/yeoreobap/user/userLogin'</script>");
-			out.flush(); 
+			out.flush();
 			return false;
 		}
 		return true;

@@ -22,10 +22,9 @@ public class PartyService implements IPartyService {
 	@Autowired
 	private IPartyMapper mapper;
 
-	// 예시 이미지 사용 시 등록
 	@Override
 	public void register(PartyVO vo) {
-
+		mapper.regist(vo);
 	}
 
 	@Override
@@ -97,12 +96,23 @@ public class PartyService implements IPartyService {
 
 	@Override
 	public void cancelAttend(ParticipantsVO vo) {
-		mapper.cancelAttend(vo);		
+		mapper.cancelAttend(vo);
 	}
 
 	@Override
 	public int getTotal(PageVO vo) {
 		return mapper.getTotal(vo);
+	}
+
+	@Override
+	public List<PartyVO> getListHome(PageVO paging) {
+		paging.setCpp(5);
+		return mapper.getListHome(paging);
+	}
+
+	@Override
+	public List<PartyVO> getParticipantsParty(String userId) {
+		return mapper.getParticipantsParty(userId);
 	}
 
 }
