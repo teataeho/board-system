@@ -138,7 +138,7 @@
 
 	window.onload = function () {
 		document.getElementById('replyRegist').onclick = () => {
-			const reviewNo = document.getElementById('reviewNo').textContent //현재 게시글 번호
+			const reviewNo = document.getElementById('reviewNo').value; //현재 게시글 번호
 			const reply = document.getElementById('reply').value;
 			const replyId = document.getElementById('replyId').textContent;
             if (uid === '') {
