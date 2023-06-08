@@ -39,4 +39,7 @@ public interface IPartyService {
 
 	//홈화면에 올릴 리스트
 	List<PartyVO> getListHome();
+	
+	//마이페이지에 쓸 참여파티
+	List<PartyVO> getParticipantsParty(String userId);
 }

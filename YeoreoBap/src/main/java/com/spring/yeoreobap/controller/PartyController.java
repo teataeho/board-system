@@ -133,5 +133,11 @@ public class PartyController {
 	public List<PartyVO> getListHome() {
 		return service.getListHome();
 	}
+	
+	@ResponseBody
+	@GetMapping("/getParticipantsParty/{uid}")
+	public List<PartyVO> getParticipantsParty(@PathVariable("uid") String userId) {
+		return service.getParticipantsParty(userId);
+	}
 
 }

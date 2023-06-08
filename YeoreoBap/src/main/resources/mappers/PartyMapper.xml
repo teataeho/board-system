@@ -78,5 +78,12 @@
 	<select id="getTotal" resultType="int">
 		SELECT COUNT(*) FROM party
 	</select>
+	
+	<select id="getParticipantsParty" resultType="party">
+		SELECT p.*
+		FROM participants i JOIN party p
+		ON i.party_no = p.party_no
+		WHERE i.user_id = #{userId}	
+	</select>
 
 </mapper>

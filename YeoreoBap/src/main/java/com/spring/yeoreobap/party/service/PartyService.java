@@ -109,4 +109,9 @@ public class PartyService implements IPartyService {
 		return mapper.getListHome();
 	}
 
+	@Override
+	public List<PartyVO> getParticipantsParty(String userId) {
+		return mapper.getParticipantsParty(userId);
+	}
+
 }
