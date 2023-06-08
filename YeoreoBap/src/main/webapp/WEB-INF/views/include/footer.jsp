@@ -6,7 +6,7 @@
 			<!-- Footer -->
 			<footer class="text-center text-lg-start black" style="background-color: white">
 
-				<div class="container p-0 text-center text-md-start mt-5 border-top border-orange">
+				<div class="container p-0 text-center text-md-start mt-5 border-top border-2 border-orange">
 					<!-- Grid row -->
 					<div class="row mt-3">
 						<!-- Grid column -->
@@ -74,3 +74,9 @@
 
 		</div>
 		<!-- End of .container -->
+
+		<script>
+			document.querySelector('footer').addEventListener('click', e => {
+				e.preventDefault();
+			});
+		</script>

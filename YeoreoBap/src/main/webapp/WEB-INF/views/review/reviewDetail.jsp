@@ -5,82 +5,70 @@
 			<%@ include file="../include/header.jsp" %>
 
 
-<<<<<<< HEAD
 				<section>
 					<div class="container">
 						<div class="row">
 							<div class="col-xs-12 col-md-9 write-wrap">
-								<div class="titlebox">
-									<h3>상세보기</h3>
-								</div>
-=======
+								<section id="section">
+									<h2 class="text-center border-bottom border-orange pb-3 mb-4">상세보기</h2>
 
 
-<section>
-	<div class="container">
-		<div class="row">
-			<div class="col-xs-12 col-md-9 write-wrap">
-				<div class="titlebox">
-					<h3>상세보기</h3>
-				</div>
->>>>>>> 0735601e0a08ff750c1ef5452a43ad6971d49ec2
+									<form action="${pageContext.request.contextPath}/review/modify" method="post" name="form">
 
-								<form action="${pageContext.request.contextPath}/review/modify" method="post" name="form">
-
-									<div class="regDate">
-										<p class="subTitle">
-											DATE <span>|</span>
-										</p>
-										<c:if test="${article.updateDate == null}">
-											<p>${article.parsedRegDate}</p>
-										</c:if>
-										<c:if test="${article.updateDate != null}">
-											<p>${article.parsedUpdateDate} <small class="information">(수정됨)</small></p>
-										</c:if>
-									</div>
+										<div class="regDate">
+											<p class="subTitle">
+												DATE <span>|</span>
+											</p>
+											<c:if test="${article.updateDate == null}">
+												<p>${article.parsedRegDate}</p>
+											</c:if>
+											<c:if test="${article.updateDate != null}">
+												<p>${article.parsedUpdateDate} <small class="information">(수정됨)</small></p>
+											</c:if>
+										</div>
 
 
-									<div class="form-group">
-										<input type="hidden" value="${article.reviewNo}" name="reviewNo">
-									</div>
-									<div class="form-group">
-										<p class="subTitle">
-											작성자 <span>|</span>
-										</p>
-										<p class="reviewData">${article.userNick}(${article.writer})</p>
-										<input type="hidden" value="${article.userNick}" name="userNick">
-										<input type="hidden" value="${article.writer}" name="writer">
-									</div>
-									<div class="form-group">
-										<p class="subTitle">
-											제목 <span>|</span>
-										</p>
-										<p class="reviewData reviewTitle text-truncate">${article.title}</p>
-										<input type="hidden" value="${article.title}" name="title">
-									</div>
+										<div class="form-group">
+											<input type="hidden" value="${article.reviewNo}" id="reviewNo" name="reviewNo">
+										</div>
+										<div class="form-group">
+											<p class="subTitle">
+												작성자 <span>|</span>
+											</p>
+											<p class="reviewData">${article.userNick}(${article.writer})</p>
+											<input type="hidden" value="${article.userNick}" name="userNick">
+											<input type="hidden" value="${article.writer}" name="writer">
+										</div>
+										<div class="form-group">
+											<p class="subTitle">
+												제목 <span>|</span>
+											</p>
+											<p class="reviewData reviewTitle text-truncate">${article.title}</p>
+											<input type="hidden" value="${article.title}" name="title">
+										</div>
 
-									<div class="form-group">
-										<p class="subTitle">
-											내용 <span>|</span>
-										</p>
-										<p class="reviewData dataBorder">${article.content}</p>
-										<input type="hidden" value="${article.content}" name="content">
-									</div>
+										<div class="form-group">
+											<p class="subTitle">
+												내용 <span>|</span>
+											</p>
+											<p class="reviewData dataBorder">${article.content}</p>
+											<input type="hidden" value="${article.content}" name="content">
+										</div>
 
-									<div class="reviewBtns">
-										<c:if test="${userInfo.userId == article.writer}">
-											<button type="submit" class="btn btn-orange"
-												onclick="return confirm('수정 페이지로 이동합니다.')">수정</button>
-											<button class="delBtn" type="button" class="btn btn-orange">삭제</button>
-										</c:if>
-										<button type="button" class="btn btn-orange"
-											onclick="location.href='${pageContext.request.contextPath}/review/reviewList?pageNum=${p.pageNum}&cpp=${p.cpp}&keyword=${p.keyword}&condition=${p.condition}'">목록</button>
-										<!--    목록 누르면 화면 페이지 유지하기    -->
+										<div class="reviewBtns d-flex flex-nowrap justify-content-evenly mx-auto">
+											<c:if test="${userInfo.userId == article.writer}">
+												<button type="submit" class="btn btn-orange"
+													onclick="return confirm('수정 페이지로 이동합니다.')">수정</button>
+												<button type="button" class="btn btn-outline-orange">삭제</button>
+											</c:if>
+											<button type="button" class="btn btn-orange"
+												onclick="location.href='${pageContext.request.contextPath}/review/reviewList?pageNum=${p.pageNum}&cpp=${p.cpp}&keyword=${p.keyword}&condition=${p.condition}'">목록</button>
+											<!--    목록 누르면 화면 페이지 유지하기    -->
 
+										</div>
+									</form>
+								</section>
 
-
-									</div>
-								</form>
 							</div>
 						</div>
 					</div>
@@ -91,7 +79,7 @@
 					<div class="container">
 
 						<hr>
-						<h5>댓글</h5>
+						<h5 class="reply">댓글</h5>
 						<div class="row">
 							<div class="col-xs-9 col-md-9 write-wrap">
 								<form class="reply-wrap">
@@ -124,20 +112,12 @@
 					</div>
 				</section>
 
-
-
-
 				<%@ include file="../include/footer.jsp" %>
 
 					<script>
 
-<<<<<<< HEAD
 						const $form = document.form;
-
-=======
-	const $form = document.form;
-	const uid = '${userInfo.userId}';
->>>>>>> 0735601e0a08ff750c1ef5452a43ad6971d49ec2
+						const uid = '${userInfo.userId}';
 
 						document.querySelector('.reviewBtns').addEventListener('click', e => {
 							if (e.target.matches('.delBtn')) {
@@ -149,24 +129,16 @@
 						});
 
 
-<<<<<<< HEAD
 						window.onload = function () {
 							document.getElementById('replyRegist').onclick = () => {
 								const reviewNo = document.getElementById('reviewNo').textContent //현재 게시글 번호
 								const reply = document.getElementById('reply').value;
 								const replyId = document.getElementById('replyId').textContent;
-=======
-	window.onload = function () {
-		document.getElementById('replyRegist').onclick = () => {
-			const reviewNo = document.getElementById('reviewNo').textContent //현재 게시글 번호
-			const reply = document.getElementById('reply').value;
-			const replyId = document.getElementById('replyId').textContent;
-            if (uid === '') {
-                alert('로그인이 필요한 서비스입니다. :)');
-                location.href = '${pageContext.request.contextPath}/user/userLogin';
-                return;
-            }
->>>>>>> 0735601e0a08ff750c1ef5452a43ad6971d49ec2
+								if (uid === '') {
+									alert('로그인이 필요한 서비스입니다. :)');
+									location.href = '${pageContext.request.contextPath}/user/userLogin';
+									return;
+								}
 
 								if (reply === '') {
 									alert('내용을 입력해주세요.');

@@ -58,9 +58,9 @@
 						<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
 							aria-labelledby="staticBackdropLabel" aria-hidden="true">
 							<div class="modal-dialog modal-dialog-centered">
-								<div class="modal-content d-flex">
-									<img id="modalImg" src="" alt="이미지">
-									<div class="modal-header d-flex align-items-center">
+								<div class="modal-content">
+									<div class="modal-img-size"><img id="modalImg" src="" alt="이미지"></div>
+									<div class="modal-header d-flex align-items-center shadow">
 										<input type="hidden" id="hiddenPartyNo">
 										<input type="hidden" id="hiddenUserId">
 										<h5 class="modal-title me-auto" id="staticBackdropLabel">Modal title</h5>
@@ -70,9 +70,11 @@
 									<div class="modal-body">
 										<span class="content"></span> <br>
 									</div>
-									<div class="modal-footer">
-										<span>식당이름 : </span><span class="res-name"></span> <br>
-										<span>정원 : </span><span class="max"></span> <br><br>
+									<div class="modal-footer d-flex flex-nowrap justify-content-between border-top border-light-orange">
+										<div class="modal-footer-left">
+											<span>식당이름 : </span><span class="res-name"></span> <br>
+											<span>정원 : </span><span class="attendedNum"></span> / <span class="max"></span>명
+										</div>
 										<button type="button" class="modalBtn btn btn-orange"></button>
 									</div>
 								</div>
@@ -90,9 +92,11 @@
 						</div>
 						<!-- 후기 게시판 제목 끝 -->
 
-						<table class="table table-bordered table-hover" id="table">
+						<div class="container">
+							<table class="table table-bordered table-hover" id="table">
+							</table>
+						</div>
 
-						</table>
 					</div>
 				</div>
 
@@ -128,13 +132,13 @@
 									}
 
 									for (vo of list) {
-									if (vo.fileName === null) {
-										fileStr = `${pageContext.request.contextPath}/party/getImg/thumbnail_3.jpg`;
-									} else {
-										fileStr = `${pageContext.request.contextPath}/party/getImg/` + vo.fileName;
-									}
-									str +=
-										`<div class="grid">
+										if (vo.fileName === null) {
+											fileStr = `${pageContext.request.contextPath}/party/getImg/thumbnail_3.jpg`;
+										} else {
+											fileStr = `${pageContext.request.contextPath}/party/getImg/` + vo.fileName;
+										}
+										str +=
+											`<div class="grid">
 										<figure class="rounded effect-zoe">
 											<div class="position">
 												<img id="` + vo.partyNo + `" src="` + fileStr + `" alt="썸네일">
@@ -153,7 +157,7 @@
 											</figcaption>
 										</figure>
 										</div>`;
-								}
+									}
 
 									if (!reset) {
 										$partyList.insertAdjacentHTML('beforeend', str);
@@ -173,189 +177,190 @@
 							});
 
 						// 모달달
-					var modal = new bootstrap.Modal(document.querySelector('.modal'));
-					const $modalFooter = document.querySelector('.modal-footer');
-					const $modalBtn = document.querySelector('.modalBtn');
+						var modal = new bootstrap.Modal(document.querySelector('.modal'));
+						const $modalFooter = document.querySelector('.modal-footer');
+						const $modalBtn = document.querySelector('.modalBtn');
 
-					// 글 상세보기
-					let uid = '${userInfo.userId}';
-					document.getElementById('homePartyList').addEventListener('click', e => {
-						if (!e.target.matches('img')) return;
-                        else if (uid === '') {
-                            alert('로그인이 필요한 서비스입니다. :)');
-                            location.href = '${pageContext.request.contextPath}/user/userLogin';
-                            return;
-                        }
-
-						fetch('${pageContext.request.contextPath}/party/content/' + e.target.id + '/' + uid)
-							.then(res => res.json())
-							.then(data => {
-								document.getElementById('hiddenPartyNo').value = data.partyNo
-								document.getElementById('hiddenUserId').value = data.writer;
-								document.querySelector('.modal-title').textContent = data.title;
-								document.querySelector('.res-name').textContent = data.bplcNm;
-								document.querySelector('.content').textContent = data.content;
-								document.querySelector('.max').textContent = data.max + '명';
-								console.log(data.attended);
-
-								if (data.fileName === null) {
-									document.getElementById('modalImg').setAttribute('src', '${pageContext.request.contextPath}/party/getImg/thumbnail_3.jpg');
-								} else {
-									document.getElementById('modalImg').setAttribute('src', '${pageContext.request.contextPath}/party/getImg/' + data.fileName);
-								}
-
-								//좋아요 true, false
-								if (data.isLike === 1) { // 하트 채워짐
-									document.querySelector('#like i').classList.remove('bi-heart');
-									document.querySelector('#like i').classList.add('bi-heart-fill');
-								} else {
-									document.querySelector('#like i').classList.remove('bi-heart-fill');
-									document.querySelector('#like i').classList.add('bi-heart');
-								}
-
-								// 버튼 선택
-								if ($modalBtn.classList.contains('btn-outline-orange')) {
-									$modalBtn.classList.remove('btn-outline-orange');
-									$modalBtn.classList.add('btn-orange');
-								} else if ($modalBtn.disabled) {
-									$modalBtn.disabled = false;
-								}
-
-								if (uid === data.writer) {
-									$modalBtn.id = 'deleteParty';
-									$modalBtn.textContent = '삭제';
-								} else if (data.attended === 0) {
-									if (data.attendedNum >= data.max - 1) {
-										$modalBtn.id = 'attend';
-										$modalBtn.disabled = true;
-										$modalBtn.textContent = '풀파티';
-									} else {
-										$modalBtn.id = 'attend';
-										$modalBtn.textContent = '참가하기';
-									}
-								} else {
-									$modalBtn.id = 'cancelAttend';
-									$modalBtn.classList.remove('btn-orange');
-									$modalBtn.classList.add('btn-outline-orange');
-									$modalBtn.textContent = '참가 취소';
-								}
-							});
-
-						modal.show();
-					});
-
-					$modalFooter.addEventListener('click', e => {
-						// 참가
-						if (e.target.id === 'attend') {
-							fetch('${pageContext.request.contextPath}/party/attend', {
-								method: 'post',
-								headers: {
-									'Content-Type': 'application/json'
-								},
-								body: JSON.stringify({
-									'userId': uid,
-									'partyNo': document.getElementById('hiddenPartyNo').value
-								})
-							})
-								.then(res => res.text())
-								.then(text => {
-									if (text === 'success') {
-										alert('파티에 참가하셨습니다.');
-										modal.hide();
-									} else {
-										alert('파티 참가에 실패하셨습니다. 다시 시도해주세요.');
-									}
-								})
-						}
-
-						// 참가 취소
-						if (e.target.id === 'cancelAttend') {
-							fetch('${pageContext.request.contextPath}/party/cancelAttend', {
-								method: 'delete',
-								headers: {
-									'Content-Type': 'application/json'
-								},
-								body: JSON.stringify({
-									'userId': uid,
-									'partyNo': document.getElementById('hiddenPartyNo').value
-								})
-							})
-								.then(res => res.text())
-								.then(text => {
-									if (text === 'success') {
-										alert('파티에서 나오셨습니다.');
-										modal.hide();
-									}
-								})
-						}
-
-						// 삭제
-						if (e.target.id === 'deleteParty') {
-							if (confirm('정말로 파티를 해체하시겠습니까?')) {
-								location.href = '${pageContext.request.contextPath}/party/delete/' + document.getElementById('hiddenPartyNo').value;
+						// 글 상세보기
+						let uid = '${userInfo.userId}';
+						$partyList.addEventListener('click', e => {
+							if (!e.target.matches('img')) return;
+							else if (uid === '') {
+								alert('로그인이 필요한 서비스입니다. :)');
+								location.href = '${pageContext.request.contextPath}/user/userLogin';
+								return;
 							}
-						}
-					});
 
-					//좋아요
-					document.getElementById('like').addEventListener('click', e => {
-						e.preventDefault();
-						if (!e.target.matches('i')) return;
+							fetch('${pageContext.request.contextPath}/party/content/' + e.target.id + '/' + uid)
+								.then(res => res.json())
+								.then(data => {
+									document.getElementById('hiddenPartyNo').value = data.partyNo
+									document.getElementById('hiddenUserId').value = data.writer;
+									document.querySelector('.modal-title').textContent = data.title;
+									document.querySelector('.res-name').textContent = data.bplcNm;
+									document.querySelector('.content').textContent = data.content;
+									document.querySelector('.max').textContent = data.max;
+									document.querySelector('.attendedNum').textContent = data.attendedNum + 1;
+									console.log(data.attended);
 
-						//좋아요
-						if (document.querySelector('#like i').classList.contains('bi-heart')) {
-							fetch('${pageContext.request.contextPath}/like/partyLike', {
-								method: 'post',
-								headers: {
-									'Content-Type': 'application/json'
-								},
-								body: JSON.stringify({
-									'userId': uid,
-									'partyNo': document.getElementById('hiddenPartyNo').value
-								})
-							})
-								.then(res => res.text())
-								.then(text => {
-									if (text !== 'success') {
-										alert('이미 좋아요를 한 게시물이거나 알 수 없는 오류로 인해 좋아요가 취소되었습니다.');
+									if (data.fileName === null) {
+										document.getElementById('modalImg').setAttribute('src', '${pageContext.request.contextPath}/party/getImg/thumbnail_3.jpg');
 									} else {
+										document.getElementById('modalImg').setAttribute('src', '${pageContext.request.contextPath}/party/getImg/' + data.fileName);
+									}
+
+									//좋아요 true, false
+									if (data.isLike === 1) { // 하트 채워짐
 										document.querySelector('#like i').classList.remove('bi-heart');
 										document.querySelector('#like i').classList.add('bi-heart-fill');
-										for (heart of [...document.querySelectorAll('.likeCount')]) {
-											if (heart.dataset.partyno == document.getElementById('hiddenPartyNo').value) {
-												heart.textContent++;
-											}
-										}
-									}
-								})
-						}
-
-						// 좋아요 삭제
-						if (document.querySelector('#like i').classList.contains('bi-heart-fill')) {
-							fetch('${pageContext.request.contextPath}/like/deletePartyLike', {
-								method: 'post',
-								headers: {
-									'Content-Type': 'application/json'
-								},
-								body: JSON.stringify({
-									'userId': uid,
-									'partyNo': document.getElementById('hiddenPartyNo').value
-								})
-							})
-								.then(res => res.text())
-								.then(text => {
-									if (text !== 'success') {
-										alert('삭제가 안됐습니다.');
 									} else {
 										document.querySelector('#like i').classList.remove('bi-heart-fill');
 										document.querySelector('#like i').classList.add('bi-heart');
-										for (heart of [...document.querySelectorAll('.likeCount')]) {
-											if (heart.dataset.partyno == document.getElementById('hiddenPartyNo').value) {
-												heart.textContent--;
+									}
+
+									// 버튼 선택
+									if ($modalBtn.classList.contains('btn-outline-orange')) {
+										$modalBtn.classList.remove('btn-outline-orange');
+										$modalBtn.classList.add('btn-orange');
+									} else if ($modalBtn.disabled) {
+										$modalBtn.disabled = false;
+									}
+
+									if (uid === data.writer) {
+										$modalBtn.id = 'deleteParty';
+										$modalBtn.textContent = '삭제';
+									} else if (data.attended === 0) {
+										if (data.attendedNum >= data.max - 1) {
+											$modalBtn.id = 'attend';
+											$modalBtn.disabled = true;
+											$modalBtn.textContent = '풀파티';
+										} else {
+											$modalBtn.id = 'attend';
+											$modalBtn.textContent = '참가하기';
+										}
+									} else {
+										$modalBtn.id = 'cancelAttend';
+										$modalBtn.classList.remove('btn-orange');
+										$modalBtn.classList.add('btn-outline-orange');
+										$modalBtn.textContent = '참가 취소';
+									}
+								});
+
+							modal.show();
+						});
+
+						$modalFooter.addEventListener('click', e => {
+							// 참가
+							if (e.target.id === 'attend') {
+								fetch('${pageContext.request.contextPath}/party/attend', {
+									method: 'post',
+									headers: {
+										'Content-Type': 'application/json'
+									},
+									body: JSON.stringify({
+										'userId': uid,
+										'partyNo': document.getElementById('hiddenPartyNo').value
+									})
+								})
+									.then(res => res.text())
+									.then(text => {
+										if (text === 'success') {
+											alert('파티에 참가하셨습니다.');
+											modal.hide();
+										} else {
+											alert('파티 참가에 실패하셨습니다. 다시 시도해주세요.');
+										}
+									})
+							}
+
+							// 참가 취소
+							if (e.target.id === 'cancelAttend') {
+								fetch('${pageContext.request.contextPath}/party/cancelAttend', {
+									method: 'delete',
+									headers: {
+										'Content-Type': 'application/json'
+									},
+									body: JSON.stringify({
+										'userId': uid,
+										'partyNo': document.getElementById('hiddenPartyNo').value
+									})
+								})
+									.then(res => res.text())
+									.then(text => {
+										if (text === 'success') {
+											alert('파티에서 나오셨습니다.');
+											modal.hide();
+										}
+									})
+							}
+
+							// 삭제
+							if (e.target.id === 'deleteParty') {
+								if (confirm('정말로 파티를 해체하시겠습니까?')) {
+									location.href = '${pageContext.request.contextPath}/party/delete/' + document.getElementById('hiddenPartyNo').value;
+								}
+							}
+						});
+
+						//좋아요
+						document.getElementById('like').addEventListener('click', e => {
+							e.preventDefault();
+							if (!e.target.matches('i')) return;
+
+							//좋아요
+							if (document.querySelector('#like i').classList.contains('bi-heart')) {
+								fetch('${pageContext.request.contextPath}/like/partyLike', {
+									method: 'post',
+									headers: {
+										'Content-Type': 'application/json'
+									},
+									body: JSON.stringify({
+										'userId': uid,
+										'partyNo': document.getElementById('hiddenPartyNo').value
+									})
+								})
+									.then(res => res.text())
+									.then(text => {
+										if (text !== 'success') {
+											alert('이미 좋아요를 한 게시물이거나 알 수 없는 오류로 인해 좋아요가 취소되었습니다.');
+										} else {
+											for (heart of [...document.querySelectorAll('.likeCount')]) {
+												document.querySelector('#like i').classList.remove('bi-heart')
+												document.querySelector('#like i').classList.add('bi-heart-fill');
+												if (heart.dataset.partyno == document.getElementById('hiddenPartyNo').value) {
+													heart.textContent++;
+												}
 											}
 										}
-									}
+									})
+							}
+
+							// 좋아요 삭제
+							if (document.querySelector('#like i').classList.contains('bi-heart-fill')) {
+								fetch('${pageContext.request.contextPath}/like/deletePartyLike', {
+									method: 'post',
+									headers: {
+										'Content-Type': 'application/json'
+									},
+									body: JSON.stringify({
+										'userId': uid,
+										'partyNo': document.getElementById('hiddenPartyNo').value
+									})
 								})
-						}
-					})
+									.then(res => res.text())
+									.then(text => {
+										if (text !== 'success') {
+											alert('삭제가 안됐습니다.');
+										} else {
+											for (heart of [...document.querySelectorAll('.likeCount')]) {
+												document.querySelector('#like i').classList.remove('bi-heart-fill')
+												document.querySelector('#like i').classList.add('bi-heart');
+												if (heart.dataset.partyno == document.getElementById('hiddenPartyNo').value) {
+													heart.textContent--;
+												}
+											}
+										}
+									})
+							}
+						})
 					</script>
