@@ -23,7 +23,6 @@ public class ReviewService implements IReviewService {
 	@Override
 	public void regist(ReviewVO vo) {
 		mapper.regist(vo);
-
 	}
 
 	@Override
