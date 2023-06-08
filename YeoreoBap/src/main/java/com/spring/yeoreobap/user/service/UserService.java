@@ -54,4 +54,11 @@ public class UserService implements IUserService {
 	public void updateUser(UserVO vo) {
 		mapper.updateUser(vo);
 	}
+
+	@Override
+	public void deleteUser(UserVO vo){
+		log.info(vo.getUserId());
+		mapper.deleteUser(vo);
+		
+	}
 }

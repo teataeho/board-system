@@ -35,4 +35,6 @@ public interface IReviewService {
 	List<PartyVO> getResList1(String userId);
 	List<PartyVO> getResList2(String userId);
 
+	List<ReviewVO> getList2();
+
 }

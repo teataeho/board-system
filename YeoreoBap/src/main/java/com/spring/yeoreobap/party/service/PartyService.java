@@ -23,6 +23,11 @@ public class PartyService implements IPartyService {
 	private IPartyMapper mapper;
 
 	@Override
+	public void register(PartyVO vo) {
+		mapper.regist(vo);
+	}
+
+	@Override
 	public void register(PartyVO vo, MultipartFile file) {
 
 		// 기본 경로는 C:/test/upload로 사용하겠습니다.
@@ -91,12 +96,18 @@ public class PartyService implements IPartyService {
 
 	@Override
 	public void cancelAttend(ParticipantsVO vo) {
-		mapper.cancelAttend(vo);		
+		mapper.cancelAttend(vo);
 	}
 
 	@Override
 	public int getTotal(PageVO vo) {
 		return mapper.getTotal(vo);
+	}
+
+	@Override
+	public List<PartyVO> getListHome(PageVO paging) {
+		paging.setCpp(5);
+		return mapper.getListHome(paging);
 	}
 
 }

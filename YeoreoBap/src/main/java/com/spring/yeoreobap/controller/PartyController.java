@@ -55,7 +55,6 @@ public class PartyController {
 		PageVO vo = new PageVO();
 		vo.setPageNum(page);
 		vo.setCpp(10);
-
 		return service.getList(vo);
 	}
 
@@ -64,13 +63,18 @@ public class PartyController {
 	public void register() {
 	}
 
-	// 여러밥 모집글 등록 (사용자 지정 사진)
+	// 여러밥 모집글 등록
 	@PostMapping("/partyRegister")
 	public String registerCustomPicture(PartyVO vo, MultipartFile file) {
-		service.register(vo, file);
+		if (file.getSize() == 0) {
+			service.register(vo);
+		} else {
+			service.register(vo, file);
+		}
 		return "redirect:/party/partyList";
 	}
 
+	// 컨텐츠(모달) 보여주기
 	@ResponseBody
 	@GetMapping("/content/{partyNo}/{uid}")
 	public PartyVO getArticle(@PathVariable int partyNo, @PathVariable("uid") String userId) {
@@ -78,6 +82,7 @@ public class PartyController {
 		return service.getArticle(partyNo, userId);
 	}
 
+	// 게시글 삭제
 	@GetMapping("/delete/{partyNo}")
 	public String delete(@PathVariable int partyNo) {
 		service.delete(partyNo);
@@ -92,6 +97,7 @@ public class PartyController {
 		return "success";
 	}
 
+	// 참가 취소
 	@ResponseBody
 	@DeleteMapping("/cancelAttend")
 	public String cancelAttend(@RequestBody ParticipantsVO vo) {
@@ -123,6 +129,13 @@ public class PartyController {
 		}
 
 		return result;
+	}
+
+	// 홈화면 글목록 불러오기
+	@ResponseBody
+	@GetMapping("/getListHome")
+	public List<PartyVO> getListHome(PageVO vo) {
+		return service.getListHome(vo);
 	}
 
 }

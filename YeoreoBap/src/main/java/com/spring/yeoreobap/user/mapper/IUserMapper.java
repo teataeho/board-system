@@ -31,4 +31,6 @@ public interface IUserMapper {
 	String dong(String addrDong);
 
 	UserVO getUser(String userId);
+	
+	void deleteUser(UserVO vo);
 }

@@ -84,7 +84,7 @@
 								<li><a href="#" data-pagenum="${pc.beginPage-1}">이전</a></li>
 							</c:if>
 
-							<c:forEach var="num" begin="${pc.beginPage}" end="${pc.endPage}">
+							<c:forEach var="num" begin="${pc.beginPage}" end="${pc.endPage}" >
 								<li class="${pc.paging.pageNum == num ? 'active' : ''}"><a
 									href="#" data-pagenum="${num}">${num}</a></li>
 							</c:forEach>
