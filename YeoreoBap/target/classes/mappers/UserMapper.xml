@@ -17,6 +17,7 @@
 	<resultMap type="party" id="list">
 		<id property="partyNo" column="party_no"/>
 		<result property="title" column="title"/>
+		<result property="bplcNm" column="bplc_nm"/>
 		<result property="regDate" column="reg_date"/>		
 	</resultMap>
 	

@@ -16,7 +16,7 @@
 	 		WHERE content LIKE CONCAT('%', #{keyword}, '%')
 	 	</if>
 	 	<if test="condition == 'restaurant'">
-	 		WHERE sno LIKE CONCAT('%', #{keyword}, '%')
+	 		WHERE s.bplc_nm LIKE CONCAT('%', #{keyword}, '%')
 	 	</if>
 	 	<if test="condition == 'titleContent'">
 	 		WHERE title LIKE CONCAT('%', #{keyword}, '%')
