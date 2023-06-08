@@ -35,6 +35,10 @@ header {
 	background-color: #fff;
 }
 
+#header-flex-left {
+	width: 330px;
+}
+
 ul.login-menu {
 	position: relative;
 	margin-bottom: 10px;
@@ -257,6 +261,27 @@ i.bi-pencil {
 
 i.bi-pencil::before {
 	padding: 6.5px;
+}
+
+/*--------------- 모달달 (partyList.jsp) ---------------*/
+.modal-img-size {
+	width: 500px;
+	height: 500px;
+	overflow: hidden;
+	position: relative;
+}
+
+#modalImg {
+	height: 500px;
+
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.modal-footer-left {
+	font-size: 17px;
 }
 
 /* 모달 하트 디자인 */

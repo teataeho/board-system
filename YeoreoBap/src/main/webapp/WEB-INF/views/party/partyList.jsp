@@ -17,18 +17,6 @@
 					<h2 class="text-center ms-2">
 						여러밥 모집
 					</h2>
-
-					<!-- 정렬 선택 버튼 -->
-					<!-- <div id="orderBy" class="dropdown">
-						<button class="btn btn-white border-orange dropdown-toggle text-orange" type="button"
-							data-bs-toggle="dropdown" aria-expanded="true">
-							최신순
-						</button>
-						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="#" value="orderByLatest">최신순</a></li>
-							<li><a class="dropdown-item" href="#" value="orderByLike"><span class="necessary">핫!</span>한 순</a></li>
-						</ul>
-					</div> -->
 				</div>
 
 				<!-- 파티 리스트 -->
@@ -53,9 +41,9 @@
 				<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
 					aria-labelledby="staticBackdropLabel" aria-hidden="true">
 					<div class="modal-dialog modal-dialog-centered">
-						<div class="modal-content d-flex">
-							<img id="modalImg" src="" alt="이미지">
-							<div class="modal-header d-flex align-items-center">
+						<div class="modal-content">
+							<div class="modal-img-size"><img id="modalImg" src="" alt="이미지"></div>
+							<div class="modal-header d-flex align-items-center shadow">
 								<input type="hidden" id="hiddenPartyNo">
 								<input type="hidden" id="hiddenUserId">
 								<h5 class="modal-title me-auto" id="staticBackdropLabel">Modal title</h5>
@@ -65,9 +53,11 @@
 							<div class="modal-body">
 								<span class="content"></span> <br>
 							</div>
-							<div class="modal-footer">
-								<span>식당이름 : </span><span class="res-name"></span> <br>
-								<span>정원 : </span><span class="max"></span> <br><br>
+							<div class="modal-footer d-flex flex-nowrap justify-content-between border-top border-light-orange">
+								<div class="modal-footer-left">
+									<span>식당이름 : </span><span class="res-name"></span> <br>
+									<span>정원 : </span><span class="attendedNum"></span> / <span class="max"></span>명
+								</div>
 								<button type="button" class="modalBtn btn btn-orange"></button>
 							</div>
 						</div>
@@ -185,7 +175,8 @@
 								document.querySelector('.modal-title').textContent = data.title;
 								document.querySelector('.res-name').textContent = data.bplcNm;
 								document.querySelector('.content').textContent = data.content;
-								document.querySelector('.max').textContent = data.max + '명';
+								document.querySelector('.max').textContent = data.max;
+								document.querySelector('.attendedNum').textContent = data.attendedNum + 1;
 								console.log(data.attended);
 
 								if (data.fileName === null) {

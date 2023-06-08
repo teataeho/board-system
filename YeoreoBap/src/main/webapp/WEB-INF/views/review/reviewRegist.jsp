@@ -6,28 +6,27 @@
 <%@ include file="../include/header.jsp"%>
 
 <section>
-	<br><br><br><br><br>
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12 content-wrap" style="align-content: center;">
-				<div class="titlebox">
-					<p>후기게시판</p>
+				<div class="titlebox registTitle">
+					<h2>후기게시판</h2>
 				</div>
 
 				<form action="${pageContext.request.contextPath}/review/regist" method="post" name="reviewForm">
-					<table class="table">
-						<tbody class="t-control">
+					<table class="table" id="reviewTable">
+						<tbody class="t-control riviewControl">
 							<tr>
-								<td class="t-title">작성자</td>
+								<td class="t-title">작성자<span>|</span></td>
 								<td><input class="form-control input-sm" value="${userInfo.userNick}" readonly></td>
 							</tr>
 							<tr>
-								<td class="t-title">제목</td>
+								<td class="t-title">제목<span>|</span></td>
 								<td><input class="form-control input-sm" name="title" id="title"></td>
 							</tr>
 							<tr>
-								<td class="t-title">식당 이름</td>
-								<td>
+								<td class="t-title">식당 이름<span>|</span></td>
+								<td id="resName">
 									<c:set var="party" value="${party}" />
 									<c:set var="attendedParty" value="${attendedParty}" />
 									<select name="sno" id="sno">
@@ -41,7 +40,7 @@
 								</td>
 							</tr>
 							<tr>
-								<td class="t-title">내용</td>
+								<td class="t-title">내용<span>|</span></td>
 								<td><textarea class="form-control" rows="7" name="content" id="content" type='text'
 										maxlength='300'></textarea></td>
 							</tr>
@@ -52,10 +51,9 @@
 						</tbody>
 					</table>
 					<input type="hidden" name="writer" id="userId" value="${userInfo.userId}">
-					<div class="titlefoot">
-						<button class="btn register" type="button" id="registBtn">등록</button>
-						<button class="btn" type="button"
-							onclick="location.href='${pageContext.request.contextPath}/review/reviewList'">목록</button>
+					<div class="titlefoot reviewTitleFoot">
+						<button class="btn register" id="registBtn" type="button">등록</button>
+						<button class="btn" id="listBtn" type="button" onclick="location.href='${pageContext.request.contextPath}/review/reviewList'">목록</button>
 					</div>
 
 				</form>
@@ -71,6 +69,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title">가게의 별점을 매겨주세요!</h5>
+				<p>*별점은 내부 데이터에만 수집되고 글에는 명시 되지 않습니다.</p>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">

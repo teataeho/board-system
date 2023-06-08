@@ -19,6 +19,7 @@
 			<link href="${pageContext.request.contextPath}/css/partyRegister.css" rel="stylesheet">
 			<link href="${pageContext.request.contextPath}/css/userMypage.css" rel="stylesheet">
 			<link href="${pageContext.request.contextPath}/css/reviewModify.css" rel="stylesheet">
+			<link href="${pageContext.request.contextPath}/css/reviewRegist.css" rel="stylesheet">
 
 			<!-- hover template -->
 			<link href="${pageContext.request.contextPath}/css/hover-template/normalize.css" rel="stylesheet">
@@ -43,8 +44,12 @@
 				<div class="container border-bottom border-2 border-orange">
 					<div class="inner-container d-flex justify-content-between">
 						<!-- 로고 -->
-						<a class="logo" href="${pageContext.request.contextPath}/"><img width="85"
-								src="${pageContext.request.contextPath}/img/logo.png" alt="Yeoreobap"></a>
+						<div id="header-flex-left" class="d-flex justify-content-between align-items-center">
+							<a class="logo" href="${pageContext.request.contextPath}/"><img width="85"
+									src="${pageContext.request.contextPath}/img/logo.png" alt="Yeoreobap"></a>
+							<a class="text-orange fw-bold" href="${pageContext.request.contextPath}/party/partyList">여러밥 모집</a>
+							<a class="text-orange fw-bold" href="${pageContext.request.contextPath}/review/reviewList">여러밥 후기</a>
+						</div>
 
 
 						<!-- 우측 상단 메뉴 -->

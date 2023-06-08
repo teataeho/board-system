@@ -15,7 +15,7 @@
 									placeholder="비밀번호">
 							</div>
 							<div id="userLoginBtns" class="d-flex flex-column justify-content-center">
-								<button type="button" id="loginBtn" class="btn btn-orange loginBtn">Login</button>
+								<button type="button" id="loginBtn" class="btn btn-orange loginBtn fs-5">Login</button>
 								<a class="text-light-orange text-center"
 									href="${pageContext.request.contextPath}/user/userJoin">회원가입하기</a>
 							</div>

@@ -1,0 +1,45 @@
+.registTitle {
+	text-align: center;
+	margin: 80px 0 50px;
+}
+
+#reviewTable{
+	width: 80%;
+}
+
+.riviewControl .t-title {
+	text-align: right;
+}
+
+.riviewControl .t-title span {
+	color: #F4B183;
+	font-weight: bold;
+	margin-left: 5px;
+}
+
+#resName {
+	text-align: left;
+}
+
+#resName select {
+	width: 100%
+}
+
+#registBtn, #listBtn {
+	width: 100px;
+	color: white;
+	background: #F4B183;
+    border: #F4B183;
+    transition: 0.3s;
+    margin: 0 5px;
+}
+
+#registBtn:hover, #listBtn:hover {
+	background: #F0975A;
+}
+
+.reviewTitleFoot {
+	width: 80%;
+	display: flex;
+	justify-content: flex-end;
+}
