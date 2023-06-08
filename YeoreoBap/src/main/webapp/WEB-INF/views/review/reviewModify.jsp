@@ -11,22 +11,22 @@
                         </div>
                         
                         <form action="${pageContext.request.contextPath}/review/update" method="post" name="updateForm">
-                            <div class="form-group">
+                            <div class="form-group modify-form-group">
                                 <p>후기 번호<span>|</span></p>
-                                <input class="form-control" id="inputForm" name="reviewNo" value="${article.reviewNo}" readonly>
+                                <input class="form-control modify-form-control" id="inputForm" name="reviewNo" value="${article.reviewNo}" readonly>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group modify-form-group">
                                 <p>작성자<span>|</span></p>
-                                <input class="form-control" id="inputForm" name="userNick" value="${article.userNick}" readonly>
+                                <input class="form-control modify-form-control" id="inputForm" name="userNick" value="${article.userNick}" readonly>
                             </div>    
-                            <div class="form-group">
+                            <div class="form-group modify-form-group">
                                 <p>제목<span>|</span></p>
-                                <input class="form-control" id="inputForm" name="title" value="${article.title}">
+                                <input class="form-control modify-form-control" id="inputForm" name="title" value="${article.title}">
                             </div>
                             <input type="hidden" name="writer" value="${article.writer}">
-                            <div class="form-group">
+                            <div class="form-group modify-form-group">
                                 <p>내용<span>|</span></p>
-                                <textarea class="form-control" id="inputForm" rows="10" name="content">${article.content}</textarea>
+                                <textarea class="form-control modify-form-control" id="inputForm" rows="10" name="content">${article.content}</textarea>
                             </div>
 							<div class="modifyBtns">
 	                            <button type="button" id="updateBtn" class="btn">변경</button>
