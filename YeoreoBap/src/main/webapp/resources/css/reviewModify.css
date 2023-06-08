@@ -1,0 +1,46 @@
+.modify-title-box {
+	text-align: center;
+	margin: 80px 0 50px;
+}
+
+.modify-form-group {
+	display: flex;
+	margin-bottom: 10px;
+}
+
+#inputForm.modify-form-control {
+	width: 90%;
+}
+
+.modify-form-group p {
+	width: 110px;
+	text-align: right;
+	display: block;
+}
+
+form .modify-form-group p span {
+	font-weight: bold;
+	color: #F4B183;
+	margin: 0 10px;
+}
+
+
+/* 변경 삭제 목록 버튼 */
+.modifyBtns #updateBtn, .modifyBtns #delBtn, .modifyBtns #listBtn {
+	width: 100px;
+	color: white;
+	background: #F4B183;
+    border: #F4B183;
+    transition: 0.3s;
+    margin: 30px 10px 50px 0;
+}
+
+.modifyBtns #updateBtn:hover, .modifyBtns #delBtn:hover, .modifyBtns #listBtn:hover {
+	background: #F0975A;
+}
+
+.modifyBtns {
+	display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}

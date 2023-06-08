@@ -18,6 +18,7 @@
 			<link href="${pageContext.request.contextPath}/css/reviewDetail.css" rel="stylesheet">
 			<link href="${pageContext.request.contextPath}/css/partyRegister.css" rel="stylesheet">
 			<link href="${pageContext.request.contextPath}/css/userMypage.css" rel="stylesheet">
+			<link href="${pageContext.request.contextPath}/css/reviewModify.css" rel="stylesheet">
 
 			<!-- hover template -->
 			<link href="${pageContext.request.contextPath}/css/hover-template/normalize.css" rel="stylesheet">
