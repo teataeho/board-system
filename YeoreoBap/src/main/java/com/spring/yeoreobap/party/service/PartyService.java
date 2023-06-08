@@ -21,7 +21,7 @@ public class PartyService implements IPartyService {
 
 	@Autowired
 	private IPartyMapper mapper;
-	
+
 	@Override
 	public void register(PartyVO vo) {
 		mapper.regist(vo);
@@ -96,7 +96,7 @@ public class PartyService implements IPartyService {
 
 	@Override
 	public void cancelAttend(ParticipantsVO vo) {
-		mapper.cancelAttend(vo);		
+		mapper.cancelAttend(vo);
 	}
 
 	@Override
@@ -105,8 +105,9 @@ public class PartyService implements IPartyService {
 	}
 
 	@Override
-	public List<PartyVO> getListHome() {
-		return mapper.getListHome();
+	public List<PartyVO> getListHome(PageVO paging) {
+		paging.setCpp(5);
+		return mapper.getListHome(paging);
 	}
 
 }

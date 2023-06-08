@@ -81,19 +81,18 @@ public class UserController {
 		return "redirect:/user/userLogin";
 	}
 
-	
-	//수정 요청
+	// 수정 요청
 	@PostMapping("/userUpdate")
 	public String updateUser(UserVO vo, Model model, HttpSession session, HttpServletRequest request) {
-		service.updateUser(vo);		
+		service.updateUser(vo);
 		session.invalidate();
 		HttpSession newSession = request.getSession(true);
 		UserVO updateUser = service.login(vo.getUserId(), vo.getUserPw());
 		newSession.setAttribute("user", updateUser);
 		return "redirect:/";
 	}
-	
-	//로그인 페이지로 이동 요청 	get
+
+	// 로그인 페이지로 이동 요청 get
 	@GetMapping("/userLogin")
 	public String login(Model model, HttpSession session) {
 		session.removeAttribute("user");
@@ -117,7 +116,7 @@ public class UserController {
 		PageCreator pc = new PageCreator(vo, partyService.getTotal(vo));
 		model.addAttribute("user", service.getInfo(id, vo));
 		model.addAttribute("pc", pc);
-		
+
 	}
 
 	// 로그아웃 요청
@@ -127,15 +126,13 @@ public class UserController {
 		ModelAndView mv = new ModelAndView("redirect:/");
 		return mv;
 	}
-	
-	
+
 	@PostMapping("/deleteUser")
-	public String deleteUser(UserVO vo, HttpSession session,Model model) throws Exception {
-		log.info("-------------------------------"+vo.getUserId());
+	public String deleteUser(UserVO vo, HttpSession session, Model model) throws Exception {
+		log.info("-------------------------------" + vo.getUserId());
 		service.deleteUser(vo);
 		session.invalidate();
 		return "redirect:/";
 	}
-	
 
 }

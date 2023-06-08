@@ -20,7 +20,6 @@
 			<link href="${pageContext.request.contextPath}/css/userMypage.css" rel="stylesheet">
 
 			<!-- hover template -->
-			<link href="${pageContext.request.contextPath}/css/hover-template/demo.css" rel="stylesheet">
 			<link href="${pageContext.request.contextPath}/css/hover-template/normalize.css" rel="stylesheet">
 			<link href="${pageContext.request.contextPath}/css/hover-template/set1.css" rel="stylesheet">
 
