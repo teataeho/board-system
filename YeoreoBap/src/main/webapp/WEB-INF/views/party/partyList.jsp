@@ -168,7 +168,12 @@
 					// 글 상세보기
 					let uid = '${userInfo.userId}';
 					document.getElementById('partyList').addEventListener('click', e => {
-						console.log('e.target : ' + e.target);
+						if (!e.target.matches('img')) return;
+                        else if (uid === '') {
+                            alert('로그인이 필요한 서비스입니다. :)');
+                            location.href = '${pageContext.request.contextPath}/user/userLogin';
+                            return;
+                        }
 
 						fetch('content/' + e.target.id + '/' + uid)
 							.then(res => res.json())

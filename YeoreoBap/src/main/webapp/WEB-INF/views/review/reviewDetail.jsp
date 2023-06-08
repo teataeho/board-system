@@ -131,7 +131,7 @@
 <script>
 
 	const $form = document.form;
-
+	const uid = '${userInfo.userId}';
 
 	document.querySelector('.reviewBtns').addEventListener('click', e => {
 		if (e.target.matches('.delBtn')) {
@@ -148,6 +148,11 @@
 			const reviewNo = document.getElementById('reviewNo').textContent //현재 게시글 번호
 			const reply = document.getElementById('reply').value;
 			const replyId = document.getElementById('replyId').textContent;
+            if (uid === '') {
+                alert('로그인이 필요한 서비스입니다. :)');
+                location.href = '${pageContext.request.contextPath}/user/userLogin';
+                return;
+            }
 
 			if (reply === '') {
 				alert('내용을 입력해주세요.');

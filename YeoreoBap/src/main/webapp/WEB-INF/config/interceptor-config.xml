@@ -31,7 +31,6 @@
 			<mvc:mapping path="/review/modify"/>
 			<mvc:mapping path="/review/update"/>
 			<mvc:mapping path="/review/delete"/>
-			<mvc:mapping path="/reply/regist"/>
 			<ref bean="userAuth"/>
 		</mvc:interceptor>
 		
