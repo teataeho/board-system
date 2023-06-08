@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 		<%@ include file="include/header.jsp" %>
 			<div class="wrap">
 
@@ -79,17 +79,21 @@
 					</div>
 
 					<!-- 후기 게시판 제목 -->
-					<div class="page-header border-bottom border-orange mt-4 mb-4">
-						<h2 class="ms-2">
-							여러밥 후기
-							<a href="${pageContext.request.contextPath}/review/reviewList">
-								<small class="text-muted">더보기
-									<i class="bi bi-chevron-right"></i>
-								</small>
-							</a>
-						</h2>
-					</div>
-					<!-- 후기 게시판 제목 끝 -->
+        <div class="page-header border-bottom border-orange mt-4 mb-4">
+            <h2 class="ms-2">
+                여러밥 후기
+                <a href="${pageContext.request.contextPath}/review/reviewList">
+                    <small class="text-muted">더보기 <i class="bi bi-chevron-right"></i></small>
+                </a>
+            </h2>
+        </div>
+        <!-- 후기 게시판 제목 끝 -->
+
+        <table class="table table-bordered table-hover" id="table">
+			
+		</table>
+    </div>
+</div>
 
 					<%@ include file="include/footer.jsp" %>
 
@@ -161,4 +165,11 @@
 							}); //end fetch
 
 					} //end getList
+
+					fetch('${pageContext.request.contextPath}/review/reviewList2/')
+							.then(res => res.text())
+							.then(data => {
+								const table = document.getElementById('table');
+								table.innerHTML = data;
+							});
 				</script>

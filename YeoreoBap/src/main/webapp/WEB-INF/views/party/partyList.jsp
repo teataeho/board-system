@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 	<%@ include file="../include/header.jsp" %>
 
@@ -24,11 +25,12 @@
 						최신순
 					</button>
 					<ul class="dropdown-menu">
-						<li><a class="dropdown-item" href="#">최신순</a></li>
-						<li><a class="dropdown-item" href="#"><span class="necessary">핫!</span>한 순</a></li>
+						<li><a class="dropdown-item" href="#" value="orderByLatest">최신순</a></li>
+						<li><a class="dropdown-item" href="#" value="orderByLike"><span class="necessary">핫!</span>한 순</a></li>
 					</ul>
 				</div>
 			</div>
+			
 
 			<!-- 파티 리스트 -->
 			<div class="partyContainer">
@@ -44,7 +46,6 @@
 				</div>
 			</div>
 			<!-- 파티 리스트 끝 -->
-
 		</div>
 		<%@ include file="../include/footer.jsp" %>
 
@@ -79,6 +80,7 @@
 			<script>
 				// 리스트
 				let str = '';
+				let fileStr = '';
 				let page = 1;
 				let isFinish = false;
 				const $partyList = document.getElementById('partyList');

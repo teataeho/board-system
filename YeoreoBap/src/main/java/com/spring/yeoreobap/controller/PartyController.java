@@ -55,7 +55,6 @@ public class PartyController {
 		PageVO vo = new PageVO();
 		vo.setPageNum(page);
 		vo.setCpp(10);
-
 		return service.getList(vo);
 	}
 
@@ -64,10 +63,14 @@ public class PartyController {
 	public void register() {
 	}
 
-	// 여러밥 모집글 등록 (사용자 지정 사진)
+	// 여러밥 모집글 등록
 	@PostMapping("/partyRegister")
 	public String registerCustomPicture(PartyVO vo, MultipartFile file) {
-		service.register(vo, file);
+		if(file.getSize() == 0) {
+			service.register(vo);
+		} else {
+			service.register(vo, file);
+		}
 		return "redirect:/party/partyList";
 	}
 
@@ -123,6 +126,12 @@ public class PartyController {
 		}
 
 		return result;
+	}
+	
+	@ResponseBody
+	@GetMapping("/getListHome")
+	public List<PartyVO> getListHome() {
+		return service.getListHome();
 	}
 
 }
