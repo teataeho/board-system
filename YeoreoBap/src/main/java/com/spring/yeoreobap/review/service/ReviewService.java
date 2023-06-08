@@ -36,7 +36,7 @@ public class ReviewService implements IReviewService {
 
 	@Override
 	public int getTotal(PageVO vo) {
-		return mapper.getTotal();
+		return mapper.getTotal(vo);
 	}
 
 	@Override

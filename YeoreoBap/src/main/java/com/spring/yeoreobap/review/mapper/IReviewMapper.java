@@ -20,7 +20,7 @@ public interface IReviewMapper {
 	List<ReviewVO> getList2();
 
 	//총 게시물 수 구하기
-	int getTotal();
+	int getTotal(PageVO vo);
 
 	//상세보기
 	ReviewVO getContent(int reviewNo);

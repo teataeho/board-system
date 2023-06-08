@@ -10,7 +10,7 @@
 	 		WHERE title LIKE CONCAT('%', #{keyword}, '%')
 	 	</if>
 	 	<if test="condition == 'writer'">
-	 		WHERE writer LIKE CONCAT('%', #{keyword}, '%')
+	 		WHERE u.user_nick LIKE CONCAT('%', #{keyword}, '%')
 	 	</if>
 	 	<if test="condition == 'content'">
 	 		WHERE content LIKE CONCAT('%', #{keyword}, '%')
@@ -54,7 +54,10 @@
 	
 	<select id="getTotal" resultType="int">
 		SELECT COUNT(*)
-		FROM review
+		FROM review r
+		JOIN users u
+		ON r.writer = u.user_id
+		JOIN store s ON r.sno = s.sno
 		<include refid="search" />
 	</select>
 	

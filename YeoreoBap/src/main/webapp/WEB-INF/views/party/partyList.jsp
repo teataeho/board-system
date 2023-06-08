@@ -19,7 +19,7 @@
 					</h2>
 
 					<!-- 정렬 선택 버튼 -->
-					<div id="orderBy" class="dropdown">
+					<!-- <div id="orderBy" class="dropdown">
 						<button class="btn btn-white border-orange dropdown-toggle text-orange" type="button"
 							data-bs-toggle="dropdown" aria-expanded="true">
 							최신순
@@ -28,7 +28,7 @@
 							<li><a class="dropdown-item" href="#" value="orderByLatest">최신순</a></li>
 							<li><a class="dropdown-item" href="#" value="orderByLike"><span class="necessary">핫!</span>한 순</a></li>
 						</ul>
-					</div>
+					</div> -->
 				</div>
 
 				<!-- 파티 리스트 -->

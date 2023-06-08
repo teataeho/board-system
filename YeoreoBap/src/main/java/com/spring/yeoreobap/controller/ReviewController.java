@@ -31,6 +31,7 @@ public class ReviewController {
 	@GetMapping("/reviewList")
 	public void reviewList(PageVO vo, Model model) {
 		PageCreator pc = new PageCreator(vo, service.getTotal(vo));
+		log.info("getTotal : " + service.getTotal(vo));
 		System.out.println("store: " + pc.toString());
 		log.info(pc.toString());
 		
