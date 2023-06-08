@@ -20,19 +20,16 @@ public class UserLoginSuccessHandler implements HandlerInterceptor {
 			ModelAndView modelAndView) throws Exception {
 		log.info("로그인 인터셉터!!");
 		log.info("요청 방식: " + request.getMethod());
+		ModelMap map = modelAndView.getModelMap();
+		UserVO vo = (UserVO) map.get("user");
 
-		if (request.getMethod().equals("POST")) {
-			ModelMap map = modelAndView.getModelMap();
-			UserVO vo = (UserVO) map.get("user");
-
-			if (vo != null) {
-				log.info("login Success");
-				HttpSession session = request.getSession();
-				session.setAttribute("userInfo", vo);
-				response.sendRedirect(request.getContextPath() + "/");
-			} else {
-				modelAndView.addObject("msg", "loginFail");
-			}
+		if (vo != null) {
+			log.info("login Success");
+			HttpSession session = request.getSession();
+			session.setAttribute("userInfo", vo);
+			response.sendRedirect(request.getContextPath() + "/");
+		} else {
+			modelAndView.addObject("msg", "notLoggedIn");
 		}
 	}
 

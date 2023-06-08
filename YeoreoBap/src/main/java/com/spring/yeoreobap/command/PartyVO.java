@@ -34,6 +34,6 @@ public class PartyVO {
 	
 	// Join
 	private int attendedNum, attended, isLike, likeCount;
-	private String writerNick;
+	private String writerNick, uptaeNm;
 	
 }

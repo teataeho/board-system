@@ -14,30 +14,26 @@
 	</insert>
 
 	<select id="getList" resultType="party">
-        SELECT p.*, s.rdn_whl_addr,
-        (SELECT COUNT(*) FROM partylike l
-        WHERE p.party_no = l.party_no) AS
-        likeCount
-        FROM party p
-        JOIN store s
-        ON p.sno
-        = s.sno
-        ORDER BY p.party_no DESC
-        LIMIT #{pageStart}, #{cpp}
-    </select>
-    
-    <select id="getListHome" resultType="party">
-        SELECT p.*, s.rdn_whl_addr,
-        (SELECT COUNT(*) FROM partylike l
-        WHERE p.party_no = l.party_no) AS
-        likeCount
-        FROM party p
-        JOIN store s
-        ON p.sno
-        = s.sno
-        ORDER BY likeCount DESC
-        LIMIT 0, 10
-    </select>
+		SELECT p.*, s.rdn_whl_addr, s.uptae_nm,
+			(SELECT COUNT(*) FROM partylike l
+			WHERE p.party_no = l.party_no) AS likeCount
+		FROM party p
+		JOIN store s
+		ON p.sno = s.sno
+		ORDER BY party_no DESC
+		LIMIT #{pageStart}, #{cpp}
+	</select>
+	
+	<select id="getListByLike" resultType="party">
+		SELECT p.*, s.rdn_whl_addr,
+			(SELECT COUNT(*) FROM partylike l
+			WHERE p.party_no = l.party_no) AS likeCount
+		FROM party p
+		JOIN store s
+		ON p.sno = s.sno
+		ORDER BY likeCount DESC
+		LIMIT #{pageStart}, #{cpp}
+	</select>
 	
 	<select id="getArticle" resultType="party">
 		SELECT p.*, s.rdn_whl_addr,
@@ -84,6 +80,17 @@
 		FROM participants i JOIN party p
 		ON i.party_no = p.party_no
 		WHERE i.user_id = #{userId}	
+	</select>
+
+	<select id="getListHome" resultType="party">
+		SELECT p.*, s.rdn_whl_addr, s.uptae_nm,
+			(SELECT COUNT(*) FROM partylike l
+			WHERE p.party_no = l.party_no) AS likeCount
+		FROM party p
+		JOIN store s
+		ON p.sno = s.sno
+		ORDER BY likeCount DESC
+		LIMIT #{pageStart}, #{cpp}
 	</select>
 
 </mapper>

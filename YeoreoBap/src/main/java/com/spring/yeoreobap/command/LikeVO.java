@@ -11,5 +11,5 @@ public class LikeVO {
 
 	private int lno, partyNo, reviewNo;
 	private String userId;
-	
+
 }

@@ -9,7 +9,7 @@ import com.spring.yeoreobap.command.PartyVO;
 import com.spring.yeoreobap.util.PageVO;
 
 public interface IPartyService {
-	
+
 	// 글 등록 (사진없음)
 	void register(PartyVO vo);
 
@@ -30,11 +30,11 @@ public interface IPartyService {
 
 	// 참여
 	void attend(ParticipantsVO vo);
-	
+
 	// 참가 취소
 	void cancelAttend(ParticipantsVO vo);
-	
-	//총 게시물 수 (mypage)
+
+	// 총 게시물 수 (mypage)
 	int getTotal(PageVO vo);
 
 	//홈화면에 올릴 리스트

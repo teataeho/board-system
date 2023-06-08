@@ -11,6 +11,17 @@
 }
 
 /* Common style */
+#homePartyList .grid figure.effect-zoe {
+	width: 220px;
+	height: 300px;
+	position: relative;
+	overflow: hidden;
+	margin-right: 0;
+	background: #000;
+	text-align: left;
+	cursor: pointer;
+}
+
 .grid figure.effect-zoe {
 	width: 220px;
 	height: 300px;

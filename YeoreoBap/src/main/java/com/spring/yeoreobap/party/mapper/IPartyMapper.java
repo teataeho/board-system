@@ -9,20 +9,26 @@ import com.spring.yeoreobap.command.PartyVO;
 import com.spring.yeoreobap.util.PageVO;
 
 public interface IPartyMapper {
-	
-	//글 등록
+
+	// 글 등록
 	void regist(PartyVO vo);
-	//글 목록
+
+	// 글 목록
 	List<PartyVO> getList(PageVO vo);
-	//상세보기
+
+	// 상세보기
 	PartyVO getArticle(@Param("partyNo") int partyNo, @Param("userId") String userId);
-	//수정
+
+	// 수정
 	void update(PartyVO vo);
-	//삭제
+
+	// 삭제
 	void delete(int partyNo);
-	//참여
+
+	// 참여
 	void attend(ParticipantsVO vo);
-	//참가 취소
+
+	// 참가 취소
 	void cancelAttend(ParticipantsVO vo);
 	
 	//총 게시물 수 (mypage)
