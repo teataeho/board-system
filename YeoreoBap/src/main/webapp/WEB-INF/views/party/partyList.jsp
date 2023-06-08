@@ -87,6 +87,7 @@
 					const $stickyButtons = document.querySelector('.stickyButtons');
 					getList(1, true);
 
+
 					function getList(page, reset) {
 						str = '';
 						console.log('page: ' + page);
@@ -97,6 +98,7 @@
 							.then(list => {
 								console.log(list);
 								console.log(list.length);
+
 								if (list.length === 0) isFinish = true;
 
 								if (reset) {
@@ -169,11 +171,11 @@
 					let uid = '${userInfo.userId}';
 					document.getElementById('partyList').addEventListener('click', e => {
 						if (!e.target.matches('img')) return;
-                        else if (uid === '') {
-                            alert('로그인이 필요한 서비스입니다. :)');
-                            location.href = '${pageContext.request.contextPath}/user/userLogin';
-                            return;
-                        }
+						else if (uid === '') {
+							alert('로그인이 필요한 서비스입니다. :)');
+							location.href = '${pageContext.request.contextPath}/user/userLogin';
+							return;
+						}
 
 						fetch('content/' + e.target.id + '/' + uid)
 							.then(res => res.json())
