@@ -5,15 +5,6 @@
 			<%@ include file="../include/header.jsp" %>
 
 
-<<<<<<< HEAD
-				<section>
-					<div class="container">
-						<div class="row">
-							<div class="col-xs-12 col-md-9 write-wrap">
-								<div class="titlebox">
-									<h3>상세보기</h3>
-								</div>
-=======
 
 
 <section>
@@ -23,7 +14,6 @@
 				<div class="titlebox">
 					<h3>상세보기</h3>
 				</div>
->>>>>>> 0735601e0a08ff750c1ef5452a43ad6971d49ec2
 
 								<form action="${pageContext.request.contextPath}/review/modify" method="post" name="form">
 
@@ -131,13 +121,8 @@
 
 					<script>
 
-<<<<<<< HEAD
-						const $form = document.form;
-
-=======
 	const $form = document.form;
 	const uid = '${userInfo.userId}';
->>>>>>> 0735601e0a08ff750c1ef5452a43ad6971d49ec2
 
 						document.querySelector('.reviewBtns').addEventListener('click', e => {
 							if (e.target.matches('.delBtn')) {
@@ -149,13 +134,6 @@
 						});
 
 
-<<<<<<< HEAD
-						window.onload = function () {
-							document.getElementById('replyRegist').onclick = () => {
-								const reviewNo = document.getElementById('reviewNo').textContent //현재 게시글 번호
-								const reply = document.getElementById('reply').value;
-								const replyId = document.getElementById('replyId').textContent;
-=======
 	window.onload = function () {
 		document.getElementById('replyRegist').onclick = () => {
 			const reviewNo = document.getElementById('reviewNo').textContent //현재 게시글 번호
@@ -166,7 +144,6 @@
                 location.href = '${pageContext.request.contextPath}/user/userLogin';
                 return;
             }
->>>>>>> 0735601e0a08ff750c1ef5452a43ad6971d49ec2
 
 								if (reply === '') {
 									alert('내용을 입력해주세요.');

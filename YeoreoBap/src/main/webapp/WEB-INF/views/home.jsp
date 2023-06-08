@@ -14,7 +14,7 @@
 											alt="메인 이미지1">
 									</div>
 									<div class="carousel-item" data-bs-interval="3000">
-										<img src="${pageContext.request.contextPath}/img/ex_carousel2.png" class="d-block w-100 h-100"
+										<img src="${pageContext.request.contextPath}/img/animation.gif" class="d-block w-100 h-100"
 											alt="메인 이미지2">
 									</div>
 									<div class="carousel-item" data-bs-interval="3000">

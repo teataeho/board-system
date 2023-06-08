@@ -42,7 +42,7 @@
 			user_email1, user_email2, addr_gu,
 			addr_dong,
 			 p.party_no,  
-			p.title, p.reg_date 
+			p.title, p.reg_date , p.bplc_nm
 		FROM users u
 		 LEFT JOIN party p 
 		ON u.user_id = p.writer

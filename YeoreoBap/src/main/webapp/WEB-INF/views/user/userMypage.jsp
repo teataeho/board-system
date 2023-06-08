@@ -82,67 +82,64 @@
 					<br>
 					<br>
 					<br>
-					<br>
-					<br>
 					<!-- 두번째 토글 메뉴의 시작 -->
-
-					<p>*내 파티 관리</p>
-					<form>
-						<table class="table" id="partyList">
-							<thead>
-								<tr>
-									<td>가게</td>
-									<td>제목</td>
-									<td>작성일</td>
-								</tr>
-							</thead>
-							<tbody>
-
-								<c:forEach var="vo" items="${user.userPartyList}">
+					<div id="userParty">
+						<p>*내 파티 관리</p>
+						<form>
+							<table class="table" id="partyList">
+								<thead>
 									<tr>
-										<td>${vo.bplcNm}</td>
-										<td><a href="##" id="${vo.partyNo}">${vo.title}</a></td>
-										<td>
-											<fmt:parseDate value="${vo.regDate}" pattern="yyyy-MM-dd'T'HH:mm:ss"
-												var="parsedDate" type="both" />
-											<fmt:formatDate value="${parsedDate}" pattern="yyyy년 MM월 dd일 HH:mm" />
-										</td>
+										<td>가게</td>
+										<td>제목</td>
+										<td>작성일</td>
 									</tr>
-								</c:forEach>
-								<hr>
-							</tbody>
-						</table>
-					</form>
+								</thead>
+								<tbody>
 
-					<!-- 두번째 토글 끝 -->
-					<hr>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
+									<c:forEach var="vo" items="${user.userPartyList}">
+										<tr>
+											<td>${vo.bplcNm}</td>
+											<td><a href="##" id="${vo.partyNo}">${vo.title}</a></td>
+											<td>
+												<fmt:parseDate value="${vo.regDate}" pattern="yyyy-MM-dd'T'HH:mm:ss"
+													var="parsedDate" type="both" />
+												<fmt:formatDate value="${parsedDate}" pattern="yyyy년 MM월 dd일 HH:mm" />
+											</td>
+										</tr>
+									</c:forEach>
+									<hr>
+								</tbody>
+							</table>
+						</form>
 
-					<!-- 세번째 토글 메뉴의 시작 -->
-					<p>*참가한 파티</p>
-					<form>
-						<table class="table">
-							<thead>
-								<tr>
-									<td>가게</td>
-									<td>제목</td>
-								</tr>
-							</thead>
-							<tbody id="participantsList">
-								<hr>
-							</tbody>
-						</table>
+						<!-- 두번째 토글 끝 -->
+						<hr>
+						<br>
+						<br>
+						<br>
+
+						<!-- 세번째 토글 메뉴의 시작 -->
+						<p>*참가한 파티</p>
+						<form>
+							<table class="table">
+								<thead>
+									<tr>
+										<td>가게</td>
+										<td>제목</td>
+									</tr>
+								</thead>
+								<tbody id="participantsList">
+									<hr>
+								</tbody>
+							</table>
+						</form>
+						<!-- 세번째 토글 끝 -->
+					</div>
+					<form action="${pageContext.request.contextPath}/user/deleteUser" method="post" name="deleteForm">
+						<input type="hidden" value="${userInfo.userId}" name="userId">
+						<input type="submit" class="btn btn-outline-orange" value="회원 탈퇴" id="deleteUser">
 					</form>
-					<!-- 세번째 토글 끝 -->
 				</div>
-				<form action="${pageContext.request.contextPath}/user/deleteUser" method="post" name="deleteForm">
-					<input type="hidden" value="${userInfo.userId}" name="userId">
-					<input type="submit" value="회원 탈퇴" id="deleteUser">
-				</form>
 				<br>
 				<br>
 			</div>
@@ -150,101 +147,112 @@
 	</div>
 </section>
 
-<%@ include file="../include/footer.jsp"%>
 <!-- 모달달 -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
 	aria-labelledby="staticBackdropLabel" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered">
-		<div class="modal-content">
-			<div class="modal-header">
-				<input type="hidden" id="hiddenPartyNo"> <input type="hidden" id="hiddenUserId">
-				<h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+		<div class="modal-content d-flex">
+			<img id="modalImg" src="" alt="이미지">
+			<div class="modal-header d-flex align-items-center">
+				<input type="hidden" id="hiddenPartyNo">
+				<input type="hidden" id="hiddenUserId">
+				<h5 class="modal-title me-auto" id="staticBackdropLabel">Modal title</h5>
+				<a href="" id="like"><i class="bi bi-heart text-danger"></i></a>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
-				<span>식당이름</span><span class="res-name"></span> <br> <span class="content"></span> <br>
-				<span>정원</span><span class="max"></span>
-				<br>
-				<br> <a href="#" id="like" class="text-danger"><i class="bi bi-heart"></i></a>
+				<span class="content"></span> <br>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">모달 누르면 그냥 지워지는 버튼</button>
+				<span>식당이름 : </span><span class="res-name"></span> <br>
+				<span>정원 : </span><span class="max"></span> <br><br>
+				<button type="button" class="modalBtn btn btn-orange"></button>
 			</div>
 		</div>
 	</div>
 </div>
+<%@ include file="../include/footer.jsp"%>
 <script>
-	//모달달
+	const uid = '${userInfo.userId}';
+
+	// 모달달
 	var modal = new bootstrap.Modal(document.querySelector('.modal'));
 	const $modalFooter = document.querySelector('.modal-footer');
+	const $modalBtn = document.querySelector('.modalBtn');
 
-
-	//글 상세보기
-	let uid = '${userInfo.userId}';
-	document.getElementById('partyList').addEventListener('click', e => {
-		if (uid === '') {
-			alert('로그인 후 이용해주세요! :(');
+	// 글 상세보기
+	document.getElementById('userParty').addEventListener('click', e => {
+		e.preventDefault();
+		if (!e.target.matches('a')) return;
+		else if (uid === '') {
+			alert('로그인이 필요한 서비스입니다. :)');
 			location.href = '${pageContext.request.contextPath}/user/userLogin';
 			return;
 		}
-		console.log('e.target : ' + e.target);
 
-		if ($modalFooter) {
-			while ($modalFooter.lastElementChild) {
-				$modalFooter.removeChild($modalFooter.lastElementChild);
-			}
+		fetch('${pageContext.request.contextPath}/party/content/' + e.target.id + '/' + uid)
+			.then(res => res.json())
+			.then(data => {
+				document.getElementById('hiddenPartyNo').value = data.partyNo
+				document.getElementById('hiddenUserId').value = data.writer;
+				document.querySelector('.modal-title').textContent = data.title;
+				document.querySelector('.res-name').textContent = data.bplcNm;
+				document.querySelector('.content').textContent = data.content;
+				document.querySelector('.max').textContent = data.max + '명';
+				console.log(data.attended);
 
+				if (data.fileName === null) {
+					document.getElementById('modalImg').setAttribute('src',
+						'${pageContext.request.contextPath}/party/getImg/thumbnail_3.jpg');
+				} else {
+					document.getElementById('modalImg').setAttribute('src',
+						'${pageContext.request.contextPath}/party/getImg/' + data.fileName);
+				}
 
+				//좋아요 true, false
+				if (data.isLike === 1) { // 하트 채워짐
+					document.querySelector('#like i').classList.remove('bi-heart');
+					document.querySelector('#like i').classList.add('bi-heart-fill');
+				} else {
+					document.querySelector('#like i').classList.remove('bi-heart-fill');
+					document.querySelector('#like i').classList.add('bi-heart');
+				}
 
-			fetch('${pageContext.request.contextPath}/party/content/' + e.target.id + '/' + uid)
-				.then(res => res.json())
-				.then(data => {
-					document.getElementById('hiddenPartyNo').value = data.partyNo
-					document.getElementById('hiddenUserId').value = data.writer;
-					document.querySelector('.modal-title').textContent = data.title;
-					document.querySelector('.res-name').textContent = data.bplcNm;
-					document.querySelector('.content').textContent = data.content;
-					document.querySelector('.max').textContent = data.max + '명';
-					console.log(data.attended);
-					//좋아요 true, false
-					if (data.isLike === 1) {
-						document.querySelector('#like i').classList.remove('bi-heart');
-						document.querySelector('#like i').classList.add('bi-heart-fill');
+				// 버튼 선택
+				if ($modalBtn.classList.contains('btn-outline-orange')) {
+					$modalBtn.classList.remove('btn-outline-orange');
+					$modalBtn.classList.add('btn-orange');
+				} else if ($modalBtn.disabled) {
+					$modalBtn.disabled = false;
+				}
+
+				if (uid === data.writer) {
+					$modalBtn.id = 'deleteParty';
+					$modalBtn.textContent = '삭제';
+				} else if (data.attended === 0) {
+					if (data.attendedNum >= data.max - 1) {
+						$modalBtn.id = 'attend';
+						$modalBtn.disabled = true;
+						$modalBtn.textContent = '풀파티';
 					} else {
-						document.querySelector('#like i').classList.remove('bi-heart-fill');
-						document.querySelector('#like i').classList.add('bi-heart');
+						$modalBtn.id = 'attend';
+						$modalBtn.textContent = '참가하기';
 					}
+				} else {
+					$modalBtn.id = 'cancelAttend';
+					$modalBtn.classList.remove('btn-orange');
+					$modalBtn.classList.add('btn-outline-orange');
+					$modalBtn.textContent = '참가 취소';
+				}
+			});
 
-					// 버튼 선택
-					if (uid === data.writer) {
-						$modalFooter.insertAdjacentHTML('beforeend',
-							`<button type="button" class="btn btn-primary" id="deleteParty">삭제</button>`);
-					} else if (data.attended === 0) {
-						if (data.attendedNum >= data.max - 1) {
-							$modalFooter.insertAdjacentHTML('beforeend',
-								`<button type="button" class="btn btn-primary" id="attend" disabled>풀파티</button>`
-								);
-						} else {
-							$modalFooter.insertAdjacentHTML('beforeend',
-								`<button type="button" class="btn btn-primary" id="attend">참가</button>`);
-						}
-					} else {
-						$modalFooter.insertAdjacentHTML('beforeend',
-							`<button type="button" class="btn btn-primary" id="cancelAttend">참가취소</button>`
-							);
-					}
-				});
-
-			modal.show();
-		} else {
-			console.log('modal-footer 없다');
-		}
+		modal.show();
 	});
 
 	$modalFooter.addEventListener('click', e => {
 		// 참가
 		if (e.target.id === 'attend') {
-			fetch('attend', {
+			fetch('${pageContext.request.contextPath}/party/attend', {
 					method: 'post',
 					headers: {
 						'Content-Type': 'application/json'
@@ -267,7 +275,7 @@
 
 		// 참가 취소
 		if (e.target.id === 'cancelAttend') {
-			fetch('cancelAttend', {
+			fetch('${pageContext.request.contextPath}/party/cancelAttend', {
 					method: 'delete',
 					headers: {
 						'Content-Type': 'application/json'
@@ -289,62 +297,11 @@
 		// 삭제
 		if (e.target.id === 'deleteParty') {
 			if (confirm('정말로 파티를 해체하시겠습니까?')) {
-				location.href = 'delete/' + document.getElementById('hiddenPartyNo').value;
+				location.href = '${pageContext.request.contextPath}/party/delete/' + document.getElementById(
+					'hiddenPartyNo').value;
 			}
 		}
 	});
-
-	//좋아요
-	document.getElementById('like').addEventListener('click', e => {
-		e.preventDefault();
-		if (!e.target.matches('i')) return;
-		//좋아요
-		if (document.querySelector('#like i').classList.contains('bi-heart')) {
-			fetch('${pageContext.request.contextPath}/like/partyLike', {
-					method: 'post',
-					headers: {
-						'Content-Type': 'application/json'
-					},
-					body: JSON.stringify({
-						'userId': uid,
-						'partyNo': document.getElementById('hiddenPartyNo').value
-					})
-				})
-				.then(res => res.text())
-				.then(text => {
-					if (text !== 'success') {
-						alert('이미 좋아요를 한 게시물이거나 알 수 없는 오류로 인해 좋아요가 취소되었습니다.');
-					} else {
-						document.querySelector('#like i').classList.remove('bi-heart')
-						document.querySelector('#like i').classList.add('bi-heart-fill');
-					}
-				})
-		}
-		//좋아요 삭제
-		if (document.querySelector('#like i').classList.contains('bi-heart-fill')) {
-			fetch('${pageContext.request.contextPath}/like/deletePartyLike', {
-					method: 'post',
-					headers: {
-						'Content-Type': 'application/json'
-					},
-					body: JSON.stringify({
-						'userId': uid,
-						'partyNo': document.getElementById('hiddenPartyNo').value
-					})
-				})
-				.then(res => res.text())
-				.then(text => {
-					if (text !== 'success') {
-						alert('삭제가 안됐습니다.');
-					} else {
-						document.querySelector('#like i').classList.remove('bi-heart-fill')
-						document.querySelector('#like i').classList.add('bi-heart');
-					}
-				})
-		}
-	})
-
-
 
 	function categoryChange(e) {
 		var addrDong_mapo = ["상암동", "성산동", "망원동", "연남동", "동교동", "서교동", "합정동",
@@ -393,18 +350,80 @@
 	//참여한 파티 보이기
 	let parStr = '';
 
-	window.onload = function() {
+	window.onload = function () {
 		fetch('${pageContext.request.contextPath}/party/getParticipantsParty/' + uid)
-		.then(res => res.json())
-		.then(data => {
-			for (let i = 0; i < data.length; i++) {
-				console.log(data[i]);
-				parStr += `<tr>
-						<td>`+ data[i].bplcNm + `</td>
-						<td><a href="##" id="data[i].partyNo">`+ data[i].title + `</a></td>
+			.then(res => res.json())
+			.then(data => {
+				for (let i = 0; i < data.length; i++) {
+					console.log(data[i]);
+					parStr += `<tr>
+						<td>` + data[i].bplcNm + `</td>
+						<td><a href="##" id="` + data[i].partyNo + `">` + data[i].title + `</a></td>
 					</tr>`;
-			}
-			document.getElementById('participantsList').insertAdjacentHTML('afterbegin', parStr);
-		});
+				}
+				document.getElementById('participantsList').insertAdjacentHTML('afterbegin', parStr);
+			});
 	}
+
+	//좋아요
+	document.getElementById('like').addEventListener('click', e => {
+		e.preventDefault();
+		if (!e.target.matches('i')) return;
+
+		//좋아요
+		if (document.querySelector('#like i').classList.contains('bi-heart')) {
+			fetch('${pageContext.request.contextPath}/like/partyLike', {
+					method: 'post',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({
+						'userId': uid,
+						'partyNo': document.getElementById('hiddenPartyNo').value
+					})
+				})
+				.then(res => res.text())
+				.then(text => {
+					if (text !== 'success') {
+						alert('이미 좋아요를 한 게시물이거나 알 수 없는 오류로 인해 좋아요가 취소되었습니다.');
+					} else {
+						document.querySelector('#like i').classList.remove('bi-heart');
+						document.querySelector('#like i').classList.add('bi-heart-fill');
+						for (heart of [...document.querySelectorAll('.likeCount')]) {
+							if (heart.dataset.partyno == document.getElementById('hiddenPartyNo').value) {
+								heart.textContent++;
+							}
+						}
+					}
+				})
+		}
+
+		// 좋아요 삭제
+		if (document.querySelector('#like i').classList.contains('bi-heart-fill')) {
+			fetch('${pageContext.request.contextPath}/like/deletePartyLike', {
+					method: 'post',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({
+						'userId': uid,
+						'partyNo': document.getElementById('hiddenPartyNo').value
+					})
+				})
+				.then(res => res.text())
+				.then(text => {
+					if (text !== 'success') {
+						alert('삭제가 안됐습니다.');
+					} else {
+						document.querySelector('#like i').classList.remove('bi-heart-fill');
+						document.querySelector('#like i').classList.add('bi-heart');
+						for (heart of [...document.querySelectorAll('.likeCount')]) {
+							if (heart.dataset.partyno == document.getElementById('hiddenPartyNo').value) {
+								heart.textContent--;
+							}
+						}
+					}
+				})
+		}
+	})
 </script>
