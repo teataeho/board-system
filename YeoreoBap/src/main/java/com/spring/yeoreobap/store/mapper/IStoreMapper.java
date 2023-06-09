@@ -2,18 +2,16 @@ package com.spring.yeoreobap.store.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.spring.yeoreobap.command.StoreVO;
-import com.spring.yeoreobap.util.PageVO;
 
 public interface IStoreMapper {
-
 	
-	List<StoreVO> getList(PageVO vo);
-
+	List<StoreVO> getList(@Param("uptaeNm") String uptaeNm,@Param("addr") String addr);
 	
-	StoreVO getContent(int sno);
+	void inputData(StoreVO vo);
 
-	
-	int getTotal(PageVO vo);
+	StoreVO getStoreInfo(int sno);	
 
 }

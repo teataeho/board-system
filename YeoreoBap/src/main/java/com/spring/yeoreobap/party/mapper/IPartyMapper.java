@@ -2,23 +2,40 @@ package com.spring.yeoreobap.party.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
+import com.spring.yeoreobap.command.ParticipantsVO;
 import com.spring.yeoreobap.command.PartyVO;
 import com.spring.yeoreobap.util.PageVO;
 
 public interface IPartyMapper {
-	
-	//글 등록
-	void regist(PartyVO vo);
-	//글 목록
-	List<PartyVO> getList(PageVO vo);
-	//게시글 총 수
-	int getTotal();
-	//상세보기
-	PartyVO getArticle(int partyNo);
-	//수정
-	void update(PartyVO vo);
-	//삭제
-	void delete(int partyNo);
-	//참여
 
+	// 글 등록
+	void regist(PartyVO vo);
+
+	// 글 목록
+	List<PartyVO> getList(PageVO vo);
+
+	// 상세보기
+	PartyVO getArticle(@Param("partyNo") int partyNo, @Param("userId") String userId);
+
+	// 수정
+	void update(PartyVO vo);
+
+	// 삭제
+	void delete(int partyNo);
+
+	// 참여
+	void attend(ParticipantsVO vo);
+
+	// 참가 취소
+	void cancelAttend(ParticipantsVO vo);
+	
+	//총 게시물 수 (mypage)
+		int getTotal(PageVO vo);
+	//홈꺼 리스트
+	List<PartyVO> getListHome();
+	
+	//마이페이지에 쓸 참여파티
+	List<PartyVO> getParticipantsParty(String userId);
 }

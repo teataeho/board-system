@@ -30,5 +30,11 @@
 	
 	<mybatis-spring:scan base-package="com.spring.yeoreobap.party.mapper"/>
 	<mybatis-spring:scan base-package="com.spring.yeoreobap.store.mapper"/>
+	<mybatis-spring:scan base-package="com.spring.yeoreobap.user.mapper"/>
+	<mybatis-spring:scan base-package="com.spring.yeoreobap.review.mapper"/>
+	<mybatis-spring:scan base-package="com.spring.yeoreobap.partyReply.mapper"/>
+	<mybatis-spring:scan base-package="com.spring.yeoreobap.reviewReply.mapper"/>
+	<mybatis-spring:scan base-package="com.spring.yeoreobap.star.mapper"/>
+	<mybatis-spring:scan base-package="com.spring.yeoreobap.like.mapper"/>
 	
 </beans>

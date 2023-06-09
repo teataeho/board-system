@@ -27,7 +27,6 @@
         <param name="Append" value="true" />
         <!-- <param name="MaxFileSize" value="100MB" /> -->
         <param name="DatePattern" value="'.'yyyy-MM-dd" />
-        h
         <!-- 
             로그 출력 시 형식 지정
             %p -> 로그 레벨 출력 (info, error, warn...)
@@ -65,7 +64,7 @@
      -->
 	
 	<!-- Application Loggers -->
-	<logger name="com.yeoreobap.myweb">
+	<logger name="com.spring.yeoreobap">
 		<level value="info" />
 	</logger>
 	

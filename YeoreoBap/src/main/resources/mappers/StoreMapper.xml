@@ -5,12 +5,22 @@
 <mapper namespace="com.spring.yeoreobap.store.mapper.IStoreMapper">
 
     <select id="getList" resultType="store">
-		SELECT * FROM store
-		ORDER BY sno DESC
-		LIMIT #{pageStart}, #{cpp}
+    	SELECT s.*, avg_star_rate.avg_rate
+		FROM store s
+		LEFT JOIN (
+		    SELECT sno, ROUND(AVG(star_rate), 1) AS avg_rate
+		    FROM star
+		    GROUP BY sno
+		) avg_star_rate ON s.sno = avg_star_rate.sno
+		WHERE s.rdn_whl_addr LIKE #{addr} AND s.uptae_nm = #{uptaeNm}
 	</select>
 	
-	<select id="getContent" resultType="store">
+	<insert id="inputData">
+		INSERT INTO store
+		VALUES(#{sno}, #{siteTel}, #{rdnWhlAddr}, #{bplcNm}, #{uptaeNm}, #{dtlstatenm}, #{x}, #{y})
+	</insert>
+	
+	<select id="getStoreInfo" resultType="store">
 		SELECT * FROM store
 		WHERE sno = #{sno}
 	</select>

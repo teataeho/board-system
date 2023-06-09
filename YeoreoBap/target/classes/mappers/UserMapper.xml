@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.yeoreobap.user.mapper.IUserMapper">
+
+	<resultMap type="user" id="userMap">
+		<result property="userName" column="user_name" />
+		<result property="userNick" column="user_nick" />
+        <result property="userEmail1" column="user_email1" />
+        <result property="userEmail2" column="user_email2" />
+        <result property="addrGu" column="addr_gu" />
+        <result property="addrDong" column="addr_dong" />
+		<collection property="userPartyList" resultMap="list"/>
+	</resultMap>
+
+	<resultMap type="party" id="list">
+		<id property="partyNo" column="party_no"/>
+		<result property="title" column="title"/>
+		<result property="bplcNm" column="bplc_nm"/>
+		<result property="regDate" column="reg_date"/>		
+	</resultMap>
+	
+	<insert id="join">
+		INSERT INTO users
+		(user_id, user_pw, user_name, user_nick,
+		user_email1, user_email2,
+		addr_gu, addr_dong)
+		VALUES(#{userId},#{userPw},#{userName}, #{userNick}, #{userEmail1},
+		#{userEmail2},#{addrGu},#{addrDong})
+	</insert>
+
+	<select id="login" resultType="string">
+		SELECT user_pw FROM users
+		WHERE
+		user_id=#{userId}
+	</select>
+	
+	<select id="getInfo" resultMap="userMap">
+		SELECT
+			user_id, user_name, user_nick
+			user_email1, user_email2, addr_gu,
+			addr_dong,
+			 p.party_no,  
+			p.title, p.reg_date , p.bplc_nm
+		FROM users u
+		 LEFT JOIN party p 
+		ON u.user_id = p.writer
+		WHERE u.user_id = #{userId}
+		ORDER BY p.party_no DESC
+		LIMIT #{paging.pageStart}, #{paging.cpp}
+	</select>
+
+	<select id="getUser" resultType="user">
+		SELECT user_id, user_name, user_nick,
+			user_email1, user_email2, addr_gu, addr_dong
+		 FROM users WHERE user_id = #{userId}
+	</select>
+
+	<select id="idCheck" resultType="int">
+		SELECT COUNT(*) FROM users
+		WHERE
+		user_id = #{userId}
+	</select>
+
+	<update id="updateUser">
+		UPDATE users
+		SET user_nick = #{userNick},
+		addr_gu = #{addrGu},
+		addr_dong = #{addrDong}
+		WHERE
+		user_id=#{userId}
+	</update>
+	
+	<delete id="deleteUser">
+		DELETE FROM users
+		WHERE user_id = #{userId}
+	</delete>
+</mapper>    	

@@ -1,0 +1,45 @@
+#mapageTable.table {
+	vertical-align: middle;
+}
+
+#mapageTable{
+	width: 80%;
+}
+.tab-content {
+	width: 70%;
+	margin: 0 auto;
+}
+
+td.m-title{
+	text-align: right;	
+}
+td.m-title span{
+	margin-left: 2px;
+	color: #F0975A;
+	font-weight: bold;
+}
+
+.locationTr #addrGu, .locationTr #addrDong {
+	width: 150px;
+}
+
+
+/* 수정버튼 */
+#mypageBtn{
+	width: 80px;
+	margin: 50px auto;
+}
+
+.titlefoot .mypageBtn {
+	width: 80px;
+	height: 40px;
+	border-radius: 5px;
+	background: #F4B183;
+	color: white;
+	transition: 0.3s;
+}
+
+.titlefoot .mypageBtn:hover {
+	background: #F0975A;;
+	color: white;
+}

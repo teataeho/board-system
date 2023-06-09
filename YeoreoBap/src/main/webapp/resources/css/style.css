@@ -1,50 +1,334 @@
-.mainArea .findPartyMenu {
-    border: solid 2px salmon;
+/*--------------- General Setting ---------------*/
+.size {
+	height: 500px;
+	overflow: hidden;
+	margin-top: 60px;
 }
 
-.mainArea .findPartyMenu {
-    border: solid 2px yellow;
-    display: flex;
+body a {
+	text-decoration: none;
+	color: black;
 }
 
-.mainArea .findPartyMenu .party {
-	background-color: hotpink;
+li {
+	list-style: none;
 }
 
-.mainArea .findPartyMenu .party > div{
+i {
+	position: relative;
+}
+
+.necessary {
+	font-weight: bold;
+	font-size: 15px;
+	color: red;
+}
+
+.information {
+	font-size: 13px;
+	color: lightgray;
+	margin-bottom: 5px;
+}
+
+/*--------------- header.jsp ---------------*/
+header {
+	background-color: #fff;
+}
+
+#header-flex-left {
+	width: 330px;
+}
+
+ul.login-menu {
+	position: relative;
+	margin-bottom: 10px;
+}
+
+#welcomeMsg {
+	position: absolute;
+	top: 12px;
+	right: 0;
+
+	font-size: 18px;
+}
+
+#welcomeMsg strong {
+	font-size: 20px;
+}
+
+ul.login-menu li a {
+	margin-left: 20px;
+}
+
+/*--------------- footer.jsp ---------------*/
+#p {
+	font-size: 10px !important;
+	margin-bottom: 0 !important;
+}
+
+h6 {
+	font-size: 12px !important;
+	margin-bottom: -10px !important;
+}
+
+/*--------------- Main Page (home.jsp) ---------------*/
+.carousel-control.right,
+.carousel-control.left {
+	background-image: linear-gradient(to right, rgba(0, 0, 0, .0001) 0%,
+			rgba(0, 0, 0, 0) 100%)
+}
+
+.page-header h1 {
+	margin-left: 10px;
+	font-weight: bold;
+}
+
+.page-header small {
+	margin-left: 10px;
+	font-size: 15px;
+	font-weight: normal;
+}
+
+/*--------------- Join Page (userJoin.jsp) ---------------*/
+#section {
+	margin: 70px auto 0;
+	max-width: 600px;
+}
+
+/* 아이디 input, btn */
+#userId {
+	margin-right: 10px;
+}
+
+/* 이메일 input */
+#emailBorder {
 	display: flex;
+	align-items: center;
+	margin-bottom: 10px;
+}
+
+#emailBorder p {
+	margin: 0 10px;
+}
+
+#userEmail1 {
+	flex-grow: 10;
+}
+
+#userEmail2 {
+	flex-grow: 10;
+	margin-right: 10px;
+}
+
+#emailSelection {
+	flex-grow: 10;
+	margin-bottom: 0;
+	height: 48.67px;
+}
+
+#emailCheck {
+	margin-right: 10px;
+}
+
+#emailVerification {
+	width: 600px;
+	margin-left: 1px;
+}
+
+/* 활동하고 싶은 동네 */
+#locBorder {
+	display: flex;
+	height: 48.67px;
+}
+
+#locBorder .locGu {
+	margin-right: 10px;
+}
+
+/* 회원가입 로그인 버튼 */
+.btns {
+	margin-top: 30px;
+	display: flex;
+	justify-content: center;
+}
+
+#joinBtn,
+#loginBtn {
+	width: 135px;
+	height: 50px;
+	margin: 0 10px;
 }
 
 
-
-.mainArea .findPartyMenu .party:first-child {
-    border: dashed 2px green;
-    flex-grow: 2;
-
+/*--------------- Login Page (userLogin.jsp) ---------------*/
+.loginBorder {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 200px;
 }
 
-.mainArea .findPartyMenu .party:nth-child(2) {
-    border: dashed 2px orange;
-    flex-grow: 1;
+.loginBorder .idPw {
+	margin-bottom: 30px;
 }
 
-.mainArea .findPartyMenu .party:last-child {
-    border: solid 2px red;
-    flex-grow: 1;
+.loginBorder .idPw #userId.loginId {
+	margin-bottom: 10px;
 }
 
-.mainArea .findPartyMenu .party .partyBox {
-	width: 160px;
-	height: 240px;
-	padding: 10px;
+.loginBorder .idPw #userPw.loginPw {
+	margin-top: 10px;
+}
+
+.login-div {
+	display: flex;
+	flex-direction: column;
+}
+
+#loginBtn.loginBtn {
+	width: 106px;
+	height: 106px;
+}
+
+#userLoginBtns a {
+	margin-top: 6px;
+	font-size: 15px;
 }
 
 
-.mainArea .findPartyMenu .getParty .partyBox {
-    display: flex;
+/*--------------- PartyList Page (partyList.jsp) ---------------*/
+.partyList {
+	position: relative;
 }
 
-.mainArea .findPartyMenu .getParty .partyBox span {
-    display: flex;
-    flex-direction: row;
+#orderBy {
+	position: absolute;
+	top: 0;
+	right: 10px;
+}
+
+#top {
+	height: 130px;
+}
+
+/* 최상단 이동 버튼 */
+.partyListStickyBtns {
+	position: sticky;
+	bottom: 400px;
+}
+
+.stickyButtons {
+	display: inline-flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 100px;
+
+	position: absolute;
+	right: 15px;
+}
+
+.stickyButtons a {
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+}
+
+i.bi-arrow-up-short {
+	font-size: 40px;
+}
+
+i.bi-arrow-up-short::before {
+	background-color: #fff;
+	color: #F0975A;
+	border: 2px solid #F0975A;
+	border-radius: 50%;
+}
+
+#register {
+	display: inline-block;
+	width: 42px;
+	height: 42px;
+
+	background-color: #fff;
+	color: #F0975A;
+	border: 2px solid #F0975A;
+	border-radius: 50%;
+}
+
+i.bi-pencil {
+	font-size: 25px;
+}
+
+i.bi-pencil::before {
+	padding: 6.5px;
+}
+
+/*--------------- 모달달 (partyList.jsp) ---------------*/
+.modal-img-size {
+	width: 500px;
+	height: 500px;
+	overflow: hidden;
+	position: relative;
+}
+
+#modalImg {
+	height: 500px;
+
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.modal-footer-left {
+	font-size: 17px;
+}
+
+/* 모달 하트 디자인 */
+#like i {
+	width: 36px;
+	height: 36px;
+}
+
+#like i::before {
+	margin-top: 9px;
+}
+
+/*--------------- PartyRegister Page (partyRegister.jsp) ---------------*/
+p.partyRegisterTitle {
+	width: 100px;
+	margin: 0;
+	text-align: right;
+}
+
+#partyRegisterMax {
+	width: 80px;
+}
+
+#file-upload-img {
+	width: 280px;
+}
+
+#partyRegisterRight {
+	width: 400px;
+}
+
+#partyRegisterRight label {
+	cursor: pointer;
+}
+
+
+/* reviewRegist.jsp 별점 모달 css */
+.rating-stars {
+	font-size: 30px;
+	cursor: pointer;
+	color: gray;
+}
+
+.rating-stars .star {
+	color: gray;
+}
+
+.rating-stars .star.active {
+	color: gold;
 }
