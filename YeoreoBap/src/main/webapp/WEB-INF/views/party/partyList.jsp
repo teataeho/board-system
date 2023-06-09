@@ -7,7 +7,7 @@
 
 				<!-- 파티 모집글 작성을 유도하는 글 -->
 				<div class="size">
-					<img src="${pageContext.request.contextPath}/img/ex_carousel1.png" class="d-block w-100" alt="메인 이미지1">
+					<img src="${pageContext.request.contextPath}/img/carousel_2.png" class="d-block w-100" alt="메인 이미지1">
 				</div>
 
 				<!-- 최상단 이동 버튼 클릭 시 이동 위치 -->
@@ -38,31 +38,32 @@
 			<%@ include file="../include/footer.jsp" %>
 
 				<!-- 모달달 -->
-				<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-					aria-labelledby="staticBackdropLabel" aria-hidden="true">
-					<div class="modal-dialog modal-dialog-centered">
-						<div class="modal-content">
-							<div class="modal-img-size"><img id="modalImg" src="" alt="이미지"></div>
-							<div class="modal-header d-flex align-items-center shadow">
-								<input type="hidden" id="hiddenPartyNo">
-								<input type="hidden" id="hiddenUserId">
-								<h5 class="modal-title me-auto" id="staticBackdropLabel">Modal title</h5>
-								<a href="" id="like"><i class="bi bi-heart text-danger"></i></a>
-								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-							</div>
-							<div class="modal-body">
-								<span class="content"></span> <br>
-							</div>
-							<div class="modal-footer d-flex flex-nowrap justify-content-between border-top border-light-orange">
-								<div class="modal-footer-left">
-									<span>식당이름 : </span><span class="res-name"></span> <br>
-									<span>정원 : </span><span class="attendedNum"></span> / <span class="max"></span>명
-								</div>
-								<button type="button" class="modalBtn btn btn-orange"></button>
-							</div>
-						</div>
-					</div>
-				</div>
+				<!-- 모달달 -->
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-img-size"><img id="modalImg" src="" alt="이미지"></div>
+                            <div class="modal-header d-flex align-items-center shadow">
+                                <input type="hidden" id="hiddenPartyNo">
+                                <input type="hidden" id="hiddenUserId">
+                                <h5 class="modal-title me-auto" id="staticBackdropLabel">Modal title</h5>
+                                <a href="" id="like"><i class="bi bi-heart text-danger"></i></a>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <span class="content" style="white-space: pre-line;"></span> <br>
+                            </div>
+                            <div class="modal-footer d-flex flex-nowrap justify-content-between border-top border-light-orange">
+                                <div class="modal-footer-left">
+                                    <span>식당이름 : </span><span class="res-name"></span> <br>
+                                    <span>정원 : </span><span class="attendedNum"></span> / <span class="max"></span>명
+                                </div>
+                                <button type="button" class="modalBtn btn btn-orange"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
 
@@ -178,7 +179,6 @@
 								document.querySelector('.max').textContent = data.max;
 								document.querySelector('.attendedNum').textContent = data.attendedNum + 1;
 								console.log(data.attended);
-
 								if (data.fileName === null) {
 									document.getElementById('modalImg').setAttribute('src', '${pageContext.request.contextPath}/party/getImg/thumbnail_3.jpg');
 								} else {
@@ -194,6 +194,8 @@
 									document.querySelector('#like i').classList.add('bi-heart');
 								}
 
+								console.log(uid);
+								console.log(data.writer);
 								// 버튼 선택
 								if ($modalBtn.classList.contains('btn-outline-orange')) {
 									$modalBtn.classList.remove('btn-outline-orange');

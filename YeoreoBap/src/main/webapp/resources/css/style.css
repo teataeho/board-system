@@ -294,6 +294,30 @@ i.bi-pencil::before {
 	margin-top: 9px;
 }
 
+/*--------------- PartyRegister Page (partyRegister.jsp) ---------------*/
+p.partyRegisterTitle {
+	width: 100px;
+	margin: 0;
+	text-align: right;
+}
+
+#partyRegisterMax {
+	width: 80px;
+}
+
+#file-upload-img {
+	width: 280px;
+}
+
+#partyRegisterRight {
+	width: 400px;
+}
+
+#partyRegisterRight label {
+	cursor: pointer;
+}
+
+
 /* reviewRegist.jsp 별점 모달 css */
 .rating-stars {
 	font-size: 30px;

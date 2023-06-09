@@ -9,9 +9,9 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12 content-wrap" style="align-content: center;">
-				<div class="titlebox registTitle">
-					<h2>후기게시판</h2>
-				</div>
+				<section id="section">
+					<h2 class="text-center border-bottom border-orange pb-3 mb-4">후기 작성하기</h2>
+				</section>
 
 				<form action="${pageContext.request.contextPath}/review/regist" method="post" name="reviewForm">
 					<table class="table" id="reviewTable">
@@ -29,7 +29,7 @@
 								<td id="resName">
 									<c:set var="party" value="${party}" />
 									<c:set var="attendedParty" value="${attendedParty}" />
-									<select name="sno" id="sno">
+									<select name="sno" id="sno" class="form-select">
 										<c:forEach items="${party}" var="party" varStatus="status">
 											<option value="${party.sno}">${party.bplcNm}</option>
 										</c:forEach>
@@ -53,7 +53,8 @@
 					<input type="hidden" name="writer" id="userId" value="${userInfo.userId}">
 					<div class="titlefoot reviewTitleFoot">
 						<button class="btn register" id="registBtn" type="button">등록</button>
-						<button class="btn" id="listBtn" type="button" onclick="location.href='${pageContext.request.contextPath}/review/reviewList'">목록</button>
+						<button class="btn" id="listBtn" type="button"
+							onclick="location.href='${pageContext.request.contextPath}/review/reviewList'">목록</button>
 					</div>
 
 				</form>
@@ -68,8 +69,9 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title">가게의 별점을 매겨주세요!</h5>
-				<p>*별점은 내부 데이터에만 수집되고 글에는 명시 되지 않습니다.</p>
+				<h5 class="modal-title">가게의 별점을 매겨주세요!<br><small class="information">*별점은 내부 데이터에만 수집되고 글에는 명시되지
+						않습니다.</small></h5>
+
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">

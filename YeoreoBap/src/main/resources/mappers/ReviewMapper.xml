@@ -31,6 +31,7 @@
 		(review_no, sno, writer, title, content)
 		VALUES (#{reviewNo}, #{sno}, #{writer}, #{title}, #{content})
 	</insert>
+	
 	<!-- regDate, updateDate 삭제 -->
 	<select id="getList" resultType="review">
 		SELECT r.*, u.user_nick, s.bplc_nm
@@ -62,10 +63,10 @@
 	</select>
 	
 	<select id="getContent" resultType="review">
-		SELECT r.*, u.user_nick
-		FROM review r 
-		JOIN users u
-		ON r.writer = u.user_id
+		SELECT r.*, u.user_nick, s.bplc_nm
+		FROM review r
+		JOIN users u ON r.writer = u.user_id
+		JOIN store s ON r.sno = s.sno
 		WHERE review_no = #{reviewNo}
 	</select>
 	

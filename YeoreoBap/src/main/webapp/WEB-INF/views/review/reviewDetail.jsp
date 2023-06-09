@@ -28,7 +28,6 @@
 											</c:if>
 										</div>
 
-
 										<div class="form-group">
 											<input type="hidden" value="${article.reviewNo}" id="reviewNo" name="reviewNo">
 										</div>
@@ -40,6 +39,15 @@
 											<input type="hidden" value="${article.userNick}" name="userNick">
 											<input type="hidden" value="${article.writer}" name="writer">
 										</div>
+
+										<div class="form-group">
+											<p class="subTitle">
+												식당 이름 <span>|</span>
+											</p>
+											<p class="reviewData">${article.bplcNm}</p>
+											<input type="hidden" value="${article.bplcNm}" name="bplcNm">
+										</div>
+
 										<div class="form-group">
 											<p class="subTitle">
 												제목 <span>|</span>
@@ -52,7 +60,7 @@
 											<p class="subTitle">
 												내용 <span>|</span>
 											</p>
-											<p class="reviewData dataBorder">${article.content}</p>
+											<p class="reviewData dataBorder" style="white-space: pre-line;">${article.content}</p>
 											<input type="hidden" value="${article.content}" name="content">
 										</div>
 
@@ -78,10 +86,7 @@
 <!-- 댓글 영역 시작 -->
 <section style="margin-top: 80px;">
 	<div class="container">
-
-		<hr>
-		<h5>댓글</h5>
-		<div class="row">
+		<div class="row border-top border-orange">
 			<div class="col-xs-9 col-md-9 write-wrap">
 				<form class="reply-wrap">
 					<!--form-control은 부트스트랩의 클래스입니다-->
@@ -89,17 +94,13 @@
 
 						<div class="reply-group">
 							<div class="replyUser">
-								<p class="subTitle">
-									닉네임 <span>|</span>
-								</p>
-								<p class="userNick" id="replyNick">${userInfo.userNick}</p>
+								<h5 class="mt-3 ps-1">댓글</h5>
 								<p class="userId" id="replyId" style="display: none;">${userInfo.userId}</p>
 							</div>
 							<div class="reply-input">
 								<textarea class="form-control" rows="3" id="reply"
 									placeholder="댓글을 입력해주세요"></textarea>
-								<button type="button" id="replyRegist"
-									class="right btn btn-info">등록하기</button>
+									<button type="button" id="replyRegist" class="right btn btn-orange">등록하기</button>
 
 							</div>
 						</div>
@@ -114,10 +115,8 @@
 			</div>
 		</div>
 	</div>
+	</div>
 </section>
-
-
-
 
 <%@ include file="../include/footer.jsp"%>
 
@@ -149,6 +148,7 @@
 
 			if (reply === '') {
 				alert('내용을 입력해주세요.');
+				document.getElementById('reply').focus();
 				return;
 			}
 			//요청에 관련된 정보 객체
@@ -227,12 +227,10 @@
 					    strAdd += `
 					        <div class='reply-wrap'>
 					            <div class="reply-content">
-					                <div class='my-reply-group'>
-					                    <p class='left'>` + replyList[i].userNick + `</p> <span>|</span>
-					                    <p class='clearfix' >` + replyList[i].reply + `</p>
-					                    <a href='` + replyList[i].replyNo + `' class='right replyDelete'
-					                        id='replyDelBtn'>X삭제</a>
-					                </div>
+					                <div class='d-flex align-items-center px-2 mb-3'>
+					                    <span>` + replyList[i].userNick + `</span> <span class='text-orange mx-2'> | </span>
+					                    <span class='me-auto'>` + replyList[i].reply + `</span>
+															<button class='btn btn-outline-orange btn-sm' id='reviewReplyDelBtn' onclick="location.href='`+ replyList[i].replyNo + `'">삭제 X</button>
 					            </div>
 					         </div>`;
 					}
@@ -281,7 +279,7 @@
 
 		const $replyListWrap = document.getElementById('replyListWrap');
 		$replyList.addEventListener('click', function (e) {
-			e.preventDefault(); //태그의 고유 기능을 중지
+			e.preventDefault();
 			if (!e.target.matches('a')) return;
 
 
