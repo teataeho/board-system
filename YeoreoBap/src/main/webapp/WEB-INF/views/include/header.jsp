@@ -16,6 +16,7 @@
 			<link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
 			<link href="${pageContext.request.contextPath}/css/reviewList.css" rel="stylesheet">
 			<link href="${pageContext.request.contextPath}/css/reviewDetail.css" rel="stylesheet">
+			<link href="${pageContext.request.contextPath}/css/partyRegister.css" rel="stylesheet">
 			<link href="${pageContext.request.contextPath}/css/userMypage.css" rel="stylesheet">
 			<link href="${pageContext.request.contextPath}/css/reviewModify.css" rel="stylesheet">
 			<link href="${pageContext.request.contextPath}/css/reviewRegist.css" rel="stylesheet">

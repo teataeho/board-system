@@ -10,11 +10,11 @@
 							<div class="size mb-5">
 								<div class="carousel-inner">
 									<div class="carousel-item active" data-bs-interval="3000">
-										<img src="${pageContext.request.contextPath}/img/carousel_1.png" class="d-block w-100 h-100"
+										<img src="${pageContext.request.contextPath}/img/ex_carousel1.png" class="d-block w-100 h-100"
 											alt="메인 이미지1">
 									</div>
 									<div class="carousel-item" data-bs-interval="3000">
-										<img src="${pageContext.request.contextPath}/img/carousel_2.png" class="d-block w-100 h-100"
+										<img src="${pageContext.request.contextPath}/img/animation.gif" class="d-block w-100 h-100"
 											alt="메인 이미지2">
 									</div>
 									<div class="carousel-item" data-bs-interval="3000">
@@ -55,32 +55,31 @@
 						<!-- 파티 리스트 끝 -->
 
 						<!-- 모달달 -->
-						<!-- 모달달 -->
 						<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-						aria-labelledby="staticBackdropLabel" aria-hidden="true">
-						<div class="modal-dialog modal-dialog-centered">
-							<div class="modal-content">
-								<div class="modal-img-size"><img id="modalImg" src="" alt="이미지"></div>
-								<div class="modal-header d-flex align-items-center shadow">
-									<input type="hidden" id="hiddenPartyNo">
-									<input type="hidden" id="hiddenUserId">
-									<h5 class="modal-title me-auto" id="staticBackdropLabel">Modal title</h5>
-									<a href="" id="like"><i class="bi bi-heart text-danger"></i></a>
-									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-								</div>
-								<div class="modal-body">
-									<span class="content" style="white-space: pre-line;"></span> <br>
-								</div>
-								<div class="modal-footer d-flex flex-nowrap justify-content-between border-top border-light-orange">
-									<div class="modal-footer-left">
-										<span>식당이름 : </span><span class="res-name"></span> <br>
-										<span>정원 : </span><span class="attendedNum"></span> / <span class="max"></span>명
+							aria-labelledby="staticBackdropLabel" aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered">
+								<div class="modal-content">
+									<div class="modal-img-size"><img id="modalImg" src="" alt="이미지"></div>
+									<div class="modal-header d-flex align-items-center shadow">
+										<input type="hidden" id="hiddenPartyNo">
+										<input type="hidden" id="hiddenUserId">
+										<h5 class="modal-title me-auto" id="staticBackdropLabel">Modal title</h5>
+										<a href="" id="like"><i class="bi bi-heart text-danger"></i></a>
+										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 									</div>
-									<button type="button" class="modalBtn btn btn-orange"></button>
+									<div class="modal-body">
+										<span class="content"></span> <br>
+									</div>
+									<div class="modal-footer d-flex flex-nowrap justify-content-between border-top border-light-orange">
+										<div class="modal-footer-left">
+											<span>식당이름 : </span><span class="res-name"></span> <br>
+											<span>정원 : </span><span class="attendedNum"></span> / <span class="max"></span>명
+										</div>
+										<button type="button" class="modalBtn btn btn-orange"></button>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
 
 						<!-- 후기 게시판 제목 -->
 						<div class="page-header border-bottom border-orange mt-4 mb-4">

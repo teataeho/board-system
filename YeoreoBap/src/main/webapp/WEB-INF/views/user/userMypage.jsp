@@ -25,18 +25,19 @@
 							<tbody class="m-control">
 								<tr>
 									<td class="m-title">ID<span>|</span></td>
-									<td><input class="form-control input-sm" name="userId" value="${userInfo.userId}" readonly>
-									</td>
+									<td><input class="form-control input-sm" name="userId" value="${userInfo.userId}"
+											readonly></td>
 								</tr>
 								<tr>
 									<td class="m-title">이름<span>|</span></td>
-									<td><input class="form-control input-sm" name="userName" value="${userInfo.userName}"
-											readonly></td>
+									<td><input class="form-control input-sm" name="userName"
+											value="${userInfo.userName}" readonly></td>
 								</tr>
 
 								<tr>
 									<td class="m-title">*닉네임<span>|</span></td>
-									<td><input class="form-control input-sm" name="userNick" value="${userInfo.userNick}"></td>
+									<td><input class="form-control input-sm" name="userNick"
+											value="${userInfo.userNick}"></td>
 								</tr>
 								<tr>
 									<td class="m-title">E-mail<span>|</span></td>
@@ -48,7 +49,8 @@
 
 								<tr class="locationTr">
 									<td class="m-title">*구<span>|</span></td>
-									<td><select name="addrGu" id="addrGu" onchange="categoryChange(this)" class="form-select">
+									<td><select name="addrGu" id="addrGu" onchange="categoryChange(this)"
+											class="form-select">
 											<option value="${userInfo.addrGu}">${userInfo.addrGu}</option>
 											<c:choose>
 												<c:when test="${userInfo.addrGu == '서대문구'}">
@@ -71,106 +73,9 @@
 
 					</form>
 
-					<div class="d-flex flex-nowrap justify-content-center mx-auto">
-						<button id="updateBtn" type="button" class="btn btn-orange me-3">수정</button>
-						<form action="${pageContext.request.contextPath}/user/deleteUser" method="post" name="deleteForm">
-							<input type="hidden" value="${userInfo.userId}" name="userId">
-							<input type="submit" class="btn btn-outline-orange" value="회원 탈퇴" id="deleteUser">
-						</form>
+					<div class="titlefoot" id="mypageBtn">
+						<button class="btn mypageBtn" id="updateBtn">수정</button>
 					</div>
-					</div>
-
-					<!-- 첫번째 토글 끝 -->
-					<hr>
-					<br>
-					<br>
-					<br>
-					<!-- 두번째 토글 메뉴의 시작 -->
-					<div id="userParty">
-						<p>내가 주최한 여러밥</p>
-						<form>
-							<table class="table" id="partyList">
-								<thead>
-									<tr>
-										<td>가게</td>
-										<td>제목</td>
-										<td>작성일</td>
-									</tr>
-								</thead>
-								<tbody>
-
-									<c:forEach var="vo" items="${user.userPartyList}">
-										<tr>
-											<td>${vo.bplcNm}</td>
-											<td><a href="##" id="${vo.partyNo}">${vo.title}</a></td>
-											<td>
-												<fmt:parseDate value="${vo.regDate}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDate"
-													type="both" />
-												<fmt:formatDate value="${parsedDate}" pattern="yyyy년 MM월 dd일 HH:mm" />
-											</td>
-										</tr>
-									</c:forEach>
-									<hr>
-								</tbody>
-							</table>
-						</form>
-
-						<!-- 두번째 토글 끝 -->
-						<hr>
-						<br>
-						<br>
-						<br>
-
-						<!-- 세번째 토글 메뉴의 시작 -->
-						<p>내가 참여한 여러밥</p>
-						<form>
-							<table class="table">
-								<thead>
-									<tr>
-										<td>가게</td>
-										<td>제목</td>
-									</tr>
-								</thead>
-								<tbody id="participantsList">
-									<hr>
-								</tbody>
-							</table>
-						</form>
-						<!-- 세번째 토글 끝 -->
-					</div>
-				</div>
-				<br>
-				<br>
-			</div>
-		</div>
-	</div>
-</section>
-
-<!-- 모달달 -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-	aria-labelledby="staticBackdropLabel" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered">
-		<div class="modal-content">
-			<div class="modal-img-size"><img id="modalImg" src="" alt="이미지"></div>
-			<div class="modal-header d-flex align-items-center shadow">
-				<input type="hidden" id="hiddenPartyNo">
-				<input type="hidden" id="hiddenUserId">
-				<h5 class="modal-title me-auto" id="staticBackdropLabel">Modal title</h5>
-				<a href="" id="like"><i class="bi bi-heart text-danger"></i></a>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			</div>
-			<div class="modal-body">
-				<span class="content"></span> <br>
-			</div>
-			<div class="modal-footer d-flex flex-nowrap justify-content-between border-top border-light-orange">
-				<div class="modal-footer-left">
-					<span>식당이름 : </span><span class="res-name"></span> <br>
-					<span>정원 : </span><span class="attendedNum"></span> / <span class="max"></span>명
-				</div>
-				<button type="button" class="modalBtn btn btn-orange"></button>
-			</div>
-		</div>
-	</div>
 
 					<!-- 첫번째 토글 끝 -->
 					<hr>
@@ -261,7 +166,7 @@
 									<div class="modal-footer d-flex flex-nowrap justify-content-between border-top border-light-orange">
 										<div class="modal-footer-left">
 											<span>식당이름 : </span><span class="res-name"></span> <br>
-											<span>정원 : </span><span class="attendedNum"></span> / <span class="max"></span>
+											<span>정원 : </span><span class="attendedNum"></span> / <span class="max"></span>명
 										</div>
 										<button type="button" class="modalBtn btn btn-orange"></button>
 									</div>
