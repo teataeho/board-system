@@ -44,6 +44,7 @@
 
 .form-group .reviewData {
 	font-size: 0.8em;
+	white-space: pre-wrap;
 }
 
 .form-group .reviewTitle {
@@ -54,9 +55,10 @@
 	border: 1px solid gainsboro;
 	border-radius: 5px;
 	width: 80%;
-	height: 200px;
+	min-height: 200px;
 	margin-bottom: 0;
 	padding: 5px 10px;
+	overflow: hidden;
 }
 
 

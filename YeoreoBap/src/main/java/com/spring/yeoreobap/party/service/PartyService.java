@@ -2,16 +2,21 @@ package com.spring.yeoreobap.party.service;
 
 import java.io.File;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.yeoreobap.command.ParticipantsVO;
 import com.spring.yeoreobap.command.PartyVO;
 import com.spring.yeoreobap.party.mapper.IPartyMapper;
 import com.spring.yeoreobap.util.PageVO;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class PartyService implements IPartyService {
 	
 	@Autowired

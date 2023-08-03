@@ -7,20 +7,20 @@
 
 <sql id="search">
 	 	<if test="condition == 'title'">
-	 		WHERE title LIKE CONCAT('%', #{keyword}, '%')
+	 		WHERE r.title LIKE CONCAT('%', #{keyword}, '%')
 	 	</if>
 	 	<if test="condition == 'writer'">
-	 		WHERE u.user_nick LIKE CONCAT('%', #{keyword}, '%')
+	 		WHERE r.writer LIKE CONCAT('%', #{keyword}, '%')
 	 	</if>
 	 	<if test="condition == 'content'">
-	 		WHERE content LIKE CONCAT('%', #{keyword}, '%')
+	 		WHERE r.content LIKE CONCAT('%', #{keyword}, '%')
 	 	</if>
-	 	<if test="condition == 'restaurant'">
+	 	<!-- <if test="condition == 'restaurant'">
 	 		WHERE s.bplc_nm LIKE CONCAT('%', #{keyword}, '%')
-	 	</if>
+	 	</if> -->
 	 	<if test="condition == 'titleContent'">
-	 		WHERE title LIKE CONCAT('%', #{keyword}, '%')
-	 		OR content LIKE CONCAT('%', #{keyword}, '%')
+	 		WHERE r.title LIKE CONCAT('%', #{keyword}, '%')
+	 		OR r.content LIKE CONCAT('%', #{keyword}, '%')
 	 	</if>
 	 </sql>
 
@@ -28,44 +28,34 @@
 
 	<insert id="regist">
 		INSERT INTO review
-		(review_no, sno, writer, title, content)
-		VALUES (#{reviewNo}, #{sno}, #{writer}, #{title}, #{content})
+		(password, writer, title, content)
+		VALUES (#{password}, #{writer}, #{title}, #{content})
 	</insert>
 	<!-- regDate, updateDate 삭제 -->
 	<select id="getList" resultType="review">
-		SELECT r.*, u.user_nick, s.bplc_nm
+		SELECT ROW_NUMBER() OVER (ORDER BY r.review_no) AS rn, r.*
 		FROM review r
-		JOIN users u
-		ON r.writer = u.user_id
-		JOIN store s ON r.sno = s.sno
 		<include refid="search" />
-		ORDER BY review_no DESC
+		ORDER BY r.review_no DESC
 		LIMIT #{pageStart}, #{cpp}
 	</select>
 	
 	<select id="getList2" resultType="review">
-		SELECT r.*, u.user_nick, s.bplc_nm
-		FROM review r JOIN users u
-		ON r.writer = u.user_id
-		JOIN store s ON r.sno = s.sno
+		SELECT *
+		FROM review
 		ORDER BY review_no DESC
 		LIMIT 0, 5
 	</select>
 	
 	<select id="getTotal" resultType="int">
 		SELECT COUNT(*)
-		FROM review r
-		JOIN users u
-		ON r.writer = u.user_id
-		JOIN store s ON r.sno = s.sno
+		FROM review
 		<include refid="search" />
 	</select>
 	
 	<select id="getContent" resultType="review">
-		SELECT r.*, u.user_nick
-		FROM review r 
-		JOIN users u
-		ON r.writer = u.user_id
+		SELECT *
+		FROM review
 		WHERE review_no = #{reviewNo}
 	</select>
 	
@@ -81,7 +71,13 @@
 		WHERE review_no = #{reviewNo}
 	</delete>
 	
-	<select id="getResList1" resultType="party">
+	<select id="checkPw" resultType="int">
+		SELECT COUNT(*)
+		FROM review
+		WHERE review_no = #{reviewNo} AND password = #{password}
+	</select>
+	
+	<!-- <select id="getResList1" resultType="party">
 		SELECT sno, bplc_nm
 		FROM party
 		WHERE writer = #{userId}
@@ -92,6 +88,6 @@
 		FROM participants s JOIN party p
 		ON p.party_no = s.party_no
 		WHERE s.user_id = #{userId}
-	</select>
+	</select> -->
 
 </mapper>

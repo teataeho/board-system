@@ -8,6 +8,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.spring.yeoreobap.command.PartyVO;
+import com.spring.yeoreobap.command.ReviewVO;
+import com.spring.yeoreobap.command.UserVO;
+import com.spring.yeoreobap.review.mapper.IReviewMapper;
+import com.spring.yeoreobap.user.mapper.IUserMapper;
 
 
 @ExtendWith(SpringExtension.class)
@@ -18,6 +22,10 @@ public class PartyMapperTest {
 
 	@Autowired
 	private IPartyMapper mapper;
+	@Autowired
+	private IReviewMapper reviewMapper;
+	@Autowired
+	private IUserMapper userMapper;
 	
 	@Test
 	@DisplayName("글등록")
@@ -47,6 +55,36 @@ public class PartyMapperTest {
 	@DisplayName("삭제")
 	void deleteTest() {
 		mapper.delete(102);
+	}
+	
+	@Test
+	@DisplayName("후기매크로")
+	void makeTest() {
+		for(int i=0; i< 100; i++) {
+			ReviewVO vo = new ReviewVO();
+			vo.setTitle("후기" + i);
+			vo.setWriter("user" + i);
+			vo.setContent("내용" + i);
+			vo.setPassword("1q2w3e4r");
+			reviewMapper.regist(vo);
+		}
+	}
+	
+	@Test
+	@DisplayName("유저매크로")
+	void makeUser() {
+		for(int i=0; i<100; i++) {
+			UserVO vo = new UserVO();
+			vo.setUserEmail1("abc" + i);
+			vo.setUserEmail2("naver.com");
+			vo.setUserNick("사용자" + i);
+			vo.setUserName("임의의사람" + i);
+			vo.setUserId("user" + i);
+			vo.setUserPw("1q2w3e4r");
+			vo.setAddrDong("노고산동");
+			vo.setAddrGu("마포구");
+			userMapper.join(vo);
+		}
 	}
 	
 }

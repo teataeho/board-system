@@ -9,7 +9,7 @@
 					<th class="reviewNo">번호</th>
 					<th id="board-title">제목</th>
 					<th class="reviewWriter">작성자</th>
-					<th>식당 이름</th>
+					<!-- <th>식당 이름</th> -->
 					<th class="day">등록일</th>
 				</tr>
 			</thead>
@@ -23,8 +23,8 @@
 									href="${pageContext.request.contextPath}/review/content/${re.reviewNo}">${re.title}</a>
 							</div>
 						</td>
-						<td class="reviewWriter">${re.userNick}</td>
-						<td>${re.bplcNm}</td>
+						<td class="reviewWriter">${re.writer}</td>
+						<!-- <td>${re.bplcNm}</td> -->
 						<td class="day"><fmt:parseDate value="${re.regDate}"
 								pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" /> <fmt:formatDate
 								value="${parsedDateTime}" pattern="yy.MM.dd. HH:mm" /></td>

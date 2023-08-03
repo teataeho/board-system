@@ -55,5 +55,10 @@ public class ReviewReplyService implements IReviewReplyService {
 		return false;
 	}
 
+	@Override
+	public int checkPw(int replyNo, String replyPw) {
+		return mapper.checkPw(replyNo, replyPw);
+	}
+
 
 }

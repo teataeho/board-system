@@ -45,22 +45,24 @@
 							<th class="reviewNo">번호</th>
 							<th id="board-title">제목</th>
 							<th class="reviewWriter">작성자</th>
-							<th>식당 이름</th>
+							<!-- <th>식당 이름</th> -->
 							<th class="day">등록일</th>
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach var="vo" items="${reviewList}">
 							<tr>
-								<td class="reviewNo">${vo.reviewNo}</td>
+								<td class="reviewNo">${vo.rn}</td>
 								<td id="review-title" >
 								<div class="text-truncate">
 								<a 
-									href="${pageContext.request.contextPath}/review/content/${vo.reviewNo}?pageNum=${pc.paging.pageNum}&cpp=${pc.paging.cpp}&keyword=${pc.paging.keyword}&condition=${pc.paging.condition}">${vo.title}</a>
+									href="${pageContext.request.contextPath}/review/content/${vo.reviewNo}?pageNum=${pc.paging.pageNum}&cpp=${pc.paging.cpp}&keyword=${pc.paging.keyword}&condition=${pc.paging.condition}">
+									<c:out value="${vo.title}"></c:out>
+								</a>
 								</div>
 								</td>
-								<td class="reviewWriter">${vo.userNick}</td>
-								<td>${vo.bplcNm}</td>
+								<td class="reviewWriter"><c:out value="${vo.writer}"></c:out></td>
+								<!-- <td>${vo.bplcNm}</td> -->
 								<td class="day"><fmt:parseDate value="${vo.regDate}"
 										pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" /> <fmt:formatDate
 										value="${parsedDateTime}" pattern="yy.MM.dd. HH:mm" /></td>
@@ -76,6 +78,10 @@
 					<div class="text-center">
 						
 						<ul id="pagination" class="pagination pagination-sm">
+							<c:if test="${pc.toFirst}">
+								<li><a href="#" data-pagenum="1">맨앞</a></li>
+							</c:if>
+
 							<c:if test="${pc.prev}">
 								<li><a href="#" data-pagenum="${pc.beginPage-1}">이전</a></li>
 							</c:if>
@@ -87,6 +93,10 @@
 
 							<c:if test="${pc.next}">
 								<li><a href="#" data-pagenum="${pc.endPage+1}">다음</a></li>
+							</c:if>
+
+							<c:if test="${pc.toLast}">
+								<li><a href="#" data-pagenum="${pc.totalPage}">맨뒤</a></li>
 							</c:if>
 						</ul>
 						<button type="button" class="btn btn-info" id="writeBtn"

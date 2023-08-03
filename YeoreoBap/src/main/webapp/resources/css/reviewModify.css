@@ -24,6 +24,10 @@ form .modify-form-group p span {
 	margin: 0 10px;
 }
 
+#content_cnt {
+	text-align: center;
+}
+
 
 /* 변경 삭제 목록 버튼 */
 .modifyBtns #updateBtn, .modifyBtns #delBtn, .modifyBtns #listBtn {

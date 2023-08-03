@@ -18,16 +18,16 @@
 						<tbody class="t-control riviewControl">
 							<tr>
 								<td class="t-title">작성자<span>|</span></td>
-								<td><input class="form-control input-sm" value="${userInfo.userNick}" readonly></td>
+								<td><input class="form-control input-sm" maxlength="20" name="writer" id="writer" placeholder="작성자는 20글자 이내로 제한됩니다."></td>
 							</tr>
 							<tr>
 								<td class="t-title">제목<span>|</span></td>
-								<td><input class="form-control input-sm" name="title" id="title"></td>
+								<td><input class="form-control input-sm" name="title" id="title" maxlength="100" placeholder="제목은 100글자 이내로 제한됩니다."></td>
 							</tr>
 							<tr>
-								<td class="t-title">식당 이름<span>|</span></td>
+								<td class="t-title">비밀번호<span>|</span></td>
 								<td id="resName">
-									<c:set var="party" value="${party}" />
+									<!-- <c:set var="party" value="${party}" />
 									<c:set var="attendedParty" value="${attendedParty}" />
 									<select name="sno" id="sno">
 										<c:forEach items="${party}" var="party" varStatus="status">
@@ -36,21 +36,22 @@
 										<c:forEach items="${attendedParty}" var="attendedParty" varStatus="status">
 											<option value="${attendedParty.sno}">${attendedParty.bplcNm}</option>
 										</c:forEach>
-									</select>
+									</select> -->
+									<input class="form-control input-sm" maxlength="20" type="password" name="password" id="password" placeholder="비밀번호는 20글자 이내로 제한됩니다.">
 								</td>
 							</tr>
 							<tr>
 								<td class="t-title">내용<span>|</span></td>
 								<td><textarea class="form-control" rows="7" name="content" id="content" type='text'
-										maxlength='300'></textarea></td>
+										maxlength='1000'></textarea></td>
 							</tr>
 							<tr>
 								<td></td>
-								<td id="content_cnt">(0/300)</td>
+								<td id="content_cnt">(0/1000)</td>
 							</tr>
 						</tbody>
 					</table>
-					<input type="hidden" name="writer" id="userId" value="${userInfo.userId}">
+					<!-- <input type="hidden" name="writer" id="userId" value="${userInfo.userId}"> -->
 					<div class="titlefoot reviewTitleFoot">
 						<button class="btn register" id="registBtn" type="button">등록</button>
 						<button class="btn" id="listBtn" type="button" onclick="location.href='${pageContext.request.contextPath}/review/reviewList'">목록</button>
@@ -64,7 +65,7 @@
 </section>
 
 <!-- 모달 -->
-<div id="ratingModal" class="modal">
+<!-- <div id="ratingModal" class="modal">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -83,77 +84,101 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div> -->
 
 <%@ include file="../include/footer.jsp"%>
 
 <script>
-	var myModal = new bootstrap.Modal(document.getElementById("ratingModal"));
+	// var myModal = new bootstrap.Modal(document.getElementById("ratingModal"));
 
-	document.querySelector('.register').addEventListener('click', () => {
-		myModal.show();
-	});
+	// document.querySelector('.register').addEventListener('click', () => {
+	// 	myModal.show();
+	// });
 
-	const $stars = document.querySelectorAll("#ratingModal .rating-stars .star");
-	let rating = 0;
+	// const $stars = document.querySelectorAll("#ratingModal .rating-stars .star");
+	// let rating = 0;
 
-	$stars.forEach(function (star) {
-		star.addEventListener('click', function () {
-			var starValue = parseInt(this.getAttribute('data-value'));
-			rating = starValue;
-			$stars.forEach(function (s, index) {
-				if (index < starValue) {
-					s.classList.add('active');
-				} else {
-					s.classList.remove('active');
-				}
-			});
+	// $stars.forEach(function (star) {
+	// 	star.addEventListener('click', function () {
+	// 		var starValue = parseInt(this.getAttribute('data-value'));
+	// 		rating = starValue;
+	// 		$stars.forEach(function (s, index) {
+	// 			if (index < starValue) {
+	// 				s.classList.add('active');
+	// 			} else {
+	// 				s.classList.remove('active');
+	// 			}
+	// 		});
 
-			console.log('별점: ' + rating);
-			setTimeout(() => {
-				if (!confirm('별점을 매기시겠습니까?')) {
-					return;
-				} else {
-					fetch('${pageContext.request.contextPath}/star/insertStar', {
-							method: 'post',
-							headers: {
-								'Content-Type': 'application/json'
-							},
-							body: JSON.stringify({
-								'userId': document.getElementById('userId').value,
-								'sno': document.getElementById('sno').value,
-								'starRate': rating
-							})
-						})
-						.then(res => res.text())
-						.then(text => {
-							if (text !== 'success') {
-								console.log(text);
-							} else {
-								document.reviewForm.submit();
-							}
-						});
-				}
-			}, 500);
-		});
-	});
+	// 		console.log('별점: ' + rating);
+	// 		setTimeout(() => {
+	// 			if (!confirm('별점을 매기시겠습니까?')) {
+	// 				return;
+	// 			} else {
+	// 				fetch('${pageContext.request.contextPath}/star/insertStar', {
+	// 						method: 'post',
+	// 						headers: {
+	// 							'Content-Type': 'application/json'
+	// 						},
+	// 						body: JSON.stringify({
+	// 							'userId': document.getElementById('userId').value,
+	// 							'sno': document.getElementById('sno').value,
+	// 							'starRate': rating
+	// 						})
+	// 					})
+	// 					.then(res => res.text())
+	// 					.then(text => {
+	// 						if (text !== 'success') {
+	// 							console.log(text);
+	// 						} else {
+	// 							document.reviewForm.submit();
+	// 						}
+	// 					});
+	// 			}
+	// 		}, 500);
+	// 	});
+	// });
+
 
 	//글자수 제한 함수 jquery
 	//화면 넓게 하면 300자까지 들어갑니다. max 늘리시려면 숫자 300으로 돼있는거 다 한 숫자로 바꾸면 됩니다.
 	$(document).ready(function () {
 		$('#content').on('keyup', function () {
-			$('#content_cnt').html("(" + $(this).val().length + "/300)");
-			if ($(this).val().length > 300) {
-				$(this).val($(this).val.substring(0, 300));
-				$('#content_cnt').html("(300/300)");
+			$('#content_cnt').html("(" + $(this).val().length + "/1000)");
+			if ($(this).val().length > 1000) {
+				$(this).val($(this).val.substring(0, 1000));
+				$('#content_cnt').html("(1000/1000)");
 			}
-		})
+		});
 	})
 
 	document.getElementById('registBtn').onclick = function () {
-		if(document.getElementById('title').value === '' || document.getElementById('content').value === '') {
-			alert(`'제목'과 '내용'은 공백일 수 없습니다.`);
+		if(document.getElementById('writer').value.trim() === '') {
+			alert('작성자는 공백일 수 없습니다.');
+			document.getElementById('writer').focus();
 			return;
-		}else return;
+		} else if(document.getElementById('title').value.trim() === '') {
+			alert('제목은 공백일 수 없습니다.');
+			document.getElementById('title').focus();
+			return;
+		} else if(document.getElementById('password').value.trim() === '') {
+			alert('비밀번호를 입력해주세요.');
+			document.getElementById('password').focus();
+			return;
+		} else if(document.getElementById('content').value.trim() === '') {
+			alert('내용은 공백일 수 없습니다.');
+			document.getElementById('content').focus();
+			return;
+		} else {
+			document.reviewForm.submit();
+		};
 	}
+
+	//비밀번호 스페이스바 막기
+    document.getElementById('password').addEventListener('keydown', e => {
+      // 스페이스바의 keyCode는 32입니다.
+      if (e.keyCode === 32) {
+        e.preventDefault(); // 기본 동작(스페이스 입력)을 막음
+      }
+	});
 </script>

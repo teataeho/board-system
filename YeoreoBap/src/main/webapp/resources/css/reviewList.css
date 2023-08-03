@@ -11,14 +11,14 @@
 
 /* 검색 */
 #search-wrap {
-    width: 400px;
+    width: 500px;
     display: flex;
     float: right;
     margin-bottom: 30px;
 }
 
 #search-wrap .search-select{
-    width: 25%;
+    width: 35%;
     margin-right: 5px;
 }
 
@@ -50,7 +50,7 @@
 }
 
 #board-title {
-	width: 35%;
+	width: 60%;
 }
 #review-title {
 	text-align: left;
@@ -65,12 +65,23 @@
 	font-size: 0.8em;
 }
 
-
 /* 페이지네이션 */
 #pagination {
 	display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#pagination li {
+    margin: 0 3px;
+}
+
+#pagination li a:hover {
+    color: #F0975A;
+}
+
+#pagination .active a {
+    color: #F0975A;
 }
 
 /* 글쓰기 버튼 */

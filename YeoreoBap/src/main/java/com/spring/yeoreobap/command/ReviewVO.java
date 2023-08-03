@@ -24,8 +24,8 @@ import lombok.ToString;
 @ToString
 public class ReviewVO {
 
-	private int reviewNo, sno;
-	private String writer, title, content;
+	private int reviewNo, rn;
+	private String writer, title, content, password;
 	private LocalDateTime regDate, updateDate;
 
 	private int reviewReplyCnt;

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.yeoreobap.command.ReviewReplyVO;
@@ -50,12 +51,12 @@ public class ReviewReplyController {
 	}
 
 	// 댓글 삭제
-	@DeleteMapping("/delete/{replyNo}")
-	public String delete(@PathVariable int replyNo, HttpSession session) {
+	@DeleteMapping("/delete/{replyNo}/{replyPw}")
+	public String delete(@PathVariable int replyNo, @PathVariable String replyPw) {
 		log.info("replyNo : " + replyNo);
-		log.info("userId : " + ((UserVO) session.getAttribute("userInfo")).getUserId());
+//		log.info("userId : " + ((UserVO) session.getAttribute("userInfo")).getUserId());
 		System.out.println("delete 요청");		
-		if (service.idCheck(replyNo, ((UserVO) session.getAttribute("userInfo")).getUserId())) {
+		if (service.checkPw(replyNo, replyPw) == 1) {
 			service.delete(replyNo);
 			return "replyDeleteSuccess";
 		} else

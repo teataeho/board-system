@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.yeoreobap.command.PartyVO;
 import com.spring.yeoreobap.command.ReviewVO;
@@ -56,17 +55,17 @@ public class ReviewService implements IReviewService {
 	}
 
 	@Override
-	public void upload(int reviewNo, MultipartFile file) {
-		
+	public int checkPw(ReviewVO vo) {
+		return mapper.checkPw(vo);
 	}
 
-	@Override
-	public List<PartyVO> getResList1(String userId) {
-		return mapper.getResList1(userId);
-	}
-	
-	@Override
-	public List<PartyVO> getResList2(String userId) {
-		return mapper.getResList2(userId);
-	}
+//	@Override
+//	public List<PartyVO> getResList1(String userId) {
+//		return mapper.getResList1(userId);
+//	}
+//	
+//	@Override
+//	public List<PartyVO> getResList2(String userId) {
+//		return mapper.getResList2(userId);
+//	}
 }

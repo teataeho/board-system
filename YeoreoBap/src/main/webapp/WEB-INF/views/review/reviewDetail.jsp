@@ -6,74 +6,61 @@
 <%@ include file="../include/header.jsp"%>
 
 
-				<section>
-					<div class="container">
-						<div class="row">
-							<div class="col-xs-12 col-md-9 write-wrap">
-								<section id="section">
-									<h2 class="text-center border-bottom border-orange pb-3 mb-4">상세보기</h2>
-
-
-									<form action="${pageContext.request.contextPath}/review/modify" method="post" name="form">
-
-										<div class="regDate">
-											<p class="subTitle">
-												DATE <span>|</span>
-											</p>
-											<c:if test="${article.updateDate == null}">
-												<p>${article.parsedRegDate}</p>
-											</c:if>
-											<c:if test="${article.updateDate != null}">
-												<p>${article.parsedUpdateDate} <small class="information">(수정됨)</small></p>
-											</c:if>
-										</div>
-
-
-										<div class="form-group">
-											<input type="hidden" value="${article.reviewNo}" id="reviewNo" name="reviewNo">
-										</div>
-										<div class="form-group">
-											<p class="subTitle">
-												작성자 <span>|</span>
-											</p>
-											<p class="reviewData">${article.userNick}(${article.writer})</p>
-											<input type="hidden" value="${article.userNick}" name="userNick">
-											<input type="hidden" value="${article.writer}" name="writer">
-										</div>
-										<div class="form-group">
-											<p class="subTitle">
-												제목 <span>|</span>
-											</p>
-											<p class="reviewData reviewTitle text-truncate">${article.title}</p>
-											<input type="hidden" value="${article.title}" name="title">
-										</div>
-
-										<div class="form-group">
-											<p class="subTitle">
-												내용 <span>|</span>
-											</p>
-											<p class="reviewData dataBorder">${article.content}</p>
-											<input type="hidden" value="${article.content}" name="content">
-										</div>
-
-										<div class="reviewBtns d-flex flex-nowrap justify-content-evenly mx-auto">
-											<c:if test="${userInfo.userId == article.writer}">
-												<button type="submit" class="btn btn-orange"
-													onclick="return confirm('수정 페이지로 이동합니다.')">수정</button>
-												<button type="button" class="btn btn-outline-orange">삭제</button>
-											</c:if>
-											<button type="button" class="btn btn-orange"
-												onclick="location.href='${pageContext.request.contextPath}/review/reviewList?pageNum=${p.pageNum}&cpp=${p.cpp}&keyword=${p.keyword}&condition=${p.condition}'">목록</button>
-											<!--    목록 누르면 화면 페이지 유지하기    -->
-
-										</div>
-									</form>
-								</section>
-
-							</div>
+<section>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-md-9 write-wrap">
+				<section id="section">
+					<h2 class="text-center border-bottom border-orange pb-3 mb-4">상세보기</h2>
+					<form action="${pageContext.request.contextPath}/review/modify" method="post" name="form">
+						<div class="regDate">
+							<p class="subTitle">
+								DATE <span>|</span>
+							</p>
+							<c:if test="${article.updateDate == null}">
+								<p>${article.parsedRegDate}</p>
+							</c:if>
+							<c:if test="${article.updateDate != null}">
+								<p>${article.parsedUpdateDate} <small class="information">(수정됨)</small></p>
+							</c:if>
 						</div>
-					</div>
+						<div class="form-group">
+							<input type="hidden" value="${article.reviewNo}" id="reviewNo" name="reviewNo">
+						</div>
+						<div class="form-group">
+							<p class="subTitle">
+								작성자 <span>|</span>
+							</p>
+							<p class="reviewData"><c:out value="${article.writer}"></c:out></p>
+							<input type="hidden" value="${article.writer}" name="writer">
+						</div>
+						<div class="form-group">
+							<p class="subTitle">
+								제목 <span>|</span>
+							</p>
+							<p class="reviewData reviewTitle text-truncate"><c:out value="${article.title}"></c:out></p>
+							<input type="hidden" value="${article.title}" name="title">
+						</div>
+						<div class="form-group">
+							<p class="subTitle">
+								내용 <span>|</span>
+							</p>
+							<p class="reviewData dataBorder"><c:out value="${article.content}"></c:out></p>
+							<input type="hidden" value="${article.content}" name="content">
+						</div>
+						<div class="reviewBtns d-flex flex-nowrap justify-content-evenly mx-auto">
+							<button type="button" class="btn btn-orange" id="modiBtn">수정</button>
+							<button type="button" class="btn btn-outline-orange" id="delBtn">삭제</button>
+							<button type="button" class="btn btn-orange"
+								onclick="location.href='${pageContext.request.contextPath}/review/reviewList?pageNum=${p.pageNum}&cpp=${p.cpp}&keyword=${p.keyword}&condition=${p.condition}'">목록</button>
+							<!--    목록 누르면 화면 페이지 유지하기    -->
+						</div>
+					</form>
 				</section>
+			</div>
+		</div>
+	</div>
+</section>
 
 <!-- 댓글 영역 시작 -->
 <section style="margin-top: 80px;">
@@ -90,14 +77,18 @@
 						<div class="reply-group">
 							<div class="replyUser">
 								<p class="subTitle">
-									닉네임 <span>|</span>
+									작성자 <span>|</span>
 								</p>
-								<p class="userNick" id="replyNick">${userInfo.userNick}</p>
-								<p class="userId" id="replyId" style="display: none;">${userInfo.userId}</p>
+								<input class="userNick input-sm" id="replyId" maxlength='20' />
+								<p class="subTitle">
+									비밀번호 <span>|</span>
+								</p>
+								<input class="reply_password input-sm" id="replyPw" type="password" maxlength='20'/>
+								<!-- <p class="userId" id="replyId" style="display: none;">${userInfo.userId}</p> -->
 							</div>
 							<div class="reply-input">
-								<textarea class="form-control" rows="3" id="reply"
-									placeholder="댓글을 입력해주세요"></textarea>
+								<textarea class="form-control" id="replyArea" rows="3" id="reply"
+									placeholder="댓글을 입력해주세요" maxlength='100'></textarea>
 								<button type="button" id="replyRegist"
 									class="right btn btn-info">등록하기</button>
 
@@ -126,29 +117,84 @@
 	const $form = document.form;
 	const uid = '${userInfo.userId}';
 
-	document.querySelector('.reviewBtns').addEventListener('click', e => {
-		if (e.target.matches('.delBtn')) {
-			if (confirm('정말 삭제하시겠습니까?')) {
+	//삭제버튼
+	document.getElementById('delBtn').addEventListener('click', () => {
+		let insertedPw = prompt('비밀번호를 입력해주세요.');
+		const reviewNo = document.getElementById('reviewNo').value;
+		console.log('입력된 비번: ' + insertedPw + ' 리뷰번호: ' + reviewNo);
+		fetch('${pageContext.request.contextPath}/review/checkPw', {
+			method: 'post',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				'reviewNo': reviewNo,
+				'password': insertedPw
+			})
+		})
+		.then(res => res.text())
+		.then(data => {
+			console.log(data);
+			if(data == 1) {
 				$form.setAttribute('action', '${pageContext.request.contextPath}/review/delete');
 				$form.submit();
+			} else {
+				alert('비밀번호가 틀렸습니다.');
+				return;
 			}
-		}
+		})
 	});
 
+	//수정버튼
+	document.getElementById('modiBtn').addEventListener('click', () => {
+		let insertedPw = prompt('비밀번호를 입력해주세요.');		
+		const reviewNo = document.getElementById('reviewNo').value;
+		fetch('${pageContext.request.contextPath}/review/checkPw', {
+			method: 'post',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				'reviewNo': reviewNo,
+				'password': insertedPw
+			})
+		})
+		.then(res => res.text())
+		.then(data => {
+			console.log(data);
+			if(data == 1) {
+				$form.submit();
+			} else {
+				alert('비밀번호가 틀렸습니다.');
+				return;
+			}
+		})
+	})
 
 	window.onload = function () {
 		document.getElementById('replyRegist').onclick = () => {
 			const reviewNo = document.getElementById('reviewNo').value; //현재 게시글 번호
 			const reply = document.getElementById('reply').value;
-			const replyId = document.getElementById('replyId').textContent;
-            if (uid === '') {
-                alert('로그인이 필요한 서비스입니다. :)');
-                location.href = '${pageContext.request.contextPath}/user/userLogin';
-                return;
-            }
+			const replyId = document.getElementById('replyId').value;
+			const replyPw = document.getElementById('replyPw').value;
+            // if (uid === '') {
+            //     alert('로그인이 필요한 서비스입니다. :)');
+            //     location.href = '${pageContext.request.contextPath}/user/userLogin';
+            //     return;
+            // }
 
-			if (reply === '') {
+			//쿠키 있으면 리턴
+			if(replyId.trim() === '') {
+				alert('작성자를 입력해주세요.');
+				document.getElementById('replyId').focus();
+				return;
+			} else if(replyPw.trim() === '') {
+				alert('비밀번호를를 입력해주세요.');
+				document.getElementById('replyPw').focus();
+				return;
+			} else if (reply.trim() === '') {
 				alert('내용을 입력해주세요.');
+				document.getElementById('reply').focus();
 				return;
 			}
 			//요청에 관련된 정보 객체
@@ -161,6 +207,7 @@
 					'reviewNo': reviewNo,
 					'reply': reply,
 					'replyId': replyId,
+					'replyPw' : replyPw
 				})
 			};
 
@@ -169,6 +216,8 @@
 				.then(data => {
 					console.log('통신 성공!: ' + data);
 					document.getElementById('reply').value = '';
+					document.getElementById('replyPw').value = '';
+					document.getElementById('replyId').value = '';
 
 					//등록 완료 후 댓글 목록 함수를 호출해서 비동기식으로 목록 표현
 					getList(1, true);
@@ -224,24 +273,31 @@
 					}
 
 					for (let i = 0; i < replyList.length; i++) {
-					    strAdd += `
-					        <div class='reply-wrap'>
-					            <div class="reply-content">
-					                <div class='my-reply-group'>
-					                    <p class='left'>` + replyList[i].userNick + `</p> <span>|</span>
-					                    <p class='clearfix' >` + replyList[i].reply + `</p>
-					                    <a href='` + replyList[i].replyNo + `' class='right replyDelete'
-					                        id='replyDelBtn'>X삭제</a>
-					                </div>
-					            </div>
-					         </div>`;
+						strAdd += `
+							<div class='reply-wrap'>
+								<div class="reply-content">
+									<div class='my-reply-group'>
+										<p class='left replyId` + i + `'></p> <span>|</span>
+										<p class='clearfix reply` + i + `'></p>
+										<a href='${replyList[i].replyNo}' class='right replyDelete' id='replyDelBtn'>X삭제</a>
+									</div>
+								</div>
+							</div>`;
 					}
-			
-					//id가 reviewList라는 div 영역에 문자열 형식으로 모든 댓글을 추가.
+
+					// id가 reviewList라는 div 영역에 문자열 형식으로 모든 댓글을 추가.
 					if (!reset) {
 						document.getElementById('replyList').insertAdjacentHTML('beforeend', strAdd);
+						for (let i = 0; i < replyList.length; i++) {
+							document.querySelector(`.replyId` + i).insertAdjacentText('beforeend', replyList[i].replyId);
+							document.querySelector(`.reply` + i).insertAdjacentText('beforeend', replyList[i].reply);
+						}
 					} else {
 						document.getElementById('replyList').insertAdjacentHTML('afterbegin', strAdd);
+						for (let i = 0; i < replyList.length; i++) {
+							document.querySelector(`.replyId` + i).insertAdjacentText('beforeend', replyList[i].replyId);
+							document.querySelector(`.reply` + i).insertAdjacentText('beforeend', replyList[i].reply);
+						}
 					}
 
 				});
@@ -249,23 +305,25 @@
 
 
 		function registerReplyDeleteHandlers(e) {
-					            console.log('delete 요청');
-					            e.preventDefault();
+					console.log('delete 요청');
+					e.preventDefault();
 
-					            // 삭제 요청을 보내는 AJAX 요청
-					            fetch('${pageContext.request.contextPath}/reply/delete/' + e.target.getAttribute('href'), {
-					                method: 'DELETE'
-					            })
-					            .then(res => res.text())
-					            .then(data => {
-									if(data === 'replyDeleteSuccess') window.location.reload();
-									else {
-										alert('본인의 댓글만 지울 수 있습니다.');
-									}
-					            })
-					            .catch(error => {
-					                console.error('삭제 요청 중 오류 발생:', error);
-					            });
+					let replyPw = prompt('비밀번호를 입력하세요.');
+
+					// 삭제 요청을 보내는 AJAX 요청
+					fetch('${pageContext.request.contextPath}/reply/delete/' + e.target.getAttribute('href') + '/' + replyPw, {
+					    method: 'DELETE'
+					})
+					.then(res => res.text())
+					.then(data => {
+						if(data === 'replyDeleteSuccess') window.location.reload();
+						else {
+							alert('비밀번호가 틀렸습니다..');
+						}
+					})
+					.catch(error => {
+					    console.error('삭제 요청 중 오류 발생:', error);
+					});
 				};
 					    
 					
@@ -286,9 +344,6 @@
 
 
 		})
-
-
-
 
 		//댓글 날짜 변환 함수
 		function parseTime(regDateTime) {
@@ -323,4 +378,12 @@
 		}
 
 	} //window.onload
+
+	//비밀번호 스페이스바 막기
+	document.getElementById('replyPw').addEventListener('keydown', e => {
+		// 스페이스바의 keyCode는 32입니다.
+		if (e.keyCode === 32) {
+			e.preventDefault(); // 기본 동작(스페이스 입력)을 막음
+		}
+	});
 </script>

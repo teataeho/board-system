@@ -23,4 +23,7 @@ public interface IReviewReplyMapper {
 
 	//댓글 삭제
 	void delete(int replyNo);
+
+	//비번 체크
+	int checkPw(@Param("replyNo") int replyNo, @Param("replyPw") String replyPw);
 }

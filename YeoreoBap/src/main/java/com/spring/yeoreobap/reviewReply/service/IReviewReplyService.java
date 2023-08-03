@@ -20,4 +20,7 @@ public interface IReviewReplyService {
 
 	//댓글 삭제
 	void delete(int replyNo);
+	
+	//비번쳌
+	int checkPw(int replyNo, String replyPw);
 }

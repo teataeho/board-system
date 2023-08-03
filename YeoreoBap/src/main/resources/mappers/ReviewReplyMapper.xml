@@ -6,15 +6,13 @@
 
 	<insert id="replyRegist">
 		INSERT INTO reviewreply
-		(review_no, reply, reply_id)
-		VALUES (#{reviewNo}, #{reply}, #{replyId})
+		(review_no, reply, reply_id, reply_pw)
+		VALUES (#{reviewNo}, #{reply}, #{replyId}, #{replyPw})
 	</insert>
 	
 	<select id="getList" resultType="rReply">
-		SELECT r.*, u.user_nick
-		FROM reviewreply r 
-		JOIN users u
-		ON r.reply_id = u.user_id
+		SELECT *
+		FROM reviewreply
 		WHERE review_no = #{reviewNo}
 		ORDER BY reply_no DESC
 		LIMIT #{paging.pageStart}, #{paging.cpp}
@@ -42,5 +40,11 @@
 		DELETE FROM reviewreply
 		WHERE reply_no = #{replyNo}
 	</delete>
+	
+	<select id="checkPw" resultType="int">
+		SELECT COUNT(*)
+		FROM reviewreply
+		WHERE reply_no = #{replyNo} AND reply_pw = #{replyPw}
+	</select>
 
 </mapper>

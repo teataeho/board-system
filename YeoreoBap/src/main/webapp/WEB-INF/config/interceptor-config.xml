@@ -25,12 +25,12 @@
 			<mvc:mapping path="/party/partyRegister"/>
 			<mvc:mapping path="/party/delete"/>
 			<mvc:mapping path="/party/attend"/>
-			<mvc:mapping path="/user/userMypage"/>
+			<!-- <mvc:mapping path="/user/userMypage"/>
 			<mvc:mapping path="/review/reviewRegist"/>
 			<mvc:mapping path="/review/regist"/>
 			<mvc:mapping path="/review/modify"/>
 			<mvc:mapping path="/review/update"/>
-			<mvc:mapping path="/review/delete"/>
+			<mvc:mapping path="/review/delete"/> -->
 			<ref bean="userAuth"/>
 		</mvc:interceptor>
 		
