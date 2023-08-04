@@ -18,11 +18,11 @@
 						<tbody class="t-control riviewControl">
 							<tr>
 								<td class="t-title">작성자<span>|</span></td>
-								<td><input class="form-control input-sm" maxlength="20" name="writer" id="writer" placeholder="작성자는 20글자 이내로 제한됩니다."></td>
+								<td><input class="form-control input-sm" name="writer" id="writer" placeholder="작성자는 10글자 이내로 제한됩니다."></td>
 							</tr>
 							<tr>
 								<td class="t-title">제목<span>|</span></td>
-								<td><input class="form-control input-sm" name="title" id="title" maxlength="100" placeholder="제목은 100글자 이내로 제한됩니다."></td>
+								<td><input class="form-control input-sm" name="title" id="title" placeholder="제목은 100글자 이내로 제한됩니다."></td>
 							</tr>
 							<tr>
 								<td class="t-title">비밀번호<span>|</span></td>
@@ -37,13 +37,14 @@
 											<option value="${attendedParty.sno}">${attendedParty.bplcNm}</option>
 										</c:forEach>
 									</select> -->
-									<input class="form-control input-sm" maxlength="20" type="password" name="password" id="password" placeholder="비밀번호는 20글자 이내로 제한됩니다.">
+									<input class="form-control input-sm" type="password" name="password" id="password" placeholder="8~20글자 영문, 숫자, 특수문자를 포함해 주세요.">
+									<div id="pwValidMsg" class="valid-feedback">사용 가능한 비밀번호입니다!</div>
+									<div id="pwInvalidMsg" class="invalid-feedback">부적합한 비밀번호입니다.</div>
 								</td>
 							</tr>
 							<tr>
 								<td class="t-title">내용<span>|</span></td>
-								<td><textarea class="form-control" rows="7" name="content" id="content" type='text'
-										maxlength='1000'></textarea></td>
+								<td><textarea class="form-control" rows="7" name="content" id="content" type='text'></textarea></td>
 							</tr>
 							<tr>
 								<td></td>
@@ -142,15 +143,23 @@
 
 	//글자수 제한 함수 jquery
 	//화면 넓게 하면 300자까지 들어갑니다. max 늘리시려면 숫자 300으로 돼있는거 다 한 숫자로 바꾸면 됩니다.
-	$(document).ready(function () {
-		$('#content').on('keyup', function () {
-			$('#content_cnt').html("(" + $(this).val().length + "/1000)");
-			if ($(this).val().length > 1000) {
-				$(this).val($(this).val.substring(0, 1000));
-				$('#content_cnt').html("(1000/1000)");
-			}
-		});
+	// $(document).ready(function () {
+	// 	$('#content').on('keyup', function () {
+	// 		$('#content_cnt').html("(" + $(this).val().length + "/1000)");
+	// 		if ($(this).val().length > 1000) {
+	// 			$(this).val($(this).val.substring(0, 1000));
+	// 			$('#content_cnt').html("(1000/1000)");
+	// 		}
+	// 	});
+	// })
+
+	document.getElementById('content').addEventListener('input', e => {
+		document.getElementById('content_cnt').textContent = '(' + e.target.value.length + '/1000)'
 	})
+
+	//비밀번호 정규식표현
+	const pwRegex =
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,20}$/;
 
 	document.getElementById('registBtn').onclick = function () {
 		if(document.getElementById('writer').value.trim() === '') {
@@ -165,6 +174,10 @@
 			alert('비밀번호를 입력해주세요.');
 			document.getElementById('password').focus();
 			return;
+		} else if(!pwRegex.test(document.getElementById('password').value)) {
+			alert('8~20글자 영문, 숫자, 특수문자를 포함해 주세요.');
+			document.getElementById('password').focus();
+			return;
 		} else if(document.getElementById('content').value.trim() === '') {
 			alert('내용은 공백일 수 없습니다.');
 			document.getElementById('content').focus();
@@ -173,6 +186,116 @@
 			document.reviewForm.submit();
 		};
 	}
+
+	document.getElementById('writer').addEventListener('keyup', e => {
+		if(e.target.value.length > 10) {
+			alert('작성자는 10글자 이내로 제한됩니다.');
+			e.target.value = e.target.value.substr(0, 10);
+			document.getElementById('writer').focus();
+			return;
+		}
+	});
+	document.getElementById('writer').addEventListener('paste', e => {
+		// 붙여넣기된 텍스트 가져오기
+		const pastedText = (e.clipboardData || window.clipboardData).getData('text');
+
+		if(pastedText > 10) {
+			alert('작성자는 10글자 이내로 제한됩니다.');
+			pastedText = pastedText.substr(0, 10);
+			e.target.value += pastedText;
+			document.getElementById('writer').focus();
+			return;
+		}
+	});
+
+	document.getElementById('title').addEventListener('keyup', e => {
+		if(e.target.value.length > 100) {
+			alert('제목은 100글자 이내로 제한됩니다.');
+			e.target.value = e.target.value.substr(0, 100);
+			document.getElementById('title').focus();
+			return;
+		}
+	});
+	document.getElementById('title').addEventListener('paste', e => {
+		// 붙여넣기된 텍스트 가져오기
+		const pastedText = (e.clipboardData || window.clipboardData).getData('text');
+
+		if(pastedText > 100) {
+			alert('제목은 100글자 이내로 제한됩니다.');
+			pastedText = pastedText.substr(0, 100);
+			e.target.value += pastedText;
+			document.getElementById('title').focus();
+			return;
+		}
+	});
+
+	document.getElementById("password").onkeyup = function () {
+		const $password = document.getElementById('password');
+
+		if (pwRegex.test($password.value)) {
+			$password.classList.remove('is-invalid');
+			$password.classList.add('is-valid');
+			document.getElementById('pwInvalidMsg').style.display = 'none';
+			document.getElementById('pwValidMsg').style.display = 'block';
+		} else {
+			$password.classList.remove('is-valid');
+			$password.classList.add('is-invalid');
+			document.getElementById('pwValidMsg').style.display = 'none';
+			document.getElementById('pwInvalidMsg').style.display = 'block';
+		}
+		if($password.value.length > 20) {
+			alert('비밀번호는 20글자 이내로 제한됩니다.');
+			$password.value = $password.value.substr(0, 20);
+			$password.focus();
+			return;
+		}
+	}
+	document.getElementById('password').addEventListener('paste', e => {
+		// 붙여넣기된 텍스트 가져오기
+		const pastedText = (e.clipboardData || window.clipboardData).getData('text');
+
+		if(pastedText > 20) {
+			alert('비밀번호는 20글자 이내로 제한됩니다.');
+			pastedText = pastedText.substr(0, 20);
+			e.target.value += pastedText;
+			document.getElementById('title').focus();
+			if(pwRegex.test(e.target.value)) {
+				e.target.classList.remove('is-invalid');
+				e.target.classList.add('is-valid');
+				document.getElementById('pwInvalidMsg').style.display = 'none';
+				document.getElementById('pwValidMsg').style.display = 'block';
+			} else {
+				e.target.classList.remove('is-valid');
+				e.target.classList.add('is-invalid');
+				document.getElementById('pwValidMsg').style.display = 'none';
+				document.getElementById('pwInvalidMsg').style.display = 'block';
+			}
+			return;
+		}
+	});
+
+	document.getElementById('content').addEventListener('keyup', e => {
+		if(e.target.value.length > 1000) {
+			alert('내용은 1000글자 이내로 제한됩니다.');
+			e.target.value = e.target.value.substr(0, 1000);
+			document.getElementById('content').focus();
+			document.getElementById('content_cnt').textContent = '(' + e.target.value.length + '/1000)'
+			return;
+		}
+	});
+	document.getElementById('content').addEventListener('paste', e => {
+		// 붙여넣기된 텍스트 가져오기
+		const pastedText = (e.clipboardData || window.clipboardData).getData('text');
+
+		if(pastedText > 1000) {
+			alert('내용은 1000글자 이내로 제한됩니다.');
+			pastedText = pastedText.substr(0, 1000);
+			e.target.value += pastedText;
+			document.getElementById('content').focus();
+			document.getElementById('content_cnt').textContent = '(' + e.target.value.length + '/1000)'
+			return;
+		}
+	});
 
 	//비밀번호 스페이스바 막기
     document.getElementById('password').addEventListener('keydown', e => {

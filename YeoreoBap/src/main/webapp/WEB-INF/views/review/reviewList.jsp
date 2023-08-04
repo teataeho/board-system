@@ -24,8 +24,6 @@
 								${pc.paging.condition == 'title' ? 'selected' : ''}>제목</option>
 							<option value="content"
 								${pc.paging.condition == 'content' ? 'selected' : ''}>내용</option>
-							<option value="restaurant"
-								${pc.paging.condition == 'restaurant' ? 'selected' : ''}>가게 이름</option>
 							<option value="writer"
 								${pc.paging.condition == 'writer' ? 'selected' : ''}>작성자</option>
 							<option value="titleContent"
@@ -55,7 +53,7 @@
 								<td class="reviewNo">${vo.rn}</td>
 								<td id="review-title" >
 								<div class="text-truncate">
-								<a 
+								<a  class="title-a"
 									href="${pageContext.request.contextPath}/review/content/${vo.reviewNo}?pageNum=${pc.paging.pageNum}&cpp=${pc.paging.cpp}&keyword=${pc.paging.keyword}&condition=${pc.paging.condition}">
 									<c:out value="${vo.title}"></c:out>
 								</a>

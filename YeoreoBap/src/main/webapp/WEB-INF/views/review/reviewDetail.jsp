@@ -5,7 +5,6 @@
 
 <%@ include file="../include/header.jsp"%>
 
-
 <section>
 	<div class="container">
 		<div class="row">
@@ -79,19 +78,18 @@
 								<p class="subTitle">
 									작성자 <span>|</span>
 								</p>
-								<input class="userNick input-sm" id="replyId" maxlength='20' />
+								<input class="userNick form-control reply-control" id="replyId"/>
 								<p class="subTitle">
 									비밀번호 <span>|</span>
 								</p>
-								<input class="reply_password input-sm" id="replyPw" type="password" maxlength='20'/>
+								<input class="reply_password form-control reply-control" id="replyPw" type="password"/>
 								<!-- <p class="userId" id="replyId" style="display: none;">${userInfo.userId}</p> -->
 							</div>
 							<div class="reply-input">
-								<textarea class="form-control" id="replyArea" rows="3" id="reply"
-									placeholder="댓글을 입력해주세요" maxlength='100'></textarea>
+								<textarea class="form-control" rows="3" id="reply"
+									placeholder="댓글을 입력해주세요"></textarea>
 								<button type="button" id="replyRegist"
 									class="right btn btn-info">등록하기</button>
-
 							</div>
 						</div>
 
@@ -117,11 +115,59 @@
 	const $form = document.form;
 	const uid = '${userInfo.userId}';
 
+	//비밀번호 정규식표현
+	const pwRegex =
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,20}$/;
+
 	//삭제버튼
 	document.getElementById('delBtn').addEventListener('click', () => {
-		let insertedPw = prompt('비밀번호를 입력해주세요.');
+
+		const reviewDeleteHandler = () => {
+			let insertedPw = prompt('비밀번호를 입력해주세요.');
+
+			// 취소 버튼이 눌렸을 때 처리
+			if (insertedPw === null) {
+				return; // 함수 실행을 중단합니다.
+			}
+
+			const reviewNo = document.getElementById('reviewNo').value;
+			console.log('입력된 비번: ' + insertedPw + ' 리뷰번호: ' + reviewNo);
+			fetch('${pageContext.request.contextPath}/review/checkPw', {
+				method: 'post',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					'reviewNo': reviewNo,
+					'password': insertedPw
+				})
+			})
+			.then(res => res.text())
+			.then(data => {
+				console.log(data);
+				if(data == 1) {
+					$form.setAttribute('action', '${pageContext.request.contextPath}/review/delete');
+					$form.submit();
+				} else {
+					alert('비밀번호가 틀렸습니다.');
+					reviewDeleteHandler();
+				}
+			})
+		};
+
+		reviewDeleteHandler();
+	});
+
+	//글수정함수
+	const reviewModifyHandler = () => {
+		let insertedPw = prompt('비밀번호를 입력해주세요.');		
+
+		// 취소 버튼이 눌렸을 때 처리
+		if (insertedPw === null) {
+			return; // 함수 실행을 중단합니다.
+		}
+
 		const reviewNo = document.getElementById('reviewNo').value;
-		console.log('입력된 비번: ' + insertedPw + ' 리뷰번호: ' + reviewNo);
 		fetch('${pageContext.request.contextPath}/review/checkPw', {
 			method: 'post',
 			headers: {
@@ -136,39 +182,17 @@
 		.then(data => {
 			console.log(data);
 			if(data == 1) {
-				$form.setAttribute('action', '${pageContext.request.contextPath}/review/delete');
 				$form.submit();
 			} else {
 				alert('비밀번호가 틀렸습니다.');
-				return;
+				reviewModifyHandler();
 			}
 		})
-	});
+	};
 
 	//수정버튼
 	document.getElementById('modiBtn').addEventListener('click', () => {
-		let insertedPw = prompt('비밀번호를 입력해주세요.');		
-		const reviewNo = document.getElementById('reviewNo').value;
-		fetch('${pageContext.request.contextPath}/review/checkPw', {
-			method: 'post',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				'reviewNo': reviewNo,
-				'password': insertedPw
-			})
-		})
-		.then(res => res.text())
-		.then(data => {
-			console.log(data);
-			if(data == 1) {
-				$form.submit();
-			} else {
-				alert('비밀번호가 틀렸습니다.');
-				return;
-			}
-		})
+		reviewModifyHandler();
 	})
 
 	window.onload = function () {
@@ -184,7 +208,10 @@
             // }
 
 			//쿠키 있으면 리턴
-			if(replyId.trim() === '') {
+			if(getCookie('replyBlock')) {
+				alert('댓글은 30초 이내에 작성이 불가능합니다.')
+				return;	
+			} else if(replyId.trim() === '') {
 				alert('작성자를 입력해주세요.');
 				document.getElementById('replyId').focus();
 				return;
@@ -192,11 +219,24 @@
 				alert('비밀번호를를 입력해주세요.');
 				document.getElementById('replyPw').focus();
 				return;
+			} else if(!pwRegex.test(document.getElementById('replyPw').value)) {
+				alert('8~20글자 영문, 숫자, 특수문자를 포함해 주세요.');
+				document.getElementById('replyPw').focus();
+				return;
 			} else if (reply.trim() === '') {
 				alert('내용을 입력해주세요.');
 				document.getElementById('reply').focus();
 				return;
+			} else if (replyId.length > 10) {
+				alert('작성자는 10자 이내로 제한됩니다.');
+				document.getElementById('replyId').focus();
+				return;
+			} else if (reply.length > 100) {
+				alert('댓글내용은 100자 이내로 제한됩니다.');
+				document.getElementById('reply').focus();
+				return;
 			}
+
 			//요청에 관련된 정보 객체
 			const reqObj = {
 				method: 'post',
@@ -215,6 +255,7 @@
 				.then(res => res.text())
 				.then(data => {
 					console.log('통신 성공!: ' + data);
+					createCookie();
 					document.getElementById('reply').value = '';
 					document.getElementById('replyPw').value = '';
 					document.getElementById('replyId').value = '';
@@ -279,7 +320,7 @@
 									<div class='my-reply-group'>
 										<p class='left replyId` + i + `'></p> <span>|</span>
 										<p class='clearfix reply` + i + `'></p>
-										<a href='${replyList[i].replyNo}' class='right replyDelete' id='replyDelBtn'>X삭제</a>
+										<a href='${replyList[i].replyNo}' class='right replyDelete' id='replyDelBtn' onclick=>X삭제</a>
 									</div>
 								</div>
 							</div>`;
@@ -303,39 +344,51 @@
 				});
 		} //end getList(); 
 
+		//댓글삭제함수
+		const replyDeleteHandler = e => {
 
-		function registerReplyDeleteHandlers(e) {
-					console.log('delete 요청');
-					e.preventDefault();
+			console.log('delete 요청');
+			e.preventDefault();
 
-					let replyPw = prompt('비밀번호를 입력하세요.');
+			const promptForPassword = () => {
 
-					// 삭제 요청을 보내는 AJAX 요청
-					fetch('${pageContext.request.contextPath}/reply/delete/' + e.target.getAttribute('href') + '/' + replyPw, {
-					    method: 'DELETE'
-					})
-					.then(res => res.text())
-					.then(data => {
-						if(data === 'replyDeleteSuccess') window.location.reload();
-						else {
-							alert('비밀번호가 틀렸습니다..');
-						}
-					})
-					.catch(error => {
-					    console.error('삭제 요청 중 오류 발생:', error);
-					});
-				};
-					    
-					
+				let replyPw = prompt('비밀번호를 입력하세요.');
 
-					// 이벤트 핸들러 등록 함수 호출
-					document.getElementById('replyList').addEventListener('click', function(e) {
-						if(e.target.matches('.replyDelete')) {
-							registerReplyDeleteHandlers(e);
-						} else {
-							return;
-						}
-					});
+				// 취소 버튼이 눌렸을 때 처리
+				if (replyPw === null) {
+					return; // 함수 실행을 중단합니다.
+				}
+				
+				// 삭제 요청을 보내는 AJAX 요청
+				fetch('${pageContext.request.contextPath}/reply/delete/' + e.target.getAttribute('href') + '/' + replyPw, {
+					method: 'DELETE'
+				})
+				.then(res => res.text())
+				.then(data => {
+					if(data === 'replyDeleteSuccess') window.location.reload();
+					else {
+						alert('비밀번호가 틀렸습니다..');
+						// 비밀번호가 틀린 경우 재귀적으로 다시 비밀번호를 입력 받음
+						promptForPassword();
+					}
+				})
+				.catch(error => {
+					console.error('삭제 요청 중 오류 발생:', error);
+				});
+			};
+
+			promptForPassword();
+
+		};
+
+		// 이벤트 핸들러 등록 함수 호출
+		document.getElementById('replyList').addEventListener('click', function(e) {
+			if(e.target.matches('.replyDelete')) {
+				replyDeleteHandler(e);
+			} else {
+				return;
+			}
+		});
 
 		const $replyListWrap = document.getElementById('replyListWrap');
 		$replyList.addEventListener('click', function (e) {
@@ -386,4 +439,23 @@
 			e.preventDefault(); // 기본 동작(스페이스 입력)을 막음
 		}
 	});
+
+	function createCookie() {
+		const date = new Date();
+		date.setTime(date.getTime() + 30 * 1000);
+		let cookie = '';
+		cookie += `replyBlock=true;`; //세미콜론을 반드시 찍으세요.
+		cookie += 'expires=' + date.toUTCString();
+		document.cookie = cookie;
+	}
+
+	function getCookie(name) {
+		const cookies = document.cookie.split(';');
+
+		for(let c of cookies) {
+			if(c.search(name) !== -1) {
+				return true;
+			}
+		}
+	}
 </script>

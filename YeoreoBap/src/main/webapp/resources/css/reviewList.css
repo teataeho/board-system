@@ -50,15 +50,25 @@
 }
 
 #board-title {
-	width: 60%;
+	width: 55%;
 }
 #review-title {
 	text-align: left;
 }
 
-.reviewWriter, .reviewNo {
-	width: 10%;
+.title-a:hover {
+    color: #F4B183;
+    font-weight: 700;
+}
+
+.reviewNo {
+	width: 8%;
 	text-align: center;
+}
+
+.reviewWriter {
+    width: 17%;
+    text-align: center;
 }
 
 #table tbody {

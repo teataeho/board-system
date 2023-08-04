@@ -15,16 +15,15 @@
                             <input type="hidden" name="reviewNo" value="${article.reviewNo}" />
                             <div class="form-group modify-form-group">
                                 <p>작성자<span>|</span></p>
-                                <input class="form-control modify-form-control" maxlength='20' id="inputForm" name="userNick" value="${article.writer}" readonly>
+                                <input class="form-control modify-form-control" id="inputForm" name="userNick" value="${article.writer}" readonly>
                             </div>    
                             <div class="form-group modify-form-group">
                                 <p>제목<span>|</span></p>
-                                <input class="form-control modify-form-control" maxlength='100' id="inputForm" name="title" value="${article.title}">
+                                <input class="form-control modify-form-control" id="inputForm" name="title" value="${article.title}">
                             </div>
                             <div class="form-group modify-form-group">
                                 <p>내용<span>|</span></p>
-                                <textarea class="form-control modify-form-control content" id="inputForm" rows="7" name="content" type='text'
-                                maxlength='1000'><c:out value="${article.content}"></c:out></textarea>
+                                <textarea class="form-control modify-form-control content" id="inputForm" rows="7" name="content" type='text'><c:out value="${article.content}"></c:out></textarea>
                             </div>
                             <div id="content_cnt"></div>
 							<div class="modifyBtns">
@@ -58,18 +57,20 @@
                     alert('내용은 필수 항목입니다.');
                     $form.content.focus();
                     return;
+                } else if($form.title.value.length > 100) {
+                    alert('제목은 100글자 이내로 제한됩니다.');
+                    $form.title.focus();
+                    return;
+                } else if($form.content.value.length > 100) {
+                    alert('내용은 1000글자 이내로 제한됩니다.');
+                    $form.content.focus();
+                    return;
                 } else {
                     $form.submit();
                 }
             }
 
-            $(document).ready(function () {
-                $('.content').on('keyup', function () {
-                    $('#content_cnt').html("(" + $(this).val().length + "/1000)");
-                    if ($(this).val().length > 1000) {
-                        $(this).val($(this).val.substring(0, 1000));
-                        $('#content_cnt').html("(1000/1000)");
-                    }
-                })
+            document.querySelector('.content').addEventListener('input', e => {
+                document.getElementById('content_cnt').textContent = '(' + e.target.value.length + '/1000)'
             })
         </script>
