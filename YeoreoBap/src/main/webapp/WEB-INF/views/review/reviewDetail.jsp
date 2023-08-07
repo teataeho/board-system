@@ -193,8 +193,83 @@
 	//수정버튼
 	document.getElementById('modiBtn').addEventListener('click', () => {
 		reviewModifyHandler();
-	})
+	});
 
+	document.getElementById('replyId').addEventListener('keyup', e => {
+		if(e.target.value.length > 10) {
+			alert('작성자는 10글자 이내로 제한됩니다.');
+			e.target.value = e.target.value.substr(0, 10);
+			document.getElementById('replyID').focus();
+			return;
+		}
+	});
+	document.getElementById('replyId').addEventListener('input', e => {
+		if(e.target.value.length > 10) {
+			alert('작성자는 10글자 이내로 제한됩니다.');
+			e.target.value = e.target.value.substr(0, 10);
+			document.getElementById('replyID').focus();
+			return;
+		}
+	});
+	document.getElementById('replyId').addEventListener('mouseup', e => {
+		if(e.target.value.length > 10) {
+			alert('작성자는 10글자 이내로 제한됩니다.');
+			e.target.value = e.target.value.substr(0, 10);
+			document.getElementById('replyID').focus();
+			return;
+		}
+	});
+	
+	document.getElementById('reply').addEventListener('keyup', e => {
+		if(e.target.value.length > 100) {
+			alert('내용 100글자 이내로 제한됩니다.');
+			e.target.value = e.target.value.substr(0, 100);
+			document.getElementById('reply').focus();
+			return;
+		}
+	});	
+	document.getElementById('reply').addEventListener('input', e => {
+		if(e.target.value.length > 100) {
+			alert('내용 100글자 이내로 제한됩니다.');
+			e.target.value = e.target.value.substr(0, 100);
+			document.getElementById('reply').focus();
+			return;
+		}
+	});
+	document.getElementById('reply').addEventListener('mouseup', e => {
+		if(e.target.value.length > 100) {
+			alert('내용 100글자 이내로 제한됩니다.');
+			e.target.value = e.target.value.substr(0, 100);
+			document.getElementById('reply').focus();
+			return;
+		}
+	});
+
+	document.getElementById('replyPw').addEventListener('keyup', e => {
+		if(e.target.value.length > 20) {
+			alert('8~20글자 영문, 숫자, 특수문자를 포함해 주세요.');
+			e.target.value = e.target.value.substr(0, 20);
+			document.getElementById('replyPw').focus();
+			return;
+		}
+	});
+	document.getElementById('replyPw').addEventListener('input', e => {
+		if(e.target.value.length > 20) {
+			alert('8~20글자 영문, 숫자, 특수문자를 포함해 주세요.');
+			e.target.value = e.target.value.substr(0, 20);
+			document.getElementById('replyPw').focus();
+			return;
+		}
+	});
+	document.getElementById('replyPw').addEventListener('mouseup', e => {
+		if(e.target.value.length > 20) {
+			alert('8~20글자 영문, 숫자, 특수문자를 포함해 주세요.');
+			e.target.value = e.target.value.substr(0, 20);
+			document.getElementById('replyPw').focus();
+			return;
+		}
+	});
+	
 	window.onload = function () {
 		document.getElementById('replyRegist').onclick = () => {
 			const reviewNo = document.getElementById('reviewNo').value; //현재 게시글 번호
@@ -225,14 +300,6 @@
 				return;
 			} else if (reply.trim() === '') {
 				alert('내용을 입력해주세요.');
-				document.getElementById('reply').focus();
-				return;
-			} else if (replyId.length > 10) {
-				alert('작성자는 10자 이내로 제한됩니다.');
-				document.getElementById('replyId').focus();
-				return;
-			} else if (reply.length > 100) {
-				alert('댓글내용은 100자 이내로 제한됩니다.');
 				document.getElementById('reply').focus();
 				return;
 			}
@@ -319,7 +386,7 @@
 								<div class="reply-content">
 									<div class='my-reply-group'>
 										<p class='left replyId` + i + `'></p> <span>|</span>
-										<p class='clearfix reply` + i + `'></p>
+										<pre class='clearfix reply` + i + `'></pre>
 										<a href='${replyList[i].replyNo}' class='right replyDelete' id='replyDelBtn' onclick=>X삭제</a>
 									</div>
 								</div>

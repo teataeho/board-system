@@ -310,7 +310,7 @@ pre,
 code,
 kbd,
 samp {
-  font-family: var(--bs-font-monospace);
+  font-family: var(--bs-font-sans-serif);
   font-size: 1em;
 }
 

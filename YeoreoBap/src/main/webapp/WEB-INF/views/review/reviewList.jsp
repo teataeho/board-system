@@ -12,8 +12,7 @@
 			<div class="col-lg-10 col-xs-12 board-table" id="reviewBoard">
 				<div id="reviewListTitle">
 					<h2>후기 게시판</h2>
-				</div>
-		
+				</div>		
 
 				<!--form select를 가져온다 -->
 				<form action="<c:url value='/review/reviewList' />">
