@@ -58,6 +58,12 @@ public class ReviewController {
 //		model.addAttribute("attendedParty" ,service.getResList2(userId));
 	}
 	
+	//답글에 필요한 컬럼을 추가해서 후기등록화면으로 보내기
+	@PostMapping("/reviewRegistDab")
+	public void registDap(ReviewVO vo, Model model) {
+		model.addAttribute("dab", vo);
+	}
+	
 	//후기등록하기
 	@PostMapping("/regist")
 	public String regist(ReviewVO vo) {
@@ -101,6 +107,13 @@ public class ReviewController {
 	public int checkPw(@RequestBody ReviewVO vo) {
 		log.info("checkPw : " + vo);
 		return service.checkPw(vo);
+	}
+	
+	//답글쓰기
+	@PostMapping("/registDab")
+	public String registDab(ReviewVO vo) {
+		service.registDab(vo);
+		return "redirect:/review/reviewList";
 	}
 	
 }

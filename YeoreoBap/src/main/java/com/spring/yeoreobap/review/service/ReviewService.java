@@ -59,6 +59,40 @@ public class ReviewService implements IReviewService {
 		return mapper.checkPw(vo);
 	}
 
+	@Override
+	public void registDab(ReviewVO vo) {
+		int maxRefOrder;
+		log.info("vo는 모야:" +vo);
+		//중간에 들어갈 자리 찾기
+		if(vo.getAnswerCnt() == 0) {
+			maxRefOrder = vo.getRefOrder();
+		} else {
+			ReviewVO tmp = mapper.findStep(vo.getParentNo());
+			maxRefOrder = tmp.getRefOrder() +tmp.getAnswerCnt();
+		}
+		
+		//들어갈 자리 마련하기
+		mapper.increaseRefOrder(vo.getRef(), maxRefOrder);
+		
+		//부모글의 답변수 증가
+		mapper.increaseAnswer(vo.getParentNo());
+		
+		//답글등록
+		ReviewVO result = new ReviewVO();
+		result.setTitle(vo.getTitle());
+		result.setPassword(vo.getPassword());
+		result.setContent(vo.getContent());
+		result.setWriter(vo.getWriter());
+		result.setRef(vo.getRef());
+		result.setStep(vo.getStep() + 1);
+		result.setRefOrder(maxRefOrder + 1);
+		result.setParentNo(vo.getParentNo());
+		
+		mapper.registDap(result);
+		
+		
+	}
+
 //	@Override
 //	public List<PartyVO> getResList1(String userId) {
 //		return mapper.getResList1(userId);

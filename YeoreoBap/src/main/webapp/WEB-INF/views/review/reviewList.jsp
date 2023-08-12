@@ -12,7 +12,7 @@
 			<div class="col-lg-10 col-xs-12 board-table" id="reviewBoard">
 				<div id="reviewListTitle">
 					<h2>후기 게시판</h2>
-				</div>		
+				</div>
 
 				<!--form select를 가져온다 -->
 				<form action="<c:url value='/review/reviewList' />">
@@ -54,6 +54,7 @@
 								<div class="text-truncate">
 								<a  class="title-a"
 									href="${pageContext.request.contextPath}/review/content/${vo.reviewNo}?pageNum=${pc.paging.pageNum}&cpp=${pc.paging.cpp}&keyword=${pc.paging.keyword}&condition=${pc.paging.condition}">
+									<c:forEach begin="1" end="${vo.step}" step="1">↳</c:forEach>
 									<c:out value="${vo.title}"></c:out>
 								</a>
 								</div>
@@ -66,7 +67,6 @@
 							</tr>
 						</c:forEach>
 					</tbody>
-
 				</table>
 
 
@@ -115,7 +115,6 @@
 <%@ include file="../include/footer.jsp"%>
 
 <script>
-
     window.onload = function() {
         document.getElementById('pagination').addEventListener('click', e => {
             if(!e.target.matches('a')) {

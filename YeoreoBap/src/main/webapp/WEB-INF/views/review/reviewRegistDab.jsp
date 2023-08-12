@@ -13,7 +13,7 @@
 					<h2>후기게시판</h2>
 				</div>
 
-				<form action="${pageContext.request.contextPath}/review/regist" method="post" name="reviewForm">
+				<form action="${pageContext.request.contextPath}/review/registDab" method="post" name="reviewForm">
 					<table class="table" id="reviewTable">
 						<tbody class="t-control riviewControl">
 							<tr>
@@ -52,6 +52,11 @@
 							</tr>
 						</tbody>
 					</table>
+					<input type="hidden" name="ref" value="${dab.ref}">
+					<input type="hidden" name="refOrder" value="${dab.refOrder}">
+					<input type="hidden" name="answerCnt" value="${dab.answerCnt}">
+					<input type="hidden" name="step" value="${dab.step}">
+					<input type="hidden" name="parentNo" value="${dab.reviewNo}">
 					<div class="titlefoot reviewTitleFoot">
 						<button class="btn register" id="registBtn" type="button">등록</button>
 						<button class="btn" id="listBtn" type="button" onclick="location.href='${pageContext.request.contextPath}/review/reviewList'">목록</button>

@@ -28,15 +28,20 @@
 
 	<insert id="regist">
 		INSERT INTO review
-		(password, writer, title, content)
-		VALUES (#{password}, #{writer}, #{title}, #{content})
+		(password, writer, title, content, ref)
+		VALUES (#{password}, #{writer}, #{title}, #{content},
+			(
+			SELECT IFNULL(ref, 0) + 1
+			FROM (SELECT MAX(ref) AS ref FROM review) tmp
+			)
+		)
 	</insert>
 	<!-- regDate, updateDate 삭제 -->
 	<select id="getList" resultType="review">
 		SELECT ROW_NUMBER() OVER (ORDER BY r.review_no) AS rn, r.*
 		FROM review r
 		<include refid="search" />
-		ORDER BY r.review_no DESC
+		ORDER BY r.ref DESC, r.ref_order
 		LIMIT #{pageStart}, #{cpp}
 	</select>
 	
@@ -76,6 +81,35 @@
 		FROM review
 		WHERE review_no = #{reviewNo} AND password = #{password}
 	</select>
+	
+	<update id="increaseAnswer">
+		UPDATE review
+		SET answer_cnt = answer_cnt + 1
+		WHERE review_no = #{parent_no}
+	</update>
+	
+	<select id="findStep" resultType="review">
+		SELECT ref_order, answer_cnt
+		FROM review
+		WHERE ref_order = (
+			SELECT MAX(ref_order)
+			FROM review
+			WHERE parent_no = #{parentNo}
+			)
+	</select>
+	
+	<update id="increaseRefOrder">
+		UPDATE review
+		SET ref_order = ref_order + 1
+		WHERE ref = #{ref} AND ref_order > #{maxRefOrder}
+	</update>
+	
+	<insert id="registDap">
+		INSERT review
+		(password, writer, title, content, ref, step, ref_order, parent_no)
+		VALUES
+		(#{password}, #{writer}, #{title}, #{content}, #{ref}, #{step}, #{refOrder}, #{parentNo})
+	</insert>
 	
 	<!-- <select id="getResList1" resultType="party">
 		SELECT sno, bplc_nm

@@ -12,6 +12,11 @@
 				<section id="section">
 					<h2 class="text-center border-bottom border-orange pb-3 mb-4">상세보기</h2>
 					<form action="${pageContext.request.contextPath}/review/modify" method="post" name="form">
+						<input type="hidden" name="reviewNo" value="${article.reviewNo}">
+						<input type="hidden" name="ref" value="${article.ref}">
+						<input type="hidden" name="step" value="${article.step}">
+						<input type="hidden" name="refOrder" value="${article.refOrder}">
+						<input type="hidden" name="answerCnt" value="${article.answerCnt}">
 						<div class="regDate">
 							<p class="subTitle">
 								DATE <span>|</span>
@@ -48,6 +53,7 @@
 							<input type="hidden" value="${article.content}" name="content">
 						</div>
 						<div class="reviewBtns d-flex flex-nowrap justify-content-evenly mx-auto">
+							<button type="button" class="btn btn-outline-orange" id="dapBtn">답글</button>
 							<button type="button" class="btn btn-orange" id="modiBtn">수정</button>
 							<button type="button" class="btn btn-outline-orange" id="delBtn">삭제</button>
 							<button type="button" class="btn btn-orange"
@@ -118,6 +124,12 @@
 	//비밀번호 정규식표현
 	const pwRegex =
       /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,20}$/;
+
+	//답글버튼
+	document.getElementById('dapBtn').addEventListener('click', () => {
+		$form.setAttribute('action', '${pageContext.request.contextPath}/review/reviewRegistDab');
+		$form.submit();
+	});
 
 	//삭제버튼
 	document.getElementById('delBtn').addEventListener('click', () => {

@@ -35,4 +35,7 @@ public interface IReviewService {
 	//비밀번호 검증
 	int checkPw(ReviewVO vo);
 
+	//답글
+	void registDab(ReviewVO vo);
+
 }

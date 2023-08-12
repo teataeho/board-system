@@ -34,6 +34,19 @@ public interface IReviewMapper {
 
 	//비밀번호검증
 	int checkPw(ReviewVO vo);
+	
+	//부모글 답변 수 증가
+	void increaseAnswer(int parentNo);
+	
+	//들어갈 자리 찾기
+	ReviewVO findStep(int parentNo);
+	
+	//들어갈 자리 만들기
+	void increaseRefOrder(@Param("ref") int ref, @Param("maxRefOrder")int maxRefOrder);
+	
+	//답글쓰기
+	void registDap(ReviewVO vo);
+	
 
 //	List<PartyVO> getResList1(String userId);
 //	List<PartyVO> getResList2(String userId);
