@@ -1,7 +1,14 @@
 package com.spring.yeoreobap.controller;
+import java.io.IOException;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletResponse;
 
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,11 +18,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.yeoreobap.command.ReviewVO;
-import com.spring.yeoreobap.command.UserVO;
 import com.spring.yeoreobap.review.service.IReviewService;
 import com.spring.yeoreobap.util.PageCreator;
 import com.spring.yeoreobap.util.PageVO;
@@ -114,6 +119,42 @@ public class ReviewController {
 	public String registDab(ReviewVO vo) {
 		service.registDab(vo);
 		return "redirect:/review/reviewList";
+	}
+	
+	//엑셀 다운로드
+	@GetMapping("/downloadExcel")
+	public void downloadExcel(HttpServletResponse response) throws IOException {
+		
+		Workbook workbook = new HSSFWorkbook();
+		Sheet sheet = workbook.createSheet("reviewList");
+		int rowNo = 0;
+		
+		Row headerRow = sheet.createRow(rowNo++);
+        headerRow.createCell(0).setCellValue("글 번호");
+        headerRow.createCell(1).setCellValue("작성자");
+        headerRow.createCell(2).setCellValue("제목");
+        headerRow.createCell(3).setCellValue("내용");
+        headerRow.createCell(4).setCellValue("작성일");
+//        headerRow.createCell(5).setCellValue("수정일");
+        
+		List<ReviewVO> list = service.getAllList();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		
+		for(ReviewVO vo : list) {
+			Row row = sheet.createRow(rowNo++);
+			row.createCell(0).setCellValue(vo.getReviewNo());
+            row.createCell(1).setCellValue(vo.getWriter());
+            row.createCell(2).setCellValue(vo.getTitle());
+            row.createCell(3).setCellValue(vo.getContent());
+            row.createCell(4).setCellValue(vo.getRegDate().format(formatter));
+//            row.createCell(5).setCellValue(vo.getUpdateDate().format(formatter));
+		}
+		
+		response.setContentType("ms-vnd/excel");
+        response.setHeader("Content-Disposition", "attachment;filename=reviewlist.xls");
+ 
+        workbook.write(response.getOutputStream());
+        workbook.close();
 	}
 	
 }

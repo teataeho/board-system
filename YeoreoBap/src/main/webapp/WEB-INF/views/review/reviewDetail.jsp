@@ -53,7 +53,7 @@
 							<input type="hidden" value="${article.content}" name="content">
 						</div>
 						<div class="reviewBtns d-flex flex-nowrap justify-content-evenly mx-auto">
-							<button type="button" class="btn btn-outline-orange" id="dapBtn">답글</button>
+							<button type="button" class="btn btn-outline-orange" id="dapBtn" onclick="dapHandler()">답글</button>
 							<button type="button" class="btn btn-orange" id="modiBtn">수정</button>
 							<button type="button" class="btn btn-outline-orange" id="delBtn">삭제</button>
 							<button type="button" class="btn btn-orange"
@@ -126,10 +126,10 @@
       /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,20}$/;
 
 	//답글버튼
-	document.getElementById('dapBtn').addEventListener('click', () => {
+	function dapHandler() {
 		$form.setAttribute('action', '${pageContext.request.contextPath}/review/reviewRegistDab');
 		$form.submit();
-	});
+	}
 
 	//삭제버튼
 	document.getElementById('delBtn').addEventListener('click', () => {

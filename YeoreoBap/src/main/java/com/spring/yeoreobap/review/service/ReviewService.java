@@ -67,7 +67,7 @@ public class ReviewService implements IReviewService {
 		if(vo.getAnswerCnt() == 0) {
 			maxRefOrder = vo.getRefOrder();
 		} else {
-			ReviewVO tmp = mapper.findStep(vo.getParentNo());
+			ReviewVO tmp = mapper.findStep(vo);
 			maxRefOrder = tmp.getRefOrder() +tmp.getAnswerCnt();
 		}
 		
@@ -91,6 +91,11 @@ public class ReviewService implements IReviewService {
 		mapper.registDap(result);
 		
 		
+	}
+
+	@Override
+	public List<ReviewVO> getAllList() {
+		return mapper.getAllList();
 	}
 
 //	@Override

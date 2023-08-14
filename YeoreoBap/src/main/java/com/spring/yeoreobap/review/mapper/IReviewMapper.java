@@ -39,13 +39,16 @@ public interface IReviewMapper {
 	void increaseAnswer(int parentNo);
 	
 	//들어갈 자리 찾기
-	ReviewVO findStep(int parentNo);
+	ReviewVO findStep(ReviewVO vo);
 	
 	//들어갈 자리 만들기
 	void increaseRefOrder(@Param("ref") int ref, @Param("maxRefOrder")int maxRefOrder);
 	
 	//답글쓰기
 	void registDap(ReviewVO vo);
+
+	//모든 리스트 가져오긴
+	List<ReviewVO> getAllList();
 	
 
 //	List<PartyVO> getResList1(String userId);

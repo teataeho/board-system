@@ -38,8 +38,11 @@
 	</insert>
 	<!-- regDate, updateDate 삭제 -->
 	<select id="getList" resultType="review">
-		SELECT ROW_NUMBER() OVER (ORDER BY r.review_no) AS rn, r.*
+		SELECT ROW_NUMBER() OVER (ORDER BY r.ref, r.ref_order DESC) AS rn
+			,r.*, COUNT(rr.review_no) AS reply_cnt
 		FROM review r
+		LEFT JOIN reviewreply rr ON r.review_no = rr.review_no
+		GROUP BY r.review_no
 		<include refid="search" />
 		ORDER BY r.ref DESC, r.ref_order
 		LIMIT #{pageStart}, #{cpp}
@@ -71,10 +74,11 @@
 		WHERE review_no = #{reviewNo}
 	</update>
 	
-	<delete id="delete">
-		DELETE FROM review
+	<update id="delete">
+		UPDATE review
+		SET hidden = 1
 		WHERE review_no = #{reviewNo}
-	</delete>
+	</update>
 	
 	<select id="checkPw" resultType="int">
 		SELECT COUNT(*)
@@ -91,7 +95,8 @@
 	<select id="findStep" resultType="review">
 		SELECT ref_order, answer_cnt
 		FROM review
-		WHERE ref_order = (
+		WHERE ref = #{ref} AND
+			ref_order = (
 			SELECT MAX(ref_order)
 			FROM review
 			WHERE parent_no = #{parentNo}
@@ -110,6 +115,12 @@
 		VALUES
 		(#{password}, #{writer}, #{title}, #{content}, #{ref}, #{step}, #{refOrder}, #{parentNo})
 	</insert>
+	
+	<select id="getAllList" resultType="review">
+		SELECT *
+		FROM review
+		ORDER BY ref DESC, ref_order
+	</select>
 	
 	<!-- <select id="getResList1" resultType="party">
 		SELECT sno, bplc_nm

@@ -49,21 +49,29 @@
 					<tbody>
 						<c:forEach var="vo" items="${reviewList}">
 							<tr>
-								<td class="reviewNo">${vo.rn}</td>
-								<td id="review-title" >
-								<div class="text-truncate">
-								<a  class="title-a"
-									href="${pageContext.request.contextPath}/review/content/${vo.reviewNo}?pageNum=${pc.paging.pageNum}&cpp=${pc.paging.cpp}&keyword=${pc.paging.keyword}&condition=${pc.paging.condition}">
-									<c:forEach begin="1" end="${vo.step}" step="1">↳</c:forEach>
-									<c:out value="${vo.title}"></c:out>
-								</a>
-								</div>
-								</td>
-								<td class="reviewWriter"><c:out value="${vo.writer}"></c:out></td>
-								<!-- <td>${vo.bplcNm}</td> -->
-								<td class="day"><fmt:parseDate value="${vo.regDate}"
-										pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" /> <fmt:formatDate
-										value="${parsedDateTime}" pattern="yy.MM.dd. HH:mm" /></td>
+								<c:if test="${vo.hidden == 0}">
+									<td class="reviewNo">${vo.rn}</td>
+									<td id="review-title" >
+										<div class="text-truncate">
+											<a  class="title-a"
+											href="${pageContext.request.contextPath}/review/content/${vo.reviewNo}?pageNum=${pc.paging.pageNum}&cpp=${pc.paging.cpp}&keyword=${pc.paging.keyword}&condition=${pc.paging.condition}">
+												<c:forEach begin="1" end="${vo.step}" step="1">&nbsp;&nbsp;↳</c:forEach>
+												<c:out value="${vo.title}"></c:out>
+											</a>											
+										</div>										
+									</td>
+									<td class="reviewWriter"><c:out value="${vo.writer}"></c:out></td>
+									<!-- <td>${vo.bplcNm}</td> -->
+									<td class="day"><fmt:parseDate value="${vo.regDate}"
+											pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" /> <fmt:formatDate
+											value="${parsedDateTime}" pattern="yy.MM.dd. HH:mm" /></td>
+								</c:if>
+								<c:if test="${vo.hidden == 1}">
+									<td class="reviewNo">${vo.rn}</td>
+									<td id="review-title" style="color: gray;">삭제된 게시글입니다.</td>
+									<td class="reviewWriter"></td>
+									<td class="day"></td>
+								</c:if>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -98,6 +106,8 @@
 						</ul>
 						<button type="button" class="btn btn-info" id="writeBtn"
 							onclick="location.href='${pageContext.request.contextPath}/review/reviewRegist'">글쓰기</button>
+						<button type="button" class="btn btn-info" id="downloadBtn"
+							onclick="location.href='${pageContext.request.contextPath}/review/downloadExcel'">다운로드</button>
 					</div>
 
 					<input type="hidden" name="pageNum" value="${pc.paging.pageNum}">

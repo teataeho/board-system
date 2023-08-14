@@ -38,4 +38,7 @@ public interface IReviewService {
 	//답글
 	void registDab(ReviewVO vo);
 
+	//모든 게시글
+	List<ReviewVO> getAllList();
+
 }
