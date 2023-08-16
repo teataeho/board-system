@@ -25,6 +25,15 @@
 	width: 100%
 }
 
+#uploadPlusBtn, #uploadMinusBtn {
+	width: 40px;
+	color: white;
+	background: #F4B183;
+    border: #F4B183;
+    transition: 0.3s;
+    margin: 0 5px;
+}
+
 #registBtn, #listBtn {
 	width: 100px;
 	color: white;
@@ -42,4 +51,8 @@
 	width: 80%;
 	display: flex;
 	justify-content: flex-end;
+}
+
+#file-upload-container {
+	margin-bottom: 20px;
 }

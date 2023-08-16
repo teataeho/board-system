@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.spring.yeoreobap.command.FileVO;
 import com.spring.yeoreobap.command.PartyVO;
 import com.spring.yeoreobap.command.ReviewVO;
 import com.spring.yeoreobap.util.PageVO;
@@ -30,7 +31,10 @@ public interface IReviewMapper {
 	void update(ReviewVO vo);
 
 	//삭제
-	void delete(int reviewNo);
+	void delete(ReviewVO vo);
+	
+	//숨기기
+	void hide(ReviewVO vo);
 
 	//비밀번호검증
 	int checkPw(ReviewVO vo);
@@ -49,6 +53,12 @@ public interface IReviewMapper {
 
 	//모든 리스트 가져오긴
 	List<ReviewVO> getAllList();
+
+	//파일 업로드내역 DB에 저장
+	void fileUpload(FileVO fileVO);
+
+	//파일 가져오기
+	List<FileVO> getFiles(int reviewNo);
 	
 
 //	List<PartyVO> getResList1(String userId);

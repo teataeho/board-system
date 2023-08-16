@@ -11,12 +11,24 @@
 			<div class="col-xs-12 col-md-9 write-wrap">
 				<section id="section">
 					<h2 class="text-center border-bottom border-orange pb-3 mb-4">상세보기</h2>
+						
 					<form action="${pageContext.request.contextPath}/review/modify" method="post" name="form">
 						<input type="hidden" name="reviewNo" value="${article.reviewNo}">
 						<input type="hidden" name="ref" value="${article.ref}">
 						<input type="hidden" name="step" value="${article.step}">
 						<input type="hidden" name="refOrder" value="${article.refOrder}">
 						<input type="hidden" name="answerCnt" value="${article.answerCnt}">
+						<div class="form-group">
+							<p class="subTitle">
+								첨부 <span>|</span> 
+							</p>
+							<p>
+								<c:forEach var="vo" items="${fileList}">
+									${vo.fileRealName}
+									<button id="downloadBtn" href="${vo.fileName}/${vo.fileLoca}" type="button">다운로드</button>
+								</c:forEach>
+							</p>
+						</div>
 						<div class="regDate">
 							<p class="subTitle">
 								DATE <span>|</span>
@@ -399,7 +411,7 @@
 									<div class='my-reply-group'>
 										<p class='left replyId` + i + `'></p> <span>|</span>
 										<pre class='clearfix reply` + i + `'></pre>
-										<a href='${replyList[i].replyNo}' class='right replyDelete' id='replyDelBtn' onclick=>X삭제</a>
+										<a href='` + replyList[i].replyNo + `' class='right replyDelete' id='replyDelBtn'>X삭제</a>
 									</div>
 								</div>
 							</div>`;
@@ -421,7 +433,7 @@
 					}
 
 				});
-		} //end getList(); 
+		} //end getList();
 
 		//댓글삭제함수
 		const replyDeleteHandler = e => {
@@ -537,4 +549,10 @@
 			}
 		}
 	}
+
+	//파일 다운로드
+	document.getElementById('downloadBtn').addEventListener('click', e => {
+		e.preventDefault();
+		location.href=`${pageContext.request.contextPath}` + '/review/download/' + e.target.href;
+	});
 </script>

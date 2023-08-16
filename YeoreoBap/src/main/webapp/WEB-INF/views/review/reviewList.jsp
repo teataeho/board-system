@@ -55,10 +55,13 @@
 										<div class="text-truncate">
 											<a  class="title-a"
 											href="${pageContext.request.contextPath}/review/content/${vo.reviewNo}?pageNum=${pc.paging.pageNum}&cpp=${pc.paging.cpp}&keyword=${pc.paging.keyword}&condition=${pc.paging.condition}">
-												<c:forEach begin="1" end="${vo.step}" step="1">&nbsp;&nbsp;↳</c:forEach>
+												<c:if test="${vo.step > 0}">
+													<c:forEach begin="1" end="${vo.step}" step="1">&nbsp;&nbsp;</c:forEach>↳
+												</c:if>
 												<c:out value="${vo.title}"></c:out>
-											</a>											
-										</div>										
+											</a>
+											(${vo.replyCnt})
+										</div>
 									</td>
 									<td class="reviewWriter"><c:out value="${vo.writer}"></c:out></td>
 									<!-- <td>${vo.bplcNm}</td> -->
@@ -68,7 +71,11 @@
 								</c:if>
 								<c:if test="${vo.hidden == 1}">
 									<td class="reviewNo">${vo.rn}</td>
-									<td id="review-title" style="color: gray;">삭제된 게시글입니다.</td>
+									<td id="review-title" style="color: gray;">
+										<c:if test="${vo.step > 0}">
+											<c:forEach begin="1" end="${vo.step}" step="1">&nbsp;&nbsp;</c:forEach>↳
+										</c:if>삭제된 게시글입니다.
+									</td>
 									<td class="reviewWriter"></td>
 									<td class="day"></td>
 								</c:if>

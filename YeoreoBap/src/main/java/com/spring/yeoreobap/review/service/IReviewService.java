@@ -2,14 +2,16 @@ package com.spring.yeoreobap.review.service;
 
 import java.util.List;
 
-import com.spring.yeoreobap.command.PartyVO;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.spring.yeoreobap.command.FileVO;
 import com.spring.yeoreobap.command.ReviewVO;
 import com.spring.yeoreobap.util.PageVO;
 
 public interface IReviewService {
 
 	//글 등록
-	void regist(ReviewVO vo);
+	void regist(ReviewVO vo, List<MultipartFile> list);
 
 	//글 목록
 	List<ReviewVO> getList(PageVO vo);
@@ -24,7 +26,7 @@ public interface IReviewService {
 	void update(ReviewVO vo);
 
 	//삭제
-	void delete(int reviewNo);
+	void delete(ReviewVO vo);
 	
 	//후기 등록시 파티만들었거나 혹은 파티 참가한 기록을 가지고 sno와 bplcNm을 리턴
 //	List<PartyVO> getResList1(String userId);
@@ -40,5 +42,8 @@ public interface IReviewService {
 
 	//모든 게시글
 	List<ReviewVO> getAllList();
+
+	//게시글의 모든 파일 받아오기
+	List<FileVO> getFiles(int reviewNo);
 
 }

@@ -1,4 +1,8 @@
 package com.spring.yeoreobap.controller;
+
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -10,6 +14,10 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,8 +26,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.spring.yeoreobap.command.FileVO;
 import com.spring.yeoreobap.command.ReviewVO;
 import com.spring.yeoreobap.review.service.IReviewService;
 import com.spring.yeoreobap.util.PageCreator;
@@ -71,8 +82,8 @@ public class ReviewController {
 	
 	//후기등록하기
 	@PostMapping("/regist")
-	public String regist(ReviewVO vo) {
-		service.regist(vo);
+	public String regist(ReviewVO vo, @RequestParam("file") List<MultipartFile> list) {
+		service.regist(vo, list);
 		return "redirect:/review/reviewList";
 	}
 	
@@ -81,6 +92,7 @@ public class ReviewController {
 	public String getContent(@PathVariable int reviewNo, @ModelAttribute("p") PageVO vo
 			, Model model) {
 		model.addAttribute("article", service.getArticle(reviewNo));
+		model.addAttribute("fileList", service.getFiles(reviewNo));
 		return "review/reviewDetail";
 	}
 	
@@ -102,8 +114,7 @@ public class ReviewController {
 	//후기삭제
 	@PostMapping("/delete")
 	public String delete(@ModelAttribute("article") ReviewVO vo) {
-		int reviewNo = vo.getReviewNo();
-		service.delete(reviewNo);
+		service.delete(vo);
 		return "redirect:/review/reviewList";
 	}
 	
@@ -135,19 +146,23 @@ public class ReviewController {
         headerRow.createCell(2).setCellValue("제목");
         headerRow.createCell(3).setCellValue("내용");
         headerRow.createCell(4).setCellValue("작성일");
-//        headerRow.createCell(5).setCellValue("수정일");
+        headerRow.createCell(5).setCellValue("수정일");
         
 		List<ReviewVO> list = service.getAllList();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		
 		for(ReviewVO vo : list) {
-			Row row = sheet.createRow(rowNo++);
-			row.createCell(0).setCellValue(vo.getReviewNo());
-            row.createCell(1).setCellValue(vo.getWriter());
-            row.createCell(2).setCellValue(vo.getTitle());
-            row.createCell(3).setCellValue(vo.getContent());
-            row.createCell(4).setCellValue(vo.getRegDate().format(formatter));
-//            row.createCell(5).setCellValue(vo.getUpdateDate().format(formatter));
+			if(vo.getHidden() == 0) {
+				Row row = sheet.createRow(rowNo++);
+				row.createCell(0).setCellValue(vo.getReviewNo());
+	            row.createCell(1).setCellValue(vo.getWriter());
+	            row.createCell(2).setCellValue(vo.getTitle());
+	            row.createCell(3).setCellValue(vo.getContent());
+	            row.createCell(4).setCellValue(vo.getRegDate().format(formatter));
+	            if(vo.getUpdateDate() != null) {
+	            	row.createCell(5).setCellValue(vo.getUpdateDate().format(formatter));
+	            }
+			}
 		}
 		
 		response.setContentType("ms-vnd/excel");
@@ -155,6 +170,12 @@ public class ReviewController {
  
         workbook.write(response.getOutputStream());
         workbook.close();
+	}
+	
+	//파일 다운로드
+	@GetMapping("/download/{fileName}/{fileLoca}")
+	public void fileDownload(@PathVariable String fileName, @PathVariable String fileLoca) {
+		File file = new File("C:/Work/upload/" + fileLoca + "/" + fileName);
 	}
 	
 }

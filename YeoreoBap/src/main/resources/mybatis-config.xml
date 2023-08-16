@@ -30,6 +30,7 @@
         <typeAlias type="com.spring.yeoreobap.command.ReviewReplyVO" alias="rReply"/>
         <typeAlias type="com.spring.yeoreobap.command.StarVO" alias="star"/>
         <typeAlias type="com.spring.yeoreobap.command.ParticipantsVO" alias="participants"/>
+        <typeAlias type="com.spring.yeoreobap.command.FileVO" alias="file"/>
     </typeAliases>
      
 </configuration>

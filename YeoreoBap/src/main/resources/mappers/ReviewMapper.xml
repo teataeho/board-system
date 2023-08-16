@@ -74,11 +74,16 @@
 		WHERE review_no = #{reviewNo}
 	</update>
 	
-	<update id="delete">
+	<update id="hide">
 		UPDATE review
 		SET hidden = 1
 		WHERE review_no = #{reviewNo}
 	</update>
+	
+	<delete id="delete">
+		DELETE FROM review
+		WHERE review_no = #{reviewNo}
+	</delete>
 	
 	<select id="checkPw" resultType="int">
 		SELECT COUNT(*)
@@ -120,6 +125,17 @@
 		SELECT *
 		FROM review
 		ORDER BY ref DESC, ref_order
+	</select>
+	
+	<insert id="fileUpload">
+		INSERT INTO file
+		VALUES(#{fileName}, (SELECT MAX(review_no) FROM review), #{uploadPath}, #{fileLoca}, #{fileRealName})
+	</insert>
+	
+	<select id="getFiles" resultType="file">
+		SELECT *
+		FROM file
+		WHERE review_no = #{reviewNo}
 	</select>
 	
 	<!-- <select id="getResList1" resultType="party">
