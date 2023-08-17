@@ -91,35 +91,38 @@
 		WHERE review_no = #{reviewNo} AND password = #{password}
 	</select>
 	
-	<update id="increaseAnswer">
-		UPDATE review
-		SET answer_cnt = answer_cnt + 1
-		WHERE review_no = #{parent_no}
-	</update>
-	
-	<select id="findStep" resultType="review">
-		SELECT ref_order, answer_cnt
+	<select id="findMax" resultType="int">
+		SELECT MAX(ref_order) + 1
 		FROM review
-		WHERE ref = #{ref} AND
-			ref_order = (
-			SELECT MAX(ref_order)
-			FROM review
-			WHERE parent_no = #{parentNo}
-			)
+		WHERE ref = #{ref}
+	</select>
+	
+	<select id="findStep" resultType="int">
+		SELECT IFNULL(MIN(ref_order), 0)
+		FROM review
+		WHERE ref = #{ref}
+		AND ref_order > #{refOrder}
+		AND #{step} >= step
 	</select>
 	
 	<update id="increaseRefOrder">
 		UPDATE review
 		SET ref_order = ref_order + 1
-		WHERE ref = #{ref} AND ref_order > #{maxRefOrder}
+		WHERE ref = #{ref} AND ref_order >= #{maxRefOrder}
 	</update>
 	
-	<insert id="registDap">
+	<insert id="registDab">
 		INSERT review
 		(password, writer, title, content, ref, step, ref_order, parent_no)
 		VALUES
 		(#{password}, #{writer}, #{title}, #{content}, #{ref}, #{step}, #{refOrder}, #{parentNo})
 	</insert>
+	
+	<update id="increaseAnswer">
+		UPDATE review
+		SET answer_cnt = answer_cnt + 1
+		WHERE review_no = #{parentNo}
+	</update>
 	
 	<select id="getAllList" resultType="review">
 		SELECT *

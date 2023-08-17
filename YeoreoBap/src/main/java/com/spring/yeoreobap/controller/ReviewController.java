@@ -1,8 +1,6 @@
 package com.spring.yeoreobap.controller;
 
-import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -14,8 +12,9 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -30,7 +29,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.spring.yeoreobap.command.FileVO;
 import com.spring.yeoreobap.command.ReviewVO;
 import com.spring.yeoreobap.review.service.IReviewService;
 import com.spring.yeoreobap.util.PageCreator;
@@ -82,7 +80,7 @@ public class ReviewController {
 	
 	//후기등록하기
 	@PostMapping("/regist")
-	public String regist(ReviewVO vo, @RequestParam("file") List<MultipartFile> list) {
+	public String regist(ReviewVO vo, @RequestParam(value="file",required = false) List<MultipartFile> list) {
 		service.regist(vo, list);
 		return "redirect:/review/reviewList";
 	}
@@ -127,8 +125,8 @@ public class ReviewController {
 	
 	//답글쓰기
 	@PostMapping("/registDab")
-	public String registDab(ReviewVO vo) {
-		service.registDab(vo);
+	public String registDab(ReviewVO vo, @RequestParam(value="file",required = false) List<MultipartFile> list) {
+		service.registDab(vo, list);
 		return "redirect:/review/reviewList";
 	}
 	
@@ -173,9 +171,22 @@ public class ReviewController {
 	}
 	
 	//파일 다운로드
-	@GetMapping("/download/{fileName}/{fileLoca}")
-	public void fileDownload(@PathVariable String fileName, @PathVariable String fileLoca) {
+	@GetMapping("/download/{fileLoca}/{fileName}/{fileRealName}")
+	public ResponseEntity<FileSystemResource> fileDownload(@PathVariable String fileLoca
+			, @PathVariable String fileName
+			, @PathVariable String fileRealName) {
 		File file = new File("C:/Work/upload/" + fileLoca + "/" + fileName);
+		
+		if(file.exists()) {
+			HttpHeaders headers = new HttpHeaders();
+            headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + fileRealName);
+            headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+
+            FileSystemResource resource = new FileSystemResource(file);
+            return new ResponseEntity<>(resource, headers, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
 	}
 	
 }

@@ -436,4 +436,21 @@
 			$fileUploadContainer.lastElementChild.remove();
 		}
 	});
+
+	//파일 확장자 제어
+	document.getElementById('file-upload-container').addEventListener('change', e=> {
+		if(!e.target.matches('input')) return;
+		const ext = e.target.value.slice(e.target.value.indexOf('.')+1).toLowerCase();
+
+		if(ext !== 'docx' && ext !== 'xls' && ext !== 'hwp' && ext !== 'pdf') {
+			alert('문서파일(docx, hwp, pdf, xls)만 등록이 가능합니다.');
+			e.target.value = '';
+			return;
+		}
+		if(e.target.size > 5*1024*1024) {
+			alert('첨부파일의 사이즈는 5MB 이내로 가능합니다.');
+			e.target.value = '';
+			return;
+		}
+	});
 </script>

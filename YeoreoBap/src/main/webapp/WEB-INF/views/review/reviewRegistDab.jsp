@@ -13,7 +13,12 @@
 					<h2>후기게시판</h2>
 				</div>
 
-				<form action="${pageContext.request.contextPath}/review/registDab" method="post" name="reviewForm">
+				<form action="${pageContext.request.contextPath}/review/registDab" method="post" name="reviewForm" enctype="multipart/form-data">
+					<div id="file-upload-container">
+						<label class="upload-label">업로드할 파일</label>
+						<button type="button" class="btn" id="uploadPlusBtn">+</button>
+						<button type="button" class="btn" id="uploadMinusBtn">-</button>
+					</div>
 					<table class="table" id="reviewTable">
 						<tbody class="t-control riviewControl">
 							<tr>
@@ -417,5 +422,40 @@
       if (e.keyCode === 32) {
         e.preventDefault(); // 기본 동작(스페이스 입력)을 막음
       }
+	});
+
+	const $fileUploadContainer = document.getElementById('file-upload-container');
+
+	//파일 업로드 추가
+	document.getElementById('uploadPlusBtn').addEventListener('click', e => {
+		e.preventDefault();
+		const str = `<br><input type="file" name="file">`;
+		$fileUploadContainer.insertAdjacentHTML('beforeend', str);
+	});
+
+	//파일 업로드 빼기
+	document.getElementById('uploadMinusBtn').addEventListener('click', e => {
+		e.preventDefault();
+		if($fileUploadContainer.lastElementChild.tagName === 'INPUT') {
+			$fileUploadContainer.lastElementChild.remove();
+			$fileUploadContainer.lastElementChild.remove();
+		}
+	});
+
+	//파일 확장자 제어
+	document.getElementById('file-upload-container').addEventListener('change', e=> {
+		if(!e.target.matches('input')) return;
+		const ext = e.target.value.slice(e.target.value.indexOf('.')+1).toLowerCase();
+
+		if(ext !== 'docx' && ext !== 'xls' && ext !== 'hwp' && ext !== 'pdf') {
+			alert('문서파일(docx, hwp, pdf, xls)만 등록이 가능합니다.');
+			e.target.value = '';
+			return;
+		}
+		if(e.target.size > 5*1024*1024) {
+			alert('첨부파일의 사이즈는 5MB 이내로 가능합니다.');
+			e.target.value = '';
+			return;
+		}
 	});
 </script>

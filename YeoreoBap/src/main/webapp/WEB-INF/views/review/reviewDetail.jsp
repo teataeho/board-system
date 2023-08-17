@@ -22,10 +22,10 @@
 							<p class="subTitle">
 								첨부 <span>|</span> 
 							</p>
-							<p>
+							<p id="download-container">
 								<c:forEach var="vo" items="${fileList}">
 									${vo.fileRealName}
-									<button id="downloadBtn" href="${vo.fileName}/${vo.fileLoca}" type="button">다운로드</button>
+									<button id="downloadBtn" data-file="${vo.fileLoca}/${vo.fileName}/${vo.fileRealName}" type="button">다운로드</button>
 								</c:forEach>
 							</p>
 						</div>
@@ -551,8 +551,9 @@
 	}
 
 	//파일 다운로드
-	document.getElementById('downloadBtn').addEventListener('click', e => {
+	document.getElementById('download-container').addEventListener('click', e => {
 		e.preventDefault();
-		location.href=`${pageContext.request.contextPath}` + '/review/download/' + e.target.href;
+		if(!e.target.matches('button')) return;
+		location.href=`${pageContext.request.contextPath}` + '/review/download/' + e.target.getAttribute('data-file');
 	});
 </script>

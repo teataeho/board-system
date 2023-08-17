@@ -4,10 +4,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.yeoreobap.command.FileVO;
-import com.spring.yeoreobap.command.PartyVO;
 import com.spring.yeoreobap.command.ReviewVO;
 import com.spring.yeoreobap.util.PageVO;
 @Mapper
@@ -39,17 +37,17 @@ public interface IReviewMapper {
 	//비밀번호검증
 	int checkPw(ReviewVO vo);
 	
-	//부모글 답변 수 증가
-	void increaseAnswer(int parentNo);
+	//마지막 자리 찾기
+	int findMax(int ref);
 	
 	//들어갈 자리 찾기
-	ReviewVO findStep(ReviewVO vo);
+	int findStep(ReviewVO vo);
 	
 	//들어갈 자리 만들기
 	void increaseRefOrder(@Param("ref") int ref, @Param("maxRefOrder")int maxRefOrder);
 	
 	//답글쓰기
-	void registDap(ReviewVO vo);
+	void registDab(ReviewVO vo);
 
 	//모든 리스트 가져오긴
 	List<ReviewVO> getAllList();
@@ -59,6 +57,9 @@ public interface IReviewMapper {
 
 	//파일 가져오기
 	List<FileVO> getFiles(int reviewNo);
+
+	//부모글 답글 개수 증가
+	void increaseAnswer(int parentNo);
 	
 
 //	List<PartyVO> getResList1(String userId);

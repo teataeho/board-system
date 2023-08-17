@@ -38,12 +38,15 @@ public interface IReviewService {
 	int checkPw(ReviewVO vo);
 
 	//답글
-	void registDab(ReviewVO vo);
+	void registDab(ReviewVO vo, List<MultipartFile> list);
 
 	//모든 게시글
 	List<ReviewVO> getAllList();
 
 	//게시글의 모든 파일 받아오기
 	List<FileVO> getFiles(int reviewNo);
+	
+	//파일업로드
+	void uploadFiles(List<MultipartFile> list);
 
 }
