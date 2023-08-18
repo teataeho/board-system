@@ -38,8 +38,7 @@
 	</insert>
 	<!-- regDate, updateDate 삭제 -->
 	<select id="getList" resultType="review">
-		SELECT ROW_NUMBER() OVER (ORDER BY r.ref, r.ref_order DESC) AS rn
-			,r.*, COUNT(rr.review_no) AS reply_cnt
+		SELECT r.*, COUNT(rr.review_no) AS reply_cnt
 		FROM review r
 		LEFT JOIN reviewreply rr ON r.review_no = rr.review_no
 		GROUP BY r.review_no
@@ -121,7 +120,7 @@
 	<update id="increaseAnswer">
 		UPDATE review
 		SET answer_cnt = answer_cnt + 1
-		WHERE review_no = #{parentNo}
+		WHERE review_no = #{reviewNo}
 	</update>
 	
 	<select id="getAllList" resultType="review">
@@ -140,6 +139,19 @@
 		FROM file
 		WHERE review_no = #{reviewNo}
 	</select>
+	
+	<select id="getDeleteCondition" resultType="int">
+		SELECT COUNT(*)
+		FROM review
+		WHERE ref = #{ref}
+		AND hidden = 0
+	</select>
+	
+	<delete id="deleteAllRef">
+		DELETE FROM
+		review
+		WHERE ref = #{ref}
+	</delete>
 	
 	<!-- <select id="getResList1" resultType="party">
 		SELECT sno, bplc_nm

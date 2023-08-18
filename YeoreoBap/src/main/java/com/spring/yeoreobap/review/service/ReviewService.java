@@ -56,8 +56,15 @@ public class ReviewService implements IReviewService {
 
 	@Override
 	public void delete(ReviewVO vo) {
-		if(vo.getAnswerCnt() == 0 && vo.getStep() == 0) mapper.delete(vo);			
+		if(vo.getAnswerCnt() == 0 && vo.getStep() == 0) {
+			mapper.delete(vo);
+		}
 		else mapper.hide(vo);
+		
+		//다 숨겨진건지 검증 후 전부 삭제
+		if(mapper.getDeleteCondition(vo.getRef()) == 0) {
+			mapper.deleteAllRef(vo.getRef());
+		}
 	}
 
 	@Override
@@ -86,10 +93,10 @@ public class ReviewService implements IReviewService {
 		result.setRef(vo.getRef());
 		result.setStep(vo.getStep() + 1);
 		result.setRefOrder(maxRefOrder);
-		result.setParentNo(vo.getParentNo());
+		result.setParentNo(vo.getReviewNo());
 		
 		mapper.registDab(result);
-		mapper.increaseAnswer(vo.getParentNo());
+		mapper.increaseAnswer(vo.getReviewNo());
 		uploadFiles(list);
 		
 	}
@@ -117,8 +124,6 @@ public class ReviewService implements IReviewService {
 		//폴더 없으면 새롭게 생성해 주시라
 		File folder = new File(uploadPath + fileLoca);
 		if(!folder.exists()) folder.mkdirs();
-
-		log.info("과연 들어온 List의 값들은???? -> " + list.toString());
 
 		int i = 0;
 		while (i < list.size()) {

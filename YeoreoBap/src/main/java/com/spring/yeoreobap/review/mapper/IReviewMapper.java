@@ -59,7 +59,13 @@ public interface IReviewMapper {
 	List<FileVO> getFiles(int reviewNo);
 
 	//부모글 답글 개수 증가
-	void increaseAnswer(int parentNo);
+	void increaseAnswer(int reviewNo);
+
+	//다 지워졌는지 검증
+	int getDeleteCondition(int ref);
+
+	//그룹 다 지우기
+	void deleteAllRef(int ref);
 	
 
 //	List<PartyVO> getResList1(String userId);

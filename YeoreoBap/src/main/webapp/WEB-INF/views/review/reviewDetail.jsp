@@ -18,6 +18,7 @@
 						<input type="hidden" name="step" value="${article.step}">
 						<input type="hidden" name="refOrder" value="${article.refOrder}">
 						<input type="hidden" name="answerCnt" value="${article.answerCnt}">
+						<input type="hidden" name="parnetNo" value="${article.parentNo}">
 						<div class="form-group">
 							<p class="subTitle">
 								첨부 <span>|</span> 

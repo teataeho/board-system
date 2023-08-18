@@ -24,7 +24,7 @@ import lombok.ToString;
 @ToString
 public class ReviewVO {
 
-	private int reviewNo, rn, ref, step, refOrder, answerCnt, parentNo, hidden, replyCnt;
+	private int reviewNo, ref, step, refOrder, answerCnt, parentNo, hidden, replyCnt;
 	private String writer, title, content, password;
 	private LocalDateTime regDate, updateDate;
 

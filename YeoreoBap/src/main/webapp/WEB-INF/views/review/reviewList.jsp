@@ -50,7 +50,11 @@
 						<c:forEach var="vo" items="${reviewList}">
 							<tr>
 								<c:if test="${vo.hidden == 0}">
-									<td class="reviewNo">${vo.rn}</td>
+									<td class="reviewNo">
+										<c:if test="${vo.step == 0}">
+											${vo.ref}
+										</c:if>
+									</td>
 									<td id="review-title" >
 										<div class="text-truncate">
 											<a  class="title-a"
@@ -70,7 +74,11 @@
 											value="${parsedDateTime}" pattern="yy.MM.dd. HH:mm" /></td>
 								</c:if>
 								<c:if test="${vo.hidden == 1}">
-									<td class="reviewNo">${vo.rn}</td>
+									<td class="reviewNo">
+										<c:if test="${vo.step == 0}">
+											${vo.ref}
+										</c:if>
+									</td>
 									<td id="review-title" style="color: gray;">
 										<c:if test="${vo.step > 0}">
 											<c:forEach begin="1" end="${vo.step}" step="1">&nbsp;&nbsp;</c:forEach>↳
