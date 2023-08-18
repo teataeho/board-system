@@ -48,3 +48,8 @@ form .modify-form-group p span {
     flex-direction: row;
     justify-content: flex-end;
 }
+
+.shade {
+	color: gray;
+	text-decoration: line-through;
+}

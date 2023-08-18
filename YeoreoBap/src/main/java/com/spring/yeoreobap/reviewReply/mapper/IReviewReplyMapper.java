@@ -26,4 +26,7 @@ public interface IReviewReplyMapper {
 
 	//비번 체크
 	int checkPw(@Param("replyNo") int replyNo, @Param("replyPw") String replyPw);
+	
+	//게시글 댓글 전체 삭제
+	void deleteAll(int reviewNo);
 }

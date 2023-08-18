@@ -442,8 +442,8 @@
 		if(!e.target.matches('input')) return;
 		const ext = e.target.value.slice(e.target.value.indexOf('.')+1).toLowerCase();
 
-		if(ext !== 'docx' && ext !== 'xls' && ext !== 'hwp' && ext !== 'pdf') {
-			alert('문서파일(docx, hwp, pdf, xls)만 등록이 가능합니다.');
+		if(ext !== 'docx' && ext !== 'xls' && ext !== 'hwp' && ext !== 'pdf' && ext !== 'xlsx') {
+			alert('문서파일(docx, hwp, pdf, xls, xlsx)만 등록이 가능합니다.');
 			e.target.value = '';
 			return;
 		}

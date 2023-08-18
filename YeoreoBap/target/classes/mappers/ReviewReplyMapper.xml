@@ -46,5 +46,11 @@
 		FROM reviewreply
 		WHERE reply_no = #{replyNo} AND reply_pw = #{replyPw}
 	</select>
+	
+	<delete id="deleteAll">
+		DELETE FROM
+		reviewreply
+		WHERE review_no = #{reviewNo}
+	</delete>
 
 </mapper>

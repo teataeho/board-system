@@ -65,6 +65,9 @@
 												<c:out value="${vo.title}"></c:out>
 											</a>
 											(${vo.replyCnt})
+											<c:if test="${vo.fileCnt != 0}">
+												<i class="bi bi-file-earmark"></i>
+											</c:if>
 										</div>
 									</td>
 									<td class="reviewWriter"><c:out value="${vo.writer}"></c:out></td>

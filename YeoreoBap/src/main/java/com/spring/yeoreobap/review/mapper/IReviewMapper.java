@@ -49,7 +49,7 @@ public interface IReviewMapper {
 	//답글쓰기
 	void registDab(ReviewVO vo);
 
-	//모든 리스트 가져오긴
+	//모든 리스트 가져오기
 	List<ReviewVO> getAllList();
 
 	//파일 업로드내역 DB에 저장
@@ -66,6 +66,12 @@ public interface IReviewMapper {
 
 	//그룹 다 지우기
 	void deleteAllRef(int ref);
+	
+	//게시판의 모든 파일 DB에서 지우기
+	void deleteFiles(int reviewNo);
+	
+	//파일 DB에서 지우기
+	void deleteFile(String fileName);
 	
 
 //	List<PartyVO> getResList1(String userId);

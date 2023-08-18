@@ -18,7 +18,6 @@
 						<input type="hidden" name="step" value="${article.step}">
 						<input type="hidden" name="refOrder" value="${article.refOrder}">
 						<input type="hidden" name="answerCnt" value="${article.answerCnt}">
-						<input type="hidden" name="parnetNo" value="${article.parentNo}">
 						<div class="form-group">
 							<p class="subTitle">
 								첨부 <span>|</span> 
@@ -26,7 +25,7 @@
 							<p id="download-container">
 								<c:forEach var="vo" items="${fileList}">
 									${vo.fileRealName}
-									<button id="downloadBtn" data-file="${vo.fileLoca}/${vo.fileName}/${vo.fileRealName}" type="button">다운로드</button>
+									<button id="downloadBtn" data-file="${vo.fileName}/${vo.fileRealName}" type="button">다운로드</button>
 								</c:forEach>
 							</p>
 						</div>

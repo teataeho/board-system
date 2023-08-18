@@ -11,8 +11,23 @@
                        <h2>수정하기</h2>
                    </div>
                         
-                    <form action="${pageContext.request.contextPath}/review/update" method="post" name="updateForm">
+                    <form action="${pageContext.request.contextPath}/review/update" method="post" name="updateForm" enctype="multipart/form-data">
                         <input type="hidden" name="reviewNo" value="${article.reviewNo}" />
+                        <div id="uploaded-file-container">
+                            <label class="upload-label">기존 첨부 파일</label>
+                            <c:forEach var="file" items="${fileList}">
+                                <div>
+                                    <input type="hidden" name="fileName" value="${file.fileName}">
+                                    <input type="checkbox" checked="true">
+                                    <p>${file.fileRealName}</p>
+                                </div>
+                            </c:forEach>
+                        </div>
+                        <div id="file-upload-container">
+                            <label class="upload-label">업로드할 파일</label>
+                            <button type="button" class="btn" id="uploadPlusBtn">+</button>
+                            <button type="button" class="btn" id="uploadMinusBtn">-</button>
+                        </div>
                         <div class="form-group modify-form-group">
                             <p>작성자<span>|</span></p>
                             <input class="form-control modify-form-control" id="inputForm" name="userNick" value="${article.writer}" readonly>
@@ -114,6 +129,53 @@
                 document.querySelector('.content').focus();
                 document.getElementById('content_cnt').textContent = '(' + e.target.value.length + '/1000)';
                 return;
+            }
+        });
+
+        const $fileUploadContainer = document.getElementById('file-upload-container');
+
+        //파일 업로드 추가
+        document.getElementById('uploadPlusBtn').addEventListener('click', e => {
+            e.preventDefault();
+            const str = `<br><input type="file" name="file">`;
+            $fileUploadContainer.insertAdjacentHTML('beforeend', str);
+        });
+
+        //파일 업로드 빼기
+        document.getElementById('uploadMinusBtn').addEventListener('click', e => {
+            e.preventDefault();
+            if($fileUploadContainer.lastElementChild.tagName === 'INPUT') {
+                $fileUploadContainer.lastElementChild.remove();
+                $fileUploadContainer.lastElementChild.remove();
+            }
+        });
+
+        //파일 확장자 제어
+        document.getElementById('file-upload-container').addEventListener('change', e=> {
+            if(!e.target.matches('input')) return;
+            const ext = e.target.value.slice(e.target.value.indexOf('.')+1).toLowerCase();
+
+            if(ext !== 'docx' && ext !== 'xls' && ext !== 'hwp' && ext !== 'pdf' && ext !== 'xlsx') {
+                alert('문서파일(docx, hwp, pdf, xls, xlsx)만 등록이 가능합니다.');
+                e.target.value = '';
+                return;
+            }
+            if(e.target.size > 5*1024*1024) {
+                alert('첨부파일의 사이즈는 5MB 이내로 가능합니다.');
+                e.target.value = '';
+                return;
+            }
+        });
+
+        //기존 첨부파일 삭제 버튼
+        document.getElementById('uploaded-file-container').addEventListener('change', e => {
+            if(!e.target.matches('input')) return;
+            if(e.target.checked) {                
+                e.target.previousElementSibling.removeAttribute('name');
+                e.target.nextElementSibling.classList.toggle('shade');
+            } else {
+                e.target.previousElementSibling.setAttribute('name', 'fileName');
+                e.target.nextElementSibling.classList.toggle('shade');
             }
         });
 

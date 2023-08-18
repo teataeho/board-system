@@ -99,13 +99,16 @@ public class ReviewController {
 	public String modify(ReviewVO vo, Model model) {
 		log.info(vo.toString());
 		model.addAttribute("article", service.getArticle(vo.getReviewNo()));
+		model.addAttribute("fileList", service.getFiles(vo.getReviewNo()));
 		return "review/reviewModify";
 	}
 	
 	//후기수정하기
 	@PostMapping("/update")
-	public String update(ReviewVO vo) {
-		service.update(vo);
+	public String update(ReviewVO vo
+			, @RequestParam(value="file",required = false) List<MultipartFile> list
+			, @RequestParam(value = "fileName", required = false) List<String> fileName) {
+		service.update(vo, list, fileName);
 		return "redirect:/review/content/" + vo.getReviewNo();
 	}
 	
@@ -139,12 +142,10 @@ public class ReviewController {
 		int rowNo = 0;
 		
 		Row headerRow = sheet.createRow(rowNo++);
-        headerRow.createCell(0).setCellValue("글 번호");
-        headerRow.createCell(1).setCellValue("작성자");
-        headerRow.createCell(2).setCellValue("제목");
-        headerRow.createCell(3).setCellValue("내용");
-        headerRow.createCell(4).setCellValue("작성일");
-        headerRow.createCell(5).setCellValue("수정일");
+        headerRow.createCell(0).setCellValue("번호");
+        headerRow.createCell(1).setCellValue("제목");
+        headerRow.createCell(2).setCellValue("작성자");
+        headerRow.createCell(4).setCellValue("등록일");
         
 		List<ReviewVO> list = service.getAllList();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -152,14 +153,10 @@ public class ReviewController {
 		for(ReviewVO vo : list) {
 			if(vo.getHidden() == 0) {
 				Row row = sheet.createRow(rowNo++);
-				row.createCell(0).setCellValue(vo.getReviewNo());
-	            row.createCell(1).setCellValue(vo.getWriter());
-	            row.createCell(2).setCellValue(vo.getTitle());
-	            row.createCell(3).setCellValue(vo.getContent());
+				row.createCell(0).setCellValue(vo.getRef());
+	            row.createCell(1).setCellValue(vo.getTitle());
+	            row.createCell(2).setCellValue(vo.getWriter());
 	            row.createCell(4).setCellValue(vo.getRegDate().format(formatter));
-	            if(vo.getUpdateDate() != null) {
-	            	row.createCell(5).setCellValue(vo.getUpdateDate().format(formatter));
-	            }
 			}
 		}
 		
@@ -171,11 +168,10 @@ public class ReviewController {
 	}
 	
 	//파일 다운로드
-	@GetMapping("/download/{fileLoca}/{fileName}/{fileRealName}")
-	public ResponseEntity<FileSystemResource> fileDownload(@PathVariable String fileLoca
-			, @PathVariable String fileName
+	@GetMapping("/download/{fileName}/{fileRealName}")
+	public ResponseEntity<FileSystemResource> fileDownload(@PathVariable String fileName
 			, @PathVariable String fileRealName) {
-		File file = new File("C:/Work/upload/" + fileLoca + "/" + fileName);
+		File file = new File("C:/Work/upload/" + fileName);
 		
 		if(file.exists()) {
 			HttpHeaders headers = new HttpHeaders();

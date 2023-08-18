@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.spring.yeoreobap.command.FileVO;
 import com.spring.yeoreobap.command.ReviewVO;
 import com.spring.yeoreobap.review.mapper.IReviewMapper;
+import com.spring.yeoreobap.reviewReply.mapper.IReviewReplyMapper;
 import com.spring.yeoreobap.util.PageVO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -23,11 +24,13 @@ public class ReviewService implements IReviewService {
 
 	@Autowired
 	private IReviewMapper mapper;
+	@Autowired
+	private IReviewReplyMapper replyMapper;
 	
 	@Override
 	public void regist(ReviewVO vo, List<MultipartFile> list) {	
 		mapper.regist(vo);			
-		uploadFiles(list);
+		if(list != null) uploadFiles(list);
 	}
 
 	@Override
@@ -50,16 +53,25 @@ public class ReviewService implements IReviewService {
 	}
 
 	@Override
-	public void update(ReviewVO vo) {
-		mapper.update(vo);
+	public void update(ReviewVO vo, List<MultipartFile> list, List<String> fileName) {
+		deleteFiles(vo.getReviewNo());
+		if(list != null) uploadFiles(list);
+		if(fileName != null) {
+			for(String name : fileName) {
+				deleteFile(name);
+			}
+		}
+		mapper.update(vo);		
 	}
 
 	@Override
 	public void delete(ReviewVO vo) {
+		deleteFiles(vo.getReviewNo());
 		if(vo.getAnswerCnt() == 0 && vo.getStep() == 0) {
 			mapper.delete(vo);
 		}
 		else mapper.hide(vo);
+		replyMapper.deleteAll(vo.getReviewNo());
 		
 		//다 숨겨진건지 검증 후 전부 삭제
 		if(mapper.getDeleteCondition(vo.getRef()) == 0) {
@@ -93,11 +105,10 @@ public class ReviewService implements IReviewService {
 		result.setRef(vo.getRef());
 		result.setStep(vo.getStep() + 1);
 		result.setRefOrder(maxRefOrder);
-		result.setParentNo(vo.getReviewNo());
 		
 		mapper.registDab(result);
 		mapper.increaseAnswer(vo.getReviewNo());
-		uploadFiles(list);
+		if(list != null) uploadFiles(list);
 		
 	}
 
@@ -113,16 +124,11 @@ public class ReviewService implements IReviewService {
 
 	@Override
 	public void uploadFiles(List<MultipartFile> list) {
-		//날짜별로 폴더를 생성해서 관리할 예정입니다.
-		LocalDateTime now = LocalDateTime.now();
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMdd");
-		String fileLoca = now.format(dtf);
-
 		//기본 경로는 C:/test/upload로 사용하겠습니다.
 		String uploadPath = "C:/Work/upload/";
 
 		//폴더 없으면 새롭게 생성해 주시라
-		File folder = new File(uploadPath + fileLoca);
+		File folder = new File(uploadPath);
 		if(!folder.exists()) folder.mkdirs();
 
 		int i = 0;
@@ -133,8 +139,6 @@ public class ReviewService implements IReviewService {
 				i++;
 			}
 		}
-
-		log.info("과연 들어온 List의 값들은???? -> " + list.toString());
 
 		for(MultipartFile file : list) {
 			//저장될 파일명은 UUID를 이용한 파일명으로 저장합니다.
@@ -149,14 +153,13 @@ public class ReviewService implements IReviewService {
 
 			log.info("저장할 폴더 경로: " + uploadPath);
 			log.info("실제 파일명: " + fileRealName);
-			log.info("폴더명: " + fileLoca);
 			log.info("확장자: " + fileExtension);
 			log.info("고유랜덤문자: " + uuids);
 			String fileName = uuids + fileExtension;
 			log.info("변경해서 저장할 파일명: " + fileName);
 
 			//업로드한 파일을 지정한 로컬 경로로 전송
-			File saveFile = new File(uploadPath + fileLoca + "/" + fileName);
+			File saveFile = new File(uploadPath + fileName);
 			try {
 				file.transferTo(saveFile);
 			} catch (Exception e) {
@@ -165,13 +168,31 @@ public class ReviewService implements IReviewService {
 
 			FileVO fileVO = new FileVO();
 			fileVO.setUploadPath(uploadPath);
-			fileVO.setFileLoca(fileLoca);
 			fileVO.setFileName(fileName);
 			fileVO.setFileRealName(fileRealName);
 
 			mapper.fileUpload(fileVO);
 		}
 		
+	}
+
+	@Override
+	public void deleteFiles(int reviewNO) {
+		List<FileVO> list = mapper.getFiles(reviewNO);
+		if(list != null) {
+			mapper.deleteFiles(reviewNO);
+			for(FileVO vo : list) {
+				File file = new File(vo.getUploadPath() + vo.getFileName());
+				if(file.isFile()) file.delete();
+			}
+		}
+	}
+
+	@Override
+	public void deleteFile(String fileName) {
+		File file = new File("C:/Work/upload/" + fileName);
+		if(file.isFile()) file.delete();
+		mapper.deleteFile(fileName);
 	}
 
 //	@Override

@@ -9,7 +9,7 @@ import lombok.ToString;
 @ToString
 public class FileVO {
 
-	String fileName, uploadPath, fileRealName, fileLoca;
+	String fileName, uploadPath, fileRealName;
 	int reviewNo;
 	
 }

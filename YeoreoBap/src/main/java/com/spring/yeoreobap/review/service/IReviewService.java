@@ -23,7 +23,7 @@ public interface IReviewService {
 	ReviewVO getArticle(int reviewNo);
 
 	//수정
-	void update(ReviewVO vo);
+	void update(ReviewVO vo, List<MultipartFile> list, List<String> fileName);
 
 	//삭제
 	void delete(ReviewVO vo);
@@ -48,5 +48,11 @@ public interface IReviewService {
 	
 	//파일업로드
 	void uploadFiles(List<MultipartFile> list);
+	
+	//게시글의 전체 파일삭제
+	void deleteFiles(int reviewNo);
+	
+	//파일 삭제
+	void deleteFile(String fileName);
 
 }
