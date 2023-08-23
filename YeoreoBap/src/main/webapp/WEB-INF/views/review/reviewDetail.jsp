@@ -25,7 +25,7 @@
 							<p id="download-container">
 								<c:forEach var="vo" items="${fileList}">
 									${vo.fileRealName}
-									<button id="downloadBtn" data-file="${vo.fileName}/${vo.fileRealName}" type="button">다운로드</button>
+									<button id="downloadBtn" data-file="${vo.fileName}" type="button">다운로드</button>
 								</c:forEach>
 							</p>
 						</div>

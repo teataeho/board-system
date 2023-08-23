@@ -38,12 +38,12 @@
 	</insert>
 	<!-- regDate, updateDate 삭제 -->
 	<select id="getList" resultType="review">
-		SELECT r.*, COUNT(rr.review_no) AS reply_cnt, COUNT(f.review_no) AS file_cnt
+		SELECT r.*, COUNT(DISTINCT rr.review_no) AS reply_cnt, COUNT(DISTINCT f.review_no) AS file_cnt
 		FROM review r
 		LEFT JOIN reviewreply rr ON r.review_no = rr.review_no
 		LEFT JOIN file f ON f.review_no = r.review_no
-		GROUP BY r.review_no
 		<include refid="search" />
+		GROUP BY r.review_no
 		ORDER BY r.ref DESC, r.ref_order
 		LIMIT #{pageStart}, #{cpp}
 	</select>
@@ -133,6 +133,11 @@
 	<insert id="fileUpload">
 		INSERT INTO file
 		VALUES(#{fileName}, (SELECT MAX(review_no) FROM review), #{fileRealName}, #{uploadPath})
+	</insert>
+	
+	<insert id="fileModifyUpload">
+		INSERT INTO file
+		VALUES(#{fileName}, #{reviewNo}, #{fileRealName}, #{uploadPath})
 	</insert>
 	
 	<select id="getFiles" resultType="file">

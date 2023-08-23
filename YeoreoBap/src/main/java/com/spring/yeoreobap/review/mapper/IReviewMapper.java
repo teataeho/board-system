@@ -54,6 +54,9 @@ public interface IReviewMapper {
 
 	//파일 업로드내역 DB에 저장
 	void fileUpload(FileVO fileVO);
+	
+	//파일 수정시 업로드내역 DB에 저장
+	void fileModifyUpload(FileVO fileVO);
 
 	//파일 가져오기
 	List<FileVO> getFiles(int reviewNo);

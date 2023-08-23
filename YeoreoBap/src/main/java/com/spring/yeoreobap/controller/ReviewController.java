@@ -167,15 +167,50 @@ public class ReviewController {
         workbook.close();
 	}
 	
+	//현재 페이지 엑셀 다운로드
+	@ResponseBody
+	@PostMapping("/downloadExcel")
+	public void download(HttpServletResponse response, @RequestBody List<ReviewVO> reviewList) throws IOException {
+			
+		log.info("리뷰리스트 다운받을건데 들어오나???:" + reviewList.toString());
+		
+		Workbook workbook = new HSSFWorkbook();
+		Sheet sheet = workbook.createSheet("reviewList");
+		int rowNo = 0;
+			
+		Row headerRow = sheet.createRow(rowNo++);
+        headerRow.createCell(0).setCellValue("번호");
+        headerRow.createCell(1).setCellValue("제목");
+        headerRow.createCell(2).setCellValue("작성자");
+        headerRow.createCell(4).setCellValue("등록일");
+	        
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+			
+		for(ReviewVO vo : reviewList) {
+			if(vo.getHidden() == 0) {
+				Row row = sheet.createRow(rowNo++);
+				row.createCell(0).setCellValue(vo.getRef());
+	            row.createCell(1).setCellValue(vo.getTitle());
+	            row.createCell(2).setCellValue(vo.getWriter());
+	            row.createCell(4).setCellValue(vo.getRegDate().format(formatter));
+			}
+		}
+			
+		response.setContentType("ms-vnd/excel");
+        response.setHeader("Content-Disposition", "attachment;filename=reviewlist.xls");
+	 
+        workbook.write(response.getOutputStream());
+        workbook.close();
+	}
+	
 	//파일 다운로드
-	@GetMapping("/download/{fileName}/{fileRealName}")
-	public ResponseEntity<FileSystemResource> fileDownload(@PathVariable String fileName
-			, @PathVariable String fileRealName) {
+	@GetMapping("/download/{fileName}")
+	public ResponseEntity<FileSystemResource> fileDownload(@PathVariable String fileName) {
 		File file = new File("C:/Work/upload/" + fileName);
 		
 		if(file.exists()) {
 			HttpHeaders headers = new HttpHeaders();
-            headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + fileRealName);
+            headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + fileName);
             headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
 
             FileSystemResource resource = new FileSystemResource(file);

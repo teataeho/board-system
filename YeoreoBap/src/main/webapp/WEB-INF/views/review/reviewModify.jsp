@@ -17,7 +17,7 @@
                             <label class="upload-label">기존 첨부 파일</label>
                             <c:forEach var="file" items="${fileList}">
                                 <div>
-                                    <input type="hidden" name="fileName" value="${file.fileName}">
+                                    <input type="hidden" value="${file.fileName}">
                                     <input type="checkbox" checked="true">
                                     <p>${file.fileRealName}</p>
                                 </div>
@@ -153,14 +153,14 @@
         //파일 확장자 제어
         document.getElementById('file-upload-container').addEventListener('change', e=> {
             if(!e.target.matches('input')) return;
-            const ext = e.target.value.slice(e.target.value.indexOf('.')+1).toLowerCase();
+            const ext = e.target.value.slice(e.target.value.lastIndexOf('.')+1).toLowerCase();
 
-            if(ext !== 'docx' && ext !== 'xls' && ext !== 'hwp' && ext !== 'pdf' && ext !== 'xlsx') {
-                alert('문서파일(docx, hwp, pdf, xls, xlsx)만 등록이 가능합니다.');
+            if(ext !== 'docx' && ext !== 'xls' && ext !== 'hwp' && ext !== 'pdf' && ext !== 'xlsx' && ext !== 'zip') {
+                alert('문서파일(docx, hwp, pdf, xls, xlsx, zip)만 등록이 가능합니다.');
                 e.target.value = '';
                 return;
             }
-            if(e.target.size > 5*1024*1024) {
+            if(e.target.files[0].size > 5*1024*1024) {
                 alert('첨부파일의 사이즈는 5MB 이내로 가능합니다.');
                 e.target.value = '';
                 return;

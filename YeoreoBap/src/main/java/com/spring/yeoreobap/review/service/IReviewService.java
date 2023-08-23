@@ -49,6 +49,9 @@ public interface IReviewService {
 	//파일업로드
 	void uploadFiles(List<MultipartFile> list);
 	
+	//파일수정업로드
+	void uploadModifyFiles(List<MultipartFile> list, int reviewNo);
+	
 	//게시글의 전체 파일삭제
 	void deleteFiles(int reviewNo);
 	

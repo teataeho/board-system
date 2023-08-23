@@ -16,8 +16,10 @@
 
 				<!--form select를 가져온다 -->
 				<form action="<c:url value='/review/reviewList' />">
-					<div id="search-wrap">
-						
+					<button type="button" class="btn btn-info"
+							onclick="location.href='${pageContext.request.contextPath}/review/downloadExcel'">전체 리스트 다운로드</button>
+					<button type="button" class="btn btn-info" id="downloadBtn">현재 페이지 다운로드</button>
+					<div id="search-wrap">						
 						<select name="condition" class="form-select search-select">
 							<option value="title" class="title"
 								${pc.paging.condition == 'title' ? 'selected' : ''}>제목</option>
@@ -51,9 +53,7 @@
 							<tr>
 								<c:if test="${vo.hidden == 0}">
 									<td class="reviewNo">
-										<c:if test="${vo.step == 0}">
-											${vo.ref}
-										</c:if>
+										${vo.ref}
 									</td>
 									<td id="review-title" >
 										<div class="text-truncate">
@@ -123,9 +123,7 @@
 							</c:if>
 						</ul>
 						<button type="button" class="btn btn-info" id="writeBtn"
-							onclick="location.href='${pageContext.request.contextPath}/review/reviewRegist'">글쓰기</button>
-						<button type="button" class="btn btn-info" id="downloadBtn"
-							onclick="location.href='${pageContext.request.contextPath}/review/downloadExcel'">다운로드</button>
+							onclick="location.href='${pageContext.request.contextPath}/review/reviewRegist'">글쓰기</button>						
 					</div>
 
 					<input type="hidden" name="pageNum" value="${pc.paging.pageNum}">
@@ -156,4 +154,20 @@
         });
 
     }
+
+	document.getElementById('downloadBtn').addEventListener('click', e => {
+		fetch("${pageContext.request.contextPath}/review/downloadExcel", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(`${reviewList}`)
+        })
+		.then(response => response.json())
+            .then(data => {})
+        .catch(error => {
+			alert('현재 점검중인 서비스입니다.');
+            console.error("오류:", error);
+        });
+	});
 </script>
